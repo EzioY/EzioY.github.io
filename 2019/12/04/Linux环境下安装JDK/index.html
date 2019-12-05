@@ -11,7 +11,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Redis安装流程 | Ezio&#39;s blog</title>
+<title>Linux环境下安装JDK | Ezio&#39;s blog</title>
 
 
 
@@ -177,7 +177,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Redis安装流程</h1>
+            <h1 class="post-title">Linux环境下安装JDK</h1>
             
                 <div class="post-meta">
                     
@@ -186,14 +186,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">December 3, 2019&nbsp;&nbsp;16:59:43</a>
+                        Date: <a href="#">December 4, 2019&nbsp;&nbsp;16:01:30</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Redis/">Redis</a>
+                                <a href="/categories/Linux/">Linux</a>
                             
                         </span>
                     
@@ -202,61 +202,26 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Redis安装流程"><a href="#Redis安装流程" class="headerlink" title="Redis安装流程"></a>Redis安装流程</h1><p>本安装流程于Linux环境下安装，所用redis版本为5.0.7。</p>
-<hr>
-<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p>1.看是否有gcc环境，没有则安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install gcc-c++</span><br></pre></td></tr></table></figure>
-
-<p>2.下载压缩包到指定目录，可直接去官网下载<a href="https://redis.io/download" target="_blank" rel="noopener">https://redis.io/download</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
-
+            <h1 id="Linux环境下安装JDK"><a href="#Linux环境下安装JDK" class="headerlink" title="Linux环境下安装JDK"></a>Linux环境下安装JDK</h1><p>1.首先去官网或者通过其他途径获取压缩包</p>
+<p>2.把压缩包上传到服务器/usr/local/tmp</p>
 <p>3.解压压缩包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar xzf redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf jdk</span><br></pre></td></tr></table></figure>
 
-<p>4.进入解压后的文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> redis-5.0.7</span><br></pre></td></tr></table></figure>
+<p>4.把解压后的文件复制到/usr/local/jdk8</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp -r 文件名 /usr/<span class="built_in">local</span>/jdk8</span><br></pre></td></tr></table></figure>
 
-<p>5.执行make命令编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<p>5.配置环境变量，执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/profile</span><br></pre></td></tr></table></figure>
 
-<p>6.再进入src目录，在其目录下执行命令 make install</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
+<p>6.修改文件中的内容，内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/local/jdk8</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
 
-<p>7.创建新的目录redis、bin、etc，用于分类执行文件和配置文件(这一步不是必做)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/bin（加-p参数如果上级目录不存在则自动创建）</span><br><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
+<p>export 添加或修改变量</p>
+<p>7.解析文件（或重启系统）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
 
-<p>8.将redis 5.0.7/src目录下的redis-server，redis-check-aof，redis-check-rdb，redis-cli，redis-benchmark，mkreleasehdr.sh，redis-sentainel移动到的自建的redis/bin目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mv redis-server redis-check-aof redis-check-rdb redis-cli redis-benchmark mkreleasehdr.sh redis-sentinel /usr/<span class="built_in">local</span>/redis/bin</span><br></pre></td></tr></table></figure>
-
-<p>9.拷贝配置文件到自建etc目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp redis.conf /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
-
-<p>10.启动redis服务，通过指定配置文件启动服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/etc/redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>出现以下画面则说明启动成功</p>
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204092911.jpg" style="zoom:80%;">
-
-<p>6379为redis端口号，按Ctrl+C可退出服务</p>
-<p>11.进入自建的redis/etc目录下，修改redis.conf配置文件，让redis变为后台启动方式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>将daemonize改为yes</p>
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204093702.png" style="zoom:80%;">
-
-<p>12.再次启动服务，出现一下画面则说明成功</p>
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204094149.png" style="zoom:80%;">
-
-<p>可通过ps -ef | grep 6379查看redis服务是否启动或这关闭</p>
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204094428.png" style="zoom:80%;">
-
-<p>13.进入客户端</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204095458.png" alt></p>
-<p>按Ctrl+C可退出</p>
-<p>14.关闭redis服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pkill redis-server</span><br><span class="line">或者</span><br><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server shutdown</span><br></pre></td></tr></table></figure>
+<p>8.验证配置是否成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java-version</span><br></pre></td></tr></table></figure>
 
 
         </div>
@@ -272,7 +237,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2019/12/03/Redis安装流程/">http://ezioy.cn/2019/12/03/Redis安装流程/</a></span>
+                        <span><a href="http://ezioy.cn/2019/12/04/Linux环境下安装JDK/">http://ezioy.cn/2019/12/04/Linux环境下安装JDK/</a></span>
                     </p>
                 
                 
@@ -296,7 +261,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Redis/"># Redis</a>
+                        <a href="/tags/Linux/"># Linux</a>
                     
                         
                 </span>
@@ -309,10 +274,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/12/04/Linux环境下安装JDK/">Linux环境下安装JDK</a>
+                <a class="prev" rel="prev" href="/2019/12/05/Linux环境下安装tomcat/">Linux环境下安装tomcat</a>
             
             
-            <a class="next" rel="next" href="/2019/09/29/Linux常用命令/">Linux常用命令</a>
+            <a class="next" rel="next" href="/2019/12/03/Redis安装流程/">Redis安装流程</a>
             
         </section>
 
