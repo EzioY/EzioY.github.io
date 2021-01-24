@@ -5,6 +5,10 @@ tags: Redis
 categories: Redis
 ---
 
+---
+
+
+
 # Redis安装流程
 
 本安装流程于Linux环境下安装，所用redis版本为5.0.7。
@@ -76,7 +80,7 @@ $ /usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf
 
 出现以下画面则说明启动成功
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204092911.jpg" style="zoom:80%;" />
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" style="zoom:80%;" />
 
 6379为redis端口号，按Ctrl+C可退出服务
 
@@ -89,23 +93,24 @@ $ vim redis.conf
 
 将daemonize改为yes
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204093702.png" style="zoom:80%;" />
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" style="zoom:80%;" />
 
 12.再次启动服务，出现一下画面则说明成功
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204094149.png" style="zoom:80%;" />
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" style="zoom:80%;" />
 
 可通过ps -ef | grep 6379查看redis服务是否启动或这关闭
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204094428.png" style="zoom:80%;" />
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" style="zoom:80%;" />
 
 13.进入客户端
 
 ```bash
-$ redis-cli
+$ redis-cli 进入redis客户端
+$ redis 127.0.0.1:6379> PING 检测redis服务是否启动
 ```
 
-![](https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20191204095458.png)
+![](https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png)
 
 按Ctrl+C可退出
 
@@ -115,6 +120,12 @@ $ redis-cli
 $ pkill redis-server
 或者
 $ /usr/local/redis/bin/redis-server shutdown
+```
+
+15.如果redis中文乱码则可以在后面加上 --raw
+
+```bash
+$ redis-cli --raw
 ```
 
 

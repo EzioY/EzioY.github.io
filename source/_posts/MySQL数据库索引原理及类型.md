@@ -5,6 +5,10 @@ tags: MySQL
 categories: MySQL
 ---
 
+---
+
+
+
 # MySQL数据库索引原理及类型
 
 ## 原理

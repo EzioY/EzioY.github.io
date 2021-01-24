@@ -5,6 +5,10 @@ tags: MySQL
 categories: MySQL
 ---
 
+---
+
+
+
 # MySQL数据库多表查询
 
 ### **内连接（一种场景）**
@@ -19,7 +23,7 @@ inner join 或者 join
 
 应用场景：
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20190903103546.png" width="330" height="200" alt="inner-join" />
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145249.png" width="330" height="200" alt="inner-join" />
 
 满足某一条件的A,B内部的数据，得到内部共有数据，相当于求交集。
 
@@ -39,7 +43,7 @@ left join 或者left outer join
 
 应用场景：
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20190903102654.png" width="330" height="200" alt="left-join" />
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145233.png" width="330" height="200" alt="left-join" />
 
 得到的是A的所有数据和满足某一条件的B的数据。
 
@@ -58,7 +62,7 @@ left join 或者left outer join
 
 应用场景：
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20190903104621.png" width="330" height="200" alt="left-join+where-b.column-is-null" />
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145303.png" width="330" height="200" alt="left-join+where-b.column-is-null" />
 
 该场景得到的是A中的所有数据减去“与B满足统一条件的数据”，然后得到A剩下的数据。
 
@@ -76,7 +80,7 @@ right join 或者right outher join
 
 应用场景：
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20190903105208.png" width="330" height="200" alt="right-join"/>
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145314.png" width="330" height="200" alt="right-join"/>
 
 该场景下得到B的所有数据和满足某一条件的A的数据。
 
@@ -95,7 +99,7 @@ right join 或者right outher join
 
 应用场景：
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20190903105758.png" width="330" height="200" alt="right-join+where"/>
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145320.png" width="330" height="200" alt="right-join+where"/>
 
 该场景下得到的是B中的所有数据减去“与A满足统一条件的数据”，然后得到B的剩余数据。
 
@@ -118,7 +122,7 @@ union会将重复的记录合并
 
 应用场景：
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20190903110323.png" width="330" height="200" alt="full-join"/>
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145324.png" width="330" height="200" alt="full-join"/>
 
 该场景得到的是满足某一条件的公有数据和独有数据，类似并集。
 
@@ -142,7 +146,7 @@ full join + is null（mysql不支持，但可以用（left join+is null）union�
 
 应用场景：
 
-<img src="https://raw.githubusercontent.com/EzioY/BlogImages/master/img/20190903110858.png" width="330" height="200" alt="full-join+is-null"/>
+<img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145327.png" width="330" height="200" alt="full-join+is-null"/>
 
 该场景下得到的是A，B中不满足某一条件的记录之和。
 

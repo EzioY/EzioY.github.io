@@ -5,6 +5,10 @@ tags: Linux
 categories: Linux
 ---
 
+---
+
+
+
 # Linux环境下安装JDK
 
 1.首先去官网或者通过其他途径获取压缩包
@@ -14,7 +18,7 @@ categories: Linux
 3.解压压缩包
 
 ```bash
-$ tar zxvf jdk
+$ tar -zxvf jdk
 ```
 
 4.把解压后的文件复制到/usr/local/jdk8
