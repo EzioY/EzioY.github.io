@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>MySQL数据库多表查询 | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">MySQL数据库多表查询</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 3, 2019&nbsp;&nbsp;11:17:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/MySQL/">MySQL</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="MySQL数据库多表查询"><a href="#MySQL数据库多表查询" class="headerlink" title="MySQL数据库多表查询"></a>MySQL数据库多表查询</h1><h3 id="内连接（一种场景）"><a href="#内连接（一种场景）" class="headerlink" title="内连接（一种场景）"></a><strong>内连接（一种场景）</strong></h3><p>inner join 或者 join</p>
+<p>例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>,b.<span class="operator">*</span> <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br></pre></td></tr></table></figure>
+<p>应用场景：</p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145249.png" title="inner-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145249.png" width="330" height="200" alt="inner-join" /></a>
+
+<p>满足某一条件的A,B内部的数据，得到内部共有数据，相当于求交集。</p>
+<hr>
+<h3 id="外连接（六种场景）"><a href="#外连接（六种场景）" class="headerlink" title="外连接（六种场景）"></a><strong>外连接（六种场景）</strong></h3><p>场景一：</p>
+<p>left join 或者left outer join</p>
+<p>例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>,b.<span class="operator">*</span> <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br></pre></td></tr></table></figure>
+<p>应用场景：</p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145233.png" title="left-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145233.png" width="330" height="200" alt="left-join" /></a>
+
+<p>得到的是A的所有数据和满足某一条件的B的数据。</p>
+<hr>
+<p>场景二：</p>
+<p>[left join] + [where b.column is null]</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> tablea a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> tableb b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> b.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+<p>应用场景：</p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145303.png" title="left-join+where-b.column-is-null" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145303.png" width="330" height="200" alt="left-join+where-b.column-is-null" /></a>
+
+<p>该场景得到的是A中的所有数据减去“与B满足统一条件的数据”，然后得到A剩下的数据。</p>
+<hr>
+<p>场景三：</p>
+<p>right join 或者right outher join</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br></pre></td></tr></table></figure>
+<p>应用场景：</p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145314.png" title="right-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145314.png" width="330" height="200" alt="right-join"/></a>
+
+<p>该场景下得到B的所有数据和满足某一条件的A的数据。</p>
+<hr>
+<p>场景四：</p>
+<p>[right join] + [where A.column is null]</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br><span class="line"><span class="keyword">WHERE</span> a.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+<p>应用场景：</p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145320.png" title="right-join+where" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145320.png" width="330" height="200" alt="right-join+where"/></a>
+
+<p>该场景下得到的是B中的所有数据减去“与A满足统一条件的数据”，然后得到B的剩余数据。</p>
+<hr>
+<p>场景五：</p>
+<p>full join（mysql不支持，但可以用left join union right join代替）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br></pre></td></tr></table></figure>
+<p>union会将重复的记录合并</p>
+<p>应用场景：</p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145324.png" title="full-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145324.png" width="330" height="200" alt="full-join"/></a>
+
+<p>该场景得到的是满足某一条件的公有数据和独有数据，类似并集。</p>
+<hr>
+<p>场景六：</p>
+<p>full join + is null（mysql不支持，但可以用（left join+is null）union（right join+is null）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> b.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> a.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+<p>应用场景：</p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145327.png" title="full-join+is-null" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145327.png" width="330" height="200" alt="full-join+is-null"/></a>
+
+<p>该场景下得到的是A，B中不满足某一条件的记录之和。</p>
+<hr>
+<p>该文章借鉴参考于<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuzhanhong/p/9286910.html">https://www.cnblogs.com/yuzhanhong/p/9286910.html</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://ezioy.cn/2019/09/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">http://ezioy.cn/2019/09/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/MySQL/"># MySQL</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/">MySQL数据库索引原理及类型</a>
+            
+            
+            <a class="next" rel="next" href="/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/">Git上传远程仓库命令组</a>
+            
+        </section>
+
+
+	    
+		    <section id="comments" class="comments">
+		      <style>
+		        .comments{margin:30px;padding:10px;background:#fff}
+		        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+		      </style>
+		      <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+		    </section>
+		
+    </article>
+
+	
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2021 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
