@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Git上传远程仓库命令组 | Ezio&#39;s blog</title>
+<title>Java集合 | Ezio&#39;s blog</title>
 
 
 
@@ -182,7 +182,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Git上传远程仓库命令组</h1>
+            <h1 class="post-title">Java集合</h1>
             
                 <div class="post-meta">
                     
@@ -191,14 +191,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 2, 2019&nbsp;&nbsp;8:46:35</a>
+                        Date: <a href="#">February 1, 2021&nbsp;&nbsp;11:52:01</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Git/">Git</a>
+                                <a href="/categories/Java/">Java</a>
                             
                         </span>
                     
@@ -208,7 +208,79 @@
 
         <div class="post-content">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git rm file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│ ———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├—————-└<strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└———<strong>IdentifyHashMap</strong></p>
+<h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
+<li><p>有序性：  </p>
+<ul>
+<li>List：保证按插入顺序排序  </li>
+<li>set：set存储和取出顺序不一致</li>
+</ul>
+</li>
+<li><p>唯一性： </p>
+<ul>
+<li> List：可以重复  </li>
+<li> set：元素唯一</li>
+</ul>
+</li>
+<li><p>获取元素：  </p>
+<ul>
+<li>List：可以通过索引直接操作元素  </li>
+<li>set：set不能根据索引获取元素</li>
+</ul>
+</li>
+</ul>
+<h4 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h4><p>（1）<strong>ArrayList</strong>：底层数据结构是数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</p>
+<p>（2）<strong>LinkedList</strong> ：底层数据结构是链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</p>
+<p>（3）<strong>Vector</strong>:底层数据结构是数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</p>
+<h4 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h4><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
+<p>(2)<strong>LinkedHashSet</strong>：底层数据结构采用链表和哈希表共同实现，链表保证了元素的顺序与存储顺序一致，哈希表保证了元素的唯一性。线程不安全，效率高。</p>
+<p>(3)<strong>TreeSet</strong>：底层数据结构采用二叉树来实现，元素唯一，它不保留元素的插入顺序，它按升序对元素排序，他不是线程安全的。</p>
+<h4 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h4><ul>
+<li><p>线程安全：</p>
+<ul>
+<li>HashTable：类中一些方法加入了synchronized关键字，来保证线程安全。 </li>
+<li>HashMap：线程不安全。</li>
+</ul>
+</li>
+<li><p>空值：  </p>
+<ul>
+<li>HashTable：不能放入空值  </li>
+<li>HashMap：只有一个key可以为null，但是可以有多个value为null。</li>
+</ul>
+</li>
+<li><p>性能：  </p>
+<ul>
+<li>HashTable因为加入synchronized关键字，所以性能较于HashMap较差</li>
+<li>HashMap性能最好。不能保证其元素顺序用作key的对象必须实现hashCode()和equals()方法。</li>
+</ul>
+</li>
+</ul>
+<h4 id="TreeMap："><a href="#TreeMap：" class="headerlink" title="TreeMap："></a>TreeMap：</h4><ul>
+<li><p>实现SortMap接口，基于红黑树对所有key进行排序。</p>
+</li>
+<li><p>排序方式：自然排序和定制排序key以TreeSet的形式存储，要求与TreeSet一致。</p>
+</li>
+</ul>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：*<em>newsize = olesize</em>2+1**     计算index的方法：<strong>index = (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，*<em>扩容：newsize = oldsize</em>2<strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</strong>计算index方法：index = hash &amp; (tab.length – 1)**</p>
+<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h4><p>底层采用分段的数组+链表实现，<strong>线程安全</strong>；通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</p>
+<p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<h3 id="HashMap底层实现原理："><a href="#HashMap底层实现原理：" class="headerlink" title="HashMap底层实现原理："></a>HashMap底层实现原理：</h3><ul>
+<li>HashMap的底层主要是基于数组和链表来实现的，它之所以有相当快的查询速度主要是因为它是通过计算散列码来决定存储的位置。</li>
+</ul>
+<ul>
+<li>HashMap中主要是通过key的hashCode来计算hash值的，只要hashCode相同，计算出来的hash值就一样。</li>
+<li>如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。</li>
+<li>HashMap底层是通过链表来解决hash冲突的。</li>
+</ul>
+<h4 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h4><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
+<p>在1.8之前，新插入的元素都是放在了链表的头部位置，但是这种操作在高并发的环境下容易导致死锁，所以1.8之后，新插入的元素都放在了链表的尾部。</p>
+<ul>
+<li>HashMap采用hash算法来决定Map中key的存储，并通过hash算法来增加集合的大小。</li>
+<li>hash表里可以存储元素的位置称为<strong>桶（bucket）</strong>，如果通过key计算hash值发生冲突时，那么将采用链表的形式，来存储元素。</li>
+<li>HashMap的扩容操作是一项很耗时的任务，所以如果能估算Map的容量，最好给它一个默认初始值，避免进行多次扩容。</li>
+<li>HashMap的线程是不安全的，多线程环境中推荐是ConcurrentHashMap。</li>
+</ul>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -228,7 +300,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/">http://ezioy.cn/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</a></span>
+                        <span><a href="http://ezioy.cn/2021/02/01/Java%E9%9B%86%E5%90%88/">http://ezioy.cn/2021/02/01/Java%E9%9B%86%E5%90%88/</a></span>
                     </p>
                 
                 
@@ -252,7 +324,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Git/"># Git</a>
+                        <a href="/tags/Java/"># Java</a>
                     
                         
                 </span>
@@ -265,10 +337,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/09/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">MySQL数据库多表查询</a>
             
-            
-            <a class="next" rel="next" href="/2019/08/20/hello-world/">Hello World</a>
+            <a class="next" rel="next" href="/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">SpringMVC的工作流程</a>
             
         </section>
 
