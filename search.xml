@@ -101,7 +101,7 @@
       </tags>
   </entry>
   <entry>
-    <title>线程梳理</title>
+    <title>Java线程梳理</title>
     <url>/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
 <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a><strong>实现方式</strong></h3><ol>
@@ -112,10 +112,10 @@
 <li><p>使用Callable和Future</p>
 </li>
 </ol>
-<h3 id="线程生命周期："><a href="#线程生命周期：" class="headerlink" title="线程生命周期："></a>线程生命周期：</h3><p>创建线程——就绪——运行——阻塞——死亡</p>
+<h3 id="线程生命周期："><a href="#线程生命周期：" class="headerlink" title="线程生命周期："></a>线程生命周期：</h3><p><strong>创建线程——&gt;就绪——&gt;运行——&gt;阻塞——&gt;死亡</strong></p>
 <p>涉及方法：</p>
 <p>new，start，run，wait，notify，sleep，interrupt</p>
-<h4 id="sleep-和-wait-的区别"><a href="#sleep-和-wait-的区别" class="headerlink" title="sleep() 和 wait() 的区别"></a><strong>sleep() 和 wait() 的区别</strong></h4><ul>
+<h3 id="sleep-和-wait-的区别"><a href="#sleep-和-wait-的区别" class="headerlink" title="sleep() 和 wait() 的区别"></a><strong>sleep() 和 wait() 的区别</strong></h3><ul>
 <li>sleep 来自 Thread类，wait 来自 Object 类</li>
 <li>sleep 没有释放锁，wait 释放了锁</li>
 <li>使用范围不一样，wait、notify/notifyAll 必须在同步块或者同步方法中使用，sleep任意地方都可以使用</li>
@@ -123,7 +123,7 @@
 </ul>
 <h4 id="进程："><a href="#进程：" class="headerlink" title="进程："></a>进程：</h4><p>资源分配的基本单位，运行调度的基本单位，系统中并发执行的单位</p>
 <h4 id="线程："><a href="#线程：" class="headerlink" title="线程："></a>线程：</h4><p>进程中执行运算的最小单位，亦是执行处理机调度的基本单位</p>
-<h4 id="synchronized与Lock区别"><a href="#synchronized与Lock区别" class="headerlink" title="synchronized与Lock区别"></a>synchronized与Lock区别</h4><table>
+<h3 id="synchronized与Lock区别"><a href="#synchronized与Lock区别" class="headerlink" title="synchronized与Lock区别"></a>synchronized与Lock区别</h3><table>
 <thead>
 <tr>
 <th align="left">类别</th>
@@ -165,7 +165,7 @@
 <h4 id="线程间的协作："><a href="#线程间的协作：" class="headerlink" title="线程间的协作："></a>线程间的协作：</h4><p><strong>同步：</strong>synchronized与Lock实现，上锁保证同步；</p>
 <p><strong>通信：</strong>线程间的唤醒；wait()、notify()、notifyAll()</p>
 <p><strong>ps：只有在同步控制方法或同步控制块里才能调用 wait() 、notify() 和 notifyAll()。</strong></p>
-<h4 id="Synchronized-原理"><a href="#Synchronized-原理" class="headerlink" title="Synchronized 原理"></a>Synchronized 原理</h4><p>在编译的字节码中加入了两条指令来进行代码的同步。</p>
+<h3 id="Synchronized-原理"><a href="#Synchronized-原理" class="headerlink" title="Synchronized 原理"></a>Synchronized 原理</h3><p>在编译的字节码中加入了两条指令来进行代码的同步。</p>
 <p><strong>monitorenter ：</strong></p>
 <p>每个对象有一个监视器锁（monitor）。当monitor被占用时就会处于锁定状态，线程执行monitorenter指令时尝试获取monitor的所有权，过程如下：</p>
 <ul>
@@ -196,8 +196,8 @@
 </ul>
 </li>
 </ul>
-<h4 id="锁的类型："><a href="#锁的类型：" class="headerlink" title="锁的类型："></a>锁的类型：</h4><p>可重入锁、自旋锁、公平锁、读写锁、独占锁、乐观锁</p>
-<h4 id="synchronized的优化（JDK1-6后加入）："><a href="#synchronized的优化（JDK1-6后加入）：" class="headerlink" title="synchronized的优化（JDK1.6后加入）："></a>synchronized的优化（JDK1.6后加入）：</h4><ul>
+<h3 id="锁的类型："><a href="#锁的类型：" class="headerlink" title="锁的类型："></a>锁的类型：</h3><p>可重入锁、自旋锁、公平锁、读写锁、独占锁、乐观锁</p>
+<h3 id="synchronized的优化（JDK1-6后加入）："><a href="#synchronized的优化（JDK1-6后加入）：" class="headerlink" title="synchronized的优化（JDK1.6后加入）："></a>synchronized的优化（JDK1.6后加入）：</h3><ul>
 <li><p><strong>偏向锁</strong>（无锁）：</p>
 <p>大多数情况下锁不仅不存在多线程竞争，而且总是由同一线程多次获得。偏向锁的目的是在某个线程获得锁之后（线程的id会记录在对象的Mark Word中），消除这个线程锁重入（CAS）的开销，看起来让这个线程得到了偏护。</p>
 </li>
@@ -208,7 +208,7 @@
 <p>虚拟机使用CAS操作尝试将MarkWord更新为指向LockRecord的指针，如果更新成功表示线程就拥有该对象的锁；如果失败，会检查MarkWord是否指向当前线程的栈帧，如果是，表示当前线程已经拥有这个锁；如果不是，说明这个锁被其他线程抢占，此时膨胀为重量级锁。</p>
 </li>
 </ul>
-<h4 id="ThreadLocal基础知识"><a href="#ThreadLocal基础知识" class="headerlink" title="ThreadLocal基础知识"></a>ThreadLocal基础知识</h4><p>很多地方叫做线程本地变量，也有些地方叫做线程本地存储。ThreadLocal为变量在每个线程中都创建了一个副本，那么每个线程可以访问自己内部的副本变量。</p>
+<h3 id="ThreadLocal基础知识"><a href="#ThreadLocal基础知识" class="headerlink" title="ThreadLocal基础知识"></a>ThreadLocal基础知识</h3><p>很多地方叫做线程本地变量，也有些地方叫做线程本地存储。ThreadLocal为变量在每个线程中都创建了一个副本，那么每个线程可以访问自己内部的副本变量。</p>
 <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>\1.    线程复用：实现线程复用的原理应该就是要保持线程处于存活状态（就绪，运行或阻塞）</p>
 <p>\2.    控制并发数量：（核心线程和最大线程数控制）</p>
 <p>\3.    管理线程（设置线程的状态）</p>
@@ -229,34 +229,34 @@
     <title>Java集合</title>
     <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│ ———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├—————-└<strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└———<strong>IdentifyHashMap</strong></p>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
 <h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
 <li><p><strong>有序性：</strong>  </p>
 <ul>
-<li>List：保证按插入顺序排序  </li>
-<li>set：set存储和取出顺序不一致</li>
+<li><strong>List：保证按插入顺序排序</strong>  </li>
+<li><strong>set：set存储和取出顺序不一致</strong></li>
 </ul>
 </li>
 <li><p><strong>唯一性：</strong> </p>
 <ul>
-<li> List：可以重复  </li>
-<li> set：元素唯一</li>
+<li> <strong>List：可以重复</strong>  </li>
+<li> <strong>set：元素唯一</strong></li>
 </ul>
 </li>
 <li><p><strong>获取元素：</strong>  </p>
 <ul>
-<li>List：可以通过索引直接操作元素  </li>
-<li>set：set不能根据索引获取元素</li>
+<li><strong>List：可以通过索引直接操作元素</strong>  </li>
+<li><strong>set：set不能根据索引获取元素</strong></li>
 </ul>
 </li>
 </ul>
-<h4 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h4><p>（1）<strong>ArrayList</strong>：底层数据结构是数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</p>
-<p>（2）<strong>LinkedList</strong> ：底层数据结构是链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</p>
-<p>（3）<strong>Vector</strong>:底层数据结构是数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</p>
-<h4 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h4><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
+<h3 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h3><p>（1）<strong>ArrayList</strong>：底层数据结构是<strong>数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（2）<strong>LinkedList</strong> ：底层数据结构是<strong>链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（3）<strong>Vector</strong>:底层数据结构是<strong>数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</strong></p>
+<h3 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h3><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
 <p>(2)<strong>LinkedHashSet</strong>：底层数据结构采用链表和哈希表共同实现，链表保证了元素的顺序与存储顺序一致，哈希表保证了元素的唯一性。线程不安全，效率高。</p>
 <p>(3)<strong>TreeSet</strong>：底层数据结构采用二叉树来实现，元素唯一，它不保留元素的插入顺序，它按升序对元素排序，他不是线程安全的。</p>
-<h4 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h4><ul>
+<h3 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h3><ul>
 <li><p><strong>线程安全：</strong></p>
 <ul>
 <li>HashTable：类中一些方法加入了synchronized关键字，来保证线程安全。 </li>
@@ -294,7 +294,7 @@
 <li>如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。</li>
 <li>HashMap底层是通过链表来解决hash冲突的。</li>
 </ul>
-<h4 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h4><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
+<h3 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h3><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
 <p>在1.8之前，新插入的元素都是放在了链表的头部位置，但是这种操作在高并发的环境下容易导致死锁，所以1.8之后，新插入的元素都放在了链表的尾部。</p>
 <ul>
 <li>HashMap采用hash算法来决定Map中key的存储，并通过hash算法来增加集合的大小。</li>
@@ -393,6 +393,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown语法</title>
+    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
+<p>其效果如下展示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux环境下安装tomcat</title>
     <url>/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -421,26 +441,6 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
-<p>其效果如下展示：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -660,70 +660,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis数据类型</title>
-    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
-<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
-<li><strong>string：</strong> key-value</li>
-<li><strong>hash：</strong> key-field-value</li>
-<li><strong>list：</strong>key-value</li>
-<li><strong>set：</strong>key-member</li>
-<li><strong>zset：</strong>key-score-member</li>
-</ul>
-<blockquote>
-<ul>
-<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
-</ul>
-</blockquote>
-<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
-<ul>
-<li><p>涉及随机，不重复：<strong>set</strong></p>
-</li>
-<li><p>多维度排序：<strong>zset</strong></p>
-</li>
-<li><p>单维度排序：<strong>list、zset</strong></p>
-</li>
-</ul>
-<p><strong>2.限制条件的判断</strong></p>
-<ul>
-<li><p>可以通过增加标识key去判断，方式有：</p>
-<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
-</li>
-<li><p>也可以通过set的唯一性去判断：</p>
-<p><strong>sadd、zadd</strong></p>
-</li>
-</ul>
-<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
-<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
-<p>该问题存在以下四个场景：</p>
-<ul>
-<li><p>用户进入房间</p>
-</li>
-<li><p>查询房间榜单</p>
-</li>
-<li><p>用户赠送礼物</p>
-</li>
-<li><p>用户离开房间</p>
-</li>
-</ul>
-<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">long</span> baseScore = <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
-<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis安装流程</title>
     <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -774,6 +710,70 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
 
 
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis数据类型</title>
+    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
+<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
+<li><strong>string：</strong> key-value</li>
+<li><strong>hash：</strong> key-field-value</li>
+<li><strong>list：</strong>key-value</li>
+<li><strong>set：</strong>key-member</li>
+<li><strong>zset：</strong>key-score-member</li>
+</ul>
+<blockquote>
+<ul>
+<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
+</ul>
+</blockquote>
+<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
+<ul>
+<li><p>涉及随机，不重复：<strong>set</strong></p>
+</li>
+<li><p>多维度排序：<strong>zset</strong></p>
+</li>
+<li><p>单维度排序：<strong>list、zset</strong></p>
+</li>
+</ul>
+<p><strong>2.限制条件的判断</strong></p>
+<ul>
+<li><p>可以通过增加标识key去判断，方式有：</p>
+<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
+</li>
+<li><p>也可以通过set的唯一性去判断：</p>
+<p><strong>sadd、zadd</strong></p>
+</li>
+</ul>
+<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
+<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
+<p>该问题存在以下四个场景：</p>
+<ul>
+<li><p>用户进入房间</p>
+</li>
+<li><p>查询房间榜单</p>
+</li>
+<li><p>用户赠送礼物</p>
+</li>
+<li><p>用户离开房间</p>
+</li>
+</ul>
+<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">long</span> baseScore = <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
+<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'

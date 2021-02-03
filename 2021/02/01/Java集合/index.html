@@ -208,34 +208,34 @@
 
         <div class="post-content">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│ ———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├—————-└<strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└———<strong>IdentifyHashMap</strong></p>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
 <h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
 <li><p><strong>有序性：</strong>  </p>
 <ul>
-<li>List：保证按插入顺序排序  </li>
-<li>set：set存储和取出顺序不一致</li>
+<li><strong>List：保证按插入顺序排序</strong>  </li>
+<li><strong>set：set存储和取出顺序不一致</strong></li>
 </ul>
 </li>
 <li><p><strong>唯一性：</strong> </p>
 <ul>
-<li> List：可以重复  </li>
-<li> set：元素唯一</li>
+<li> <strong>List：可以重复</strong>  </li>
+<li> <strong>set：元素唯一</strong></li>
 </ul>
 </li>
 <li><p><strong>获取元素：</strong>  </p>
 <ul>
-<li>List：可以通过索引直接操作元素  </li>
-<li>set：set不能根据索引获取元素</li>
+<li><strong>List：可以通过索引直接操作元素</strong>  </li>
+<li><strong>set：set不能根据索引获取元素</strong></li>
 </ul>
 </li>
 </ul>
-<h4 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h4><p>（1）<strong>ArrayList</strong>：底层数据结构是数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</p>
-<p>（2）<strong>LinkedList</strong> ：底层数据结构是链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</p>
-<p>（3）<strong>Vector</strong>:底层数据结构是数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</p>
-<h4 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h4><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
+<h3 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h3><p>（1）<strong>ArrayList</strong>：底层数据结构是<strong>数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（2）<strong>LinkedList</strong> ：底层数据结构是<strong>链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（3）<strong>Vector</strong>:底层数据结构是<strong>数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</strong></p>
+<h3 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h3><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
 <p>(2)<strong>LinkedHashSet</strong>：底层数据结构采用链表和哈希表共同实现，链表保证了元素的顺序与存储顺序一致，哈希表保证了元素的唯一性。线程不安全，效率高。</p>
 <p>(3)<strong>TreeSet</strong>：底层数据结构采用二叉树来实现，元素唯一，它不保留元素的插入顺序，它按升序对元素排序，他不是线程安全的。</p>
-<h4 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h4><ul>
+<h3 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h3><ul>
 <li><p><strong>线程安全：</strong></p>
 <ul>
 <li>HashTable：类中一些方法加入了synchronized关键字，来保证线程安全。 </li>
@@ -273,7 +273,7 @@
 <li>如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。</li>
 <li>HashMap底层是通过链表来解决hash冲突的。</li>
 </ul>
-<h4 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h4><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
+<h3 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h3><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
 <p>在1.8之前，新插入的元素都是放在了链表的头部位置，但是这种操作在高并发的环境下容易导致死锁，所以1.8之后，新插入的元素都放在了链表的尾部。</p>
 <ul>
 <li>HashMap采用hash算法来决定Map中key的存储，并通过hash算法来增加集合的大小。</li>
@@ -337,7 +337,7 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/">线程梳理</a>
+                <a class="prev" rel="prev" href="/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/">Java线程梳理</a>
             
             
             <a class="next" rel="next" href="/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">SpringMVC的工作流程</a>
