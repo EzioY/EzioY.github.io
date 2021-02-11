@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Java线程梳理 | Ezio&#39;s blog</title>
+<title>JVM运行时数据区 | Ezio&#39;s blog</title>
 
 
 
@@ -182,7 +182,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Java线程梳理</h1>
+            <h1 class="post-title">JVM运行时数据区</h1>
             
                 <div class="post-meta">
                     
@@ -191,7 +191,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 1, 2021&nbsp;&nbsp;14:16:54</a>
+                        Date: <a href="#">February 11, 2021&nbsp;&nbsp;17:20:42</a>
                         </span>
                     
                     
@@ -208,114 +208,25 @@
 
         <div class="post-content">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a><strong>实现方式</strong></h3><ol>
-<li><p>通过继承Thread类实现一个线程</p>
-</li>
-<li><p>通过实现Runnable接口实现一个线程</p>
-</li>
-<li><p>使用Callable和Future</p>
-</li>
-</ol>
-<h3 id="线程生命周期："><a href="#线程生命周期：" class="headerlink" title="线程生命周期："></a>线程生命周期：</h3><p><strong>创建线程——&gt;就绪——&gt;运行——&gt;阻塞——&gt;死亡</strong></p>
-<p>涉及方法：</p>
-<p>new，start，run，wait，notify，sleep，interrupt</p>
-<h3 id="sleep-和-wait-的区别"><a href="#sleep-和-wait-的区别" class="headerlink" title="sleep() 和 wait() 的区别"></a><strong>sleep() 和 wait() 的区别</strong></h3><ul>
-<li>sleep 来自 Thread类，wait 来自 Object 类</li>
-<li>sleep 没有释放锁，wait 释放了锁</li>
-<li>使用范围不一样，wait、notify/notifyAll 必须在同步块或者同步方法中使用，sleep任意地方都可以使用</li>
-<li>sleep必须捕获异常，wait不需</li>
-</ul>
-<h4 id="进程："><a href="#进程：" class="headerlink" title="进程："></a>进程：</h4><p>资源分配的基本单位，运行调度的基本单位，系统中并发执行的单位</p>
-<h4 id="线程："><a href="#线程：" class="headerlink" title="线程："></a>线程：</h4><p>进程中执行运算的最小单位，亦是执行处理机调度的基本单位</p>
-<h3 id="synchronized与Lock区别"><a href="#synchronized与Lock区别" class="headerlink" title="synchronized与Lock区别"></a>synchronized与Lock区别</h3><table>
-<thead>
-<tr>
-<th align="left">类别</th>
-<th align="left">synchronized</th>
-<th align="left">Lock</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">存在层次</td>
-<td align="left">Java的关键字，在jvm层面上</td>
-<td align="left">是一个类</td>
-</tr>
-<tr>
-<td align="left">锁的释放</td>
-<td align="left">1、以获取锁的线程执行完同步代码，释放锁2、线程执行发生异常，jvm会让线程释放锁</td>
-<td align="left">在finally中必须释放锁，不然容易造成线程死锁</td>
-</tr>
-<tr>
-<td align="left">锁的获取</td>
-<td align="left">假设A线程获得锁，B线程等待。如果A线程阻塞，B线程会一直等待</td>
-<td align="left">分情况而定，Lock有多个锁获取的方式，具体下面会说道，大致就是可以尝试获得锁，线程可以不用一直等待</td>
-</tr>
-<tr>
-<td align="left">锁状态</td>
-<td align="left">无法判断</td>
-<td align="left">可以判断</td>
-</tr>
-<tr>
-<td align="left">锁类型</td>
-<td align="left">可重入 不可中断 非公平</td>
-<td align="left">可重入 可判断 可公平（两者皆可）</td>
-</tr>
-<tr>
-<td align="left">性能</td>
-<td align="left">少量同步</td>
-<td align="left">大量同步</td>
-</tr>
-</tbody></table>
-<h4 id="线程间的协作："><a href="#线程间的协作：" class="headerlink" title="线程间的协作："></a>线程间的协作：</h4><p><strong>同步：</strong>synchronized与Lock实现，上锁保证同步；</p>
-<p><strong>通信：</strong>线程间的唤醒；wait()、notify()、notifyAll()</p>
-<p><strong>ps：只有在同步控制方法或同步控制块里才能调用 wait() 、notify() 和 notifyAll()。</strong></p>
-<h3 id="Synchronized-原理"><a href="#Synchronized-原理" class="headerlink" title="Synchronized 原理"></a>Synchronized 原理</h3><p>在编译的字节码中加入了两条指令来进行代码的同步。</p>
-<p><strong>monitorenter ：</strong></p>
-<p>每个对象有一个监视器锁（monitor）。当monitor被占用时就会处于锁定状态，线程执行monitorenter指令时尝试获取monitor的所有权，过程如下：</p>
-<ul>
-<li><p>如果monitor的进入数为0，则该线程进入monitor，然后将进入数设置为1，该线程即为monitor的所有者。</p>
-</li>
-<li><p>如果线程已经占有该monitor，只是重新进入，则进入monitor的进入数加1.</p>
-</li>
-<li><p>如果其他线程已经占用了monitor，则该线程进入阻塞状态，直到monitor的进入数为0，再重新尝试获取monitor的所有权。</p>
-</li>
-</ul>
-<p><strong>monitorexit：</strong></p>
-<p>执行monitorexit的线程必须是objectref所对应的monitor的所有者。</p>
-<p>指令执行时，monitor的进入数减1，如果减1后进入数为0，那线程退出monitor，不再是这个monitor的所有者。其他被这个monitor阻塞的线程可以尝试去获取这个 monitor 的所有权。</p>
-<p>通过这两段描述，我们应该能很清楚的看出Synchronized的实现原理，Synchronized的语义底层是通过一个monitor的对象来完成，其实wait/notify等方法也依赖于monitor对象，这就是为什么只有在同步的块或者方法中才能调用wait/notify等方法，否则会抛出java.lang.IllegalMonitorStateException的异常的原因。</p>
-<h4 id="实现线程安全的方法"><a href="#实现线程安全的方法" class="headerlink" title="实现线程安全的方法"></a>实现线程安全的方法</h4><ul>
-<li><p><strong>锁</strong></p>
-<ul>
-<li>synchronized 关键字</li>
-<li>Lock</li>
-<li>乐观锁：设置时间戳或者版本号之类的（JPA中的乐观锁的实现）</li>
-</ul>
-</li>
-<li><p><strong>线程本地存储</strong></p>
-<ul>
-<li>成员变量 int num = 10;</li>
-<li>多个线程都要操作这个变量，但是需求是每个线程中的num值初始都为10，互不影响</li>
-<li>ThreadLocal</li>
-</ul>
-</li>
-</ul>
-<h3 id="锁的类型："><a href="#锁的类型：" class="headerlink" title="锁的类型："></a>锁的类型：</h3><p>可重入锁、自旋锁、公平锁、读写锁、独占锁、乐观锁</p>
-<h3 id="synchronized的优化（JDK1-6后加入）："><a href="#synchronized的优化（JDK1-6后加入）：" class="headerlink" title="synchronized的优化（JDK1.6后加入）："></a>synchronized的优化（JDK1.6后加入）：</h3><ul>
-<li><p><strong>偏向锁</strong>（无锁）：</p>
-<p>大多数情况下锁不仅不存在多线程竞争，而且总是由同一线程多次获得。偏向锁的目的是在某个线程获得锁之后（线程的id会记录在对象的Mark Word中），消除这个线程锁重入（CAS）的开销，看起来让这个线程得到了偏护。</p>
-</li>
-<li><p><strong>轻量级锁</strong>（CAS）：</p>
-<p>轻量级锁是由偏向锁升级来的，偏向锁运行在一个线程进入同步块的情况下，当第二个线程加入锁争用的时候，偏向锁就会升级为轻量级锁；轻量级锁的意图是在没有多线程竞争的情况下，通过CAS操作尝试将MarkWord更新为指向LockRecord的指针，减少了使用重量级锁的系统互斥量产生的性能消耗。</p>
-</li>
-<li><p><strong>重量级锁</strong>：</p>
-<p>虚拟机使用CAS操作尝试将MarkWord更新为指向LockRecord的指针，如果更新成功表示线程就拥有该对象的锁；如果失败，会检查MarkWord是否指向当前线程的栈帧，如果是，表示当前线程已经拥有这个锁；如果不是，说明这个锁被其他线程抢占，此时膨胀为重量级锁。</p>
-</li>
-</ul>
-<h3 id="ThreadLocal基础知识"><a href="#ThreadLocal基础知识" class="headerlink" title="ThreadLocal基础知识"></a>ThreadLocal基础知识</h3><p>很多地方叫做线程本地变量，也有些地方叫做线程本地存储。ThreadLocal为变量在每个线程中都创建了一个副本，那么每个线程可以访问自己内部的副本变量。</p>
-<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>\1.    线程复用：实现线程复用的原理应该就是要保持线程处于存活状态（就绪，运行或阻塞）</p>
-<p>\2.    控制并发数量：（核心线程和最大线程数控制）</p>
-<p>\3.    管理线程（设置线程的状态）</p>
+<h1 id="JVM运行时数据区"><a href="#JVM运行时数据区" class="headerlink" title="JVM运行时数据区"></a>JVM运行时数据区</h1><h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区包含：本地方法栈、虚拟机栈、堆、元空间（JDK1.8）、程序计数器</p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是线程私有的,虽然名字叫计数器,但主要用途还是用来确定指令的执行顺序,比如循环,分支,跳转,异常捕获等.而JVM对于多线程的实现是通过轮流切换线程实现的,所以为了保证每个线程都能按正确顺序执行,将程序计数器作为线程私有.程序计数器是唯一一个JVM没有规定任何OOM的区块</p>
+<p>程序计数器是一块非常小的内存空间，可以看做是当前线程执行字节码的行号指示器，每个线程都有一个独立的程序计数器，因此程序计数器是线程私有的一块空间，此外，程序计数器是Java虚拟机规定的唯一不会发生内存溢出的区域</p>
+<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>ava虚拟机栈也是线程私有的,每个方法执行都会创建一个栈帧,局部变量就存放在栈帧中,还有一些其他的动态链接之类的.通常有两个错误会跟这个有关系,一个是StackOverFlowError,一个是OOM(OutOfMemoryError).前者是因为线程请求栈深度超出虚拟机所允许的范围,后者是动态扩展栈的大小的时候,申请不到足够的内存空间.而前者提到的栈深度,也就是刚才说到的每个方法会创建一个栈帧,栈帧从开始执行方法时压入Java虚拟机栈,执行完的时候弹出栈.当压入的栈帧太多了,就会报出这个StackOverflowError.</p>
+<p>虚拟机会为每个线程分配一个虚拟机栈，每个虚拟机栈中都有若干个栈帧，每个栈帧中存储了局部变量表、操作数栈、动态链接、返回地址等。一个栈帧就对应Java代码中的一个方法，当线程执行到一个方法时，就代表这个方法对应的栈帧已经进入虚拟机栈并且处于栈顶的位置，每一个Java方法从被调用到执行结束，就对应了一个栈帧从入栈到出栈的过程。</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈的区别是，虚拟机栈执行的是Java方法，本地方法栈执行的是本地方法（Native Method）,其他基本上一致，在HotSpot中直接把本地方法栈和虚拟机栈合二为一。</p>
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>和永久代类似，都是JVM规范对方法区的实现，但是元空间并不在虚拟机中，而是使用本地内存，元空间的大小仅受本地内存限制，但可以通过-XX:MetaspaceSize和-XX:MaxMetaspaceSize来指定元空间的大小</p>
+<p>jdk1.8中，存储的类信息、编译后的代码数据等已经移动到了<strong>元空间（MetaSpace）</strong>中，元空间并没有处于堆内存上，而是直接占用的本地内存（NativeMemory）。</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio"></a></p>
+<p><strong>去永久代的原因有：</strong></p>
+<p>（1）字符串存在永久代中，容易出现性能问题和内存溢出。 </p>
+<p>（2）类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
+<p>（3）永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
+<p>gc garbage collection</p>
+<p>1.8以后把静态变量 字符串常量池放到了堆中 </p>
+<p> 类的信息 编译后的代码放到元空间 占用的是本地内存</p>
+<h3 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h3><p>堆和方法区一样(确切来说JVM规范中方法区就是堆的一个逻辑分区),就是一个所有线程共享的,存放对象的区域,也是GC的主要区域.其中的分区分为新生代,老年代.新生代中又可以细分为一个Eden,两个Survivor区(From,To).Eden中存放的是通过new 或者newInstance方法创建出来的对象,绝大多数都是很短命的.正常情况下经历一次gc之后,存活的对象会转入到其中一个Survivor区,然后再经历默认15次的gc,就转入到老年代.这是常规状态下，在Survivor区已经满了的情况下，JVM会依据担保机制将一些对象直接放入老年代。</p>
+<p>堆内存主要用于存放对象和数组，它是JVM管理的内存中最大的一块区域，堆内存和方法区都被所有线程共享，在虚拟机启动时创建。在垃圾收集的层面上来看，由于现在收集器基本上都采用分代收集算法，因此堆还可以分为<strong>新生代（YoungGeneration）和老年代（OldGeneration）</strong>，新生代还可以分为<strong>Eden、From</strong> <strong>Survivor、To Survivor</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio"></a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -335,7 +246,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/">http://ezioy.cn/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/</a></span>
+                        <span><a href="http://ezioy.cn/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/">http://ezioy.cn/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</a></span>
                     </p>
                 
                 
@@ -372,10 +283,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/">JVM运行时数据区</a>
             
-            
-            <a class="next" rel="next" href="/2021/02/01/Java%E9%9B%86%E5%90%88/">Java集合</a>
+            <a class="next" rel="next" href="/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/">Java线程梳理</a>
             
         </section>
 

@@ -198,7 +198,7 @@
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/JVM-Java/">JVM Java</a>
+                                <a href="/categories/Java/">Java</a>
                             
                         </span>
                     
@@ -208,6 +208,7 @@
 
         <div class="post-content">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172322.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172322.png?x-oss-process=style/ezio"></a></p>
 <h1 id="JVM-类加载过程"><a href="#JVM-类加载过程" class="headerlink" title="JVM 类加载过程"></a>JVM 类加载过程</h1><p><strong>在Java代码中，类型的加载、连接与初始化过程都是在程序运行期间(Runtime)完成的。</strong></p>
 <hr>
 <p><strong>类的加载：</strong>查找并记载类的二进制数据</p>
@@ -216,6 +217,26 @@
 <p>​                    解析——把类中的符号引用转换为直接引用</p>
 <p><strong>类的初始化：</strong><font color=red>为类的静态变量赋予正确的初始化</font></p>
 <hr>
+<h4 id="类加载的过程："><a href="#类加载的过程：" class="headerlink" title="类加载的过程："></a>类加载的过程：</h4><ol>
+<li><p><strong>加载</strong>：</p>
+<p>找到字节码文件,读取到内存中.类的加载方式分为隐式加载和显示加载两种。隐式加载指的是程序在使用new关键词创建对象时，会隐式的调用类的加载器把对应的类加载到jvm中。显示加载指的是通过直接调用Class.forName（）方法来把所需的类加载到jvm中。</p>
+</li>
+<li><p><strong>验证</strong>：</p>
+<p>验证此字节码文件是不是真的是一个字节码文件,毕竟后缀名可以随便改,而内在的身份标识是不会变的.在确认是一个字节码文件后,还会检查一系列的是否可运行验证,元数据验证,字节码验证,符号引用验证等.Java虚拟机规范对此要求很严格</p>
+</li>
+<li><p><strong>准备</strong>：</p>
+<p>为类中static修饰的变量分配内存空间并设置其初始值为0或null.可能会有人感觉奇怪,在类中定义一个static修饰的int,并赋值了123,为什么这里还是赋值0.因为这个int的123是在初始化阶段的时候才赋值的,这里只是先把内存分配好.但如果你的static修饰还加上了final,那么就会在准备阶段就会赋值.</p>
+</li>
+<li><p><strong>解析</strong>：</p>
+<p>解析阶段会将java代码中的符号引用替换为直接引用.比如引用的是一个类,我们在代码中只有全限定名来标识它,在这个阶段会找到这个类加载到内存中的地址</p>
+</li>
+<li><p><strong>初始化</strong>：</p>
+<p>这个阶段就是对变量的赋值的阶段.</p>
+</li>
+</ol>
+<p><strong>ps：同一个类，如果使用的是不同的类加载器加载的，那么最后使用instanceof会返回一个false</strong></p>
+<h4 id="双亲委派机制："><a href="#双亲委派机制：" class="headerlink" title="双亲委派机制："></a>双亲委派机制：</h4><p><strong>向上委派向下加载</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172621.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172621.png?x-oss-process=style/ezio"></a></p>
 <h2 id="JVM的生命周期"><a href="#JVM的生命周期" class="headerlink" title="JVM的生命周期"></a>JVM的生命周期</h2><p>JVM的生命周期大致分为以下三个阶段：</p>
 <ul>
 <li><p><strong>JVM实例的诞生</strong></p>
@@ -293,7 +314,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/JVM-Java/"># JVM Java</a>
+                        <a href="/tags/Java/"># Java</a>
                     
                         
                 </span>
