@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>Go程序结构 | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Go程序结构</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 24, 2021&nbsp;&nbsp;9:46:57</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Go/">Go</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Go程序结构"><a href="#Go程序结构" class="headerlink" title="Go程序结构"></a>Go程序结构</h1><blockquote>
+<ul>
+<li>GO语言学习资料推荐：Go语言圣经 <a target="_blank" rel="noopener" href="http://gopl.io/">《The Go Programming Language》</a>中文翻译版 ：<a target="_blank" rel="noopener" href="http://books.studygolang.com/gopl-zh/">http://books.studygolang.com/gopl-zh/</a></li>
+</ul>
+</blockquote>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>名字必须以一个字母或下划线开头，后面可跟数字、字母、下划线。区分大小写</p>
+<p><strong>关键字：</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">break</span>      <span class="keyword">default</span>       <span class="function"><span class="keyword">func</span>     <span class="title">interface</span>   <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>       <span class="keyword">defer</span>         <span class="keyword">go</span>       <span class="keyword">map</span>         <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>       <span class="keyword">else</span>          <span class="keyword">goto</span>     <span class="keyword">package</span>     <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>      <span class="keyword">fallthrough</span>   <span class="keyword">if</span>       <span class="keyword">range</span>       <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>   <span class="keyword">for</span>           <span class="keyword">import</span>   <span class="keyword">return</span>      <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
+<p><strong>预定义名字：</strong>主要对应内建常量、类型和函数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">内建常量: <span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">内建类型: <span class="keyword">int</span> <span class="keyword">int8</span> <span class="keyword">int16</span> <span class="keyword">int32</span> <span class="keyword">int64</span></span><br><span class="line">         <span class="keyword">uint</span> <span class="keyword">uint8</span> <span class="keyword">uint16</span> <span class="keyword">uint32</span> <span class="keyword">uint64</span> <span class="keyword">uintptr</span></span><br><span class="line">         <span class="keyword">float32</span> <span class="keyword">float64</span> <span class="keyword">complex128</span> <span class="keyword">complex64</span></span><br><span class="line">         <span class="keyword">bool</span> <span class="keyword">byte</span> <span class="keyword">rune</span> <span class="keyword">string</span> error</span><br><span class="line"></span><br><span class="line">内建函数: <span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line">         <span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line">         <span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>Go语言主要有四种类型的声明语句：<strong>var、const、type</strong> 和 <strong>func</strong>，分别对应<strong>变量、常量、类型和函数实体对象</strong>的声明。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明包</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">//导入依赖</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明常量</span></span><br><span class="line"><span class="keyword">const</span> boilingF = <span class="number">212.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//声明变量</span></span><br><span class="line">    <span class="keyword">var</span> f = boilingF</span><br><span class="line">    <span class="keyword">var</span> c = (f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span></span><br><span class="line">    <span class="comment">//按格式打印输出</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;boiling point = %g°F or %g°C\n&quot;</span>, f, c)</span><br><span class="line">    <span class="comment">// Output:</span></span><br><span class="line">    <span class="comment">// boiling point = 212°F or 100°C</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>var声明语句可以创建一个特定类型的变量，然后给变量附加一个名字，并且设置变量的初始值。变量声明的一般语法如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名字 类型 = 表达式</span><br></pre></td></tr></table></figure>
+<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“*= 表达式*”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
+<p><strong>零值初始化机制：</strong>可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。</p>
+<ul>
+<li><p>数值类型变量对应的零值：0</p>
+</li>
+<li><p>布尔类型变量对应的零值：false</p>
+</li>
+<li><p>字符串类型对应的零值：”“</p>
+</li>
+<li><p>接口或引用类型（包括slice、指针、map、chan和函数）变量对应的零值：nil</p>
+</li>
+<li><p>数组或结构体等聚合类型对应的零值：每个元素或字段都是对应该类型的零值。</p>
+</li>
+</ul>
+<h4 id="多变量声明"><a href="#多变量声明" class="headerlink" title="多变量声明"></a>多变量声明</h4><p>可同时声明多个变量，如果省略每个变量的类型，将可以声明多个类型不同的变量（类型由初始化表达式推导）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i, j, k <span class="keyword">int</span>                 <span class="comment">// int, int, int</span></span><br><span class="line"><span class="keyword">var</span> b, f, s = <span class="literal">true</span>, <span class="number">2.3</span>, <span class="string">&quot;four&quot;</span> <span class="comment">// bool, float64, string</span></span><br></pre></td></tr></table></figure>
+<p>一组变量也可以通过调用一个函数，由函数返回的多个返回值初始化：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f, err = os.Open(name) <span class="comment">// os.Open returns a file and an error</span></span><br></pre></td></tr></table></figure>
+<h4 id="简短变量声明"><a href="#简短变量声明" class="headerlink" title="简短变量声明"></a>简短变量声明</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变量名 := 表达式</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">anim := gif.GIF&#123;LoopCount: nframes&#125;</span><br><span class="line">freq := rand.Float64() * <span class="number">3.0</span></span><br><span class="line">t := <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+<p>和var形式声明语句一样，简短变量声明语句也可以用来声明和初始化一组变量：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i, j := <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意区分：</strong> <strong>” := “</strong>是变量声明语句， <strong>”=“</strong>是变量赋值操作</p>
+<p>将右边各个表达式的值赋值给左边对应位置的各个变量：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i, j = j, i <span class="comment">// 交换 i 和 j 的值</span></span><br></pre></td></tr></table></figure>
+<p>但如果变量之前声明过，则再次使用:=声明则是赋值行为，其中err变量之前已经声明，则后面是对其进行赋值。<strong>且简短变量声明必须有一个新的变量被声明，否则编译不通过</strong>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">in, err := os.Open(infile)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">out, err := os.Create(outfile)</span><br></pre></td></tr></table></figure>
+<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><ul>
+<li><p>一个变量对应一个保存了变量对应类型值的内存空间。</p>
+</li>
+<li><p>一个指针的值是另一个变量的地址。</p>
+</li>
+<li><p>一个指针对应变量在内存中的存储位置。</p>
+</li>
+<li><p>并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。</p>
+</li>
+<li><p>通过指针，我们可以直接读或更新对应变量的值，而不需要知道该变量的名字（如果变量有名字的话）。</p>
+</li>
+</ul>
+<p>如果用“var x int”声明语句声明一个x变量，那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针，指针对应的数据类型是<code>*int</code>，指针被称之为“指向int类型的指针”。如果指针名字为p，那么可以说“p指针指向变量x”，或者说“p指针保存了x变量的内存地址”。同时<code>*p</code>表达式对应p指针指向的变量的值。一般<code>*p</code>表达式读取指针指向的变量的值，这里为int类型的值，同时因为<code>*p</code>对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明变量</span></span><br><span class="line">x := <span class="number">1</span></span><br><span class="line"><span class="comment">//声明指向x变量的指针 p</span></span><br><span class="line">p := &amp;x         <span class="comment">// p, of type *int, points to x</span></span><br><span class="line"><span class="comment">//*p p指针指向的变量的值</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;1&quot;</span></span><br><span class="line"><span class="comment">//更新指针所指向变量的值</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// equivalent to x = 2</span></span><br><span class="line">fmt.Println(x)  <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<p><strong>任何类型的指针的零值都是nil</strong>。如果p指向某个有效变量，那么<code>p != nil</code>测试为真。指针之间也是可以进行相等测试的，只有当它们指向同一个变量或全部是nil时才相等。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x, y <span class="keyword">int</span></span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="literal">nil</span>) <span class="comment">// &quot;true false false&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="new函数"><a href="#new函数" class="headerlink" title="new函数"></a>new函数</h4><p>创建变量还可以通过调用内建的new函数。表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="keyword">int</span>)   <span class="comment">// p, *int 类型, 指向匿名的 int 变量</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;0&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 设置 int 匿名变量的值为 2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<p>由于new只是一个预定义的函数，它并不是一个关键字，因此我们可以将new名字重新定义为别的类型。例如下面的例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delta</span><span class="params">(old, <span class="built_in">new</span> <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> <span class="built_in">new</span> - old &#125;</span><br></pre></td></tr></table></figure>
+<p>由于new被定义为int类型的变量名，因此在delta函数内部是无法使用内置的new函数的。</p>
+<h4 id="变量的声明周期"><a href="#变量的声明周期" class="headerlink" title="变量的声明周期"></a>变量的声明周期</h4><p>变量的生命周期指的是在程序运行期间变量有效存在的时间段。对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。而相比之下，局部变量的生命周期则是动态的：每次从创建一个新变量的声明语句开始，直到该变量不再被引用为止，然后变量的存储空间可能被回收。函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
+<hr>
+<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span>                       <span class="comment">// 命名变量的赋值</span></span><br><span class="line">*p = <span class="literal">true</span>                   <span class="comment">// 通过指针间接赋值</span></span><br><span class="line">person.name = <span class="string">&quot;bob&quot;</span>         <span class="comment">// 结构体字段赋值</span></span><br><span class="line">count[x] = count[x] * scale <span class="comment">// 数组、slice或map的元素赋值</span></span><br></pre></td></tr></table></figure>
+<p>特定的二元算术运算符和赋值语句的复合操作有一个简洁形式，例如上面最后的语句可以重写为：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">count[x] *= scale</span><br></pre></td></tr></table></figure>
+<p>数值变量也可以支持<code>++</code>递增和<code>--</code>递减语句（译注：自增和自减是语句，而不是表达式，因此<code>x = i++</code>之类的表达式是错误的）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v := <span class="number">1</span></span><br><span class="line">v++    <span class="comment">// 等价方式 v = v + 1；v 变成 2</span></span><br><span class="line">v--    <span class="comment">// 等价方式 v = v - 1；v 变成 1</span></span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://ezioy.cn/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">http://ezioy.cn/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Go/"># Go</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/">JVM运行时数据区</a>
+            
+        </section>
+
+
+	    
+		    <section id="comments" class="comments">
+		      <style>
+		        .comments{margin:30px;padding:10px;background:#fff}
+		        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+		      </style>
+		      <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+		    </section>
+		
+    </article>
+
+	
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2021 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

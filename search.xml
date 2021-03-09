@@ -72,6 +72,94 @@
       </tags>
   </entry>
   <entry>
+    <title>Go程序结构</title>
+    <url>/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Go程序结构"><a href="#Go程序结构" class="headerlink" title="Go程序结构"></a>Go程序结构</h1><blockquote>
+<ul>
+<li>GO语言学习资料推荐：Go语言圣经 <a href="http://gopl.io/">《The Go Programming Language》</a>中文翻译版 ：<a href="http://books.studygolang.com/gopl-zh/">http://books.studygolang.com/gopl-zh/</a></li>
+</ul>
+</blockquote>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>名字必须以一个字母或下划线开头，后面可跟数字、字母、下划线。区分大小写</p>
+<p><strong>关键字：</strong></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">break</span>      <span class="keyword">default</span>       <span class="function"><span class="keyword">func</span>     <span class="title">interface</span>   <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>       <span class="keyword">defer</span>         <span class="keyword">go</span>       <span class="keyword">map</span>         <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>       <span class="keyword">else</span>          <span class="keyword">goto</span>     <span class="keyword">package</span>     <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>      <span class="keyword">fallthrough</span>   <span class="keyword">if</span>       <span class="keyword">range</span>       <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>   <span class="keyword">for</span>           <span class="keyword">import</span>   <span class="keyword">return</span>      <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
+<p><strong>预定义名字：</strong>主要对应内建常量、类型和函数</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">内建常量: <span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">内建类型: <span class="keyword">int</span> <span class="keyword">int8</span> <span class="keyword">int16</span> <span class="keyword">int32</span> <span class="keyword">int64</span></span><br><span class="line">         <span class="keyword">uint</span> <span class="keyword">uint8</span> <span class="keyword">uint16</span> <span class="keyword">uint32</span> <span class="keyword">uint64</span> <span class="keyword">uintptr</span></span><br><span class="line">         <span class="keyword">float32</span> <span class="keyword">float64</span> <span class="keyword">complex128</span> <span class="keyword">complex64</span></span><br><span class="line">         <span class="keyword">bool</span> <span class="keyword">byte</span> <span class="keyword">rune</span> <span class="keyword">string</span> error</span><br><span class="line"></span><br><span class="line">内建函数: <span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line">         <span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line">         <span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>Go语言主要有四种类型的声明语句：<strong>var、const、type</strong> 和 <strong>func</strong>，分别对应<strong>变量、常量、类型和函数实体对象</strong>的声明。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明包</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">//导入依赖</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明常量</span></span><br><span class="line"><span class="keyword">const</span> boilingF = <span class="number">212.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//声明变量</span></span><br><span class="line">    <span class="keyword">var</span> f = boilingF</span><br><span class="line">    <span class="keyword">var</span> c = (f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span></span><br><span class="line">    <span class="comment">//按格式打印输出</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;boiling point = %g°F or %g°C\n&quot;</span>, f, c)</span><br><span class="line">    <span class="comment">// Output:</span></span><br><span class="line">    <span class="comment">// boiling point = 212°F or 100°C</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>var声明语句可以创建一个特定类型的变量，然后给变量附加一个名字，并且设置变量的初始值。变量声明的一般语法如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名字 类型 = 表达式</span><br></pre></td></tr></table></figure>
+<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“*= 表达式*”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
+<p><strong>零值初始化机制：</strong>可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。</p>
+<ul>
+<li><p>数值类型变量对应的零值：0</p>
+</li>
+<li><p>布尔类型变量对应的零值：false</p>
+</li>
+<li><p>字符串类型对应的零值：”“</p>
+</li>
+<li><p>接口或引用类型（包括slice、指针、map、chan和函数）变量对应的零值：nil</p>
+</li>
+<li><p>数组或结构体等聚合类型对应的零值：每个元素或字段都是对应该类型的零值。</p>
+</li>
+</ul>
+<h4 id="多变量声明"><a href="#多变量声明" class="headerlink" title="多变量声明"></a>多变量声明</h4><p>可同时声明多个变量，如果省略每个变量的类型，将可以声明多个类型不同的变量（类型由初始化表达式推导）：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i, j, k <span class="keyword">int</span>                 <span class="comment">// int, int, int</span></span><br><span class="line"><span class="keyword">var</span> b, f, s = <span class="literal">true</span>, <span class="number">2.3</span>, <span class="string">&quot;four&quot;</span> <span class="comment">// bool, float64, string</span></span><br></pre></td></tr></table></figure>
+<p>一组变量也可以通过调用一个函数，由函数返回的多个返回值初始化：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f, err = os.Open(name) <span class="comment">// os.Open returns a file and an error</span></span><br></pre></td></tr></table></figure>
+<h4 id="简短变量声明"><a href="#简短变量声明" class="headerlink" title="简短变量声明"></a>简短变量声明</h4><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">变量名 := 表达式</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">anim := gif.GIF&#123;LoopCount: nframes&#125;</span><br><span class="line">freq := rand.Float64() * <span class="number">3.0</span></span><br><span class="line">t := <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+<p>和var形式声明语句一样，简短变量声明语句也可以用来声明和初始化一组变量：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j := <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意区分：</strong> <strong>” := “</strong>是变量声明语句， <strong>”=“</strong>是变量赋值操作</p>
+<p>将右边各个表达式的值赋值给左边对应位置的各个变量：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j = j, i <span class="comment">// 交换 i 和 j 的值</span></span><br></pre></td></tr></table></figure>
+<p>但如果变量之前声明过，则再次使用:=声明则是赋值行为，其中err变量之前已经声明，则后面是对其进行赋值。<strong>且简短变量声明必须有一个新的变量被声明，否则编译不通过</strong>。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">in, err := os.Open(infile)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">out, err := os.Create(outfile)</span><br></pre></td></tr></table></figure>
+<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><ul>
+<li><p>一个变量对应一个保存了变量对应类型值的内存空间。</p>
+</li>
+<li><p>一个指针的值是另一个变量的地址。</p>
+</li>
+<li><p>一个指针对应变量在内存中的存储位置。</p>
+</li>
+<li><p>并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。</p>
+</li>
+<li><p>通过指针，我们可以直接读或更新对应变量的值，而不需要知道该变量的名字（如果变量有名字的话）。</p>
+</li>
+</ul>
+<p>如果用“var x int”声明语句声明一个x变量，那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针，指针对应的数据类型是<code>*int</code>，指针被称之为“指向int类型的指针”。如果指针名字为p，那么可以说“p指针指向变量x”，或者说“p指针保存了x变量的内存地址”。同时<code>*p</code>表达式对应p指针指向的变量的值。一般<code>*p</code>表达式读取指针指向的变量的值，这里为int类型的值，同时因为<code>*p</code>对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明变量</span></span><br><span class="line">x := <span class="number">1</span></span><br><span class="line"><span class="comment">//声明指向x变量的指针 p</span></span><br><span class="line">p := &amp;x         <span class="comment">// p, of type *int, points to x</span></span><br><span class="line"><span class="comment">//*p p指针指向的变量的值</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;1&quot;</span></span><br><span class="line"><span class="comment">//更新指针所指向变量的值</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// equivalent to x = 2</span></span><br><span class="line">fmt.Println(x)  <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<p><strong>任何类型的指针的零值都是nil</strong>。如果p指向某个有效变量，那么<code>p != nil</code>测试为真。指针之间也是可以进行相等测试的，只有当它们指向同一个变量或全部是nil时才相等。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x, y <span class="keyword">int</span></span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="literal">nil</span>) <span class="comment">// &quot;true false false&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="new函数"><a href="#new函数" class="headerlink" title="new函数"></a>new函数</h4><p>创建变量还可以通过调用内建的new函数。表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code>。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="keyword">int</span>)   <span class="comment">// p, *int 类型, 指向匿名的 int 变量</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;0&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 设置 int 匿名变量的值为 2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<p>由于new只是一个预定义的函数，它并不是一个关键字，因此我们可以将new名字重新定义为别的类型。例如下面的例子：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delta</span><span class="params">(old, <span class="built_in">new</span> <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> <span class="built_in">new</span> - old &#125;</span><br></pre></td></tr></table></figure>
+<p>由于new被定义为int类型的变量名，因此在delta函数内部是无法使用内置的new函数的。</p>
+<h4 id="变量的声明周期"><a href="#变量的声明周期" class="headerlink" title="变量的声明周期"></a>变量的声明周期</h4><p>变量的生命周期指的是在程序运行期间变量有效存在的时间段。对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。而相比之下，局部变量的生命周期则是动态的：每次从创建一个新变量的声明语句开始，直到该变量不再被引用为止，然后变量的存储空间可能被回收。函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
+<hr>
+<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x = <span class="number">1</span>                       <span class="comment">// 命名变量的赋值</span></span><br><span class="line">*p = <span class="literal">true</span>                   <span class="comment">// 通过指针间接赋值</span></span><br><span class="line">person.name = <span class="string">&quot;bob&quot;</span>         <span class="comment">// 结构体字段赋值</span></span><br><span class="line">count[x] = count[x] * scale <span class="comment">// 数组、slice或map的元素赋值</span></span><br></pre></td></tr></table></figure>
+<p>特定的二元算术运算符和赋值语句的复合操作有一个简洁形式，例如上面最后的语句可以重写为：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">count[x] *= scale</span><br></pre></td></tr></table></figure>
+<p>数值变量也可以支持<code>++</code>递增和<code>--</code>递减语句（译注：自增和自减是语句，而不是表达式，因此<code>x = i++</code>之类的表达式是错误的）：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">v := <span class="number">1</span></span><br><span class="line">v++    <span class="comment">// 等价方式 v = v + 1；v 变成 2</span></span><br><span class="line">v--    <span class="comment">// 等价方式 v = v - 1；v 变成 1</span></span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM运行时数据区</title>
     <url>/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -262,29 +350,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux常用命令</title>
-    <url>/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h3 id="1-系统路径："><a href="#1-系统路径：" class="headerlink" title="1.系统路径："></a>1.系统路径：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/	表示根目录</span><br><span class="line">~	表示/root</span><br><span class="line">etc	存放系统配置目录</span><br><span class="line">home	除了root以外所有用户默认在home下新建一个以用户名作为文件夹名称的文件夹</span><br><span class="line">root	用户root单独文件夹</span><br><span class="line">usr	所有用户安装的软件都放入到这个文件夹中</span><br></pre></td></tr></table></figure>
-<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ mkdir [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ ls	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ touch	创建空文件</span><br><span class="line"></span><br><span class="line">$ cat	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ head [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ tail [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ cp [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ mv 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ rm 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
-
-
-
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java集合</title>
     <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -372,6 +437,29 @@
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux常用命令</title>
+    <url>/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h3 id="1-系统路径："><a href="#1-系统路径：" class="headerlink" title="1.系统路径："></a>1.系统路径：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/	表示根目录</span><br><span class="line">~	表示/root</span><br><span class="line">etc	存放系统配置目录</span><br><span class="line">home	除了root以外所有用户默认在home下新建一个以用户名作为文件夹名称的文件夹</span><br><span class="line">root	用户root单独文件夹</span><br><span class="line">usr	所有用户安装的软件都放入到这个文件夹中</span><br></pre></td></tr></table></figure>
+<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ mkdir [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ ls	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ touch	创建空文件</span><br><span class="line"></span><br><span class="line">$ cat	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ head [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ tail [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ cp [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ mv 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ rm 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
+
+
+
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -480,53 +568,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL数据库索引原理及类型</title>
-    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
-<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
-<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
-<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
-<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>4.删除索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
-<p>1.创建唯一索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
-<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
-<hr>
-<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824/article/details/82261988</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL数据库多表查询</title>
     <url>/2019/09/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -600,6 +641,117 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL数据库索引原理及类型</title>
+    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
+<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
+<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
+<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>4.删除索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
+<p>1.创建唯一索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
+<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
+<hr>
+<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824/article/details/82261988</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis安装流程</title>
+    <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Redis安装流程"><a href="#Redis安装流程" class="headerlink" title="Redis安装流程"></a>Redis安装流程</h1><p>本安装流程于Linux环境下安装，所用redis版本为5.0.7。</p>
+<hr>
+<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p>1.看是否有gcc环境，没有则安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum install gcc-c++</span><br></pre></td></tr></table></figure>
+<p>2.下载压缩包到指定目录，可直接去官网下载<a href="https://redis.io/download">https://redis.io/download</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+<p>3.解压压缩包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar xzf redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+<p>4.进入解压后的文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> redis-5.0.7</span><br></pre></td></tr></table></figure>
+<p>5.执行make命令编译</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<p>6.再进入src目录，在其目录下执行命令 make install</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
+<p>7.创建新的目录redis、bin、etc，用于分类执行文件和配置文件(这一步不是必做)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/bin（加-p参数如果上级目录不存在则自动创建）</span><br><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
+<p>8.将redis 5.0.7/src目录下的redis-server，redis-check-aof，redis-check-rdb，redis-cli，redis-benchmark，mkreleasehdr.sh，redis-sentainel移动到的自建的redis/bin目录下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mv redis-server redis-check-aof redis-check-rdb redis-cli redis-benchmark mkreleasehdr.sh redis-sentinel /usr/<span class="built_in">local</span>/redis/bin</span><br></pre></td></tr></table></figure>
+<p>9.拷贝配置文件到自建etc目录下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp redis.conf /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
+<p>10.启动redis服务，通过指定配置文件启动服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/etc/redis.conf</span><br></pre></td></tr></table></figure>
+<p>出现以下画面则说明启动成功</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" style="zoom:80%;" /></a>
+
+<p>6379为redis端口号，按Ctrl+C可退出服务</p>
+<p>11.进入自建的redis/etc目录下，修改redis.conf配置文件，让redis变为后台启动方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
+<p>将daemonize改为yes</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" style="zoom:80%;" /></a>
+
+<p>12.再次启动服务，出现一下画面则说明成功</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" style="zoom:80%;" /></a>
+
+<p>可通过ps -ef | grep 6379查看redis服务是否启动或这关闭</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" style="zoom:80%;" /></a>
+
+<p>13.进入客户端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli 进入redis客户端</span><br><span class="line">$ redis 127.0.0.1:6379&gt; PING 检测redis服务是否启动</span><br></pre></td></tr></table></figure>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png"></a></p>
+<p>按Ctrl+C可退出</p>
+<p>14.关闭redis服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pkill redis-server</span><br><span class="line">或者</span><br><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server shutdown</span><br></pre></td></tr></table></figure>
+<p>15.如果redis中文乱码则可以在后面加上 –raw</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
+
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -682,70 +834,6 @@
 <td align="left">返回 key 所储存的值的类型</td>
 </tr>
 </tbody></table>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis安装流程</title>
-    <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Redis安装流程"><a href="#Redis安装流程" class="headerlink" title="Redis安装流程"></a>Redis安装流程</h1><p>本安装流程于Linux环境下安装，所用redis版本为5.0.7。</p>
-<hr>
-<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p>1.看是否有gcc环境，没有则安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum install gcc-c++</span><br></pre></td></tr></table></figure>
-<p>2.下载压缩包到指定目录，可直接去官网下载<a href="https://redis.io/download">https://redis.io/download</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
-<p>3.解压压缩包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar xzf redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
-<p>4.进入解压后的文件夹</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> redis-5.0.7</span><br></pre></td></tr></table></figure>
-<p>5.执行make命令编译</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
-<p>6.再进入src目录，在其目录下执行命令 make install</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
-<p>7.创建新的目录redis、bin、etc，用于分类执行文件和配置文件(这一步不是必做)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/bin（加-p参数如果上级目录不存在则自动创建）</span><br><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
-<p>8.将redis 5.0.7/src目录下的redis-server，redis-check-aof，redis-check-rdb，redis-cli，redis-benchmark，mkreleasehdr.sh，redis-sentainel移动到的自建的redis/bin目录下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mv redis-server redis-check-aof redis-check-rdb redis-cli redis-benchmark mkreleasehdr.sh redis-sentinel /usr/<span class="built_in">local</span>/redis/bin</span><br></pre></td></tr></table></figure>
-<p>9.拷贝配置文件到自建etc目录下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp redis.conf /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
-<p>10.启动redis服务，通过指定配置文件启动服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/etc/redis.conf</span><br></pre></td></tr></table></figure>
-<p>出现以下画面则说明启动成功</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" style="zoom:80%;" /></a>
-
-<p>6379为redis端口号，按Ctrl+C可退出服务</p>
-<p>11.进入自建的redis/etc目录下，修改redis.conf配置文件，让redis变为后台启动方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
-<p>将daemonize改为yes</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" style="zoom:80%;" /></a>
-
-<p>12.再次启动服务，出现一下画面则说明成功</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" style="zoom:80%;" /></a>
-
-<p>可通过ps -ef | grep 6379查看redis服务是否启动或这关闭</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" style="zoom:80%;" /></a>
-
-<p>13.进入客户端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli 进入redis客户端</span><br><span class="line">$ redis 127.0.0.1:6379&gt; PING 检测redis服务是否启动</span><br></pre></td></tr></table></figure>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png"></a></p>
-<p>按Ctrl+C可退出</p>
-<p>14.关闭redis服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pkill redis-server</span><br><span class="line">或者</span><br><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server shutdown</span><br></pre></td></tr></table></figure>
-<p>15.如果redis中文乱码则可以在后面加上 –raw</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
-
-
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -893,6 +981,16 @@
       </tags>
   </entry>
   <entry>
+    <title>This is my first blog here</title>
+    <url>/2019/08/20/This-is-my-first-blog-here/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2019/08/20/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -905,16 +1003,6 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-  </entry>
-  <entry>
-    <title>This is my first blog here</title>
-    <url>/2019/08/20/This-is-my-first-blog-here/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
