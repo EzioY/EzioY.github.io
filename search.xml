@@ -32,18 +32,12 @@
   <entry>
     <title>21年4月17日</title>
     <url>/2021/04/12/21%E5%B9%B44%E6%9C%8817%E6%97%A5%E5%91%A8%E8%AE%B0/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="e761ee4f911b8cad15dcad0cacd813308d16af4d03471fc6595b5a1da9c3f3b1">165d50f05814027fb7fe5e4ae8a088d8f56f9f99da4d666013e31ffb8bb0171fc7fb7e123a0dbdaace91d8f5befd348f68f3bcc4e96bdfebb15056a3980290f29c0c120b90ffb0cebc9c31a4d04c449736356c55b2d7373006ea60b2b254a672740e83f89b3c70817f925dad9048b6b6b1fc574cd4458bcf86b4ed6499fb3c4917e412d204a7e73de96aa06688e45d953d7749b7af00e9bd1af4bcbfb52c4c6db0c4779762facd60dac52625ee402bed23dd3b0f0f0345ac5f46272612607a94dbf19836afda7be5e91e19bf3cf903e26df99492abe24a2384bdc217f10573d2c2195926f46b9c68d8606e643286f6d65ce352ef193e370b92de92d4c03c3918df2b497393ad68e28eb3bb4f59e0db2d9aa7f8767ce9b7dda746931553c9ba2117c42cb106078d0ef3205660f4104defdee02e74e6be5829fc7c75a4d82f0e49fe3649fb2372e7c0ebf4fb5acacc401fbf433632d606927f7a149759601d30c6ac7d3ba81b746c4ee2704e53d2c5ec3c9125cc39ddcae532e0d43848d9e3e989ca6ce94d6421b5ce660f1e2d0203a0d63c779fff0f29fe2b6232eec3bed8723bc7d7a2be9aa35f6338ac9b1b881da96256c76eb8d02c37cf2ff685bdaf1fbf3ecca22d8770f2df6a19518389249ef940cc0c21ecaa6f02732824326c566ac2f56a7814c97a5e060fcc16dba651ff8f1841ffbf8f316f31fe8e7eb7cb6d1439a5df54b3bdb4ac36eca53fe0316aeda29687dcc883d710a2eb1f0904d52d3b4f454f2bb250da8538e5f6cbf7af40536d455858cd39563a7bad52cf264a3abf0209b2b48193f1adf2a6266f5e6b8b24d33f227f62f2ee092bebda0381fa518b8448bc3805dccadaba8e3c1157129303f600875c76405f2de17ca03a0b258f669269151b536f1a96d98dca94c17bdab6e14eaebab9f21f55f98b800e955cd2d7010ab9b42653502c019fbadb4f82fae4076e2b9fa8830ec69e7886a55fb52625e1773b32e33214e19bf3b6df1bc17b98af9ed6324559e4ae4429cbfab6c91894acb8ff2a49fc7b95e97d9befb85801d90b189582c247274c05a9fecdc09a2e33c584d88fa4e8bd542f9f0c466b90bbbdb77b</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
       <categories>
         <category>周记</category>
       </categories>
@@ -247,23 +241,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java8-Predicate函数</title>
-    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java线程梳理</title>
     <url>/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -376,6 +353,23 @@
 <p>\2.    控制并发数量：（核心线程和最大线程数控制）</p>
 <p>\3.    管理线程（设置线程的状态）</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8-Predicate函数</title>
+    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -556,22 +550,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 错误：$r: command not found</title>
-    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux环境下安装tomcat</title>
     <url>/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -600,6 +578,42 @@
       </categories>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 错误：$r: command not found</title>
+    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法</title>
+    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
+<p>其效果如下展示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -676,26 +690,6 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
-<p>其效果如下展示：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -825,6 +819,70 @@
 <td align="left">返回 key 所储存的值的类型</td>
 </tr>
 </tbody></table>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis安装流程</title>
+    <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Redis安装流程"><a href="#Redis安装流程" class="headerlink" title="Redis安装流程"></a>Redis安装流程</h1><p>本安装流程于Linux环境下安装，所用redis版本为5.0.7。</p>
+<hr>
+<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p>1.看是否有gcc环境，没有则安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum install gcc-c++</span><br></pre></td></tr></table></figure>
+<p>2.下载压缩包到指定目录，可直接去官网下载<a href="https://redis.io/download">https://redis.io/download</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+<p>3.解压压缩包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar xzf redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+<p>4.进入解压后的文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> redis-5.0.7</span><br></pre></td></tr></table></figure>
+<p>5.执行make命令编译</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<p>6.再进入src目录，在其目录下执行命令 make install</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
+<p>7.创建新的目录redis、bin、etc，用于分类执行文件和配置文件(这一步不是必做)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/bin（加-p参数如果上级目录不存在则自动创建）</span><br><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
+<p>8.将redis 5.0.7/src目录下的redis-server，redis-check-aof，redis-check-rdb，redis-cli，redis-benchmark，mkreleasehdr.sh，redis-sentainel移动到的自建的redis/bin目录下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mv redis-server redis-check-aof redis-check-rdb redis-cli redis-benchmark mkreleasehdr.sh redis-sentinel /usr/<span class="built_in">local</span>/redis/bin</span><br></pre></td></tr></table></figure>
+<p>9.拷贝配置文件到自建etc目录下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp redis.conf /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
+<p>10.启动redis服务，通过指定配置文件启动服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/etc/redis.conf</span><br></pre></td></tr></table></figure>
+<p>出现以下画面则说明启动成功</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" style="zoom:80%;" /></a>
+
+<p>6379为redis端口号，按Ctrl+C可退出服务</p>
+<p>11.进入自建的redis/etc目录下，修改redis.conf配置文件，让redis变为后台启动方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
+<p>将daemonize改为yes</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" style="zoom:80%;" /></a>
+
+<p>12.再次启动服务，出现一下画面则说明成功</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" style="zoom:80%;" /></a>
+
+<p>可通过ps -ef | grep 6379查看redis服务是否启动或这关闭</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" style="zoom:80%;" /></a>
+
+<p>13.进入客户端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli 进入redis客户端</span><br><span class="line">$ redis 127.0.0.1:6379&gt; PING 检测redis服务是否启动</span><br></pre></td></tr></table></figure>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png"></a></p>
+<p>按Ctrl+C可退出</p>
+<p>14.关闭redis服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pkill redis-server</span><br><span class="line">或者</span><br><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server shutdown</span><br></pre></td></tr></table></figure>
+<p>15.如果redis中文乱码则可以在后面加上 –raw</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
+
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1092,70 +1150,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis安装流程</title>
-    <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Redis安装流程"><a href="#Redis安装流程" class="headerlink" title="Redis安装流程"></a>Redis安装流程</h1><p>本安装流程于Linux环境下安装，所用redis版本为5.0.7。</p>
-<hr>
-<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p>1.看是否有gcc环境，没有则安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum install gcc-c++</span><br></pre></td></tr></table></figure>
-<p>2.下载压缩包到指定目录，可直接去官网下载<a href="https://redis.io/download">https://redis.io/download</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
-<p>3.解压压缩包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar xzf redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
-<p>4.进入解压后的文件夹</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> redis-5.0.7</span><br></pre></td></tr></table></figure>
-<p>5.执行make命令编译</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
-<p>6.再进入src目录，在其目录下执行命令 make install</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
-<p>7.创建新的目录redis、bin、etc，用于分类执行文件和配置文件(这一步不是必做)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/bin（加-p参数如果上级目录不存在则自动创建）</span><br><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
-<p>8.将redis 5.0.7/src目录下的redis-server，redis-check-aof，redis-check-rdb，redis-cli，redis-benchmark，mkreleasehdr.sh，redis-sentainel移动到的自建的redis/bin目录下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mv redis-server redis-check-aof redis-check-rdb redis-cli redis-benchmark mkreleasehdr.sh redis-sentinel /usr/<span class="built_in">local</span>/redis/bin</span><br></pre></td></tr></table></figure>
-<p>9.拷贝配置文件到自建etc目录下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp redis.conf /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
-<p>10.启动redis服务，通过指定配置文件启动服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/etc/redis.conf</span><br></pre></td></tr></table></figure>
-<p>出现以下画面则说明启动成功</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" style="zoom:80%;" /></a>
-
-<p>6379为redis端口号，按Ctrl+C可退出服务</p>
-<p>11.进入自建的redis/etc目录下，修改redis.conf配置文件，让redis变为后台启动方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
-<p>将daemonize改为yes</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" style="zoom:80%;" /></a>
-
-<p>12.再次启动服务，出现一下画面则说明成功</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" style="zoom:80%;" /></a>
-
-<p>可通过ps -ef | grep 6379查看redis服务是否启动或这关闭</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" style="zoom:80%;" /></a>
-
-<p>13.进入客户端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli 进入redis客户端</span><br><span class="line">$ redis 127.0.0.1:6379&gt; PING 检测redis服务是否启动</span><br></pre></td></tr></table></figure>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png"></a></p>
-<p>按Ctrl+C可退出</p>
-<p>14.关闭redis服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pkill redis-server</span><br><span class="line">或者</span><br><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server shutdown</span><br></pre></td></tr></table></figure>
-<p>15.如果redis中文乱码则可以在后面加上 –raw</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
-
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
