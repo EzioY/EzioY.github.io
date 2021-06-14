@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Linux 错误：$r: command not found | Ezio&#39;s blog</title>
+<title>理解计算机系统中的局部性原理 | Ezio&#39;s blog</title>
 
 
 
@@ -120,11 +120,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Linux 错误：$r: command not found</h1>
+            <h1 class="post-title">理解计算机系统中的局部性原理</h1>
             
                 <div class="post-meta">
                     
@@ -133,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 31, 2021&nbsp;&nbsp;11:00:28</a>
+                        Date: <a href="#">June 8, 2021&nbsp;&nbsp;15:48:20</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Linux/">Linux</a>
+                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
                             
                         </span>
                     
@@ -149,7 +211,14 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="理解计算机系统中的局部性原理"><a href="#理解计算机系统中的局部性原理" class="headerlink" title="理解计算机系统中的局部性原理"></a>理解计算机系统中的局部性原理</h1><blockquote>
+<ul>
+<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
+</ul>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -168,7 +237,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$'r'%20command%20not%20found/">http://ezioy.cn/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$'r'%20command%20not%20found/</a></span>
+                        <span><a href="http://ezioy.cn/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/">http://ezioy.cn/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</a></span>
                     </p>
                 
                 
@@ -192,7 +261,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Linux/"># Linux</a>
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"># 计算机</a>
                     
                         
                 </span>
@@ -205,10 +274,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/">理解计算机系统中的局部性原理</a>
             
-            
-            <a class="next" rel="next" href="/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/">Java8-Predicate函数</a>
+            <a class="next" rel="next" href="/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$'r'%20command%20not%20found/">Linux 错误：$r: command not found</a>
             
         </section>
 
