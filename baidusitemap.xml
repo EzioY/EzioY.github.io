@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://ezioy.cn/2021/06/14/Mysql%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2021-06-14</lastmod>
+    <loc>http://ezioy.cn/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85Tomcat/</loc>
+    <lastmod>2021-06-16</lastmod>
+  </url>
+  <url>
+    <loc>http://ezioy.cn/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2021-06-16</lastmod>
   </url>
   <url>
     <loc>http://ezioy.cn/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$'r'%20command%20not%20found/</loc>
@@ -78,10 +82,6 @@
   </url>
   <url>
     <loc>http://ezioy.cn/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2021-01-24</lastmod>
-  </url>
-  <url>
-    <loc>http://ezioy.cn/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85tomcat/</loc>
     <lastmod>2021-01-24</lastmod>
   </url>
   <url>
