@@ -17,30 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AJAX异步请求</title>
-    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getXhr</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest</span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.open(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.responseText;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(e.status);</span><br><span class="line">        <span class="built_in">console</span>.log(e.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.get(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.getJSON(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.post(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
-<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>AJAX</category>
-      </categories>
-      <tags>
-        <tag>AJAX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2020年感想</title>
     <url>/2021/01/01/2020%E5%B9%B4%E6%84%9F%E6%83%B3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -67,6 +43,30 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AJAX异步请求</title>
+    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getXhr</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest</span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.open(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.responseText;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(e.status);</span><br><span class="line">        <span class="built_in">console</span>.log(e.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.get(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.getJSON(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.post(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
+<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>AJAX</category>
+      </categories>
+      <tags>
+        <tag>AJAX</tag>
       </tags>
   </entry>
   <entry>
@@ -176,35 +176,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java Serializable接口</title>
-    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
-<p>​    在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
-<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​     web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
-<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​    <strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
-<p>​    Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
-<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
-<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
-<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
-<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
-<p>​    其实很早就知道的，在Java中常见的几个类，如：Interger/String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
-<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​    序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
-<p>​    如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM运行时数据区</title>
     <url>/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -241,6 +212,35 @@
       </tags>
   </entry>
   <entry>
+    <title>Java Serializable接口</title>
+    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
+<p>​    在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
+<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​     web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
+<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​    <strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
+<p>​    Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
+<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
+<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
+<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
+<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
+<p>​    其实很早就知道的，在Java中常见的几个类，如：Interger/String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
+<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​    序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
+<p>​    如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java8-Predicate函数</title>
     <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -255,6 +255,29 @@
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux常用命令</title>
+    <url>/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h3 id="1-系统路径："><a href="#1-系统路径：" class="headerlink" title="1.系统路径："></a>1.系统路径：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/	表示根目录</span><br><span class="line">~	表示/root</span><br><span class="line">etc	存放系统配置目录</span><br><span class="line">home	除了root以外所有用户默认在home下新建一个以用户名作为文件夹名称的文件夹</span><br><span class="line">root	用户root单独文件夹</span><br><span class="line">usr	所有用户安装的软件都放入到这个文件夹中</span><br></pre></td></tr></table></figure>
+<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ mkdir [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ ls	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ touch	创建空文件</span><br><span class="line"></span><br><span class="line">$ cat	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ head [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ tail [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ cp [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ mv 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ rm 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
+
+
+
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -473,29 +496,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux常用命令</title>
-    <url>/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h3 id="1-系统路径："><a href="#1-系统路径：" class="headerlink" title="1.系统路径："></a>1.系统路径：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/	表示根目录</span><br><span class="line">~	表示/root</span><br><span class="line">etc	存放系统配置目录</span><br><span class="line">home	除了root以外所有用户默认在home下新建一个以用户名作为文件夹名称的文件夹</span><br><span class="line">root	用户root单独文件夹</span><br><span class="line">usr	所有用户安装的软件都放入到这个文件夹中</span><br></pre></td></tr></table></figure>
-<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ mkdir [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ ls	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ touch	创建空文件</span><br><span class="line"></span><br><span class="line">$ cat	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ head [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ tail [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ cp [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ mv 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ rm 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
-
-
-
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux挂载</title>
     <url>/2020/01/10/Linux%E6%8C%82%E8%BD%BD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -547,26 +547,6 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
-<p>其效果如下展示：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -622,67 +602,23 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL数据库索引原理及类型</title>
-    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
+    <title>Markdown语法</title>
+    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
-<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
-<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
-<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
-<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>4.删除索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
-<p>1.创建唯一索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
-<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
-<hr>
-<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824/article/details/82261988</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
+<p>其效果如下展示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>MySQL</category>
+        <category>Markdown</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL索引原理及慢查询优化</title>
-    <url>/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="MySQL索引原理及慢查询优化"><a href="#MySQL索引原理及慢查询优化" class="headerlink" title="MySQL索引原理及慢查询优化"></a>MySQL索引原理及慢查询优化</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -749,6 +685,70 @@
 <hr>
 <p>该文章借鉴参考于<a href="https://www.cnblogs.com/yuzhanhong/p/9286910.html">https://www.cnblogs.com/yuzhanhong/p/9286910.html</a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL数据库索引原理及类型</title>
+    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
+<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
+<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
+<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>4.删除索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
+<p>1.创建唯一索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
+<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
+<hr>
+<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824/article/details/82261988</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL索引原理及慢查询优化</title>
+    <url>/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="MySQL索引原理及慢查询优化"><a href="#MySQL索引原理及慢查询优化" class="headerlink" title="MySQL索引原理及慢查询优化"></a>MySQL索引原理及慢查询优化</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -855,70 +855,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis数据类型</title>
-    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
-<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
-<li><strong>string：</strong> key-value</li>
-<li><strong>hash：</strong> key-field-value</li>
-<li><strong>list：</strong>key-value</li>
-<li><strong>set：</strong>key-member</li>
-<li><strong>zset：</strong>key-score-member</li>
-</ul>
-<blockquote>
-<ul>
-<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
-</ul>
-</blockquote>
-<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
-<ul>
-<li><p>涉及随机，不重复：<strong>set</strong></p>
-</li>
-<li><p>多维度排序：<strong>zset</strong></p>
-</li>
-<li><p>单维度排序：<strong>list、zset</strong></p>
-</li>
-</ul>
-<p><strong>2.限制条件的判断</strong></p>
-<ul>
-<li><p>可以通过增加标识key去判断，方式有：</p>
-<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
-</li>
-<li><p>也可以通过set的唯一性去判断：</p>
-<p><strong>sadd、zadd</strong></p>
-</li>
-</ul>
-<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
-<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
-<p>该问题存在以下四个场景：</p>
-<ul>
-<li><p>用户进入房间</p>
-</li>
-<li><p>查询房间榜单</p>
-</li>
-<li><p>用户赠送礼物</p>
-</li>
-<li><p>用户离开房间</p>
-</li>
-</ul>
-<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">long</span> baseScore = <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
-<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis安装流程</title>
     <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -969,6 +905,70 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
 
 
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis数据类型</title>
+    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
+<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
+<li><strong>string：</strong> key-value</li>
+<li><strong>hash：</strong> key-field-value</li>
+<li><strong>list：</strong>key-value</li>
+<li><strong>set：</strong>key-member</li>
+<li><strong>zset：</strong>key-score-member</li>
+</ul>
+<blockquote>
+<ul>
+<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
+</ul>
+</blockquote>
+<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
+<ul>
+<li><p>涉及随机，不重复：<strong>set</strong></p>
+</li>
+<li><p>多维度排序：<strong>zset</strong></p>
+</li>
+<li><p>单维度排序：<strong>list、zset</strong></p>
+</li>
+</ul>
+<p><strong>2.限制条件的判断</strong></p>
+<ul>
+<li><p>可以通过增加标识key去判断，方式有：</p>
+<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
+</li>
+<li><p>也可以通过set的唯一性去判断：</p>
+<p><strong>sadd、zadd</strong></p>
+</li>
+</ul>
+<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
+<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
+<p>该问题存在以下四个场景：</p>
+<ul>
+<li><p>用户进入房间</p>
+</li>
+<li><p>查询房间榜单</p>
+</li>
+<li><p>用户赠送礼物</p>
+</li>
+<li><p>用户离开房间</p>
+</li>
+</ul>
+<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">long</span> baseScore = <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
+<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1081,48 +1081,6 @@
         }</script>]]></content>
   </entry>
   <entry>
-    <title>理解计算机系统中的局部性原理</title>
-    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="理解计算机系统中的局部性原理"><a href="#理解计算机系统中的局部性原理" class="headerlink" title="理解计算机系统中的局部性原理"></a>理解计算机系统中的局部性原理</h1><blockquote>
-<ul>
-<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
-</ul>
-</blockquote>
-<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
-<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
-<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
-<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
-<ul>
-<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
-</li>
-<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
-</li>
-<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
-</li>
-<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
-</li>
-<li><p>访问主存，cpu大约需要200个时钟周期</p>
-</li>
-<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
-</li>
-</ul>
-<p><strong><em>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</em></strong></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>计算机</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo+GitHub pages搭建个人博客</title>
     <url>/2020/08/11/hexo+Github-pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -1214,6 +1172,48 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理解计算机系统中的局部性原理</title>
+    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="理解计算机系统中的局部性原理"><a href="#理解计算机系统中的局部性原理" class="headerlink" title="理解计算机系统中的局部性原理"></a>理解计算机系统中的局部性原理</h1><blockquote>
+<ul>
+<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
+</ul>
+</blockquote>
+<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
+<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
+<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
+<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
+<ul>
+<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
+</li>
+<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
+</li>
+<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
+</li>
+<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
+</li>
+<li><p>访问主存，cpu大约需要200个时钟周期</p>
+</li>
+<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
+</li>
+</ul>
+<p><strong><em>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</em></strong></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>计算机</tag>
       </tags>
   </entry>
   <entry>

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ezioy.cn/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85Tomcat/</loc>
+    
+    <lastmod>2021-06-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</loc>
+    
+    <lastmod>2021-06-22</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$'r'%20command%20not%20found/</loc>
     
     <lastmod>2021-06-22</lastmod>
@@ -17,20 +31,6 @@
   
   <url>
     <loc>http://ezioy.cn/mood/index.html</loc>
-    
-    <lastmod>2021-06-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85Tomcat/</loc>
-    
-    <lastmod>2021-06-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</loc>
     
     <lastmod>2021-06-16</lastmod>
     
@@ -270,14 +270,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/AJAX/</loc>
+    <loc>http://ezioy.cn/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>http://ezioy.cn/tags/AJAX/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -347,14 +347,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <loc>http://ezioy.cn/tags/hexo/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/hexo/</loc>
+    <loc>http://ezioy.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -370,14 +370,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/AJAX/</loc>
+    <loc>http://ezioy.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>http://ezioy.cn/categories/AJAX/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <loc>http://ezioy.cn/categories/hexo/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/hexo/</loc>
+    <loc>http://ezioy.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
     <lastmod>2021-06-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
