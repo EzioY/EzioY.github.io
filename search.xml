@@ -70,6 +70,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Git上传远程仓库命令组</title>
+    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git rm file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Go程序结构</title>
     <url>/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
@@ -155,24 +173,6 @@
       </categories>
       <tags>
         <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git上传远程仓库命令组</title>
-    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git rm file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
