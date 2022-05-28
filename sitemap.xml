@@ -284,14 +284,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Go/</loc>
+    <loc>http://ezioy.cn/tags/AJAX/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/AJAX/</loc>
+    <loc>http://ezioy.cn/tags/Go/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -312,6 +312,13 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/tags/Markdown/</loc>
+    <lastmod>2022-05-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/tags/MySQL/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
@@ -320,13 +327,6 @@
   
   <url>
     <loc>http://ezioy.cn/tags/Redis/</loc>
-    <lastmod>2022-05-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/tags/Markdown/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -384,14 +384,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Go/</loc>
+    <loc>http://ezioy.cn/categories/AJAX/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/AJAX/</loc>
+    <loc>http://ezioy.cn/categories/Go/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -412,6 +412,13 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/categories/Markdown/</loc>
+    <lastmod>2022-05-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/categories/MySQL/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
@@ -420,13 +427,6 @@
   
   <url>
     <loc>http://ezioy.cn/categories/Redis/</loc>
-    <lastmod>2022-05-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/categories/Markdown/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
