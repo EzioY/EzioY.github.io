@@ -233,6 +233,13 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/category/index.html</loc>
+    
+    <lastmod>2020-01-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/tag/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
@@ -241,13 +248,6 @@
   
   <url>
     <loc>http://ezioy.cn/projects/index.html</loc>
-    
-    <lastmod>2020-01-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/category/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
     
@@ -277,14 +277,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Git/</loc>
+    <loc>http://ezioy.cn/tags/AJAX/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/AJAX/</loc>
+    <loc>http://ezioy.cn/tags/Java/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -298,7 +298,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Java/</loc>
+    <loc>http://ezioy.cn/tags/Git/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -347,14 +347,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/hexo/</loc>
+    <loc>http://ezioy.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <loc>http://ezioy.cn/tags/hexo/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -377,14 +377,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Git/</loc>
+    <loc>http://ezioy.cn/categories/AJAX/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/AJAX/</loc>
+    <loc>http://ezioy.cn/categories/Java/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -398,7 +398,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Java/</loc>
+    <loc>http://ezioy.cn/categories/Git/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/hexo/</loc>
+    <loc>http://ezioy.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <loc>http://ezioy.cn/categories/hexo/</loc>
     <lastmod>2022-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
