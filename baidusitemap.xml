@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ezioy.cn/2021/01/01/2020%E5%B9%B4%E6%84%9F%E6%83%B3/</loc>
+    <lastmod>2022-06-02</lastmod>
+  </url>
+  <url>
     <loc>http://ezioy.cn/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2022-05-28</lastmod>
   </url>
@@ -55,10 +59,6 @@
   <url>
     <loc>http://ezioy.cn/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/</loc>
     <lastmod>2021-02-01</lastmod>
-  </url>
-  <url>
-    <loc>http://ezioy.cn/2021/01/01/2020%E5%B9%B4%E6%84%9F%E6%83%B3/</loc>
-    <lastmod>2021-01-26</lastmod>
   </url>
   <url>
     <loc>http://ezioy.cn/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
