@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -211,7 +211,7 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="JVM运行时数据区"><a href="#JVM运行时数据区" class="headerlink" title="JVM运行时数据区"></a>JVM运行时数据区</h1><h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区包含：本地方法栈、虚拟机栈、堆、元空间（JDK1.8）、程序计数器</p>
 <h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是线程私有的,虽然名字叫计数器,但主要用途还是用来确定指令的执行顺序,比如循环,分支,跳转,异常捕获等.而JVM对于多线程的实现是通过轮流切换线程实现的,所以为了保证每个线程都能按正确顺序执行,将程序计数器作为线程私有.程序计数器是唯一一个JVM没有规定任何OOM的区块</p>
 <p>程序计数器是一块非常小的内存空间，可以看做是当前线程执行字节码的行号指示器，每个线程都有一个独立的程序计数器，因此程序计数器是线程私有的一块空间，此外，程序计数器是Java虚拟机规定的唯一不会发生内存溢出的区域</p>

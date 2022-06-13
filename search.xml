@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>21年4月17日</title>
+    <url>/2021/04/12/21%E5%B9%B44%E6%9C%8817%E6%97%A5%E5%91%A8%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>周记</category>
+      </categories>
+      <tags>
+        <tag>周记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2020年感想</title>
     <url>/2021/01/01/2020%E5%B9%B4%E6%84%9F%E6%83%B3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="2020年感想"><a href="#2020年感想" class="headerlink" title="2020年感想"></a>2020年感想</h1><h3 id="回想"><a href="#回想" class="headerlink" title="回想"></a>回想</h3><p>2020年末，元旦前夕，去年也是在这个时候写了一篇随笔。依稀记得当时刚出学校实习，刚步入社会的我也还算幸运。在公司遇到了一位不错的师父带我，他教会了我很多代码程序之外的东西。在他的庇护下，我并没有经历多少现实的“风雨”。虽然现在的我已经换了个公司，但我还是比较感谢当时带我的师父。在经历这段时间的工作，对程序员这个职业总算有了一点点理解。程序员这个职业工种在公司中相对比较纯粹，不会太去关注什么勾心斗角，只干自己的分内事，偶尔和产品经理、售前争论争论，也都还算正常。我觉得搞技术的，都会有一个特质，专注于自己所正在干的事，而忽略身边的某些事情。这种特质常常被称为：“老实”、“直男”。但这也是我较喜欢敲代码的原因：专注、纯粹，且代码永远不会欺骗你，你的代码怎样写，它就给你报怎样的bug，从不拐弯抹角。</p>
 <p>2019年年末至2020年上半年，疫情的出现，见证了太多的生离死别，同时也见证了太多的感动。但疫情的影响却一直在持续，对于中国乃至世界的影响都是巨大的。经济的衰退对各行各业的冲击，同时也导致找工作的困难，我换工作时还是相当的困难，找了好久才找到一家相对不错的公司，那一段没有工作的时间，是真的难熬挣扎。</p>
 <h3 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h3><p>2020年，这一整年现实都一直在教导我们什么叫做<strong>“珍惜”</strong>。</p>
@@ -30,33 +46,21 @@
       </tags>
   </entry>
   <entry>
-    <title>21年4月17日</title>
-    <url>/2021/04/12/21%E5%B9%B44%E6%9C%8817%E6%97%A5%E5%91%A8%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>周记</category>
-      </categories>
-      <tags>
-        <tag>周记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AJAX异步请求</title>
     <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getXhr</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest</span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.open(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.responseText;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getXhr</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.<span class="property">responseText</span>;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
+
 <hr>
-<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(e.status);</span><br><span class="line">        <span class="built_in">console</span>.log(e.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.get(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.getJSON(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.post(<span class="string">&quot;/url&quot;</span>,param,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">status</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.<span class="title function_">getJSON</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
+
 <p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
 <p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -72,8 +76,9 @@
   <entry>
     <title>Git上传远程仓库命令组</title>
     <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git rm file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -90,7 +95,7 @@
   <entry>
     <title>Go程序结构</title>
     <url>/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="Go程序结构"><a href="#Go程序结构" class="headerlink" title="Go程序结构"></a>Go程序结构</h1><blockquote>
 <ul>
 <li>GO语言学习资料推荐：Go语言圣经 <a href="http://gopl.io/">《The Go Programming Language》</a>中文翻译版 ：<a href="http://books.studygolang.com/gopl-zh/">http://books.studygolang.com/gopl-zh/</a></li>
@@ -99,15 +104,19 @@
 <h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>名字必须以一个字母或下划线开头，后面可跟数字、字母、下划线。区分大小写</p>
 <p><strong>关键字：</strong></p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">break</span>      <span class="keyword">default</span>       <span class="function"><span class="keyword">func</span>     <span class="title">interface</span>   <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>       <span class="keyword">defer</span>         <span class="keyword">go</span>       <span class="keyword">map</span>         <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>       <span class="keyword">else</span>          <span class="keyword">goto</span>     <span class="keyword">package</span>     <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>      <span class="keyword">fallthrough</span>   <span class="keyword">if</span>       <span class="keyword">range</span>       <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>   <span class="keyword">for</span>           <span class="keyword">import</span>   <span class="keyword">return</span>      <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>预定义名字：</strong>主要对应内建常量、类型和函数</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">内建常量: <span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">内建类型: <span class="keyword">int</span> <span class="keyword">int8</span> <span class="keyword">int16</span> <span class="keyword">int32</span> <span class="keyword">int64</span></span><br><span class="line">         <span class="keyword">uint</span> <span class="keyword">uint8</span> <span class="keyword">uint16</span> <span class="keyword">uint32</span> <span class="keyword">uint64</span> <span class="keyword">uintptr</span></span><br><span class="line">         <span class="keyword">float32</span> <span class="keyword">float64</span> <span class="keyword">complex128</span> <span class="keyword">complex64</span></span><br><span class="line">         <span class="keyword">bool</span> <span class="keyword">byte</span> <span class="keyword">rune</span> <span class="keyword">string</span> error</span><br><span class="line"></span><br><span class="line">内建函数: <span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line">         <span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line">         <span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">内建常量: <span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">内建类型: <span class="type">int</span> <span class="type">int8</span> <span class="type">int16</span> <span class="type">int32</span> <span class="type">int64</span></span><br><span class="line">         <span class="type">uint</span> <span class="type">uint8</span> <span class="type">uint16</span> <span class="type">uint32</span> <span class="type">uint64</span> <span class="type">uintptr</span></span><br><span class="line">         <span class="type">float32</span> <span class="type">float64</span> <span class="type">complex128</span> <span class="type">complex64</span></span><br><span class="line">         <span class="type">bool</span> <span class="type">byte</span> <span class="type">rune</span> <span class="type">string</span> <span class="type">error</span></span><br><span class="line"></span><br><span class="line">内建函数: <span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line">         <span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line">         <span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>Go语言主要有四种类型的声明语句：<strong>var、const、type</strong> 和 <strong>func</strong>，分别对应<strong>变量、常量、类型和函数实体对象</strong>的声明。</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明包</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">//导入依赖</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明常量</span></span><br><span class="line"><span class="keyword">const</span> boilingF = <span class="number">212.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//声明变量</span></span><br><span class="line">    <span class="keyword">var</span> f = boilingF</span><br><span class="line">    <span class="keyword">var</span> c = (f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span></span><br><span class="line">    <span class="comment">//按格式打印输出</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;boiling point = %g°F or %g°C\n&quot;</span>, f, c)</span><br><span class="line">    <span class="comment">// Output:</span></span><br><span class="line">    <span class="comment">// boiling point = 212°F or 100°C</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>var声明语句可以创建一个特定类型的变量，然后给变量附加一个名字，并且设置变量的初始值。变量声明的一般语法如下：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名字 类型 = 表达式</span><br></pre></td></tr></table></figure>
-<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“*= 表达式*”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
+
+<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“*&#x3D; 表达式*”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
 <p><strong>零值初始化机制：</strong>可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。</p>
 <ul>
 <li><p>数值类型变量对应的零值：0</p>
@@ -122,18 +131,25 @@
 </li>
 </ul>
 <h4 id="多变量声明"><a href="#多变量声明" class="headerlink" title="多变量声明"></a>多变量声明</h4><p>可同时声明多个变量，如果省略每个变量的类型，将可以声明多个类型不同的变量（类型由初始化表达式推导）：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i, j, k <span class="keyword">int</span>                 <span class="comment">// int, int, int</span></span><br><span class="line"><span class="keyword">var</span> b, f, s = <span class="literal">true</span>, <span class="number">2.3</span>, <span class="string">&quot;four&quot;</span> <span class="comment">// bool, float64, string</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i, j, k <span class="type">int</span>                 <span class="comment">// int, int, int</span></span><br><span class="line"><span class="keyword">var</span> b, f, s = <span class="literal">true</span>, <span class="number">2.3</span>, <span class="string">&quot;four&quot;</span> <span class="comment">// bool, float64, string</span></span><br></pre></td></tr></table></figure>
+
 <p>一组变量也可以通过调用一个函数，由函数返回的多个返回值初始化：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f, err = os.Open(name) <span class="comment">// os.Open returns a file and an error</span></span><br></pre></td></tr></table></figure>
+
 <h4 id="简短变量声明"><a href="#简短变量声明" class="headerlink" title="简短变量声明"></a>简短变量声明</h4><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">变量名 := 表达式</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">anim := gif.GIF&#123;LoopCount: nframes&#125;</span><br><span class="line">freq := rand.Float64() * <span class="number">3.0</span></span><br><span class="line">t := <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+
 <p>和var形式声明语句一样，简短变量声明语句也可以用来声明和初始化一组变量：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j := <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意区分：</strong> <strong>” := “</strong>是变量声明语句， <strong>”=“</strong>是变量赋值操作</p>
+
+<p><strong>注意区分：</strong> <strong>” :&#x3D; “</strong>是变量声明语句， <strong>”&#x3D;“</strong>是变量赋值操作</p>
 <p>将右边各个表达式的值赋值给左边对应位置的各个变量：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j = j, i <span class="comment">// 交换 i 和 j 的值</span></span><br></pre></td></tr></table></figure>
-<p>但如果变量之前声明过，则再次使用:=声明则是赋值行为，其中err变量之前已经声明，则后面是对其进行赋值。<strong>且简短变量声明必须有一个新的变量被声明，否则编译不通过</strong>。</p>
+
+<p>但如果变量之前声明过，则再次使用:&#x3D;声明则是赋值行为，其中err变量之前已经声明，则后面是对其进行赋值。<strong>且简短变量声明必须有一个新的变量被声明，否则编译不通过</strong>。</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">in, err := os.Open(infile)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">out, err := os.Create(outfile)</span><br></pre></td></tr></table></figure>
+
 <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><ul>
 <li><p>一个变量对应一个保存了变量对应类型值的内存空间。</p>
 </li>
@@ -148,20 +164,27 @@
 </ul>
 <p>如果用“var x int”声明语句声明一个x变量，那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针，指针对应的数据类型是<code>*int</code>，指针被称之为“指向int类型的指针”。如果指针名字为p，那么可以说“p指针指向变量x”，或者说“p指针保存了x变量的内存地址”。同时<code>*p</code>表达式对应p指针指向的变量的值。一般<code>*p</code>表达式读取指针指向的变量的值，这里为int类型的值，同时因为<code>*p</code>对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明变量</span></span><br><span class="line">x := <span class="number">1</span></span><br><span class="line"><span class="comment">//声明指向x变量的指针 p</span></span><br><span class="line">p := &amp;x         <span class="comment">// p, of type *int, points to x</span></span><br><span class="line"><span class="comment">//*p p指针指向的变量的值</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;1&quot;</span></span><br><span class="line"><span class="comment">//更新指针所指向变量的值</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// equivalent to x = 2</span></span><br><span class="line">fmt.Println(x)  <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>任何类型的指针的零值都是nil</strong>。如果p指向某个有效变量，那么<code>p != nil</code>测试为真。指针之间也是可以进行相等测试的，只有当它们指向同一个变量或全部是nil时才相等。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x, y <span class="keyword">int</span></span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="literal">nil</span>) <span class="comment">// &quot;true false false&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x, y <span class="type">int</span></span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="literal">nil</span>) <span class="comment">// &quot;true false false&quot;</span></span><br></pre></td></tr></table></figure>
+
 <h4 id="new函数"><a href="#new函数" class="headerlink" title="new函数"></a>new函数</h4><p>创建变量还可以通过调用内建的new函数。表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code>。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="keyword">int</span>)   <span class="comment">// p, *int 类型, 指向匿名的 int 变量</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;0&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 设置 int 匿名变量的值为 2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="type">int</span>)   <span class="comment">// p, *int 类型, 指向匿名的 int 变量</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;0&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 设置 int 匿名变量的值为 2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p>由于new只是一个预定义的函数，它并不是一个关键字，因此我们可以将new名字重新定义为别的类型。例如下面的例子：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delta</span><span class="params">(old, <span class="built_in">new</span> <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> <span class="built_in">new</span> - old &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delta</span><span class="params">(old, <span class="built_in">new</span> <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="keyword">return</span> <span class="built_in">new</span> - old &#125;</span><br></pre></td></tr></table></figure>
+
 <p>由于new被定义为int类型的变量名，因此在delta函数内部是无法使用内置的new函数的。</p>
 <h4 id="变量的声明周期"><a href="#变量的声明周期" class="headerlink" title="变量的声明周期"></a>变量的声明周期</h4><p>变量的生命周期指的是在程序运行期间变量有效存在的时间段。对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。而相比之下，局部变量的生命周期则是动态的：每次从创建一个新变量的声明语句开始，直到该变量不再被引用为止，然后变量的存储空间可能被回收。函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
 <hr>
 <h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x = <span class="number">1</span>                       <span class="comment">// 命名变量的赋值</span></span><br><span class="line">*p = <span class="literal">true</span>                   <span class="comment">// 通过指针间接赋值</span></span><br><span class="line">person.name = <span class="string">&quot;bob&quot;</span>         <span class="comment">// 结构体字段赋值</span></span><br><span class="line">count[x] = count[x] * scale <span class="comment">// 数组、slice或map的元素赋值</span></span><br></pre></td></tr></table></figure>
+
 <p>特定的二元算术运算符和赋值语句的复合操作有一个简洁形式，例如上面最后的语句可以重写为：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">count[x] *= scale</span><br></pre></td></tr></table></figure>
+
 <p>数值变量也可以支持<code>++</code>递增和<code>--</code>递减语句（译注：自增和自减是语句，而不是表达式，因此<code>x = i++</code>之类的表达式是错误的）：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">v := <span class="number">1</span></span><br><span class="line">v++    <span class="comment">// 等价方式 v = v + 1；v 变成 2</span></span><br><span class="line">v--    <span class="comment">// 等价方式 v = v - 1；v 变成 1</span></span><br></pre></td></tr></table></figure>
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -176,16 +199,81 @@
       </tags>
   </entry>
   <entry>
+    <title>JVM运行时数据区</title>
+    <url>/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="JVM运行时数据区"><a href="#JVM运行时数据区" class="headerlink" title="JVM运行时数据区"></a>JVM运行时数据区</h1><h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区包含：本地方法栈、虚拟机栈、堆、元空间（JDK1.8）、程序计数器</p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是线程私有的,虽然名字叫计数器,但主要用途还是用来确定指令的执行顺序,比如循环,分支,跳转,异常捕获等.而JVM对于多线程的实现是通过轮流切换线程实现的,所以为了保证每个线程都能按正确顺序执行,将程序计数器作为线程私有.程序计数器是唯一一个JVM没有规定任何OOM的区块</p>
+<p>程序计数器是一块非常小的内存空间，可以看做是当前线程执行字节码的行号指示器，每个线程都有一个独立的程序计数器，因此程序计数器是线程私有的一块空间，此外，程序计数器是Java虚拟机规定的唯一不会发生内存溢出的区域</p>
+<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>Java虚拟机栈也是线程私有的,每个方法执行都会创建一个栈帧,局部变量就存放在栈帧中,还有一些其他的动态链接之类的.通常有两个错误会跟这个有关系,一个是StackOverFlowError,一个是OOM(OutOfMemoryError).前者是因为线程请求栈深度超出虚拟机所允许的范围,后者是动态扩展栈的大小的时候,申请不到足够的内存空间.而前者提到的栈深度,也就是刚才说到的每个方法会创建一个栈帧,栈帧从开始执行方法时压入Java虚拟机栈,执行完的时候弹出栈.当压入的栈帧太多了,就会报出这个StackOverflowError.</p>
+<p>虚拟机会为每个线程分配一个虚拟机栈，每个虚拟机栈中都有若干个栈帧，每个栈帧中存储了局部变量表、操作数栈、动态链接、返回地址等。一个栈帧就对应Java代码中的一个方法，当线程执行到一个方法时，就代表这个方法对应的栈帧已经进入虚拟机栈并且处于栈顶的位置，每一个Java方法从被调用到执行结束，就对应了一个栈帧从入栈到出栈的过程。</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈的区别是，虚拟机栈执行的是Java方法，本地方法栈执行的是本地方法（Native Method）,其他基本上一致，在HotSpot中直接把本地方法栈和虚拟机栈合二为一。</p>
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>和永久代类似，都是JVM规范对方法区的实现，但是元空间并不在虚拟机中，而是使用本地内存，元空间的大小仅受本地内存限制，但可以通过-XX:MetaspaceSize和-XX:MaxMetaspaceSize来指定元空间的大小</p>
+<p>jdk1.8中，存储的类信息、编译后的代码数据等已经移动到了<strong>元空间（MetaSpace）</strong>中，元空间并没有处于堆内存上，而是直接占用的本地内存（NativeMemory）。</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio"></a></p>
+<p><strong>去永久代的原因有：</strong></p>
+<p>（1）字符串存在永久代中，容易出现性能问题和内存溢出。 </p>
+<p>（2）类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
+<p>（3）永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
+<p>gc garbage collection</p>
+<p>1.8以后把静态变量 字符串常量池放到了堆中 </p>
+<p> 类的信息 编译后的代码放到元空间 占用的是本地内存</p>
+<h3 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h3><p>堆和方法区一样(确切来说JVM规范中方法区就是堆的一个逻辑分区),就是一个所有线程共享的,存放对象的区域,也是GC的主要区域.其中的分区分为新生代,老年代.新生代中又可以细分为一个Eden,两个Survivor区(From,To).Eden中存放的是通过new 或者newInstance方法创建出来的对象,绝大多数都是很短命的.正常情况下经历一次gc之后,存活的对象会转入到其中一个Survivor区,然后再经历默认15次的gc,就转入到老年代.这是常规状态下，在Survivor区已经满了的情况下，JVM会依据担保机制将一些对象直接放入老年代。</p>
+<p>堆内存主要用于存放对象和数组，它是JVM管理的内存中最大的一块区域，堆内存和方法区都被所有线程共享，在虚拟机启动时创建。在垃圾收集的层面上来看，由于现在收集器基本上都采用分代收集算法，因此堆还可以分为<strong>新生代（YoungGeneration）和老年代（OldGeneration）</strong>，新生代还可以分为<strong>Eden、From</strong> <strong>Survivor、To Survivor</strong></p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio"></a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java Serializable接口</title>
+    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
+<p>​	在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
+<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​	 web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
+<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​	<strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
+<p>​	Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
+<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
+<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
+<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
+<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
+<p>​	其实很早就知道的，在Java中常见的几个类，如：Interger&#x2F;String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
+<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​	序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
+<p>​	如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM 类加载过程</title>
     <url>/2019/12/30/JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172322.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172322.png?x-oss-process=style/ezio"></a></p>
 <h1 id="JVM-类加载过程"><a href="#JVM-类加载过程" class="headerlink" title="JVM 类加载过程"></a>JVM 类加载过程</h1><p><strong>在Java代码中，类型的加载、连接与初始化过程都是在程序运行期间(Runtime)完成的。</strong></p>
 <hr>
 <p><strong>类的加载：</strong>查找并记载类的二进制数据</p>
 <p><strong>类的连接：</strong>验证——确保被加载的类的正确性</p>
-<p>​                    准备——为类的<font color=red>静态变量</font>分配内存，并将其初始化为<font color=red>默认值</font></p>
-<p>​                    解析——把类中的符号引用转换为直接引用</p>
+<p>​					准备——为类的<font color=red>静态变量</font>分配内存，并将其初始化为<font color=red>默认值</font></p>
+<p>​					解析——把类中的符号引用转换为直接引用</p>
 <p><strong>类的初始化：</strong><font color=red>为类的静态变量赋予正确的初始化</font></p>
 <hr>
 <h4 id="类加载的过程："><a href="#类加载的过程：" class="headerlink" title="类加载的过程："></a>类加载的过程：</h4><ol>
@@ -256,58 +344,10 @@
       </tags>
   </entry>
   <entry>
-    <title>JVM运行时数据区</title>
-    <url>/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="JVM运行时数据区"><a href="#JVM运行时数据区" class="headerlink" title="JVM运行时数据区"></a>JVM运行时数据区</h1><h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区包含：本地方法栈、虚拟机栈、堆、元空间（JDK1.8）、程序计数器</p>
-<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是线程私有的,虽然名字叫计数器,但主要用途还是用来确定指令的执行顺序,比如循环,分支,跳转,异常捕获等.而JVM对于多线程的实现是通过轮流切换线程实现的,所以为了保证每个线程都能按正确顺序执行,将程序计数器作为线程私有.程序计数器是唯一一个JVM没有规定任何OOM的区块</p>
-<p>程序计数器是一块非常小的内存空间，可以看做是当前线程执行字节码的行号指示器，每个线程都有一个独立的程序计数器，因此程序计数器是线程私有的一块空间，此外，程序计数器是Java虚拟机规定的唯一不会发生内存溢出的区域</p>
-<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>Java虚拟机栈也是线程私有的,每个方法执行都会创建一个栈帧,局部变量就存放在栈帧中,还有一些其他的动态链接之类的.通常有两个错误会跟这个有关系,一个是StackOverFlowError,一个是OOM(OutOfMemoryError).前者是因为线程请求栈深度超出虚拟机所允许的范围,后者是动态扩展栈的大小的时候,申请不到足够的内存空间.而前者提到的栈深度,也就是刚才说到的每个方法会创建一个栈帧,栈帧从开始执行方法时压入Java虚拟机栈,执行完的时候弹出栈.当压入的栈帧太多了,就会报出这个StackOverflowError.</p>
-<p>虚拟机会为每个线程分配一个虚拟机栈，每个虚拟机栈中都有若干个栈帧，每个栈帧中存储了局部变量表、操作数栈、动态链接、返回地址等。一个栈帧就对应Java代码中的一个方法，当线程执行到一个方法时，就代表这个方法对应的栈帧已经进入虚拟机栈并且处于栈顶的位置，每一个Java方法从被调用到执行结束，就对应了一个栈帧从入栈到出栈的过程。</p>
-<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈的区别是，虚拟机栈执行的是Java方法，本地方法栈执行的是本地方法（Native Method）,其他基本上一致，在HotSpot中直接把本地方法栈和虚拟机栈合二为一。</p>
-<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>和永久代类似，都是JVM规范对方法区的实现，但是元空间并不在虚拟机中，而是使用本地内存，元空间的大小仅受本地内存限制，但可以通过-XX:MetaspaceSize和-XX:MaxMetaspaceSize来指定元空间的大小</p>
-<p>jdk1.8中，存储的类信息、编译后的代码数据等已经移动到了<strong>元空间（MetaSpace）</strong>中，元空间并没有处于堆内存上，而是直接占用的本地内存（NativeMemory）。</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio"></a></p>
-<p><strong>去永久代的原因有：</strong></p>
-<p>（1）字符串存在永久代中，容易出现性能问题和内存溢出。 </p>
-<p>（2）类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
-<p>（3）永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
-<p>gc garbage collection</p>
-<p>1.8以后把静态变量 字符串常量池放到了堆中 </p>
-<p> 类的信息 编译后的代码放到元空间 占用的是本地内存</p>
-<h3 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h3><p>堆和方法区一样(确切来说JVM规范中方法区就是堆的一个逻辑分区),就是一个所有线程共享的,存放对象的区域,也是GC的主要区域.其中的分区分为新生代,老年代.新生代中又可以细分为一个Eden,两个Survivor区(From,To).Eden中存放的是通过new 或者newInstance方法创建出来的对象,绝大多数都是很短命的.正常情况下经历一次gc之后,存活的对象会转入到其中一个Survivor区,然后再经历默认15次的gc,就转入到老年代.这是常规状态下，在Survivor区已经满了的情况下，JVM会依据担保机制将一些对象直接放入老年代。</p>
-<p>堆内存主要用于存放对象和数组，它是JVM管理的内存中最大的一块区域，堆内存和方法区都被所有线程共享，在虚拟机启动时创建。在垃圾收集的层面上来看，由于现在收集器基本上都采用分代收集算法，因此堆还可以分为<strong>新生代（YoungGeneration）和老年代（OldGeneration）</strong>，新生代还可以分为<strong>Eden、From</strong> <strong>Survivor、To Survivor</strong></p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio"></a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java Serializable接口</title>
-    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
-<p>​    在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
-<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​     web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
-<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​    <strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
-<p>​    Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
-<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
-<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
-<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
-<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
-<p>​    其实很早就知道的，在Java中常见的几个类，如：Interger/String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
-<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​    序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
-<p>​    如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+    <title>Java8-Predicate函数</title>
+    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -323,7 +363,7 @@
   <entry>
     <title>Java线程梳理</title>
     <url>/2021/02/01/Java%E7%BA%BF%E7%A8%8B%E6%A2%B3%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a><strong>实现方式</strong></h3><ol>
 <li><p>通过继承Thread类实现一个线程</p>
 </li>
@@ -338,7 +378,7 @@
 <h3 id="sleep-和-wait-的区别"><a href="#sleep-和-wait-的区别" class="headerlink" title="sleep() 和 wait() 的区别"></a><strong>sleep() 和 wait() 的区别</strong></h3><ul>
 <li>sleep 来自 Thread类，wait 来自 Object 类</li>
 <li>sleep 没有释放锁，wait 释放了锁</li>
-<li>使用范围不一样，wait、notify/notifyAll 必须在同步块或者同步方法中使用，sleep任意地方都可以使用</li>
+<li>使用范围不一样，wait、notify&#x2F;notifyAll 必须在同步块或者同步方法中使用，sleep任意地方都可以使用</li>
 <li>sleep必须捕获异常，wait不需</li>
 </ul>
 <h4 id="进程："><a href="#进程：" class="headerlink" title="进程："></a>进程：</h4><p>资源分配的基本单位，运行调度的基本单位，系统中并发执行的单位</p>
@@ -399,7 +439,7 @@
 <p><strong>monitorexit：</strong></p>
 <p>执行monitorexit的线程必须是objectref所对应的monitor的所有者。</p>
 <p>指令执行时，monitor的进入数减1，如果减1后进入数为0，那线程退出monitor，不再是这个monitor的所有者。其他被这个monitor阻塞的线程可以尝试去获取这个 monitor 的所有权。</p>
-<p>通过这两段描述，我们应该能很清楚的看出Synchronized的实现原理，Synchronized的语义底层是通过一个monitor的对象来完成，其实wait/notify等方法也依赖于monitor对象，这就是为什么只有在同步的块或者方法中才能调用wait/notify等方法，否则会抛出java.lang.IllegalMonitorStateException的异常的原因。</p>
+<p>通过这两段描述，我们应该能很清楚的看出Synchronized的实现原理，Synchronized的语义底层是通过一个monitor的对象来完成，其实wait&#x2F;notify等方法也依赖于monitor对象，这就是为什么只有在同步的块或者方法中才能调用wait&#x2F;notify等方法，否则会抛出java.lang.IllegalMonitorStateException的异常的原因。</p>
 <h4 id="实现线程安全的方法"><a href="#实现线程安全的方法" class="headerlink" title="实现线程安全的方法"></a>实现线程安全的方法</h4><ul>
 <li><p><strong>锁</strong></p>
 <ul>
@@ -410,7 +450,7 @@
 </li>
 <li><p><strong>线程本地存储</strong></p>
 <ul>
-<li>成员变量 int num = 10;</li>
+<li>成员变量 int num &#x3D; 10;</li>
 <li>多个线程都要操作这个变量，但是需求是每个线程中的num值初始都为10，互不影响</li>
 <li>ThreadLocal</li>
 </ul>
@@ -448,7 +488,7 @@
   <entry>
     <title>Java集合</title>
     <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
 <h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
 <li><p><strong>有序性：</strong>  </p>
@@ -459,8 +499,8 @@
 </li>
 <li><p><strong>唯一性：</strong> </p>
 <ul>
-<li> <strong>List：可以重复</strong>  </li>
-<li> <strong>set：元素唯一</strong></li>
+<li><strong>List：可以重复</strong>  </li>
+<li><strong>set：元素唯一</strong></li>
 </ul>
 </li>
 <li><p><strong>获取元素：</strong>  </p>
@@ -502,8 +542,8 @@
 <li><p>排序方式：自然排序和定制排序key以TreeSet的形式存储，要求与TreeSet一致。</p>
 </li>
 </ul>
-<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：*<em>newsize = olesize</em>2+1**     计算index的方法：<strong>index = (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
-<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，*<em>扩容：newsize = oldsize</em>2<strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</strong>计算index方法：index = hash &amp; (tab.length – 1)**</p>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：<strong>newsize &#x3D; olesize*2+1</strong>     计算index的方法：<strong>index &#x3D; (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，<strong>扩容：newsize &#x3D; oldsize*2</strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀<strong>计算index方法：index &#x3D; hash &amp; (tab.length – 1)</strong></p>
 <h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h4><p>底层采用分段的数组+链表实现，<strong>线程安全</strong>；通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</p>
 <p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
 <h3 id="HashMap底层实现原理："><a href="#HashMap底层实现原理：" class="headerlink" title="HashMap底层实现原理："></a>HashMap底层实现原理：</h3><ul>
@@ -538,9 +578,10 @@
   <entry>
     <title>Linux常用命令</title>
     <url>/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h3 id="1-系统路径："><a href="#1-系统路径：" class="headerlink" title="1.系统路径："></a>1.系统路径：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/	表示根目录</span><br><span class="line">~	表示/root</span><br><span class="line">etc	存放系统配置目录</span><br><span class="line">home	除了root以外所有用户默认在home下新建一个以用户名作为文件夹名称的文件夹</span><br><span class="line">root	用户root单独文件夹</span><br><span class="line">usr	所有用户安装的软件都放入到这个文件夹中</span><br></pre></td></tr></table></figure>
-<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ mkdir [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ ls	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ touch	创建空文件</span><br><span class="line"></span><br><span class="line">$ cat	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ head [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ tail [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ cp [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ mv 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ rm 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
+<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">mkdir</span> [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">ls</span>	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">touch</span>	创建空文件</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cat</span>	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">head</span> [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">tail</span> [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cp</span> [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">mv</span> 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">rm</span> 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
+
 
 
 
@@ -561,7 +602,7 @@
   <entry>
     <title>Linux挂载</title>
     <url>/2020/01/10/Linux%E6%8C%82%E8%BD%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="Linux挂载"><a href="#Linux挂载" class="headerlink" title="Linux挂载"></a>Linux挂载</h1><p>Linux系统中“一切皆文件”，所有文件都放置在以根目录为树根的树形目录结构中。在 Linux 看来，任何硬件设备也都是文件，它们各有自己的一套文件系统（文件目录结构）。</p>
 <p>因此当在 Linux 系统中使用这些硬件设备时，只有将Linux本身的文件目录与硬件设备的文件目录进行同步，硬件设备才能为我们所用。目录同步的过程称为“挂载”。</p>
 <p><strong>挂载，指的就是将设备文件中的顶级目录连接到 Linux 根目录下的某一目录（最好是空目录），访问此目录就等同于访问设备文件。</strong>（如果不挂载，通过Linux系统中的图形界面系统可以查看找到硬件设备，但命令行方式无法找到。）</p>
@@ -581,55 +622,29 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux环境下安装JDK</title>
-    <url>/2019/12/04/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85JDK/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Linux环境下安装JDK"><a href="#Linux环境下安装JDK" class="headerlink" title="Linux环境下安装JDK"></a>Linux环境下安装JDK</h1><p>1.首先去官网或者通过其他途径获取压缩包</p>
-<p>2.把压缩包上传到服务器/usr/local/tmp</p>
-<p>3.解压压缩包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar -zxvf jdk</span><br></pre></td></tr></table></figure>
-<p>4.把解压后的文件复制到/usr/local/jdk8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp -r 文件名 /usr/<span class="built_in">local</span>/jdk8</span><br></pre></td></tr></table></figure>
-<p>5.配置环境变量，执行命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/profile</span><br></pre></td></tr></table></figure>
-<p>6.修改文件中的内容，内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk8</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br></pre></td></tr></table></figure>
-<p>export 添加或修改变量</p>
-<p>7.解析文件（或重启系统）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-<p>8.验证配置是否成功</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ java-version</span><br></pre></td></tr></table></figure>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux环境下安装Tomcat</title>
     <url>/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85Tomcat/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="Linux环境下安装Tomcat"><a href="#Linux环境下安装Tomcat" class="headerlink" title="Linux环境下安装Tomcat"></a>Linux环境下安装Tomcat</h1><p>1.下载tomcat压缩包上传到服务器</p>
 <p>2.解压tomcat压缩包</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar zxvf 压缩包</span><br></pre></td></tr></table></figure>
-<p>3.解压后的文件复制到/usr/local/tomcat</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp -r apache-tomcat-8.5.43../tomcat</span><br></pre></td></tr></table></figure>
+
+<p>3.解压后的文件复制到&#x2F;usr&#x2F;local&#x2F;tomcat</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> -r apache-tomcat-8.5.43../tomcat</span><br></pre></td></tr></table></figure>
+
 <p>4.配置环境变量</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/profile</span><br><span class="line">添加以下内容</span><br><span class="line"><span class="built_in">export</span> TOMCAT_HOME=/usr/<span class="built_in">local</span>/tomcat</span><br><span class="line"><span class="built_in">export</span> CATALINA_HOME=/usr/<span class="built_in">local</span>/tomcat</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/profile</span><br><span class="line">添加以下内容</span><br><span class="line"><span class="built_in">export</span> TOMCAT_HOME=/usr/local/tomcat</span><br><span class="line"><span class="built_in">export</span> CATALINA_HOME=/usr/local/tomcat</span><br></pre></td></tr></table></figure>
+
 <p>5.放行8080端口</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure>
+
 <p>把包含22端口的那一行复制并改成8080</p>
 <p>6.重启服务</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ service iptables restart</span><br></pre></td></tr></table></figure>
-<p>7.启动tomcat，进入tomcat/bin文件夹</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/lcoal/tomcat/bin</span><br><span class="line">直接启动：$ ./startup.sh</span><br><span class="line">启动并动态打印信息：$ ./startup.sh &amp; tailf /usr/<span class="built_in">local</span>/tomcat/logs/catalina.out</span><br></pre></td></tr></table></figure>
+
+<p>7.启动tomcat，进入tomcat&#x2F;bin文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/lcoal/tomcat/bin</span><br><span class="line">直接启动：$ ./startup.sh</span><br><span class="line">启动并动态打印信息：$ ./startup.sh &amp; tailf /usr/local/tomcat/logs/catalina.out</span><br></pre></td></tr></table></figure>
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -644,32 +659,73 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown语法</title>
-    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
-<p>其效果如下展示：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+    <title>Linux环境下安装JDK</title>
+    <url>/2019/12/04/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85JDK/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Linux环境下安装JDK"><a href="#Linux环境下安装JDK" class="headerlink" title="Linux环境下安装JDK"></a>Linux环境下安装JDK</h1><p>1.首先去官网或者通过其他途径获取压缩包</p>
+<p>2.把压缩包上传到服务器&#x2F;usr&#x2F;local&#x2F;tmp</p>
+<p>3.解压压缩包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar -zxvf jdk</span><br></pre></td></tr></table></figure>
+
+<p>4.把解压后的文件复制到&#x2F;usr&#x2F;local&#x2F;jdk8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> -r 文件名 /usr/local/jdk8</span><br></pre></td></tr></table></figure>
+
+<p>5.配置环境变量，执行命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>6.修改文件中的内容，内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/local/jdk8</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br></pre></td></tr></table></figure>
+
+<p>export 添加或修改变量</p>
+<p>7.解析文件（或重启系统）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>8.验证配置是否成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ java-version</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>Markdown</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 错误：$r: command not found</title>
+    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Linux-错误：-‘-r‘-command-not-found"><a href="#Linux-错误：-‘-r‘-command-not-found" class="headerlink" title="Linux 错误：$‘\r‘:command not found"></a>Linux 错误：$‘\r‘:command not found</h1><p>在linux系统上执行shell脚本时，如果出现’$‘\r‘:command not found’报错，其原因是：shell脚本在windows系统下进行编辑后上传到linux系统上执行所报的错，因为在windows下换行时回车符+换行符（\r\n），而unix下是换行符（\n），linux下不识别 <strong>\r</strong> 为回车符，所以导致脚本执行报错，其本质是不同系统的编码问题。</p>
+<p><strong>解决方案：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install dos2unix</span><br><span class="line">dos2unix <span class="string">&#x27;脚本名.sh&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<p>执行后该命令后再执行原脚本，报错消失。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
     <title>MySQL数据库多表查询</title>
     <url>/2019/09/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="MySQL数据库多表查询"><a href="#MySQL数据库多表查询" class="headerlink" title="MySQL数据库多表查询"></a>MySQL数据库多表查询</h1><h3 id="内连接（一种场景）"><a href="#内连接（一种场景）" class="headerlink" title="内连接（一种场景）"></a><strong>内连接（一种场景）</strong></h3><p>inner join 或者 join</p>
 <p>例：</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>,b.<span class="operator">*</span> <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145249.png" title="inner-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145249.png" width="330" height="200" alt="inner-join" /></a>
 
@@ -679,6 +735,7 @@
 <p>left join 或者left outer join</p>
 <p>例：</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>,b.<span class="operator">*</span> <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145233.png" title="left-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145233.png" width="330" height="200" alt="left-join" /></a>
 
@@ -687,6 +744,7 @@
 <p>场景二：</p>
 <p>[left join] + [where b.column is null]</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> tablea a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> tableb b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> b.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145303.png" title="left-join+where-b.column-is-null" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145303.png" width="330" height="200" alt="left-join+where-b.column-is-null" /></a>
 
@@ -695,6 +753,7 @@
 <p>场景三：</p>
 <p>right join 或者right outher join</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145314.png" title="right-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145314.png" width="330" height="200" alt="right-join"/></a>
 
@@ -703,6 +762,7 @@
 <p>场景四：</p>
 <p>[right join] + [where A.column is null]</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br><span class="line"><span class="keyword">WHERE</span> a.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145320.png" title="right-join+where" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145320.png" width="330" height="200" alt="right-join+where"/></a>
 
@@ -720,6 +780,7 @@
 <p>场景六：</p>
 <p>full join + is null（mysql不支持，但可以用（left join+is null）union（right join+is null）</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> b.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> a.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145327.png" title="full-join+is-null" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145327.png" width="330" height="200" alt="full-join+is-null"/></a>
 
@@ -740,56 +801,30 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL数据库索引原理及类型</title>
-    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
-<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
-<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
-<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
-<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>4.删除索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
-<p>1.创建唯一索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
-<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
-<hr>
-<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824/article/details/82261988</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+    <title>Markdown语法</title>
+    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
+
+<p>其效果如下展示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>MySQL</category>
+        <category>Markdown</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
     <title>MySQL索引原理及慢查询优化</title>
     <url>/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="MySQL索引原理及慢查询优化"><a href="#MySQL索引原理及慢查询优化" class="headerlink" title="MySQL索引原理及慢查询优化"></a>MySQL索引原理及慢查询优化</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -804,73 +839,47 @@
       </tags>
   </entry>
   <entry>
-    <title>Java8-Predicate函数</title>
-    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis安装流程</title>
-    <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Redis安装流程"><a href="#Redis安装流程" class="headerlink" title="Redis安装流程"></a>Redis安装流程</h1><p>本安装流程于Linux环境下安装，所用redis版本为5.0.7。</p>
+    <title>MySQL数据库索引原理及类型</title>
+    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
+<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
+<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
+<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>4.删除索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
+
 <hr>
-<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p>1.看是否有gcc环境，没有则安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum install gcc-c++</span><br></pre></td></tr></table></figure>
-<p>2.下载压缩包到指定目录，可直接去官网下载<a href="https://redis.io/download">https://redis.io/download</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
-<p>3.解压压缩包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar xzf redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
-<p>4.进入解压后的文件夹</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> redis-5.0.7</span><br></pre></td></tr></table></figure>
-<p>5.执行make命令编译</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
-<p>6.再进入src目录，在其目录下执行命令 make install</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
-<p>7.创建新的目录redis、bin、etc，用于分类执行文件和配置文件(这一步不是必做)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/bin（加-p参数如果上级目录不存在则自动创建）</span><br><span class="line">$ mkdir -p /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
-<p>8.将redis 5.0.7/src目录下的redis-server，redis-check-aof，redis-check-rdb，redis-cli，redis-benchmark，mkreleasehdr.sh，redis-sentainel移动到的自建的redis/bin目录下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mv redis-server redis-check-aof redis-check-rdb redis-cli redis-benchmark mkreleasehdr.sh redis-sentinel /usr/<span class="built_in">local</span>/redis/bin</span><br></pre></td></tr></table></figure>
-<p>9.拷贝配置文件到自建etc目录下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp redis.conf /usr/<span class="built_in">local</span>/redis/etc</span><br></pre></td></tr></table></figure>
-<p>10.启动redis服务，通过指定配置文件启动服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/etc/redis.conf</span><br></pre></td></tr></table></figure>
-<p>出现以下画面则说明启动成功</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" style="zoom:80%;" /></a>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
+<p>1.创建唯一索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
 
-<p>6379为redis端口号，按Ctrl+C可退出服务</p>
-<p>11.进入自建的redis/etc目录下，修改redis.conf配置文件，让redis变为后台启动方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
-<p>将daemonize改为yes</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" style="zoom:80%;" /></a>
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
 
-<p>12.再次启动服务，出现一下画面则说明成功</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" style="zoom:80%;" /></a>
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<p>可通过ps -ef | grep 6379查看redis服务是否启动或这关闭</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" style="zoom:80%;" /></a>
+<hr>
+<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<p>13.进入客户端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli 进入redis客户端</span><br><span class="line">$ redis 127.0.0.1:6379&gt; PING 检测redis服务是否启动</span><br></pre></td></tr></table></figure>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png"></a></p>
-<p>按Ctrl+C可退出</p>
-<p>14.关闭redis服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pkill redis-server</span><br><span class="line">或者</span><br><span class="line">$ /usr/<span class="built_in">local</span>/redis/bin/redis-server shutdown</span><br></pre></td></tr></table></figure>
-<p>15.如果redis中文乱码则可以在后面加上 –raw</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
+<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
 
-
+<hr>
+<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824&#x2F;article&#x2F;details&#x2F;82261988</a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -878,101 +887,16 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>Redis</category>
+        <category>MySQL</category>
       </categories>
       <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis数据类型</title>
-    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
-<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
-<li><strong>string：</strong> key-value</li>
-<li><strong>hash：</strong> key-field-value</li>
-<li><strong>list：</strong>key-value</li>
-<li><strong>set：</strong>key-member</li>
-<li><strong>zset：</strong>key-score-member</li>
-</ul>
-<blockquote>
-<ul>
-<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
-</ul>
-</blockquote>
-<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
-<ul>
-<li><p>涉及随机，不重复：<strong>set</strong></p>
-</li>
-<li><p>多维度排序：<strong>zset</strong></p>
-</li>
-<li><p>单维度排序：<strong>list、zset</strong></p>
-</li>
-</ul>
-<p><strong>2.限制条件的判断</strong></p>
-<ul>
-<li><p>可以通过增加标识key去判断，方式有：</p>
-<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
-</li>
-<li><p>也可以通过set的唯一性去判断：</p>
-<p><strong>sadd、zadd</strong></p>
-</li>
-</ul>
-<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
-<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
-<p>该问题存在以下四个场景：</p>
-<ul>
-<li><p>用户进入房间</p>
-</li>
-<li><p>查询房间榜单</p>
-</li>
-<li><p>用户赠送礼物</p>
-</li>
-<li><p>用户离开房间</p>
-</li>
-</ul>
-<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">long</span> baseScore = <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
-<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 错误：$r: command not found</title>
-    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="Linux-错误：-‘-r‘-command-not-found"><a href="#Linux-错误：-‘-r‘-command-not-found" class="headerlink" title="Linux 错误：$‘\r‘:command not found"></a>Linux 错误：$‘\r‘:command not found</h1><p>在linux系统上执行shell脚本时，如果出现’$‘\r‘:command not found’报错，其原因是：shell脚本在windows系统下进行编辑后上传到linux系统上执行所报的错，因为在windows下换行时回车符+换行符（\r\n），而unix下是换行符（\n），linux下不识别 <strong>\r</strong> 为回车符，所以导致脚本执行报错，其本质是不同系统的编码问题。</p>
-<p><strong>解决方案：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install dos2unix</span><br><span class="line">dos2unix <span class="string">&#x27;脚本名.sh&#x27;</span> </span><br></pre></td></tr></table></figure>
-<p>执行后该命令后再执行原脚本，报错消失。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
     <title>Redis基本操作</title>
     <url>/2020/07/10/Redis%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="Redis-keys-命令"><a href="#Redis-keys-命令" class="headerlink" title="Redis keys 命令"></a>Redis keys 命令</h1><table>
 <thead>
 <tr>
@@ -1063,115 +987,70 @@
       </tags>
   </entry>
   <entry>
-    <title>This is my first blog here</title>
-    <url>/2019/08/20/This-is-my-first-blog-here/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2019/08/20/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-  </entry>
-  <entry>
-    <title>hexo+GitHub pages搭建个人博客</title>
-    <url>/2020/08/11/hexo+Github-pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="基于hexo-GitHub-pages搭建个人博客"><a href="#基于hexo-GitHub-pages搭建个人博客" class="headerlink" title="基于hexo+GitHub pages搭建个人博客"></a>基于hexo+GitHub pages搭建个人博客</h1><p><strong>准备工作：</strong></p>
-<blockquote>
-<ul>
-<li>github账号</li>
-<li>安装 node.js、npm</li>
-<li>安装 git for windows</li>
-</ul>
-</blockquote>
-<p><strong>本人环境：</strong></p>
-<blockquote>
-<ul>
-<li>OS：Windows_NT 10.0.18363 win32 x64</li>
-<li>hexo-cli：3.1.0</li>
-<li>node：10.16.2</li>
-<li>git：2.22.0.windows.1</li>
-</ul>
-</blockquote>
-<h2 id="GitHub-Pages-简介"><a href="#GitHub-Pages-简介" class="headerlink" title="GitHub Pages 简介"></a>GitHub Pages 简介</h2><p>GitHub Pages是一个<strong>静态站点托管服务</strong>，可直接从GitHub上的存储库获取HTML，CSS和JavaScript文件，还可以选择在构建过程中运行这些文件并发布网站。<a href="https://docs.github.com/en/github/working-with-github-pages/about-github-pages">About GitHub-pages</a></p>
-<h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在github上新建一个远程仓库，取名为：<strong>username.github.io</strong> 的仓库。例如我的github用户名为EzioY，则远程仓库名为：EzioY.github.io。之后可以直接通过 <a href="http://ezioy.github.io/">http://EzioY.github.io</a> 直接访问你的博客。</p>
-<h2 id="配置SSH-key"><a href="#配置SSH-key" class="headerlink" title="配置SSH key"></a>配置SSH key</h2><h3 id="Git的两种连接方式：SSH-和-HTTP-介绍"><a href="#Git的两种连接方式：SSH-和-HTTP-介绍" class="headerlink" title="Git的两种连接方式：SSH 和 HTTP 介绍"></a>Git的两种连接方式：SSH 和 HTTP 介绍</h3><p><strong>SSH方式：</strong></p>
-<p><strong>相对安全</strong>，且使用 SSH url 克隆却需要在克隆之前先配置和添加好 SSH key，因此，如果你想要使用 SSH url 克隆的话，你必须是这个项目的拥有者。否则你是无法添加 SSH key 的，另外 ssh 默认是每次 fetch 和 push 代码都不需要输入账号和密码，如果你想要每次都输入账号密码才能进行fetch和 push 也可以另外进行设置。</p>
-<p><strong>HTTP方式：</strong></p>
-<p>这种方式要求project在创建的时候只能选择“Public”公开状态，Private 和 Internal 私有模式下不能使用 http 方式进行连接。（ssh方式在三种模式下都可以）。使用 http 方式直接连接 github 显然没有 ssh 连接方式安全，但是也可以做些安全设置，比如在 github 本机的 iptables 里做端口限制(如上是8081端口),添加白名单等。</p>
-<p><strong>主要区别：</strong></p>
-<p>使用 https url 克隆对初学者来说会比较方便，复制 https url 然后到 git Bash 里使用 clone 命令直接克隆到本地就行，但是每次 fetch 和 push 代码都需要输入账号和密码，而SSH一次配置好后不用每次都输入密码。</p>
+    <title>Redis安装流程</title>
+    <url>/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Redis安装流程"><a href="#Redis安装流程" class="headerlink" title="Redis安装流程"></a>Redis安装流程</h1><p>本安装流程于Linux环境下安装，所用redis版本为5.0.7。</p>
 <hr>
-<h3 id="获取SSH-key"><a href="#获取SSH-key" class="headerlink" title="获取SSH key"></a>获取SSH key</h3><p>打开 git Bash，查看本机是否存在ssh密钥</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh <span class="comment">#如果提示：No such file or directory则说明第一次使用git</span></span><br></pre></td></tr></table></figure>
-<p>然后创建SSH key</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;your email&quot;</span></span><br></pre></td></tr></table></figure>
-<p>再次通过上面的命令查看是否存在ssh密钥，则会看到 <strong>.ssh\id_rsa.pub</strong> 文件</p>
-<p>找到这个文件，并复制里面的内容。然后打开自己的github主页，点击用户头像，选择 <strong>Settings</strong> 设置选项</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145403.png" title="settings" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145403.png" alt="settings"></a></p>
-<p>然后选择 <strong>SSH and GPG keys</strong></p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145405.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145405.png"></a></p>
-<p>然后就可以看到如下界面，然后选择 <strong>New SSH key</strong>：</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145407.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145407.png"></a></p>
-<p>将刚才复制的ssh-rsa内容，粘贴到Key中，Title可以自己随便取名，然后保存。</p>
-<hr>
-<h3 id="测试是否成功配置SSH-key"><a href="#测试是否成功配置SSH-key" class="headerlink" title="测试是否成功配置SSH key"></a>测试是否成功配置SSH key</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p>如果提示：Are you sure you want to continue connecting (yes/no)? 则输入yes，然后会看到：</p>
-<blockquote>
-<p>Hi EzioY! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-</blockquote>
-<p>看到这个则说明配置成功。然后还需配置你的用户名和你github的注册邮箱</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;liuxianan&quot;</span> <span class="comment">#你的github用户名，非昵称</span></span><br><span class="line">$ git config --global user.email  <span class="string">&quot;xxx@qq.com&quot;</span> <span class="comment">#填写你的github注册邮箱</span></span><br></pre></td></tr></table></figure>
+<h3 id="具体流程："><a href="#具体流程：" class="headerlink" title="具体流程："></a>具体流程：</h3><p>1.看是否有gcc环境，没有则安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum install gcc-c++</span><br></pre></td></tr></table></figure>
+
+<p>2.下载压缩包到指定目录，可直接去官网下载<a href="https://redis.io/download">https://redis.io/download</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>3.解压压缩包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar xzf redis-5.0.7.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>4.进入解压后的文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> redis-5.0.7</span><br></pre></td></tr></table></figure>
+
+<p>5.执行make命令编译</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make</span><br></pre></td></tr></table></figure>
+
+<p>6.再进入src目录，在其目录下执行命令 make install</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make install</span><br></pre></td></tr></table></figure>
+
+<p>7.创建新的目录redis、bin、etc，用于分类执行文件和配置文件(这一步不是必做)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> -p /usr/local/redis/bin（加-p参数如果上级目录不存在则自动创建）</span><br><span class="line">$ <span class="built_in">mkdir</span> -p /usr/local/redis/etc</span><br></pre></td></tr></table></figure>
+
+<p>8.将redis 5.0.7&#x2F;src目录下的redis-server，redis-check-aof，redis-check-rdb，redis-cli，redis-benchmark，mkreleasehdr.sh，redis-sentainel移动到的自建的redis&#x2F;bin目录下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mv</span> redis-server redis-check-aof redis-check-rdb redis-cli redis-benchmark mkreleasehdr.sh redis-sentinel /usr/local/redis/bin</span><br></pre></td></tr></table></figure>
+
+<p>9.拷贝配置文件到自建etc目录下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> redis.conf /usr/local/redis/etc</span><br></pre></td></tr></table></figure>
+
+<p>10.启动redis服务，通过指定配置文件启动服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>出现以下画面则说明启动成功</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145344.jpg" style="zoom:80%;" /></a>
+
+<p>6379为redis端口号，按Ctrl+C可退出服务</p>
+<p>11.进入自建的redis&#x2F;etc目录下，修改redis.conf配置文件，让redis变为后台启动方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/local/redis/etc</span><br><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>将daemonize改为yes</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145346.png" style="zoom:80%;" /></a>
+
+<p>12.再次启动服务，出现一下画面则说明成功</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145349.png" style="zoom:80%;" /></a>
+
+<p>可通过ps -ef | grep 6379查看redis服务是否启动或这关闭</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145350.png" style="zoom:80%;" /></a>
+
+<p>13.进入客户端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli 进入redis客户端</span><br><span class="line">$ redis 127.0.0.1:6379&gt; PING 检测redis服务是否启动</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145352.png"></a></p>
+<p>按Ctrl+C可退出</p>
+<p>14.关闭redis服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pkill redis-server</span><br><span class="line">或者</span><br><span class="line">$ /usr/local/redis/bin/redis-server shutdown</span><br></pre></td></tr></table></figure>
+
+<p>15.如果redis中文乱码则可以在后面加上 –raw</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ redis-cli --raw</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Hexo-安装配置"><a href="#Hexo-安装配置" class="headerlink" title="Hexo 安装配置"></a>Hexo 安装配置</h2><h3 id="hexo简介"><a href="#hexo简介" class="headerlink" title="hexo简介"></a>hexo简介</h3><p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>由于github pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。</p>
-<h3 id="安装初始化"><a href="#安装初始化" class="headerlink" title="安装初始化"></a>安装初始化</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>安装好后在本地新建一个文件夹，用来存放 Blog 文件。然后进入该目录下执行hexo初始化命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145412.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145412.png"></a></p>
-<p>初始化完后就可以看见这样的目录结构：</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145409.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145409.png"></a></p>
-<p>然后在该目录路径下用git bash执行下面的命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g <span class="comment">#生成静态文件</span></span><br><span class="line">$ hexo s <span class="comment">#本地预览 默认端口号4000 http://localhost:4000</span></span><br></pre></td></tr></table></figure>
-<p>页面如下：</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145414.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145414.png"></a></p>
-<h3 id="跟换主题"><a href="#跟换主题" class="headerlink" title="跟换主题"></a>跟换主题</h3><p>选择一个喜欢的主题，复制它的SSH或http链接，克隆下来。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /e/blog</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
-<p>然后将<strong>_config.yml</strong> 配置文件中的 theme：landscape 改为自己下的主题，例如theme：Chic。</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145411.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145411.png"></a></p>
-<p>然后清除之前生成的静态文件，重新生成预览</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<h3 id="上传到Github"><a href="#上传到Github" class="headerlink" title="上传到Github"></a>上传到Github</h3><p>首先修改配置文件 <strong>_config.yml</strong> 中的<strong>deploy</strong></p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span> </span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/你的用户名/用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<p>然后打开 gitbash 安装一个插件，hexo发布到git需要。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>安装完后就可以将blog静态资源文件提交到git远程仓库上。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<h3 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;postName&quot;</span> <span class="comment">#新建文章</span></span><br><span class="line">$ hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment">#新建页面</span></span><br><span class="line">$ hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">$ hexo server <span class="comment">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">$ hexo deploy <span class="comment">#部署到GitHub</span></span><br><span class="line">$ hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">$ hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
-<p>简写：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n == $ hexo new</span><br><span class="line">$ hexo g == $ hexo generate</span><br><span class="line">$ hexo s == $ hexo server</span><br><span class="line">$ hexo d == $ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>每次跟新了文章只需执行以下步骤：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1179,16 +1058,16 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>hexo</category>
+        <category>Redis</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringMVC的工作流程</title>
     <url>/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="SpringMVC的工作流程"><a href="#SpringMVC的工作流程" class="headerlink" title="SpringMVC的工作流程"></a>SpringMVC的工作流程</h1><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio"></a></p>
 <ol>
 <li>用户发送请求至前端控制器DispatcherServlet。</li>
@@ -1217,9 +1096,254 @@
       </tags>
   </entry>
   <entry>
+    <title>TCP/IP协议简述</title>
+    <url>/2019/09/11/TCP-IP%E5%8D%8F%E8%AE%AE%E7%AE%80%E8%BF%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="TCP-x2F-IP协议简述"><a href="#TCP-x2F-IP协议简述" class="headerlink" title="TCP&#x2F;IP协议简述"></a>TCP&#x2F;IP协议简述</h1><p>TCP&#x2F;IP（Transmission Control Protocol&#x2F;Internet Protocol，传输控制协议&#x2F;网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP&#x2F;IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇， 只是因为在TCP&#x2F;IP协议中TCP协议和IP协议最具代表性，所以被称为TCP&#x2F;IP协议。</p>
+<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来出发。</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" title="三次握手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" width="600" height="350" alt="三次握手"/></a>
+
+<p><strong>第一次握手：</strong>建立连接时，Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
+<p><strong>第二次握手：</strong>Server收到数据包后，由标志位SYN&#x3D;1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack&#x3D;J+1，随机产生一个值seq&#x3D;K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
+<p><strong>第三次握手：</strong>Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack&#x3D;K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server都进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+<p><strong>SYN攻击：</strong> </p>
+<p>在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：<br>#netstat -nap | grep SYN_RECV</p>
+<hr>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发。</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" title="四次挥手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" width="600" height="350" alt="四次挥手"/></a>
+
+<p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。</p>
+<p><strong>第一次挥手：</strong>Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</p>
+<p><strong>第二次挥手：</strong>Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</p>
+<p><strong>第三次挥手：</strong>Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</p>
+<p><strong>第四次挥手：</strong>Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
+<hr>
+<p>原文链接：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&utm_medium=social&utm_oi=771062773999206400">https://zhuanlan.zhihu.com/p/81144898?utm_source&#x3D;qq&amp;utm_medium&#x3D;social&amp;utm_oi&#x3D;771062773999206400</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>TCP/IP</category>
+      </categories>
+      <tags>
+        <tag>TCP/IP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis数据类型</title>
+    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
+<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
+<li><strong>string：</strong> key-value</li>
+<li><strong>hash：</strong> key-field-value</li>
+<li><strong>list：</strong>key-value</li>
+<li><strong>set：</strong>key-member</li>
+<li><strong>zset：</strong>key-score-member</li>
+</ul>
+<blockquote>
+<ul>
+<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
+</ul>
+</blockquote>
+<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
+<ul>
+<li><p>涉及随机，不重复：<strong>set</strong></p>
+</li>
+<li><p>多维度排序：<strong>zset</strong></p>
+</li>
+<li><p>单维度排序：<strong>list、zset</strong></p>
+</li>
+</ul>
+<p><strong>2.限制条件的判断</strong></p>
+<ul>
+<li><p>可以通过增加标识key去判断，方式有：</p>
+<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
+</li>
+<li><p>也可以通过set的唯一性去判断：</p>
+<p><strong>sadd、zadd</strong></p>
+</li>
+</ul>
+<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
+<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
+<p>该问题存在以下四个场景：</p>
+<ul>
+<li><p>用户进入房间</p>
+</li>
+<li><p>查询房间榜单</p>
+</li>
+<li><p>用户赠送礼物</p>
+</li>
+<li><p>用户离开房间</p>
+</li>
+</ul>
+<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">long</span> <span class="variable">baseScore</span> <span class="operator">=</span> <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
+
+<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>This is my first blog here</title>
+    <url>/2019/08/20/This-is-my-first-blog-here/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2019/08/20/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+  </entry>
+  <entry>
+    <title>hexo+GitHub pages搭建个人博客</title>
+    <url>/2020/08/11/hexo+Github-pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="基于hexo-GitHub-pages搭建个人博客"><a href="#基于hexo-GitHub-pages搭建个人博客" class="headerlink" title="基于hexo+GitHub pages搭建个人博客"></a>基于hexo+GitHub pages搭建个人博客</h1><p><strong>准备工作：</strong></p>
+<blockquote>
+<ul>
+<li>github账号</li>
+<li>安装 node.js、npm</li>
+<li>安装 git for windows</li>
+</ul>
+</blockquote>
+<p><strong>本人环境：</strong></p>
+<blockquote>
+<ul>
+<li>OS：Windows_NT 10.0.18363 win32 x64</li>
+<li>hexo-cli：3.1.0</li>
+<li>node：10.16.2</li>
+<li>git：2.22.0.windows.1</li>
+</ul>
+</blockquote>
+<h2 id="GitHub-Pages-简介"><a href="#GitHub-Pages-简介" class="headerlink" title="GitHub Pages 简介"></a>GitHub Pages 简介</h2><p>GitHub Pages是一个<strong>静态站点托管服务</strong>，可直接从GitHub上的存储库获取HTML，CSS和JavaScript文件，还可以选择在构建过程中运行这些文件并发布网站。<a href="https://docs.github.com/en/github/working-with-github-pages/about-github-pages">About GitHub-pages</a></p>
+<h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在github上新建一个远程仓库，取名为：<strong>username.github.io</strong> 的仓库。例如我的github用户名为EzioY，则远程仓库名为：EzioY.github.io。之后可以直接通过 <a href="http://ezioy.github.io/">http://EzioY.github.io</a> 直接访问你的博客。</p>
+<h2 id="配置SSH-key"><a href="#配置SSH-key" class="headerlink" title="配置SSH key"></a>配置SSH key</h2><h3 id="Git的两种连接方式：SSH-和-HTTP-介绍"><a href="#Git的两种连接方式：SSH-和-HTTP-介绍" class="headerlink" title="Git的两种连接方式：SSH 和 HTTP 介绍"></a>Git的两种连接方式：SSH 和 HTTP 介绍</h3><p><strong>SSH方式：</strong></p>
+<p><strong>相对安全</strong>，且使用 SSH url 克隆却需要在克隆之前先配置和添加好 SSH key，因此，如果你想要使用 SSH url 克隆的话，你必须是这个项目的拥有者。否则你是无法添加 SSH key 的，另外 ssh 默认是每次 fetch 和 push 代码都不需要输入账号和密码，如果你想要每次都输入账号密码才能进行fetch和 push 也可以另外进行设置。</p>
+<p><strong>HTTP方式：</strong></p>
+<p>这种方式要求project在创建的时候只能选择“Public”公开状态，Private 和 Internal 私有模式下不能使用 http 方式进行连接。（ssh方式在三种模式下都可以）。使用 http 方式直接连接 github 显然没有 ssh 连接方式安全，但是也可以做些安全设置，比如在 github 本机的 iptables 里做端口限制(如上是8081端口),添加白名单等。</p>
+<p><strong>主要区别：</strong></p>
+<p>使用 https url 克隆对初学者来说会比较方便，复制 https url 然后到 git Bash 里使用 clone 命令直接克隆到本地就行，但是每次 fetch 和 push 代码都需要输入账号和密码，而SSH一次配置好后不用每次都输入密码。</p>
+<hr>
+<h3 id="获取SSH-key"><a href="#获取SSH-key" class="headerlink" title="获取SSH key"></a>获取SSH key</h3><p>打开 git Bash，查看本机是否存在ssh密钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh <span class="comment">#如果提示：No such file or directory则说明第一次使用git</span></span><br></pre></td></tr></table></figure>
+
+<p>然后创建SSH key</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;your email&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>再次通过上面的命令查看是否存在ssh密钥，则会看到 <strong>.ssh\id_rsa.pub</strong> 文件</p>
+<p>找到这个文件，并复制里面的内容。然后打开自己的github主页，点击用户头像，选择 <strong>Settings</strong> 设置选项</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145403.png" title="settings" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145403.png" alt="settings"></a></p>
+<p>然后选择 <strong>SSH and GPG keys</strong></p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145405.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145405.png"></a></p>
+<p>然后就可以看到如下界面，然后选择 <strong>New SSH key</strong>：</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145407.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145407.png"></a></p>
+<p>将刚才复制的ssh-rsa内容，粘贴到Key中，Title可以自己随便取名，然后保存。</p>
+<hr>
+<h3 id="测试是否成功配置SSH-key"><a href="#测试是否成功配置SSH-key" class="headerlink" title="测试是否成功配置SSH key"></a>测试是否成功配置SSH key</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>如果提示：Are you sure you want to continue connecting (yes&#x2F;no)? 则输入yes，然后会看到：</p>
+<blockquote>
+<p>Hi EzioY! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+<p>看到这个则说明配置成功。然后还需配置你的用户名和你github的注册邮箱</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;liuxianan&quot;</span> <span class="comment">#你的github用户名，非昵称</span></span><br><span class="line">$ git config --global user.email  <span class="string">&quot;xxx@qq.com&quot;</span> <span class="comment">#填写你的github注册邮箱</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Hexo-安装配置"><a href="#Hexo-安装配置" class="headerlink" title="Hexo 安装配置"></a>Hexo 安装配置</h2><h3 id="hexo简介"><a href="#hexo简介" class="headerlink" title="hexo简介"></a>hexo简介</h3><p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>由于github pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。</p>
+<h3 id="安装初始化"><a href="#安装初始化" class="headerlink" title="安装初始化"></a>安装初始化</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装好后在本地新建一个文件夹，用来存放 Blog 文件。然后进入该目录下执行hexo初始化命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145412.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145412.png"></a></p>
+<p>初始化完后就可以看见这样的目录结构：</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145409.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145409.png"></a></p>
+<p>然后在该目录路径下用git bash执行下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g <span class="comment">#生成静态文件</span></span><br><span class="line">$ hexo s <span class="comment">#本地预览 默认端口号4000 http://localhost:4000</span></span><br></pre></td></tr></table></figure>
+
+<p>页面如下：</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145414.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145414.png"></a></p>
+<h3 id="跟换主题"><a href="#跟换主题" class="headerlink" title="跟换主题"></a>跟换主题</h3><p>选择一个喜欢的主题，复制它的SSH或http链接，克隆下来。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /e/blog</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
+
+<p>然后将**_config.yml** 配置文件中的 theme：landscape 改为自己下的主题，例如theme：Chic。</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145411.png" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145411.png"></a></p>
+<p>然后清除之前生成的静态文件，重新生成预览</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+
+<h3 id="上传到Github"><a href="#上传到Github" class="headerlink" title="上传到Github"></a>上传到Github</h3><p>首先修改配置文件 <strong>_config.yml</strong> 中的<strong>deploy</strong></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span> </span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/你的用户名/用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>然后打开 gitbash 安装一个插件，hexo发布到git需要。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>安装完后就可以将blog静态资源文件提交到git远程仓库上。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;postName&quot;</span> <span class="comment">#新建文章</span></span><br><span class="line">$ hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment">#新建页面</span></span><br><span class="line">$ hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">$ hexo server <span class="comment">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">$ hexo deploy <span class="comment">#部署到GitHub</span></span><br><span class="line">$ hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">$ hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
+
+<p>简写：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n == $ hexo new</span><br><span class="line">$ hexo g == $ hexo generate</span><br><span class="line">$ hexo s == $ hexo server</span><br><span class="line">$ hexo d == $ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>每次跟新了文章只需执行以下步骤：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>理解计算机系统中的局部性原理</title>
     <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="理解计算机系统中的局部性原理"><a href="#理解计算机系统中的局部性原理" class="headerlink" title="理解计算机系统中的局部性原理"></a>理解计算机系统中的局部性原理</h1><blockquote>
 <ul>
 <li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
@@ -1244,7 +1368,7 @@
 <li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
 </li>
 </ul>
-<p><strong><em>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</em></strong></p>
+<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1261,12 +1385,12 @@
   <entry>
     <title>观《互联网是我们时代的集体健忘症》有感</title>
     <url>/2020/01/02/%E8%A7%82%E3%80%8A%E4%BA%92%E8%81%94%E7%BD%91%E6%98%AF%E6%88%91%E4%BB%AC%E6%97%B6%E4%BB%A3%E7%9A%84%E9%9B%86%E4%BD%93%E5%81%A5%E5%BF%98%E7%97%87%E3%80%8B%E6%9C%89%E6%84%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="观《互联网是我们时代的集体健忘症》有感"><a href="#观《互联网是我们时代的集体健忘症》有感" class="headerlink" title="观《互联网是我们时代的集体健忘症》有感"></a>观《互联网是我们时代的集体健忘症》有感</h1><p>原视频：<iframe height="400" width="650" src="//player.bilibili.com/player.html?aid=81397786&cid=139313826&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></p>
 <p>刚过完元旦节没多久，突然想起了之前看的这个视频，便再看了一次，同时写下心中所想。</p>
 <hr>
-<p>​        每到过节，例如元旦，春节等日子，同学、朋友、亲人们总会寄语问候。有一些平时冷清的群里，忽然热闹了起来，在短暂的热闹后，这份热情渐渐褪去。我们许多人总会在这样的时刻感性起来，想想过去一年发生的事，怀念过去同时憧憬未来，给新的一年许下心愿。在这样的时刻我们总会给予自己一些“奖励”，例如吃一顿美食大餐、和自己喜欢的人约会或者就在家放松休息、打游戏、睡个懒觉等等。</p>
-<p>​        正如视频中所说：“生活需要仪式感”。小时候后的我们特别容易满足，但人总是会不断地成长，我们渐渐步入社会，更真实的去面对现实。在成天面对工作与现实生活压力的同时，我们需要一个理由，能够自我安慰。而这些“仪式感“，这些”感性的时刻“，便给了我们借口，让我们能够从现实生活中得到一点慰藉，让我们有动力能够继续前行。越长大，便会愈发地怀念过去，当我们自己成为”老人“时，才明白曾厌烦”老人言“，真出自”老人“之口，不经历怎会懂得。不经想起辛弃疾的诗。</p>
+<p>​		每到过节，例如元旦，春节等日子，同学、朋友、亲人们总会寄语问候。有一些平时冷清的群里，忽然热闹了起来，在短暂的热闹后，这份热情渐渐褪去。我们许多人总会在这样的时刻感性起来，想想过去一年发生的事，怀念过去同时憧憬未来，给新的一年许下心愿。在这样的时刻我们总会给予自己一些“奖励”，例如吃一顿美食大餐、和自己喜欢的人约会或者就在家放松休息、打游戏、睡个懒觉等等。</p>
+<p>​		正如视频中所说：“生活需要仪式感”。小时候后的我们特别容易满足，但人总是会不断地成长，我们渐渐步入社会，更真实的去面对现实。在成天面对工作与现实生活压力的同时，我们需要一个理由，能够自我安慰。而这些“仪式感“，这些”感性的时刻“，便给了我们借口，让我们能够从现实生活中得到一点慰藉，让我们有动力能够继续前行。越长大，便会愈发地怀念过去，当我们自己成为”老人“时，才明白曾厌烦”老人言“，真出自”老人“之口，不经历怎会懂得。不经想起辛弃疾的诗。</p>
 <center>《丑奴儿·书博山道中壁》</center>
 <center>辛弃疾</center>
 <center>少年不识愁滋味，欲上层楼。欲上层楼。为赋新词强说愁。</center>
@@ -1282,44 +1406,6 @@
       </categories>
       <tags>
         <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TCP/IP协议简述</title>
-    <url>/2019/09/11/TCP-IP%E5%8D%8F%E8%AE%AE%E7%AE%80%E8%BF%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="TCP-IP协议简述"><a href="#TCP-IP协议简述" class="headerlink" title="TCP/IP协议简述"></a>TCP/IP协议简述</h1><p>TCP/IP（Transmission Control Protocol/Internet Protocol，传输控制协议/网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP/IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇， 只是因为在TCP/IP协议中TCP协议和IP协议最具代表性，所以被称为TCP/IP协议。</p>
-<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来出发。</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" title="三次握手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" width="600" height="350" alt="三次握手"/></a>
-
-<p><strong>第一次握手：</strong>建立连接时，Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
-<p><strong>第二次握手：</strong>Server收到数据包后，由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
-<p><strong>第三次握手：</strong>Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server都进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
-<p><strong>SYN攻击：</strong> </p>
-<p>在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：<br>#netstat -nap | grep SYN_RECV</p>
-<hr>
-<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发。</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" title="四次挥手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" width="600" height="350" alt="四次挥手"/></a>
-
-<p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。</p>
-<p><strong>第一次挥手：</strong>Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</p>
-<p><strong>第二次挥手：</strong>Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</p>
-<p><strong>第三次挥手：</strong>Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</p>
-<p><strong>第四次挥手：</strong>Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
-<hr>
-<p>原文链接：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&utm_medium=social&utm_oi=771062773999206400">https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&amp;utm_medium=social&amp;utm_oi=771062773999206400</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>TCP/IP</category>
-      </categories>
-      <tags>
-        <tag>TCP/IP</tag>
       </tags>
   </entry>
 </search>

@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -211,14 +211,14 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
-<h1 id="TCP-IP协议简述"><a href="#TCP-IP协议简述" class="headerlink" title="TCP/IP协议简述"></a>TCP/IP协议简述</h1><p>TCP/IP（Transmission Control Protocol/Internet Protocol，传输控制协议/网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP/IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇， 只是因为在TCP/IP协议中TCP协议和IP协议最具代表性，所以被称为TCP/IP协议。</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="TCP-x2F-IP协议简述"><a href="#TCP-x2F-IP协议简述" class="headerlink" title="TCP&#x2F;IP协议简述"></a>TCP&#x2F;IP协议简述</h1><p>TCP&#x2F;IP（Transmission Control Protocol&#x2F;Internet Protocol，传输控制协议&#x2F;网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP&#x2F;IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇， 只是因为在TCP&#x2F;IP协议中TCP协议和IP协议最具代表性，所以被称为TCP&#x2F;IP协议。</p>
 <h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来出发。</p>
 <a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" title="三次握手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" width="600" height="350" alt="三次握手"/></a>
 
-<p><strong>第一次握手：</strong>建立连接时，Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
-<p><strong>第二次握手：</strong>Server收到数据包后，由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
-<p><strong>第三次握手：</strong>Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server都进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+<p><strong>第一次握手：</strong>建立连接时，Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
+<p><strong>第二次握手：</strong>Server收到数据包后，由标志位SYN&#x3D;1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack&#x3D;J+1，随机产生一个值seq&#x3D;K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
+<p><strong>第三次握手：</strong>Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack&#x3D;K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server都进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
 <p><strong>SYN攻击：</strong> </p>
 <p>在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：<br>#netstat -nap | grep SYN_RECV</p>
 <hr>
@@ -232,7 +232,7 @@
 <p><strong>第四次挥手：</strong>Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
 <hr>
 <p>原文链接：</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&utm_medium=social&utm_oi=771062773999206400">https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&amp;utm_medium=social&amp;utm_oi=771062773999206400</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&utm_medium=social&utm_oi=771062773999206400">https://zhuanlan.zhihu.com/p/81144898?utm_source&#x3D;qq&amp;utm_medium&#x3D;social&amp;utm_oi&#x3D;771062773999206400</a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'

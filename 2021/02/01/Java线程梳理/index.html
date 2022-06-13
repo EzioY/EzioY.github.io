@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -211,7 +211,7 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a><strong>实现方式</strong></h3><ol>
 <li><p>通过继承Thread类实现一个线程</p>
 </li>
@@ -226,7 +226,7 @@
 <h3 id="sleep-和-wait-的区别"><a href="#sleep-和-wait-的区别" class="headerlink" title="sleep() 和 wait() 的区别"></a><strong>sleep() 和 wait() 的区别</strong></h3><ul>
 <li>sleep 来自 Thread类，wait 来自 Object 类</li>
 <li>sleep 没有释放锁，wait 释放了锁</li>
-<li>使用范围不一样，wait、notify/notifyAll 必须在同步块或者同步方法中使用，sleep任意地方都可以使用</li>
+<li>使用范围不一样，wait、notify&#x2F;notifyAll 必须在同步块或者同步方法中使用，sleep任意地方都可以使用</li>
 <li>sleep必须捕获异常，wait不需</li>
 </ul>
 <h4 id="进程："><a href="#进程：" class="headerlink" title="进程："></a>进程：</h4><p>资源分配的基本单位，运行调度的基本单位，系统中并发执行的单位</p>
@@ -287,7 +287,7 @@
 <p><strong>monitorexit：</strong></p>
 <p>执行monitorexit的线程必须是objectref所对应的monitor的所有者。</p>
 <p>指令执行时，monitor的进入数减1，如果减1后进入数为0，那线程退出monitor，不再是这个monitor的所有者。其他被这个monitor阻塞的线程可以尝试去获取这个 monitor 的所有权。</p>
-<p>通过这两段描述，我们应该能很清楚的看出Synchronized的实现原理，Synchronized的语义底层是通过一个monitor的对象来完成，其实wait/notify等方法也依赖于monitor对象，这就是为什么只有在同步的块或者方法中才能调用wait/notify等方法，否则会抛出java.lang.IllegalMonitorStateException的异常的原因。</p>
+<p>通过这两段描述，我们应该能很清楚的看出Synchronized的实现原理，Synchronized的语义底层是通过一个monitor的对象来完成，其实wait&#x2F;notify等方法也依赖于monitor对象，这就是为什么只有在同步的块或者方法中才能调用wait&#x2F;notify等方法，否则会抛出java.lang.IllegalMonitorStateException的异常的原因。</p>
 <h4 id="实现线程安全的方法"><a href="#实现线程安全的方法" class="headerlink" title="实现线程安全的方法"></a>实现线程安全的方法</h4><ul>
 <li><p><strong>锁</strong></p>
 <ul>
@@ -298,7 +298,7 @@
 </li>
 <li><p><strong>线程本地存储</strong></p>
 <ul>
-<li>成员变量 int num = 10;</li>
+<li>成员变量 int num &#x3D; 10;</li>
 <li>多个线程都要操作这个变量，但是需求是每个线程中的num值初始都为10，互不影响</li>
 <li>ThreadLocal</li>
 </ul>

@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -211,10 +211,11 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="Linux-错误：-‘-r‘-command-not-found"><a href="#Linux-错误：-‘-r‘-command-not-found" class="headerlink" title="Linux 错误：$‘\r‘:command not found"></a>Linux 错误：$‘\r‘:command not found</h1><p>在linux系统上执行shell脚本时，如果出现’$‘\r‘:command not found’报错，其原因是：shell脚本在windows系统下进行编辑后上传到linux系统上执行所报的错，因为在windows下换行时回车符+换行符（\r\n），而unix下是换行符（\n），linux下不识别 <strong>\r</strong> 为回车符，所以导致脚本执行报错，其本质是不同系统的编码问题。</p>
 <p><strong>解决方案：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install dos2unix</span><br><span class="line">dos2unix <span class="string">&#x27;脚本名.sh&#x27;</span> </span><br></pre></td></tr></table></figure>
+
 <p>执行后该命令后再执行原脚本，报错消失。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {

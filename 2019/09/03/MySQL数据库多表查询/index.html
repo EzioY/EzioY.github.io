@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -211,10 +211,11 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="MySQL数据库多表查询"><a href="#MySQL数据库多表查询" class="headerlink" title="MySQL数据库多表查询"></a>MySQL数据库多表查询</h1><h3 id="内连接（一种场景）"><a href="#内连接（一种场景）" class="headerlink" title="内连接（一种场景）"></a><strong>内连接（一种场景）</strong></h3><p>inner join 或者 join</p>
 <p>例：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>,b.<span class="operator">*</span> <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145249.png" title="inner-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145249.png" width="330" height="200" alt="inner-join" /></a>
 
@@ -224,6 +225,7 @@
 <p>left join 或者left outer join</p>
 <p>例：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.<span class="operator">*</span>,b.<span class="operator">*</span> <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145233.png" title="left-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145233.png" width="330" height="200" alt="left-join" /></a>
 
@@ -232,6 +234,7 @@
 <p>场景二：</p>
 <p>[left join] + [where b.column is null]</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> tablea a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> tableb b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> b.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145303.png" title="left-join+where-b.column-is-null" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145303.png" width="330" height="200" alt="left-join+where-b.column-is-null" /></a>
 
@@ -240,6 +243,7 @@
 <p>场景三：</p>
 <p>right join 或者right outher join</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145314.png" title="right-join" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145314.png" width="330" height="200" alt="right-join"/></a>
 
@@ -248,6 +252,7 @@
 <p>场景四：</p>
 <p>[right join] + [where A.column is null]</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id<span class="operator">=</span>b.id</span><br><span class="line"><span class="keyword">WHERE</span> a.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145320.png" title="right-join+where" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145320.png" width="330" height="200" alt="right-join+where"/></a>
 
@@ -265,6 +270,7 @@
 <p>场景六：</p>
 <p>full join + is null（mysql不支持，但可以用（left join+is null）union（right join+is null）</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> b.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> a.id aid,a.age,b.id bid,b.name <span class="keyword">FROM</span> a</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> b</span><br><span class="line"><span class="keyword">ON</span> a.id <span class="operator">=</span> b.id</span><br><span class="line"><span class="keyword">WHERE</span> a.id <span class="keyword">is</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
 <p>应用场景：</p>
 <a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145327.png" title="full-join+is-null" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145327.png" width="330" height="200" alt="full-join+is-null"/></a>
 

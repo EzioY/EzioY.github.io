@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -211,7 +211,7 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"<hr>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
 <h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
 <li><p><strong>有序性：</strong>  </p>
@@ -222,8 +222,8 @@
 </li>
 <li><p><strong>唯一性：</strong> </p>
 <ul>
-<li> <strong>List：可以重复</strong>  </li>
-<li> <strong>set：元素唯一</strong></li>
+<li><strong>List：可以重复</strong>  </li>
+<li><strong>set：元素唯一</strong></li>
 </ul>
 </li>
 <li><p><strong>获取元素：</strong>  </p>
@@ -265,8 +265,8 @@
 <li><p>排序方式：自然排序和定制排序key以TreeSet的形式存储，要求与TreeSet一致。</p>
 </li>
 </ul>
-<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：*<em>newsize = olesize</em>2+1**     计算index的方法：<strong>index = (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
-<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，*<em>扩容：newsize = oldsize</em>2<strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</strong>计算index方法：index = hash &amp; (tab.length – 1)**</p>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：<strong>newsize &#x3D; olesize*2+1</strong>     计算index的方法：<strong>index &#x3D; (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，<strong>扩容：newsize &#x3D; oldsize*2</strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀<strong>计算index方法：index &#x3D; hash &amp; (tab.length – 1)</strong></p>
 <h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h4><p>底层采用分段的数组+链表实现，<strong>线程安全</strong>；通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</p>
 <p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
 <h3 id="HashMap底层实现原理："><a href="#HashMap底层实现原理：" class="headerlink" title="HashMap底层实现原理："></a>HashMap底层实现原理：</h3><ul>
