@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>Quartz 定时任务 | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Quartz 定时任务</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 12, 2021&nbsp;&nbsp;14:03:57</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java/">Java</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Quartz-定时任务"><a href="#Quartz-定时任务" class="headerlink" title="Quartz 定时任务"></a>Quartz 定时任务</h1><p>设计订单的业务场景常常用到了定时任务来完成，而java中我常用到的定时任务框架就是<em><strong>Quartz</strong></em>。<em>Quartz</em>是OpenSymphony开源组织在Job scheduling领域又一个开源项目，完全由Java开发，可以用来执行定时任务，类似于java.util.Timer。但是相较于Timer， <em>Quartz</em>增加了很多功能：</p>
+<ul>
+<li>持久性作业 - 就是保持调度定时的状态;</li>
+<li>作业管理 - 对调度作业进行有效的管理;</li>
+</ul>
+<p>Quartz由基本的三部分组成：</p>
+<ul>
+<li><strong>JobDetail</strong> 任务 （做什么）</li>
+<li><strong>Trigger</strong> 触发器 （什么时候做）</li>
+<li><strong>Scheduler</strong> 调度器 （定时任务容器，装载任务和触发器）</li>
+</ul>
+<hr>
+<h3 id="Quartz-Demo示例"><a href="#Quartz-Demo示例" class="headerlink" title="Quartz Demo示例"></a>Quartz Demo示例</h3><p>在使用Quartz框架前需先通过maven引入依赖的jar包：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>在导入依赖后创建一个任务，需实现 <strong>org.quartz.Job</strong> 接口并复写 <strong>execute</strong> 方法，在其方法中进行业务逻辑具体实现的编写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.quartz.Job;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoJob</span> <span class="keyword">implements</span> <span class="title class_">Job</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span>  </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(JobExecutionContext jbContext)</span> <span class="keyword">throws</span> JobExecutionException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;任务执行成功&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在写好一个任务后，还需要创建 <strong>Scheduler</strong> 来调度执行任务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoScheduler</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException, InterruptedException &#123;</span><br><span class="line">		<span class="comment">// 创建调度器Scheduler</span></span><br><span class="line">		<span class="type">Scheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">		<span class="comment">// 创建任务JobDetail</span></span><br><span class="line">		<span class="type">JobDetail</span> <span class="variable">jobdetail</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JobDetail</span>(<span class="string">&quot;job1&quot;</span>, <span class="string">&quot;group1&quot;</span>, DemoJob.class);</span><br><span class="line">		<span class="comment">// 创建触发器Trigger，指定任务执行策略</span></span><br><span class="line">		<span class="type">Trigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger().withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;triggerGroup1&quot;</span>)</span><br><span class="line">				.starNow() <span class="comment">//立即生效</span></span><br><span class="line">				.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">				.withIntervalInSeconds(<span class="number">1</span>) <span class="comment">//每隔1秒执行一次</span></span><br><span class="line">				.repeatForever()).build(); <span class="comment">//一直执行</span></span><br><span class="line">		<span class="comment">// 执行任务</span></span><br><span class="line">		scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line">		scheduler.star();</span><br><span class="line">		<span class="comment">// 睡眠</span></span><br><span class="line">		Lang.sleep(<span class="number">1000</span> * <span class="number">60</span>);</span><br><span class="line">		<span class="comment">// 关闭任务</span></span><br><span class="line">		scheduler.shutdown();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样一个简单的定时任务就创建好了。</p>
+<hr>
+<h3 id="关键类和接口"><a href="#关键类和接口" class="headerlink" title="关键类和接口"></a>关键类和接口</h3><ul>
+<li><p><strong>Job &amp; JobDetail</strong><br>Job 为作业的接口，为任务调度的对象；JobDetail绑定指定的Job，每次Scheduler调度执行一个Job的时候，首先会拿到对应的Job，然后创建该Job实例，再去执行Job中的execute()的内容，任务执行结束后，关联的Job对象实例会被释放，且会被JVM GC清除。</p>
+<p>  为什么设计成 Job + JobDetail，而不直接使用Job？<br>  JobDetail定义的是任务数据，而真正的执行逻辑是在Job中。<br>  任务是有可能并发执行，如果Scheduler直接使用Job，就会存在对同一个Job实例并发访问的问题。而JobDetail &amp; Job 方式，Sheduler每次执行，都会根据JobDetail接收一个 Job 实现类（JobDetail，描述 Job 的实现类及其他相关的静态信息，如 Job 名字、描述、关联监听器等信息），以便运行时通过 newInstance() 的反射机制实例化 Job。创建一个新的Job实例，这样就可以规避并发访问的问题。</p>
+</li>
+<li><p><strong>JobExecutionContext</strong><br>JobExecutionContext中包含了Quartz运行时的环境以及Job本身的详细数据信息。<br>当Schedule调度执行一个Job的时候，就会将JobExecutionContext传递给该Job的execute()中，Job就可以通过JobExecutionContext对象获取信息。</p>
+</li>
+<li><p><strong>Trigger</strong><br>Trigger：是一个类，描述触发 Job 执行的时间触发规则，<strong>一个 Trigger 只能对应一个作业实例，而一个作业实例可对应多个触发器</strong>；主要有 SimpleTrigger 和 CronTrigger 这两个子类。当且仅当需调度一次或者以固定时间间隔周期执行调度，SimpleTrigger 是最适合的选择；而 CronTrigger 则可以通过 Cron 表达式定义出各种复杂时间规则的调度方案。个人在日常开发中CronTrigger用的更多。</p>
+</li>
+<li><p><strong>Scheduler</strong><br>Scheduler 做为定时任务容器，是 Quartz 最上层的东西，它提携了所有触发器和作业，使它们协调工作，每个 Scheduler 都存有 JobDetail 和 Trigger 的注册，一个 Scheduler 中可以注册多个 JobDetail 和多个 Trigger。</p>
+</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://ezioy.cn/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">http://ezioy.cn/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Quartz/"># Quartz</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/04/13/Java8-LocalDateTime/">Java8-LocalDateTime</a>
+            
+            
+            <a class="next" rel="next" href="/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">Go程序结构</a>
+            
+        </section>
+
+
+	    
+		    <section id="comments" class="comments">
+		      <style>
+		        .comments{margin:30px;padding:10px;background:#fff}
+		        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+		      </style>
+		      <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+		    </section>
+		
+    </article>
+
+	
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2022 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
