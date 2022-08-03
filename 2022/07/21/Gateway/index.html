@@ -235,7 +235,7 @@
 <hr>
 <h3 id="过滤器执行链顺序"><a href="#过滤器执行链顺序" class="headerlink" title="过滤器执行链顺序"></a>过滤器执行链顺序</h3><p>请求进入网关，会经过三种过滤器：当前路由过滤器、DefaultFilter、GlobalFilter。</p>
 <p>请求路由后，会将当当前路由过滤器、DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器。</p>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202206281424522.jpg?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202206281424522.jpg?x-oss-process=style/ezio"></a></p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio"></a></p>
 <p>1.order值越小，优先级越高。</p>
 <p>2.当order值一样时，顺序为 DefaultFilter -&gt; 局部路由过滤器 -&gt; 全局过滤器</p>
 <hr>
