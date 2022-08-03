@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>MySQL索引原理及慢查询优化 | Ezio&#39;s blog</title>
+<title>HashMap | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">MySQL索引原理及慢查询优化</h1>
+            <h1 class="post-title">HashMap</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">June 14, 2021&nbsp;&nbsp;22:55:08</a>
+                        Date: <a href="#">May 21, 2022&nbsp;&nbsp;10:52:20</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/MySQL/">MySQL</a>
+                                <a href="/categories/Java/">Java</a>
                             
                         </span>
                     
@@ -211,8 +211,29 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="MySQL索引原理及慢查询优化"><a href="#MySQL索引原理及慢查询优化" class="headerlink" title="MySQL索引原理及慢查询优化"></a>MySQL索引原理及慢查询优化</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h1><h3 id="put-方法执行流程"><a href="#put-方法执行流程" class="headerlink" title="put() 方法执行流程"></a>put() 方法执行流程</h3><ol>
+<li>put(key, value)，先通过**hash()**方法计算出key的hash值。</li>
+<li>判断Node数组是否初始化，没有则初始化数组，并赋值长度n&#x3D;初始化数组的长度。</li>
+<li>通过key的hash值计算出要放在数组的哪个地方，即计算出数组下标，tab[i]。<strong>i&#x3D;(n-1) &amp; hash</strong>。<strong>限定数组的长度要为2的n次方数</strong></li>
+<li>计算出的要放在数组的位置如果没有数据，则new一个节点将数据直接放进去。tab[i]&#x3D;newNode(hash,key,value,null)。</li>
+<li>如果要放的位置已经有数据了，则判断key是否相等，如果key相等，则会将节点value的值进行替换。</li>
+<li>如果key不想等，判断当前位置的Node类型是否为TreeNode类型，是，则new一个TreeNode对象将数据插入到红黑数中。</li>
+<li>如果是Node类型，遍历Node链表，找到next属性为null的节点即找到尾节点，并new一个节点将原尾节点next值赋值为插入的数据。将数据插入链表尾部。在遍历时，如果发现key相同，则break循环，更新value值。</li>
+<li>遍历过程中，如果发现put新节点时原链表长度&gt;&#x3D;8，判断数组的长度，如果数组的长度&gt;&#x3D;64，则将原链表转为红黑树，否则会对数组进行扩容。<strong>treeifyBin()</strong></li>
+<li>判断是否需要扩容。加载因子0.75 （++size &gt; threshold），满足条件则针对数组进行扩容，扩容为双倍扩容。</li>
+</ol>
+<h3 id="hash"><a href="#hash" class="headerlink" title="hash()"></a>hash()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">	<span class="type">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="literal">null</span>) ? <span class="number">0</span> : (h = key.hashcode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//扰动+寻址，让hashcode的高位也一起参与到计算数组下标的计算中，减少hash冲突的概率。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="treeifyBin"><a href="#treeifyBin" class="headerlink" title="treeifyBin()"></a>treeifyBin()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">treeifyBin</span><span class="params">(Node&lt;K,V&gt;[] tab, <span class="type">int</span> hash)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, index; Node&lt;K,V&gt; e;</span><br><span class="line">    <span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) &lt; MIN_TREEIFY_CAPACITY)</span><br><span class="line">        resize();</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((e = tab[index = (n - <span class="number">1</span>) &amp; hash]) != <span class="literal">null</span>) &#123;</span><br><span class="line">        TreeNode&lt;K,V&gt; hd = <span class="literal">null</span>, tl = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="comment">//遍历链表，将每个Node对象替换为TreeNode，并将单向链表改为双向链表方便操作。</span></span><br><span class="line">            TreeNode&lt;K,V&gt; p = replacementTreeNode(e, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (tl == <span class="literal">null</span>)</span><br><span class="line">                hd = p;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                p.prev = tl;</span><br><span class="line">                tl.next = p;</span><br><span class="line">            &#125;</span><br><span class="line">            tl = p;</span><br><span class="line">        &#125; <span class="keyword">while</span> ((e = e.next) != <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> ((tab[index] = hd) != <span class="literal">null</span>)</span><br><span class="line">            hd.treeify(tab);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio"></a></p>
+<h3 id="amp-与位运算"><a href="#amp-与位运算" class="headerlink" title="&amp; 与位运算"></a>&amp; 与位运算</h3><p>有一个0则为0，都为1才为1。</p>
+<p>15 0000 1111</p>
+<p>n   0101 0101</p>
+<p>&amp;   0000 0101</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -231,7 +252,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">http://ezioy.cn/2021/06/14/MySQL%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</a></span>
+                        <span><a href="http://ezioy.cn/2022/05/21/HashMap/">http://ezioy.cn/2022/05/21/HashMap/</a></span>
                     </p>
                 
                 
@@ -255,7 +276,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/MySQL/"># MySQL</a>
+                        <a href="/tags/Java/"># Java</a>
                     
                         
                 </span>
@@ -268,10 +289,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/06/17/%E6%9E%B6%E6%9E%84%E6%80%9D%E8%80%83/">架构思考</a>
+                <a class="prev" rel="prev" href="/2022/07/20/Docker/">Docker</a>
             
             
-            <a class="next" rel="next" href="/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/">理解计算机系统中的局部性原理</a>
+            <a class="next" rel="next" href="/2022/05/21/Nacos/">Nacos</a>
             
         </section>
 
