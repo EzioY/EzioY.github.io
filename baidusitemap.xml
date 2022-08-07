@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ezioy.cn/2021/04/12/RabbitMQ/</loc>
+    <lastmod>2022-08-07</lastmod>
+  </url>
+  <url>
+    <loc>http://ezioy.cn/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</loc>
+    <lastmod>2022-08-07</lastmod>
+  </url>
+  <url>
     <loc>http://ezioy.cn/2022/05/21/HashMap/</loc>
     <lastmod>2022-08-03</lastmod>
   </url>
@@ -19,10 +27,6 @@
   <url>
     <loc>http://ezioy.cn/2022/07/20/Docker/</loc>
     <lastmod>2022-08-03</lastmod>
-  </url>
-  <url>
-    <loc>http://ezioy.cn/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</loc>
-    <lastmod>2022-07-25</lastmod>
   </url>
   <url>
     <loc>http://ezioy.cn/2021/04/13/Java8-LocalDateTime/</loc>
