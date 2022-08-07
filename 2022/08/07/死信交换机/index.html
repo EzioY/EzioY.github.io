@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>RabbitMQ | Ezio&#39;s blog</title>
+<title>死信交换机 | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">RabbitMQ</h1>
+            <h1 class="post-title">死信交换机</h1>
             
                 <div class="post-meta">
                     
@@ -195,7 +195,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 12, 2021&nbsp;&nbsp;14:03:57</a>
+                        Date: <a href="#">August 7, 2022&nbsp;&nbsp;23:11:26</a>
                         </span>
                     
                     
@@ -211,67 +211,30 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>RabbitMQ是基于Erlang语言开发的开源消息通信中间件，<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/">官网地址</a></p>
-<h5 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h5><p>优点：</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="死信交换机"><a href="#死信交换机" class="headerlink" title="死信交换机"></a>死信交换机</h1><p>当一个队列中的消息满足以下情况之一时，可以成为死信（dead letter）：</p>
 <ul>
-<li>时效性强，立即得到结果</li>
+<li>消费者使用basic.reject或basic.nack声明消费失败，并且消息的requeue参数设置为false。</li>
+<li>消息是一个过期消息，超时无人消费。</li>
+<li>要投递的队列消息堆积满了，最早的消息可能成为死信</li>
 </ul>
-<p>缺点：</p>
+<p>如果该队列配置了dead-letter-exchange属性，指定了一个交换机，则队列中的死信就会投递到这个交换机中。这个交换机被称为死信交换机（Dead Letter Exchange，简称DLX）</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248918.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248918.png?x-oss-process=style/ezio"></a></p>
+<h3 id="TTL"><a href="#TTL" class="headerlink" title="TTL"></a>TTL</h3><p>TLL，即Time-To-Live。如果一个队列中的消息TTL结束仍未消费，会变为死信，ttl超时分两种情况：</p>
 <ul>
-<li>耦合度高</li>
-<li>如果调用链过长，性能和吞吐能力下降</li>
-<li>在调用链等待过程中，请求占用的资源不能释放，高并发下浪费资源</li>
-<li>有级联失败问题，提供方出现问题，会导致调用方都跟着出问题</li>
+<li>消息所在队列设置了存活时间</li>
+<li>消息本身设置了存活时间</li>
 </ul>
-<h5 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h5><p>优点：</p>
-<ul>
-<li>通过发布事件的方式，耦合度更低</li>
-<li>吞吐量提升，调用链变短，不用等待其他服务执行完成，耗时更短</li>
-<li>故障隔离，因为不存在调用，其他服务挂了也不会影响</li>
-<li>流量削峰，由broker承担压力</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>增加服务架构复杂度，不好追踪管理</li>
-<li>依赖Broker的可靠性、安全性、吞吐能力</li>
-</ul>
-<h3 id="MQ对比："><a href="#MQ对比：" class="headerlink" title="MQ对比："></a>MQ对比：</h3><p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio"></a></p>
-<h3 id="RabbitMQ中的几个概念："><a href="#RabbitMQ中的几个概念：" class="headerlink" title="RabbitMQ中的几个概念："></a>RabbitMQ中的几个概念：</h3><ul>
-<li>channel：操作mq的工具</li>
-<li>exchange：路由消息到队列中</li>
-<li>queue：缓存消息</li>
-<li>virtual host：虚拟主机，是对queue、exchange等资源的逻辑分组。</li>
-</ul>
-<hr>
-<h3 id="RabbitMQ的安装"><a href="#RabbitMQ的安装" class="headerlink" title="RabbitMQ的安装"></a>RabbitMQ的安装</h3><h5 id="1-通过docker拉取镜像"><a href="#1-通过docker拉取镜像" class="headerlink" title="1.通过docker拉取镜像"></a>1.通过docker拉取镜像</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+<p>1.声明死信交换机和队列</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;dl.queue&quot;, durable = &quot;true&quot;),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;dl.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenDeadQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到dl.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="2-运行容器"><a href="#2-运行容器" class="headerlink" title="2.运行容器"></a>2.运行容器</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -e RABBITMQ_DEFAULT_USER=ezio \  # 用户名</span><br><span class="line"> -e RABBITMQ_DEFAULT_PASS=123456 \  # 密码</span><br><span class="line"> --name mq \</span><br><span class="line"> --hostname mq1 \  # 主机名，集群部署会用到</span><br><span class="line"> -p 15672:15672 \  # rabbitmq管理平台端口</span><br><span class="line"> -p 5672:5672 \  # rabbitmq消息通信端口</span><br><span class="line"> -d \</span><br><span class="line"> rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+<p>2.基于队列设置存活时间，绑定TTL交换机和队列</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TTL消息处理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TTLMessageConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DirectExchange <span class="title function_">ttlExchange</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DirectExchange</span>(<span class="string">&quot;ttl.direct&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Queue <span class="title function_">ttlQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;ttl.queue&quot;</span>)</span><br><span class="line">                .ttl(<span class="number">1000</span>) <span class="comment">//队列设置存活时间</span></span><br><span class="line">                .deadLetterExchange(<span class="string">&quot;dl.direct&quot;</span>)</span><br><span class="line">                .deadLetterRoutingKey(<span class="string">&quot;dl&quot;</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Binding <span class="title function_">ttlBinding</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder</span><br><span class="line">                .bind(ttlQueue())</span><br><span class="line">                .to(ttlExchange())</span><br><span class="line">                .with(<span class="string">&quot;ttl&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h4 id="常见消息模型"><a href="#常见消息模型" class="headerlink" title="常见消息模型"></a>常见消息模型</h4><p><strong>publisher：</strong>消息发布者，将消息发送到交换机或队列</p>
-<p><strong>queue：</strong>消息队列，负责接收和缓存消息</p>
-<p><strong>consumer：</strong>消息消费者，订阅队列，处理队列中的消息</p>
-<ul>
-<li>基本模式：一对一</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>工作模式（竞争模式）：一对多</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>发布&#x2F;订阅模式（广播Fanout）：</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>路由模式：</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>主题模式：</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio"></a></p>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio"></a></p>
+<p>3.基于消息设置存活时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 消息</span></span><br><span class="line">        <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> MessageBuilder.withBody(<span class="string">&quot;今天天气不错&quot;</span>.getBytes(StandardCharsets.UTF_8))</span><br><span class="line">                .setDeliveryMode(MessageDeliveryMode.PERSISTENT)</span><br><span class="line">                .setExpiration(<span class="string">&quot;5000&quot;</span>)</span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
+
+<p>4.基于死信交换机的延迟队列</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248989.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248989.png?x-oss-process=style/ezio"></a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -291,7 +254,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2021/04/12/RabbitMQ/">http://ezioy.cn/2021/04/12/RabbitMQ/</a></span>
+                        <span><a href="http://ezioy.cn/2022/08/07/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA/">http://ezioy.cn/2022/08/07/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA/</a></span>
                     </p>
                 
                 
@@ -328,10 +291,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">Quartz 定时任务</a>
+                <a class="prev" rel="prev" href="/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/">消息堆积</a>
             
             
-            <a class="next" rel="next" href="/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/">Go程序结构</a>
+            <a class="next" rel="next" href="/2022/08/07/%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/">消息丢失</a>
             
         </section>
 

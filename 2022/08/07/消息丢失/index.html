@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>消息丢失 | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">消息丢失</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 7, 2022&nbsp;&nbsp;23:07:37</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/RabbitMQ/">RabbitMQ</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="消息丢失"><a href="#消息丢失" class="headerlink" title="消息丢失"></a>消息丢失</h1><p>MQ消息丢失的情况：</p>
+<ul>
+<li><p>发送时丢失消息（生产者发送消息失败）</p>
+<ul>
+<li><p>生成者发送的消息未送到exchange</p>
+</li>
+<li><p>消息到达exchange后为到达queue</p>
+</li>
+</ul>
+</li>
+<li><p>MQ宕机，queue将消息丢失 （队列消息丢失）</p>
+</li>
+<li><p>consumer接受到消息后未消费就宕机 （消费者消费消息失败）</p>
+</li>
+</ul>
+<h3 id="生产者确认机制"><a href="#生产者确认机制" class="headerlink" title="生产者确认机制"></a>生产者确认机制</h3><p>RabbitMQ 提供了 publisher confirm 机制来避免消息发送到MQ过程中丢失。消息发送到MQ后，会返回一个结果给发送者，表示消息是否处理成功。结果有两种请求：</p>
+<ul>
+<li>publisher-confirm，发送者确认<ul>
+<li>消息成功投递到交换机，返回ack</li>
+<li>消息未成功投递到交换机，返回nack</li>
+</ul>
+</li>
+<li>publisher-return，发送者回执<ul>
+<li>消息投递到交换机了，但是没有路由到队列，返回ACK，及路由失败原因。</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247210.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247210.png?x-oss-process=style/ezio"></a></p>
+<p><strong>PS：确认机制发送消息时，需要给每个消息设置一个全局唯一id，以区分不同消息，避免ack冲突。</strong></p>
+<p>1.在生产者服务中的application.yml添加配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">publisher-returns:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">publisher-confirm-type:</span> <span class="string">correlated</span></span><br><span class="line">    <span class="attr">template:</span></span><br><span class="line">      <span class="attr">mandatory:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>配置说明：</p>
+<ul>
+<li><p>publisher-confirm-type：开启publisher-confirm，支持的两种类型：</p>
+<ul>
+<li>simple：同步等待confirm结果，直到超时</li>
+<li>correlated：异步回调，定义ConfirmCallback，MQ返回结果时回调ConfirmCallback</li>
+</ul>
+</li>
+<li><p>publisher-returns：开启publisher-return功能，同样基于callback机制，定义ReturnCallback</p>
+</li>
+<li><p>template.mandatory：定义消息路由失败时的策略。true，则调用ReturnCallback；false，则直接丢弃消息</p>
+</li>
+</ul>
+<p>2.配置ReturnCallback</p>
+<p>每个RabbitTemplate只能配置一个ReturnCallback，因此需要在项目启动过程中配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置ReturnCallBack</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CommonConfig</span> <span class="keyword">implements</span> <span class="title class_">ApplicationContextAware</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        <span class="type">RabbitTemplate</span> <span class="variable">rabbitTemplate</span> <span class="operator">=</span> applicationContext.getBean(RabbitTemplate.class);</span><br><span class="line">        rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -&gt; &#123;</span><br><span class="line">            log.info(<span class="string">&quot;消息发生失败，应答码=&#123;&#125;，原因=&#123;&#125;，交换机=&#123;&#125;，路由键=&#123;&#125;，消息=&#123;&#125;&quot;</span>,</span><br><span class="line">                    replyCode, replyText, exchange, routingKey, message.toString());</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.设置ConfirmCallback，指定的消息ID</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringAmqpTest</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">confirmTest</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 交换机名称</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">exchangeName</span> <span class="operator">=</span> <span class="string">&quot;ezio.topic&quot;</span>;</span><br><span class="line">        <span class="comment">// 消息</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;今天天气不错&quot;</span>;</span><br><span class="line">        <span class="comment">//消息确认</span></span><br><span class="line">        <span class="type">CorrelationData</span> <span class="variable">correlationData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorrelationData</span>(UUID.randomUUID().toString());</span><br><span class="line">        correlationData.getFuture().addCallback(</span><br><span class="line">                result -&gt; &#123;</span><br><span class="line">                    <span class="comment">//判断结果</span></span><br><span class="line">                    <span class="keyword">if</span> (result.isAck()) &#123;</span><br><span class="line">                        <span class="comment">//ack</span></span><br><span class="line">                        log.debug(<span class="string">&quot;消息成功投递到交换机！消息ID：&#123;&#125;&quot;</span>, correlationData.getId());</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//nack</span></span><br><span class="line">                        log.error(<span class="string">&quot;消息投递到交换机失败！消息ID：&#123;&#125;&quot;</span>, correlationData.getId());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                ex -&gt; log.error(<span class="string">&quot;消息发送失败！&quot;</span>，ex)</span><br><span class="line">        );</span><br><span class="line">        <span class="comment">// 发送消息</span></span><br><span class="line">        rabbitTemplate.convertAndSend(exchangeName, <span class="string">&quot;china.weather&quot;</span>, message, correlationData);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h3><p>MQ默认时内存存储消息，开启持久化功能可以确保消息缓存在mq中的消息不丢失。</p>
+<p>1.交换机持久化：默认true开启</p>
+<p>2.队列持久化：在定义队列时设置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(name = &quot;direct.queue1&quot;, durable = &quot;true&quot;), //绑定的队列</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(name = &quot;test.direct&quot;), //声明交换机名称</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;red&quot;, &quot;blue&quot;&#125; //路由key，可配置通配符，red.# or red.*</span></span><br><span class="line"><span class="meta">))</span></span><br></pre></td></tr></table></figure>
+
+<p>3.消息持久化，SpringAMQP中消息默认持久，可以通过MessageProperties中的DeliveryMode指定：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> MessageBuilder.withBody(<span class="string">&quot;今天天气不错&quot;</span>.getBytes(StandardCharsets.UTF_8)) <span class="comment">// 消息体</span></span><br><span class="line">                .setDeliveryMode(MessageDeliveryMode.PERSISTENT) <span class="comment">// 持久化</span></span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消费者确认"><a href="#消费者确认" class="headerlink" title="消费者确认"></a>消费者确认</h3><p>RabbitMQ支持消费者确认机制，即：消费者处理消息后可以向MQ发送ack回执，MQ收到回执后才会删除该消息，SpringAMQP提供三种确认模式：</p>
+<ul>
+<li>manual：手动ack，需要在业务代码结束后，调用API发送ack。</li>
+<li>auto：自动ack，有spring检测listener代码是否出现异常，没有异常则返回ack；抛出异常则返回nack</li>
+<li>none：关闭ack，消息投递后立即被删除。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br><span class="line">      	<span class="attr">acknowledge-mode:</span> <span class="string">auto</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消费者失败重试"><a href="#消费者失败重试" class="headerlink" title="消费者失败重试"></a>消费者失败重试</h3><p>消费者出现异常后，消息会不断requeue（重新入队）到队列，在重新发送给消费者，然后再次异常，再次requeue，导致mq的消息处理飙升，带来不必要的压力。</p>
+<p>可以利用spring的retry机制，在消费者出现异常时利用本地重试，而不是无限制的requeue到mq队列</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br><span class="line">      	<span class="attr">acknowledge-mode:</span> <span class="string">auto</span></span><br><span class="line">      	<span class="attr">retry:</span></span><br><span class="line">          <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#开启消费者失败重试</span></span><br><span class="line">          <span class="attr">initial-interval:</span> <span class="number">1000</span> <span class="comment">#初始的失败等待时长1秒</span></span><br><span class="line">          <span class="attr">multiplier:</span> <span class="number">1</span> <span class="comment">#下次失败的等待时长倍数，下次等待时长 = multiplier * last-interval</span></span><br><span class="line">          <span class="attr">max-attempts:</span> <span class="number">3</span> <span class="comment">#最大重试次数</span></span><br><span class="line">          <span class="attr">stateless:</span> <span class="literal">true</span> <span class="comment">#true无状态，false有状态，有事务用有状态</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消费者失败消息处理策略"><a href="#消费者失败消息处理策略" class="headerlink" title="消费者失败消息处理策略"></a>消费者失败消息处理策略</h3><p>在开启重试模式后，重试次数耗尽，如果依然失败，则需要有MessageRecoverer接口来处理，它包含三个不同实现：</p>
+<ul>
+<li>RejectAndDontRequeueRecoverer：重试耗尽后，直接reject，丢弃消息。默认实现方式</li>
+<li>ImmediateRequeueMessageRecoverer：重试耗尽后，返回nack，消息重新入队</li>
+<li>RepublishMessageRecoverer：重试耗尽后，将失败消息投递到指定的交换机</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247588.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247588.png?x-oss-process=style/ezio"></a></p>
+<p>实现方式：定义接受失败消息的交换机，队列及其绑定关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 消费者消息重试，接受消费失败的消息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ErrorMessageConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DirectExchange <span class="title function_">errorExchange</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DirectExchange</span>(<span class="string">&quot;error.direct&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Queue <span class="title function_">errorQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Queue</span>(<span class="string">&quot;error.queue&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Binding <span class="title function_">errorBinding</span><span class="params">(Queue errorQueue, DirectExchange errorExchange)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder</span><br><span class="line">                .bind(errorQueue)</span><br><span class="line">                .to(errorExchange).with(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageRecoverer <span class="title function_">republishMessageRecoverer</span><span class="params">(RabbitTemplate rabbitTemplate)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RepublishMessageRecoverer</span>(rabbitTemplate, <span class="string">&quot;error.direct&quot;</span>, <span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://ezioy.cn/2022/08/07/%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/">http://ezioy.cn/2022/08/07/%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/RabbitMQ/"># RabbitMQ</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/08/07/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA/">死信交换机</a>
+            
+            
+            <a class="next" rel="next" href="/2022/08/07/Spring-AMQP/">Spring-AMQP</a>
+            
+        </section>
+
+
+	    
+		    <section id="comments" class="comments">
+		      <style>
+		        .comments{margin:30px;padding:10px;background:#fff}
+		        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+		      </style>
+		      <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+		    </section>
+		
+    </article>
+
+	
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2022 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
