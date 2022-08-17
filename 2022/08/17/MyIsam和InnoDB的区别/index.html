@@ -211,35 +211,41 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="MyIsam和InnoDB的区别"><a href="#MyIsam和InnoDB的区别" class="headerlink" title="MyIsam和InnoDB的区别"></a>MyIsam和InnoDB的区别</h1><p>MyIsam和InnoDB的常见区别：</p>
-<ol>
-<li>事务</li>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="MyIsam-和-InnoDB-的区别"><a href="#MyIsam-和-InnoDB-的区别" class="headerlink" title="MyIsam 和 InnoDB 的区别"></a>MyIsam 和 InnoDB 的区别</h1><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
+<li><strong>事务</strong></li>
 </ol>
 <p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
 <ol start="2">
-<li>外键</li>
+<li><strong>外键</strong></li>
 </ol>
 <p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
 <ol start="3">
-<li><p>索引</p>
+<li><p><strong>索引</strong></p>
 <p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
 </li>
-<li><p>锁粒度方面</p>
+<li><p><strong>锁粒度方面</strong></p>
 </li>
 </ol>
 <p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
 <p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
 <p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
 <ol start="5">
-<li>硬盘存储结构</li>
+<li><strong>硬盘存储结构</strong></li>
 </ol>
 <p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
-<p>​		Frm文件：表的定义文件</p>
-<p>​		Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。</p>
-<p>​		MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）</p>
-<p>​		.frm文件存储 表的定义。</p>
-<p>​		.MYD 数据文件（MYData）</p>
-<p>​		.MYI 索引文件 （MYIndex</p>
+<pre><code>    * Frm文件：表的定义文件
+    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
+    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
+    * .frm文件存储 表的定义。
+    * .MYD 数据文件（MYData）
+    * .MYI 索引文件 （MYIndex）
+</code></pre>
+<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
+<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
+<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
+<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
+<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
+<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
