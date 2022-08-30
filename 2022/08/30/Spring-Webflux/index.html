@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>Spring Webflux | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Spring Webflux</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 30, 2022&nbsp;&nbsp;11:04:18</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/webflux/">webflux</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Spring-webflux"><a href="#Spring-webflux" class="headerlink" title="Spring webflux"></a>Spring webflux</h1><h3 id="什么是webflux"><a href="#什么是webflux" class="headerlink" title="什么是webflux"></a>什么是webflux</h3><p>Spring Webflux 是 Spring5中添加的新模块，用于web开发，功能和SpringMVC相似，Webflux 使用的是响应式编程方式。</p>
+<p><strong>Webflux 的特点：</strong></p>
+<ul>
+<li>异步非阻塞：Webflux是一个异步非阻塞的Web框架，它能够充分利用多核CPU的硬件资源去处理大量的并发请求。</li>
+<li>响应式函数编程：以函数式编程（lambda）为基础，以Reactor（实现Reactive-stream）为核心。</li>
+<li>可运行在支持NIO的容器上，支持 Netty、Undertow、Servlet容器（前提是容器要支持Servlet3.1，因为非阻塞IO是使用了Servlet3.1的特性）。</li>
+<li>不能使接口的响应时间缩短，它仅仅能够提升吞吐量和伸缩性。</li>
+</ul>
+<h3 id="Spring-Webflux-和-Spring-MVC-的比较："><a href="#Spring-Webflux-和-Spring-MVC-的比较：" class="headerlink" title="Spring Webflux 和 Spring MVC 的比较："></a>Spring Webflux 和 Spring MVC 的比较：</h3><p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208301136457.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208301136457.png?x-oss-process=style/ezio"></a></p>
+<ul>
+<li>两个框架都可以使用注解方式，都可以运行在 Tomet 等容器中</li>
+<li>SpringMVC 采用命令式编程，Webflux 采用异步响应式编程</li>
+</ul>
+<h3 id="Webflux-应用场景"><a href="#Webflux-应用场景" class="headerlink" title="Webflux 应用场景"></a>Webflux 应用场景</h3><ol>
+<li>特别适合在IO密集型的服务中，比如微服务网关。IO 密集型包括：磁盘IO密集型, 网络IO密集型，<strong>微服务网关就属于网络 IO 密集型，使用异步非阻塞式编程模型，能够显著地提升网关对下游服务转发的吞吐量，在微服务架构中，SpringMVC和SpringWebflux可以混合使用。</strong></li>
+<li><strong>WebFlux不是 Spring MVC的替代方案。</strong>虽然 WebFlux 也可以被运行在 Servlet 容器上（需是 Servlet 3.1+ 以上的容器），但是 WebFlux 主要还是应用在异步非阻塞编程模型，而 Spring MVC 是同步阻塞的，如果你目前在 Spring MVC 框架中大量使用非同步方案，那么，WebFlux 更适合的，否则，还是使用 Spring MVC 更合适。</li>
+</ol>
+<h3 id="什么是响应式编程"><a href="#什么是响应式编程" class="headerlink" title="什么是响应式编程"></a>什么是响应式编程</h3><p><strong>响应式编程是一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。本质上是对数据流或某种变化所作出的反应，但是这个变化什么时候发生是未知的，所以他是一种基于异步、回调的方式在处理问题。</strong></p>
+<p>响应式编程基于Reactor（Reactor 是一个运行在 Java8 之上的响应式框架）的思想，当你做一个带有一定延迟的才能够返回的io操作时，不会阻塞，而是立刻返回一个流，并且订阅这个流，当这个流上产生了返回数据，可以立刻得到通知并调用回调函数处理数据。</p>
+<p>电子表格程序就是响应式编程的一个例子。单元格可以包含字面值或类似”&#x3D;B1+C1”的公式，而包含公式的单元格的值会依据其他单元格的值的变化而变化。</p>
+<p>响应式传播核心特点之一：<strong>变化传播</strong>：一个单元格变化之后，会像多米诺骨牌一样，导致直接和间接引用它的其他单元格均发生相应变化。</p>
+<h3 id="Reactive-Streams"><a href="#Reactive-Streams" class="headerlink" title="Reactive Streams"></a>Reactive Streams</h3><p>Reactive Streams，翻译为反应式流，是针对于响应式编程所提出的一套规范。对于Java程序员来说，Reactive Streams为我们提供了Java中的 Reactive Programming 的通用API。</p>
+<p>Reactive Streams 非常类似于 JPA 或 JDBC。两者都是API规范，实际使用时需要使用API对应的具体实现。例如，从JDBC规范中，有DataSource接口，而Oracle JDBC实现了DataSource接口。Microsoft的SQL Server JDBC实现也实现了DataSource接口。</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208301451803.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208301451803.png?x-oss-process=style/ezio"></a></p>
+<blockquote>
+<p>背压：由消费者控制生产者的生产速度，以解决生产者生产的速度远大于消费者消费的速度时所造成的消息的积压</p>
+</blockquote>
+<p><code>Reactive Streams API</code>中仅仅包含了如下四个接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发布者</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Publisher</span> &lt;T&gt; &#123;</span><br><span class="line">  <span class="comment">//接收订阅者，数据的流向者</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">subscribe</span><span class="params">(Subscriber &lt;？<span class="built_in">super</span> T &gt; s)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//订阅者</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Subscriber</span> &lt;T&gt; &#123;</span><br><span class="line">  <span class="comment">//订阅成功后触发，并且表明可以开始接收订阅数据了</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSubscribe</span><span class="params">(Subscription s)</span>;</span><br><span class="line">  <span class="comment">//获取接受数据的下一项</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onNext</span><span class="params">(T t)</span>;</span><br><span class="line">  <span class="comment">//在发布者或订阅遇到错误时触发</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onError</span><span class="params">(Throwable t)</span>;</span><br><span class="line">  <span class="comment">//接受完所有的数据后触发</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onComplete</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//订阅关系</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Subscription</span> &#123;</span><br><span class="line">  <span class="comment">//背压 请求数据个数，解决数据拥堵</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">request</span><span class="params">(<span class="type">long</span> n)</span>;</span><br><span class="line">  <span class="comment">//取消订阅</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">cancel</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理器，表示一个处理阶段，它既是订阅者也是发布者，并且遵守两者的契约，消费和下发数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Processor</span>&lt;T, R&gt; <span class="keyword">extends</span> <span class="title class_">Subscriber</span>&lt;T&gt;, Publisher&lt;R&gt; &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Reactor"><a href="#Reactor" class="headerlink" title="Reactor"></a>Reactor</h3><p>Reactor 就是 Reactive Streams 的实现。Reactor 有两个核心类： <code>Flux&lt;T&gt;</code> 和 <code>Mono&lt;T&gt;</code>，这两个类都实现 Publisher 接口。</p>
+<p>Flux 代表的是 0-N 个元素的响应式序列，而 Mono 代表的是 0-1 个的元素的结果。</p>
+<p>Flux 和 Mono 都是数据流的发布者，使用 Flux 和 Mono 都可以发出三种数据信号：元素值，错误信号，完成信号；错误信号和完成信号都代表终止信号，终止信号用于告诉订阅者数据流结束了，错误信号终止数据流同时把错误信息传递给订阅者。</p>
+<p>三种信号的特点：</p>
+<ul>
+<li>错误信号和完成信号都是终止信号，不能共存</li>
+<li>如果没有发送任何元素值，而是直接发送错误或者完成信号，表示是空数据流</li>
+<li>如果没有错误信号，也没有完成信号，表示是无限数据流</li>
+</ul>
+<p>Moon 和 Flux 的区别, 其实就是 one &#x2F; more 的区别. many one &#x3D; more , 同时也可以分解。</p>
+<h4 id="Flux-类中常用的静态方法"><a href="#Flux-类中常用的静态方法" class="headerlink" title="Flux 类中常用的静态方法"></a>Flux 类中常用的静态方法</h4><ul>
+<li><strong>Just()</strong> 可以指定序列中包含的全部元素。创建出来的Flux序列在发布这些元素之后会自动结束</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// just() </span></span><br><span class="line">Flux.just(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>fromArray()</strong> 通过一个数组创建Flux对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer[] array = <span class="keyword">new</span> <span class="title class_">Integer</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">Flux.fromArray(array).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>fromIterable()</strong> 通过Iterable对象创建Flux对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="keyword">new</span> <span class="title class_">Integer</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;);</span><br><span class="line">Flux.fromIterable(list).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>fromStream()</strong> 通过Stream对象创建Flux对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flux.fromStream(list.stream()).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>empty()</strong> 创建一个不包含任何元素，只发布结束消息的序列</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flux.empty().subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>range()</strong> 创建包含从start起始到count个数量的Integer对象的序列</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">10</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>interval()</strong> 创建一个包含了从0开始递增的Long对象的序列。其中包含的元素按照指定的间隔来发布。除了间隔时间之外，还可以指定起始元素发布之前的延迟时间</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flux.interval(Duration.of(<span class="number">10</span>, ChronoUnit.SECONDS)).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>never()</strong> 创建一个不包含任务消息通知的序列</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flux.never().subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>generate()</strong> 创建复杂逻辑的序列，<code>generate(Callable&lt;S&gt; stateSupplier, BiFunction&lt;S, SynchronousSink&lt;T&gt;, S&gt; generator)</code><ul>
+<li>stateSupplier 用来提供初始的状态对象, 状态对象会作为generator使用的第一个参数传入，类似初始值</li>
+<li>序列的产生是通过调用所提供的的 SynchronousSink 对象的next()，complete()和error(Throwable)方法来完成的</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Flux.generate(() -&gt; <span class="number">0</span>, (i, sink) -&gt; &#123;</span><br><span class="line">  sink.next(<span class="string">&quot;2*&quot;</span> + i + <span class="string">&quot;=&quot;</span> + <span class="number">2</span> * i);</span><br><span class="line">  <span class="keyword">if</span> (i == <span class="number">9</span>) sink.complete();</span><br><span class="line">  <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">&#125;).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>create()</strong> 与generate()类似，不同之处在于所使用的是 SynchronousSink 变为了 FluxSink 对象。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// FluxSink支持同步和异步的消息产生，并且可以在一次调用中产生多个元素。</span></span><br><span class="line">Flux.create(sink -&gt; &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) sink.next(i);</span><br><span class="line">  sink.complete();</span><br><span class="line">&#125;).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Mono-类中常用的静态方法"><a href="#Mono-类中常用的静态方法" class="headerlink" title="Mono 类中常用的静态方法"></a>Mono 类中常用的静态方法</h4><ul>
+<li><strong>just()</strong> 可以指定序列中包含的全部元素。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mono.just(<span class="string">&quot;hello world&quot;</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>empty()</strong> 创建一个不包含任何元素。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mono.empty().subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>error(Throwable error)</strong> 创建一个只包含错误消息的序列。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mono.error(<span class="keyword">new</span> <span class="title class_">RuntimeException</span>()).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**fromCallable()<strong>、</strong>fromCompletionStage()<strong>、</strong>fromFuture()<strong>、</strong>fromRunnable() **和 <strong>fromSupplier(</strong>)：分别从 Callable、CompletionStage、CompletableFuture、Runnable 和 Supplier 中创建 Mono。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Mono.fromCallable(() -&gt; <span class="string">&quot;callback function&quot;</span>).subscribe(System.out::println);</span><br><span class="line">Mono.fromFuture(CompletableFuture.completedFuture(<span class="string">&quot;from future&quot;</span>)).subscribe(System.out::println);</span><br><span class="line">Mono.fromRunnable(() -&gt; System.out.println(Thread.currentThread().getName())).subscribe();</span><br><span class="line">Mono.fromSupplier(() -&gt; <span class="keyword">new</span> <span class="title class_">Date</span>().toString()).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>delay(Duration duration)</strong> 创建一个 Mono 序列，在指定的延迟时间之后，产生数字 0 作为唯一值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mono.delay(Duration.ofMillis(<span class="number">2</span>)).map(String::valueOf).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>ignoreElements(Publisher source)</strong> 创建一个 Mono 序列，忽略作为源的 Publisher 中的所有元素（删除它们），只产生结束消息。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mono&lt;String&gt; mono = Mono.just(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">Mono.ignoreElements(mono).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>justOrEmpty(Optional&lt;? extends T&gt; data)</strong> 和 **justOrEmpty(T data) 从一个 Optional 对象或可能为 null 的对象中创建 Mono。只有 Optional 对象中包含值或对象不为 null 时，Mono 序列才产生对应的元素。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mono.justOrEmpty(Optional.of(<span class="string">&quot;Hello&quot;</span>)).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h4><ul>
+<li><strong>buffer()</strong> 和 <strong>bufferTimeout()</strong></li>
+</ul>
+<p>这两个操作符的作用是把当前流中的元素收集到集合中，并把集合对象作为流中的新元素。</p>
+<p>在进行收集时可以指定不同的条件：所包含的元素的最大数量或收集的时间间隔。方法buffer()仅使用一个条件，而bufferTimeout()可以同时指定两个条件。</p>
+<p>指定时间间隔时可以使用Duration对象或毫秒数，即使用bufferMillis()或bufferTimeoutMillis()两个方法。</p>
+<p>除了元素数量和时间间隔外，还可以通过bufferUntil和bufferWhile操作符来进行收集。这两个操作符的参数时表示每个集合中的元素索要满足的条件的Predicate对象。</p>
+<p>bufferUntil会一直收集直到Predicate返回true。</p>
+<p>使得Predicate返回true的那个元素可以选择添加到当前集合或下一个集合中；bufferWhile则只有当Predicate返回true时才会收集。一旦为false，会立即开始下一次收集。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">100</span>).buffer(<span class="number">20</span>).subscribe(System.out::println);</span><br><span class="line">Flux.intervalMillis(<span class="number">100</span>).bufferMillis(<span class="number">1001</span>).take(<span class="number">2</span>).toStream().forEach(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">10</span>).bufferUntil(i -&gt; i%<span class="number">2</span> == <span class="number">0</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">10</span>).bufferWhile(i -&gt; i%<span class="number">2</span> == <span class="number">0</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>filter()</strong> 对流中包含的元素进行过滤，只留下满足Predicate指定条件的元素。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">10</span>).filter(i -&gt; i%<span class="number">2</span> == <span class="number">0</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>zipWith()</strong> zipWith操作符把当前流中的元素与另一个流中的元素按照一对一的方式进行合并。在合并时可以不做任何处理，由此得到的是一个元素类型为Tuple2的流；也可以通过一个BiFunction函数对合并的元素进行处理，所得到的流的元素类型为该函数的返回值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Flux.just(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>).zipWith(Flux.just(<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>)).subscribe(System.out::println);</span><br><span class="line">Flux.just(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>).zipWith(Flux.just(<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>), (s1, s2) -&gt; String.format(<span class="string">&quot;%s-%s&quot;</span>, s1, s2)).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>take()</strong> 从当前流中提取元素<ul>
+<li>take(long n)，take(Duration timespan)和takeMillis(long timespan)：按照指定的数量或时间间隔来提取</li>
+<li>takeLast(long n)：提取流中的最后N个元素</li>
+<li>takeUntil(Predicate&lt;? super T&gt; predicate) ：提取元素直到Predicate返回true</li>
+<li>takeWhile(Predicate&lt;? super T&gt; continuePredicate)：当Predicate返回true时才进行提取</li>
+<li>takeUntilOther(Publisher&lt;?&gt; other)：提取元素知道另外一个流开始产生元素</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).take(<span class="number">10</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).takeLast(<span class="number">10</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).takeWhile(i -&gt; i &lt; <span class="number">10</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).takeUntil(i -&gt; i == <span class="number">10</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://ezioy.cn/2022/08/30/Spring-Webflux/">http://ezioy.cn/2022/08/30/Spring-Webflux/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/webflux-%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/"># webflux,响应式编程</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/08/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/">MyIsam和InnoDB的区别</a>
+            
+        </section>
+
+
+	    
+		    <section id="comments" class="comments">
+		      <style>
+		        .comments{margin:30px;padding:10px;background:#fff}
+		        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+		      </style>
+		      <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+		    </section>
+		
+    </article>
+
+	
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2022 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
