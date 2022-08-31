@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://ezioy.cn/2022/07/21/Gateway/</loc>
+    <loc>http://ezioy.cn/2022/08/30/Spring-Webflux/</loc>
     
     <lastmod>2022-08-31</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/2022/08/30/Spring-Webflux/</loc>
+    <loc>http://ezioy.cn/2022/07/21/Gateway/</loc>
     
     <lastmod>2022-08-31</lastmod>
     
@@ -434,7 +434,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tag/index.html</loc>
+    <loc>http://ezioy.cn/projects/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
     
@@ -443,7 +443,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/projects/index.html</loc>
+    <loc>http://ezioy.cn/tag/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
     
@@ -461,21 +461,7 @@
 
   
   <url>
-    <loc>http://ezioy.cn/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2022-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://ezioy.cn/tags/AJAX/</loc>
-    <lastmod>2022-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/tags/Docker/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -489,7 +475,21 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2022-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/tags/Gateway/</loc>
+    <lastmod>2022-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/tags/Git/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -503,14 +503,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Java/</loc>
+    <loc>http://ezioy.cn/tags/Docker/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Git/</loc>
+    <loc>http://ezioy.cn/tags/Java/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -545,13 +545,6 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Quartz/</loc>
-    <lastmod>2022-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://ezioy.cn/tags/RabbitMQ/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -566,6 +559,13 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/tags/Quartz/</loc>
+    <lastmod>2022-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/tags/webflux-%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -573,14 +573,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/TCP-IP/</loc>
+    <loc>http://ezioy.cn/tags/Spring/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Spring/</loc>
+    <loc>http://ezioy.cn/tags/TCP-IP/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -603,21 +603,7 @@
 
   
   <url>
-    <loc>http://ezioy.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2022-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://ezioy.cn/categories/AJAX/</loc>
-    <lastmod>2022-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/categories/Docker/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -631,14 +617,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Go/</loc>
-    <lastmod>2022-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/categories/Java/</loc>
+    <loc>http://ezioy.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -646,6 +625,27 @@
   
   <url>
     <loc>http://ezioy.cn/categories/Git/</loc>
+    <lastmod>2022-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/categories/Go/</loc>
+    <lastmod>2022-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/categories/Docker/</loc>
+    <lastmod>2022-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/categories/Java/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -673,13 +673,6 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Quartz/</loc>
-    <lastmod>2022-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://ezioy.cn/categories/RabbitMQ/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -694,6 +687,13 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/categories/Quartz/</loc>
+    <lastmod>2022-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/categories/webflux/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -701,14 +701,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/TCP-IP/</loc>
+    <loc>http://ezioy.cn/categories/Spring/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Spring/</loc>
+    <loc>http://ezioy.cn/categories/TCP-IP/</loc>
     <lastmod>2022-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
