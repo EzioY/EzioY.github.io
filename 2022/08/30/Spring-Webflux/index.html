@@ -211,7 +211,7 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Spring-webflux"><a href="#Spring-webflux" class="headerlink" title="Spring webflux"></a>Spring webflux</h1><h3 id="什么是webflux"><a href="#什么是webflux" class="headerlink" title="什么是webflux"></a>什么是webflux</h3><p>Spring Webflux 是 Spring5中添加的新模块，用于web开发，功能和SpringMVC相似，Webflux 使用的是响应式编程方式。</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Spring-webflux"><a href="#Spring-webflux" class="headerlink" title="Spring webflux"></a>Spring webflux</h1><h3 id="什么是webflux"><a href="#什么是webflux" class="headerlink" title="什么是webflux"></a>什么是webflux</h3><p>Spring Webflux 是 Spring5 中添加的新模块，用于web开发，功能和 SpringMVC 相似，Webflux 使用的是响应式编程方式。</p>
 <p><strong>Webflux 的特点：</strong></p>
 <ul>
 <li>异步非阻塞：Webflux是一个异步非阻塞的Web框架，它能够充分利用多核CPU的硬件资源去处理大量的并发请求。</li>
@@ -224,9 +224,10 @@
 <li>两个框架都可以使用注解方式，都可以运行在 Tomet 等容器中</li>
 <li>SpringMVC 采用命令式编程，Webflux 采用异步响应式编程</li>
 </ul>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208311509411.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208311509411.png?x-oss-process=style/ezio"></a></p>
 <h3 id="Webflux-应用场景"><a href="#Webflux-应用场景" class="headerlink" title="Webflux 应用场景"></a>Webflux 应用场景</h3><ol>
-<li>特别适合在IO密集型的服务中，比如微服务网关。IO 密集型包括：磁盘IO密集型, 网络IO密集型，<strong>微服务网关就属于网络 IO 密集型，使用异步非阻塞式编程模型，能够显著地提升网关对下游服务转发的吞吐量，在微服务架构中，SpringMVC和SpringWebflux可以混合使用。</strong></li>
-<li><strong>WebFlux不是 Spring MVC的替代方案。</strong>虽然 WebFlux 也可以被运行在 Servlet 容器上（需是 Servlet 3.1+ 以上的容器），但是 WebFlux 主要还是应用在异步非阻塞编程模型，而 Spring MVC 是同步阻塞的，如果你目前在 Spring MVC 框架中大量使用非同步方案，那么，WebFlux 更适合的，否则，还是使用 Spring MVC 更合适。</li>
+<li>特别适合在IO密集型的服务中，比如微服务网关。IO 密集型包括：磁盘IO密集型, 网络IO密集型，<strong>微服务网关就属于网络 IO 密集型，使用异步非阻塞式编程模型，能够显著地提升网关对下游服务转发的吞吐量，在微服务架构中，SpringMVC 和 SpringWebflux可以混合使用。</strong></li>
+<li><strong>WebFlux 不是 Spring MVC 的替代方案。</strong>虽然 WebFlux 也可以被运行在 Servlet 容器上（需是 Servlet 3.1+ 以上的容器），但是 WebFlux 主要还是应用在异步非阻塞编程模型，而 Spring MVC 是同步阻塞的，如果你目前在 Spring MVC 框架中大量使用非同步方案，那么，WebFlux 更适合的，否则，还是使用 Spring MVC 更合适。</li>
 </ol>
 <h3 id="什么是响应式编程"><a href="#什么是响应式编程" class="headerlink" title="什么是响应式编程"></a>什么是响应式编程</h3><p><strong>响应式编程是一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。本质上是对数据流或某种变化所作出的反应，但是这个变化什么时候发生是未知的，所以他是一种基于异步、回调的方式在处理问题。</strong></p>
 <p>响应式编程基于Reactor（Reactor 是一个运行在 Java8 之上的响应式框架）的思想，当你做一个带有一定延迟的才能够返回的io操作时，不会阻塞，而是立刻返回一个流，并且订阅这个流，当这个流上产生了返回数据，可以立刻得到通知并调用回调函数处理数据。</p>
@@ -352,7 +353,7 @@
 <p>这两个操作符的作用是把当前流中的元素收集到集合中，并把集合对象作为流中的新元素。</p>
 <p>在进行收集时可以指定不同的条件：所包含的元素的最大数量或收集的时间间隔。方法buffer()仅使用一个条件，而bufferTimeout()可以同时指定两个条件。</p>
 <p>指定时间间隔时可以使用Duration对象或毫秒数，即使用bufferMillis()或bufferTimeoutMillis()两个方法。</p>
-<p>除了元素数量和时间间隔外，还可以通过bufferUntil和bufferWhile操作符来进行收集。这两个操作符的参数时表示每个集合中的元素索要满足的条件的Predicate对象。</p>
+<p>除了元素数量和时间间隔外，还可以通过 bufferUntil 和 bufferWhile 操作符来进行收集。这两个操作符的参数时表示每个集合中的元素索要满足的条件的Predicate对象。</p>
 <p>bufferUntil会一直收集直到Predicate返回true。</p>
 <p>使得Predicate返回true的那个元素可以选择添加到当前集合或下一个集合中；bufferWhile则只有当Predicate返回true时才会收集。一旦为false，会立即开始下一次收集。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">100</span>).buffer(<span class="number">20</span>).subscribe(System.out::println);</span><br><span class="line">Flux.intervalMillis(<span class="number">100</span>).bufferMillis(<span class="number">1001</span>).take(<span class="number">2</span>).toStream().forEach(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">10</span>).bufferUntil(i -&gt; i%<span class="number">2</span> == <span class="number">0</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">10</span>).bufferWhile(i -&gt; i%<span class="number">2</span> == <span class="number">0</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
@@ -363,7 +364,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">10</span>).filter(i -&gt; i%<span class="number">2</span> == <span class="number">0</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><strong>zipWith()</strong> zipWith操作符把当前流中的元素与另一个流中的元素按照一对一的方式进行合并。在合并时可以不做任何处理，由此得到的是一个元素类型为Tuple2的流；也可以通过一个BiFunction函数对合并的元素进行处理，所得到的流的元素类型为该函数的返回值。</li>
+<li><strong>zipWith()</strong> 把当前流中的元素与另一个流中的元素按照一对一的方式进行合并。在合并时可以不做任何处理，由此得到的是一个元素类型为Tuple2的流；也可以通过一个BiFunction函数对合并的元素进行处理，所得到的流的元素类型为该函数的返回值。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Flux.just(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>).zipWith(Flux.just(<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>)).subscribe(System.out::println);</span><br><span class="line">Flux.just(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>).zipWith(Flux.just(<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>), (s1, s2) -&gt; String.format(<span class="string">&quot;%s-%s&quot;</span>, s1, s2)).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
 
@@ -379,9 +380,35 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).take(<span class="number">10</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).takeLast(<span class="number">10</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).takeWhile(i -&gt; i &lt; <span class="number">10</span>).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">1000</span>).takeUntil(i -&gt; i == <span class="number">10</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><strong>reduce()</strong> 和 <strong>reduceWith()</strong></li>
+</ul>
+<p>reduce 和 reduceWith 操作符对流中包含的所有元素进行累积操作，得到一个包含计算结果的 Mono 序列。累积操作是通过一个 BiFunction 来表示的。在操作时可以指定一个初始值。如果没有初始值，则序列的第一个元素作为初始值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Flux.range(<span class="number">1</span>, <span class="number">100</span>).reduce((x, y) -&gt; x + y).subscribe(System.out::println);</span><br><span class="line">Flux.range(<span class="number">1</span>, <span class="number">100</span>).reduceWith(() -&gt; <span class="number">100</span>, (x, y) -&gt; x + y).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><strong>merge()</strong> 和 <strong>mergeSequential()</strong></li>
+</ul>
+<p>merge 和 mergeSequential 操作符用来把多个流合并成一个 Flux 序列。不同之处在于 merge 按照所有流中元素的实际产生顺序来合并，而 mergeSequential 则按照所有流被订阅的顺序，以流为单位进行合并。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Flux.merge(Flux.intervalMillis(<span class="number">0</span>, <span class="number">100</span>).take(<span class="number">5</span>), Flux.intervalMillis(<span class="number">50</span>, <span class="number">100</span>).take(<span class="number">5</span>)).toStream().forEach(System.out::println);</span><br><span class="line">Flux.mergeSequential(Flux.intervalMillis(<span class="number">0</span>, <span class="number">100</span>).take(<span class="number">5</span>), Flux.intervalMillis(<span class="number">50</span>, <span class="number">100</span>).take(<span class="number">5</span>)).toStream().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><strong>flatMap()</strong> 和 <strong>flatMapSequential()</strong></li>
+</ul>
+<p>flatMap 和 flatMapSequential 操作符把流中的每个元素转换成一个流，再把所有流中的元素进行合并。一个按照实际产生顺序，一个按照被订阅的顺序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flux.just(<span class="number">5</span>, <span class="number">10</span>)</span><br><span class="line">  .flatMap(x -&gt; Flux.interval(Duration.of(x * <span class="number">2</span>, ChronoUnit.SECONDS)).take(x))</span><br><span class="line">  .toStream()</span><br><span class="line">  .forEach(System.out::println);</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><strong>concatMap()</strong></li>
+</ul>
+<p>concatMap 操作符的作用也是把流中的每个元素转换成一个流，再把所有流进行合并。与 flatMap 不同的是，concatMap 会根据原始流中的元素顺序依次把转换之后的流进行合并；与 flatMapSequential 不同的是，concatMap 对转换之后的流的订阅是动态进行的，而 flatMapSequential 在合并之前就已经订阅了所有的流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flux.just(<span class="number">5</span>, <span class="number">10</span>)</span><br><span class="line">  .concatMap(x -&gt; Flux.interval(Duration.of(x * <span class="number">2</span>, ChronoUnit.SECONDS)).take(x))</span><br><span class="line">  .toStream()</span><br><span class="line">  .forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>combineLatest()</strong></li>
+</ul>
+<p>combineLatest 操作符把所有流中的最新产生的元素合并成一个新的元素，作为返回结果流中的元素。只要其中任何一个流中产生了新的元素，合并操作就会被执行一次，结果流中就会产生新的元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Flux.combineLatest(</span><br><span class="line">  Arrays::toString,</span><br><span class="line">  Flux.interval(Duration.ofMillis(<span class="number">1000</span>)).take(<span class="number">5</span>),</span><br><span class="line">  Flux.interval(Duration.ofSeconds(<span class="number">3</span>)).take(<span class="number">5</span>))</span><br><span class="line">  .toStream()</span><br><span class="line">  .forEach(System.out::println);</span><br></pre></td></tr></table></figure>
 
 
 
