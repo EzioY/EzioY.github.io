@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>事务的四大特性 | Ezio&#39;s blog</title>
+<title>事务的隔离级别 | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">事务的四大特性</h1>
+            <h1 class="post-title">事务的隔离级别</h1>
             
                 <div class="post-meta">
                     
@@ -195,7 +195,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 15, 2021&nbsp;&nbsp;0:26:20</a>
+                        Date: <a href="#">April 15, 2021&nbsp;&nbsp;9:35:15</a>
                         </span>
                     
                     
@@ -211,23 +211,24 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h1><p>事务的四大特性简称：<strong>ACID</strong>，具体如下：</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h1><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
+<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
 <ul>
-<li><p><strong>原子性（Atomicity）</strong></p>
-<p>事务的原子性是指事务必须是一个原子的操作序列单元。事务中包含的各项操作在一次执行过程中，只允许出现两种状态之一，要么都成功，要么都失败</p>
+<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
 </li>
-<li><p><strong>一致性（Consistency）</strong></p>
-<p>事务的一致性是指事务的执行不能破坏数据库数据的完整性和一致性，一个事务在执行之前和执行之后，数据库都必须处以一致性状态。</p>
-<p>比如：如果从A账户转账到B账户，不可能因为A账户扣了钱，而B账户没有加钱</p>
+<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
 </li>
-<li><p><strong>隔离性（Isolation）</strong></p>
-<p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
-<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的</p>
+<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
 </li>
-<li><p><strong>持久性（Duration）</strong></p>
-<p>事务的持久性是指事务一旦提交后，数据库中的数据必须被永久的保存下来。即使服务器系统崩溃或服务器宕机等故障。只要数据库重新启动，那么一定能够将其恢复到事务成功结束后的状态</p>
+<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
 </li>
 </ul>
+<p>可能导致的问题有</p>
+<ol>
+<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
+<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
+<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
+</ol>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -247,7 +248,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2021/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/">http://ezioy.cn/2021/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/</a></span>
+                        <span><a href="http://ezioy.cn/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">http://ezioy.cn/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</a></span>
                     </p>
                 
                 
@@ -284,10 +285,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">事务的隔离级别</a>
+                <a class="prev" rel="prev" href="/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/">Java8-Predicate函数</a>
             
             
-            <a class="next" rel="next" href="/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/">理解计算机系统中的局部性原理</a>
+            <a class="next" rel="next" href="/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/">事务的四大特性</a>
             
         </section>
 
