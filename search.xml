@@ -30,94 +30,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Docker</title>
-    <url>/2022/07/20/Docker/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows操作系统的机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
-<hr>
-<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p>以Linux系统为例，Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。</p>
-<h5 id="1-首先安装yum工具"><a href="#1-首先安装yum工具" class="headerlink" title="1.首先安装yum工具"></a>1.首先安装yum工具</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2 --skip-broken</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-更新本地镜像源，换为阿里镜像。"><a href="#2-更新本地镜像源，换为阿里镜像。" class="headerlink" title="2.更新本地镜像源，换为阿里镜像。"></a>2.更新本地镜像源，换为阿里镜像。</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置docker镜像源</span></span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">    </span><br><span class="line">sed -i &#x27;s/download.docker.com/mirrors.aliyun.com\/docker-ce/g&#x27; /etc/yum.repos.d/docker-ce.repo</span><br><span class="line"></span><br><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-安装docker"><a href="#3-安装docker" class="headerlink" title="3.安装docker"></a>3.安装docker</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-启动docker"><a href="#4-启动docker" class="headerlink" title="4.启动docker"></a>4.启动docker</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start docker  # 启动docker服务</span><br><span class="line"></span><br><span class="line">systemctl stop docker  # 停止docker服务</span><br><span class="line"></span><br><span class="line">systemctl restart docker  # 重启docker服务</span><br><span class="line"></span><br><span class="line">systemctl status docker  # 查看docker服务状态</span><br></pre></td></tr></table></figure>
-
-<p>然后输入命令，可以查看docker版本：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
-
-<p>PS：注意docker使用到的端口需要设置防火墙放开。</p>
-<h5 id="5-配置镜像加速"><a href="#5-配置镜像加速" class="headerlink" title="5.配置镜像加速"></a>5.配置镜像加速</h5><p>参考：<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云镜像加速文档</a></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://al8twsu9.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h3><h4 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h4><p>拉取镜像可以通过查看<a href="https://hub.docker.com/">DockerHub</a>获取想要的镜像</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull repository:tag  # 拉取一个镜像</span><br><span class="line">docker images  # 查看镜像</span><br><span class="line">docker save -o [文件名，如nginx.tar] repository:tag  # 导出镜像到压缩包</span><br><span class="line">docker rmi repository:tag  # 删除一个镜像</span><br><span class="line">docker load -i [文件，如nginx.tar]  # 加载一个镜像</span><br><span class="line">docker push repository:tag  # 上传本地镜像到镜像仓库中</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h4><p>容器有三种状态：运行，暂停，停止</p>
-<p>容器运行命令可以去<a href="https://hub.docker.com/">DockerHub</a>查看对应镜像帮助文档。</p>
-<ul>
-<li>创建运行容器</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name containerName \</span><br><span class="line">-p 80:80 \</span><br><span class="line">-v [数据卷名称]:容器文件路径 \</span><br><span class="line">-d repository:tag # 运行一个容器</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--name:给容器取名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-p:将宿主机端口与容器端口进行映射，冒号左侧为宿主机端口，右侧为容器端口</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-d:后台运行容器 daemon守护进程</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v:数据卷挂载</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">repository:tag 镜像名</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看容器运行状态</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker ps -a  # 查看所有容器</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-a:查看所有的容器，默认展示运行中的容器</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看容器日志</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker logs -f containerName  # 查看容器运行的日志</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f:类似<span class="built_in">tail</span> -f，持续打印日志</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">containerName:容器名</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>进入容器并执行命令</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it containerName bash # 进入容器执行命令</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-it:给当前进入的容器创建一个标准输入、输出终端，允许与容器交互</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">containerName:容器名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash:进入容器后执行的命令，bash是linux终端交互命令</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>停止容器运行</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker stop containerName  # 停止容器运行</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>开始运行容器</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker start containerName  # 开始运行容器</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>删除容器</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker rm -f containerName  # 删除容器</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f:强制删除运行中的容器</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>暂停&#x2F;继续容器运行</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pause containerName  # 暂停容器运行</span><br><span class="line">docker unpause containerName  # 继续运行容器</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="数据卷-volume"><a href="#数据卷-volume" class="headerlink" title="数据卷(volume)"></a>数据卷(volume)</h4><p>数据卷是一个虚拟目录，指向宿主机文件系统中的某个目录。</p>
-<p>数据卷操作的基本语法：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker volume [command]</span><br></pre></td></tr></table></figure>
-
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker volume create name  # 创建一个数据卷</span><br><span class="line">docker volume ls  # 列出所有数据卷</span><br><span class="line">docker volume inspect name # 查看数据卷详细信息</span><br><span class="line">docker volume prune  # 删除本地未使用的数据卷</span><br><span class="line">docker volume rm name # 删除指定数据卷</span><br></pre></td></tr></table></figure>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AJAX异步请求</title>
     <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -486,6 +398,104 @@
       </tags>
   </entry>
   <entry>
+    <title>Java Serializable接口</title>
+    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
+<p>​	在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
+<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​	 web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
+<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​	<strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
+<p>​	Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
+<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
+<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
+<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
+<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
+<p>​	其实很早就知道的，在Java中常见的几个类，如：Interger&#x2F;String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
+<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​	序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
+<p>​	如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8-LocalDateTime</title>
+    <url>/2021/04/13/Java8-LocalDateTime/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Java8-LocalDateTime"><a href="#Java8-LocalDateTime" class="headerlink" title="Java8-LocalDateTime"></a>Java8-LocalDateTime</h1><p>在 <em>Java8</em> 中引入了新的日期类 <strong>LocalDateTime</strong> ，其主要原因是 <code>Java.util.Date</code> 和 <code>SimpleDateFormatter</code> 都不是线程安全的，而<code>LocalDate</code>和<code>LocalTime</code>和最基本的<code>String</code>一样，是 final 类型，不但线程安全，且不能修改。日期和时间被明确划分为 <code>LocalDate</code> 和 <code>LocalTime</code> ，<code>LocalDate</code> 无法包含时间，<code>LocalTime</code> 无法包含日期，<code>LocalDateTime</code> 才能同时包含日期和时间。</p>
+<hr>
+<h4 id="LocalTime-只含时分秒的时间对象"><a href="#LocalTime-只含时分秒的时间对象" class="headerlink" title="LocalTime 只含时分秒的时间对象"></a>LocalTime 只含时分秒的时间对象</h4><ul>
+<li>获取当前时间 now()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前时间 14:40:29.899</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">now</span> <span class="operator">=</span> LocalTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间 = &quot;</span> + now);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取指定时间 of()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定时间 12:30:45</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">of</span> <span class="operator">=</span> LocalTime.of(<span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定时间 = &quot;</span> + of);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="LocalDate-只含年月日的日期对象"><a href="#LocalDate-只含年月日的日期对象" class="headerlink" title="LocalDate 只含年月日的日期对象"></a>LocalDate 只含年月日的日期对象</h4><ul>
+<li>获取当前日期 now()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期 2022-04-11</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDateNow</span> <span class="operator">=</span> LocalDate.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期 = &quot;</span> + localDateNow);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取指定日期 of()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期 2021-11-12</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDate</span> <span class="operator">=</span> LocalDate.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期 = &quot;</span> + localDate);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="LocalDateTime-同时含有年月日时分秒的日期对象"><a href="#LocalDateTime-同时含有年月日时分秒的日期对象" class="headerlink" title="LocalDateTime 同时含有年月日时分秒的日期对象"></a>LocalDateTime 同时含有年月日时分秒的日期对象</h4><ul>
+<li>获取当前时间 now()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期时间 2022-04-11T14:40:29.900</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">now1</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期时间 = &quot;</span> + now1);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取指定时间 of()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期时间 2021-11-12T12:30:45</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">of1</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期时间 = &quot;</span> + of1);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>时间格式化 DateTimeFormatter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//时间日期格式化 2022-04-11 14:40:29</span></span><br><span class="line"><span class="type">String</span> <span class="variable">format1</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line"><span class="type">String</span> <span class="variable">format2</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ISO_DATE);  </span><br><span class="line"><span class="type">String</span> <span class="variable">format3</span> <span class="operator">=</span> now1.format(DateTimeFormatter.BASIC_ISO_DATE);  </span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format1); <span class="comment">//2022-04-11 14:40:29  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format2); <span class="comment">//2022-04-11  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format3); <span class="comment">//20220411</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取具体的时间</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间: &quot;</span> + localDateTime);  </span><br><span class="line">System.out.println(<span class="string">&quot;年: &quot;</span> + localDateTime.getYear());  </span><br><span class="line">System.out.println(<span class="string">&quot;月: &quot;</span> + localDateTime.getMonth().getValue());  </span><br><span class="line">System.out.println(<span class="string">&quot;日: &quot;</span> + localDateTime.getDayOfMonth());  </span><br><span class="line">System.out.println(<span class="string">&quot;时: &quot;</span> + localDateTime.getHour());  </span><br><span class="line">System.out.println(<span class="string">&quot;分: &quot;</span> + localDateTime.getMinute());  </span><br><span class="line">System.out.println(<span class="string">&quot;秒: &quot;</span> + localDateTime.getSecond());  </span><br><span class="line">System.out.println(<span class="string">&quot;减少一年 = &quot;</span> + localDateTime.minusYears(<span class="number">1</span>)); <span class="comment">// 减少一年 2018-12-12 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;增加一年 = &quot;</span> + localDateTime.plusDays(<span class="number">1</span>)); <span class="comment">// 增加一天 2018-12-13 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;直接修改年份 = &quot;</span> + localDateTime.withYear(<span class="number">2020</span>)); <span class="comment">// 直接修改年份 2020-12-13 08:12:12</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>时间反解析 parse( )</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime1</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2022-04-11 14:53:00&quot;</span>, DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line">System.out.println(<span class="string">&quot;反解析 = &quot;</span> + localDateTime1);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Date To LocalDateTime</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> instant.atZone(zoneId).toLocalDateTime();</span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM 类加载过程</title>
     <url>/2019/12/30/JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -566,35 +576,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java Serializable接口</title>
-    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
-<p>​	在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
-<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​	 web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
-<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​	<strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
-<p>​	Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
-<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
-<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
-<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
-<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
-<p>​	其实很早就知道的，在Java中常见的几个类，如：Interger&#x2F;String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
-<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​	序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
-<p>​	如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java8-Predicate函数</title>
     <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -609,6 +590,94 @@
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker</title>
+    <url>/2022/07/20/Docker/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows操作系统的机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
+<hr>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p>以Linux系统为例，Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。</p>
+<h5 id="1-首先安装yum工具"><a href="#1-首先安装yum工具" class="headerlink" title="1.首先安装yum工具"></a>1.首先安装yum工具</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2 --skip-broken</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-更新本地镜像源，换为阿里镜像。"><a href="#2-更新本地镜像源，换为阿里镜像。" class="headerlink" title="2.更新本地镜像源，换为阿里镜像。"></a>2.更新本地镜像源，换为阿里镜像。</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置docker镜像源</span></span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">    </span><br><span class="line">sed -i &#x27;s/download.docker.com/mirrors.aliyun.com\/docker-ce/g&#x27; /etc/yum.repos.d/docker-ce.repo</span><br><span class="line"></span><br><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-安装docker"><a href="#3-安装docker" class="headerlink" title="3.安装docker"></a>3.安装docker</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-启动docker"><a href="#4-启动docker" class="headerlink" title="4.启动docker"></a>4.启动docker</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start docker  # 启动docker服务</span><br><span class="line"></span><br><span class="line">systemctl stop docker  # 停止docker服务</span><br><span class="line"></span><br><span class="line">systemctl restart docker  # 重启docker服务</span><br><span class="line"></span><br><span class="line">systemctl status docker  # 查看docker服务状态</span><br></pre></td></tr></table></figure>
+
+<p>然后输入命令，可以查看docker版本：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
+
+<p>PS：注意docker使用到的端口需要设置防火墙放开。</p>
+<h5 id="5-配置镜像加速"><a href="#5-配置镜像加速" class="headerlink" title="5.配置镜像加速"></a>5.配置镜像加速</h5><p>参考：<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云镜像加速文档</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://al8twsu9.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h3><h4 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h4><p>拉取镜像可以通过查看<a href="https://hub.docker.com/">DockerHub</a>获取想要的镜像</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull repository:tag  # 拉取一个镜像</span><br><span class="line">docker images  # 查看镜像</span><br><span class="line">docker save -o [文件名，如nginx.tar] repository:tag  # 导出镜像到压缩包</span><br><span class="line">docker rmi repository:tag  # 删除一个镜像</span><br><span class="line">docker load -i [文件，如nginx.tar]  # 加载一个镜像</span><br><span class="line">docker push repository:tag  # 上传本地镜像到镜像仓库中</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h4><p>容器有三种状态：运行，暂停，停止</p>
+<p>容器运行命令可以去<a href="https://hub.docker.com/">DockerHub</a>查看对应镜像帮助文档。</p>
+<ul>
+<li>创建运行容器</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name containerName \</span><br><span class="line">-p 80:80 \</span><br><span class="line">-v [数据卷名称]:容器文件路径 \</span><br><span class="line">-d repository:tag # 运行一个容器</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">--name:给容器取名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-p:将宿主机端口与容器端口进行映射，冒号左侧为宿主机端口，右侧为容器端口</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-d:后台运行容器 daemon守护进程</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v:数据卷挂载</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">repository:tag 镜像名</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看容器运行状态</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker ps -a  # 查看所有容器</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-a:查看所有的容器，默认展示运行中的容器</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看容器日志</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker logs -f containerName  # 查看容器运行的日志</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f:类似<span class="built_in">tail</span> -f，持续打印日志</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">containerName:容器名</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进入容器并执行命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it containerName bash # 进入容器执行命令</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-it:给当前进入的容器创建一个标准输入、输出终端，允许与容器交互</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">containerName:容器名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash:进入容器后执行的命令，bash是linux终端交互命令</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>停止容器运行</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker stop containerName  # 停止容器运行</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>开始运行容器</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker start containerName  # 开始运行容器</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除容器</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker rm -f containerName  # 删除容器</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f:强制删除运行中的容器</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>暂停&#x2F;继续容器运行</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pause containerName  # 暂停容器运行</span><br><span class="line">docker unpause containerName  # 继续运行容器</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="数据卷-volume"><a href="#数据卷-volume" class="headerlink" title="数据卷(volume)"></a>数据卷(volume)</h4><p>数据卷是一个虚拟目录，指向宿主机文件系统中的某个目录。</p>
+<p>数据卷操作的基本语法：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker volume [command]</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker volume create name  # 创建一个数据卷</span><br><span class="line">docker volume ls  # 列出所有数据卷</span><br><span class="line">docker volume inspect name # 查看数据卷详细信息</span><br><span class="line">docker volume prune  # 删除本地未使用的数据卷</span><br><span class="line">docker volume rm name # 删除指定数据卷</span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -737,6 +806,30 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux常用命令</title>
+    <url>/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h3 id="1-系统路径："><a href="#1-系统路径：" class="headerlink" title="1.系统路径："></a>1.系统路径：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/	表示根目录</span><br><span class="line">~	表示/root</span><br><span class="line">etc	存放系统配置目录</span><br><span class="line">home	除了root以外所有用户默认在home下新建一个以用户名作为文件夹名称的文件夹</span><br><span class="line">root	用户root单独文件夹</span><br><span class="line">usr	所有用户安装的软件都放入到这个文件夹中</span><br></pre></td></tr></table></figure>
+<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">mkdir</span> [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">ls</span>	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">touch</span>	创建空文件</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cat</span>	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">head</span> [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">tail</span> [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cp</span> [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">mv</span> 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">rm</span> 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java集合</title>
     <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -827,16 +920,14 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux常用命令</title>
-    <url>/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <title>Linux挂载</title>
+    <url>/2020/01/10/Linux%E6%8C%82%E8%BD%BD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h3 id="1-系统路径："><a href="#1-系统路径：" class="headerlink" title="1.系统路径："></a>1.系统路径：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/	表示根目录</span><br><span class="line">~	表示/root</span><br><span class="line">etc	存放系统配置目录</span><br><span class="line">home	除了root以外所有用户默认在home下新建一个以用户名作为文件夹名称的文件夹</span><br><span class="line">root	用户root单独文件夹</span><br><span class="line">usr	所有用户安装的软件都放入到这个文件夹中</span><br></pre></td></tr></table></figure>
-<h3 id="2-常用命令："><a href="#2-常用命令：" class="headerlink" title="2.常用命令："></a>2.常用命令：</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">pwd</span>	打印工作目录，即当前文件夹全路径</span><br><span class="line"></span><br><span class="line">$ su username 切换当前用户</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span>	进入到目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> ..	返回上一级目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">mkdir</span> [-p]	新建目录</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">ls</span>	平铺</span><br><span class="line"></span><br><span class="line">$ ll	详细列表</span><br><span class="line"></span><br><span class="line">$ vi和$ vim	编辑文件，如果文件不存在则创建文件。进入编辑器后，默认只读状态，点击<span class="string">&quot;i&quot;</span>或者<span class="string">&quot;insert&quot;</span>启用编辑状态，编辑完成后点击<span class="string">&quot;esc&quot;</span>退出编辑状态</span><br><span class="line">	:Wq	保存并退出</span><br><span class="line">	:q	不保存退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">touch</span>	创建空文件</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cat</span>	查看文件全部内容</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">head</span> [-n] 文件名	查看文件前n行，默认前10行</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">tail</span> [-n] 文件名	查看文件后n行，默认后10行</span><br><span class="line">	$ tailf	动态显示文件后n行，常用在显示tomcat日志文件功能</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;内容&#x27;</span> &gt;&gt; 文件名	向文件中添加一些内容</span><br><span class="line"></span><br><span class="line">$ ifconfig	打印网卡信息</span><br><span class="line"></span><br><span class="line">$ reboot	重启</span><br><span class="line"></span><br><span class="line">$ tar zxvf 文件名	解压文件</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cp</span> [-r](复制文件夹时需要-r参数) 原文件 新文件路径	复制文件</span><br><span class="line"></span><br><span class="line">ctrl+C	中断</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">mv</span> 原文件 新文件 剪切(具备重名名功能)</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">rm</span> 删除	加[-f]表示强制删除，不用问；加[-r]表示递归</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+<h1 id="Linux挂载"><a href="#Linux挂载" class="headerlink" title="Linux挂载"></a>Linux挂载</h1><p>Linux系统中“一切皆文件”，所有文件都放置在以根目录为树根的树形目录结构中。在 Linux 看来，任何硬件设备也都是文件，它们各有自己的一套文件系统（文件目录结构）。</p>
+<p>因此当在 Linux 系统中使用这些硬件设备时，只有将Linux本身的文件目录与硬件设备的文件目录进行同步，硬件设备才能为我们所用。目录同步的过程称为“挂载”。</p>
+<p><strong>挂载，指的就是将设备文件中的顶级目录连接到 Linux 根目录下的某一目录（最好是空目录），访问此目录就等同于访问设备文件。</strong>（如果不挂载，通过Linux系统中的图形界面系统可以查看找到硬件设备，但命令行方式无法找到。）</p>
+<p>并不是所有目录都可以用来作为挂载点，因为挂载操作会使原有目录里的文件被隐藏，因此根目录以及系统原目录一般都不作为挂载点，一般新建空目录来作为挂载点。</p>
+<p><a href="http://c.biancheng.net/view/2859.html" title="Linux挂载">源网址</a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -889,96 +980,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java8-LocalDateTime</title>
-    <url>/2021/04/13/Java8-LocalDateTime/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Java8-LocalDateTime"><a href="#Java8-LocalDateTime" class="headerlink" title="Java8-LocalDateTime"></a>Java8-LocalDateTime</h1><p>在 <em>Java8</em> 中引入了新的日期类 <strong>LocalDateTime</strong> ，其主要原因是 <code>Java.util.Date</code> 和 <code>SimpleDateFormatter</code> 都不是线程安全的，而<code>LocalDate</code>和<code>LocalTime</code>和最基本的<code>String</code>一样，是 final 类型，不但线程安全，且不能修改。日期和时间被明确划分为 <code>LocalDate</code> 和 <code>LocalTime</code> ，<code>LocalDate</code> 无法包含时间，<code>LocalTime</code> 无法包含日期，<code>LocalDateTime</code> 才能同时包含日期和时间。</p>
-<hr>
-<h4 id="LocalTime-只含时分秒的时间对象"><a href="#LocalTime-只含时分秒的时间对象" class="headerlink" title="LocalTime 只含时分秒的时间对象"></a>LocalTime 只含时分秒的时间对象</h4><ul>
-<li>获取当前时间 now()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前时间 14:40:29.899</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">now</span> <span class="operator">=</span> LocalTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间 = &quot;</span> + now);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取指定时间 of()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定时间 12:30:45</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">of</span> <span class="operator">=</span> LocalTime.of(<span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定时间 = &quot;</span> + of);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="LocalDate-只含年月日的日期对象"><a href="#LocalDate-只含年月日的日期对象" class="headerlink" title="LocalDate 只含年月日的日期对象"></a>LocalDate 只含年月日的日期对象</h4><ul>
-<li>获取当前日期 now()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期 2022-04-11</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDateNow</span> <span class="operator">=</span> LocalDate.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期 = &quot;</span> + localDateNow);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取指定日期 of()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期 2021-11-12</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDate</span> <span class="operator">=</span> LocalDate.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期 = &quot;</span> + localDate);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="LocalDateTime-同时含有年月日时分秒的日期对象"><a href="#LocalDateTime-同时含有年月日时分秒的日期对象" class="headerlink" title="LocalDateTime 同时含有年月日时分秒的日期对象"></a>LocalDateTime 同时含有年月日时分秒的日期对象</h4><ul>
-<li>获取当前时间 now()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期时间 2022-04-11T14:40:29.900</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">now1</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期时间 = &quot;</span> + now1);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取指定时间 of()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期时间 2021-11-12T12:30:45</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">of1</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期时间 = &quot;</span> + of1);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>时间格式化 DateTimeFormatter</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//时间日期格式化 2022-04-11 14:40:29</span></span><br><span class="line"><span class="type">String</span> <span class="variable">format1</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line"><span class="type">String</span> <span class="variable">format2</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ISO_DATE);  </span><br><span class="line"><span class="type">String</span> <span class="variable">format3</span> <span class="operator">=</span> now1.format(DateTimeFormatter.BASIC_ISO_DATE);  </span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format1); <span class="comment">//2022-04-11 14:40:29  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format2); <span class="comment">//2022-04-11  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format3); <span class="comment">//20220411</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取具体的时间</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间: &quot;</span> + localDateTime);  </span><br><span class="line">System.out.println(<span class="string">&quot;年: &quot;</span> + localDateTime.getYear());  </span><br><span class="line">System.out.println(<span class="string">&quot;月: &quot;</span> + localDateTime.getMonth().getValue());  </span><br><span class="line">System.out.println(<span class="string">&quot;日: &quot;</span> + localDateTime.getDayOfMonth());  </span><br><span class="line">System.out.println(<span class="string">&quot;时: &quot;</span> + localDateTime.getHour());  </span><br><span class="line">System.out.println(<span class="string">&quot;分: &quot;</span> + localDateTime.getMinute());  </span><br><span class="line">System.out.println(<span class="string">&quot;秒: &quot;</span> + localDateTime.getSecond());  </span><br><span class="line">System.out.println(<span class="string">&quot;减少一年 = &quot;</span> + localDateTime.minusYears(<span class="number">1</span>)); <span class="comment">// 减少一年 2018-12-12 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;增加一年 = &quot;</span> + localDateTime.plusDays(<span class="number">1</span>)); <span class="comment">// 增加一天 2018-12-13 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;直接修改年份 = &quot;</span> + localDateTime.withYear(<span class="number">2020</span>)); <span class="comment">// 直接修改年份 2020-12-13 08:12:12</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>时间反解析 parse( )</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime1</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2022-04-11 14:53:00&quot;</span>, DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line">System.out.println(<span class="string">&quot;反解析 = &quot;</span> + localDateTime1);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Date To LocalDateTime</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> instant.atZone(zoneId).toLocalDateTime();</span><br></pre></td></tr></table></figure>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
-
-<p>其效果如下展示：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux环境下安装Tomcat</title>
     <url>/2019/12/05/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85Tomcat/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -1016,28 +1017,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux挂载</title>
-    <url>/2020/01/10/Linux%E6%8C%82%E8%BD%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Linux挂载"><a href="#Linux挂载" class="headerlink" title="Linux挂载"></a>Linux挂载</h1><p>Linux系统中“一切皆文件”，所有文件都放置在以根目录为树根的树形目录结构中。在 Linux 看来，任何硬件设备也都是文件，它们各有自己的一套文件系统（文件目录结构）。</p>
-<p>因此当在 Linux 系统中使用这些硬件设备时，只有将Linux本身的文件目录与硬件设备的文件目录进行同步，硬件设备才能为我们所用。目录同步的过程称为“挂载”。</p>
-<p><strong>挂载，指的就是将设备文件中的顶级目录连接到 Linux 根目录下的某一目录（最好是空目录），访问此目录就等同于访问设备文件。</strong>（如果不挂载，通过Linux系统中的图形界面系统可以查看找到硬件设备，但命令行方式无法找到。）</p>
-<p>并不是所有目录都可以用来作为挂载点，因为挂载操作会使原有目录里的文件被隐藏，因此根目录以及系统原目录一般都不作为挂载点，一般新建空目录来作为挂载点。</p>
-<p><a href="http://c.biancheng.net/view/2859.html" title="Linux挂载">源网址</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 错误：$r: command not found</title>
     <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -1060,54 +1039,24 @@
       </tags>
   </entry>
   <entry>
-    <title>MyIsam和InnoDB的区别</title>
-    <url>/2022/08/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="MyIsam-和-InnoDB-的区别"><a href="#MyIsam-和-InnoDB-的区别" class="headerlink" title="MyIsam 和 InnoDB 的区别"></a>MyIsam 和 InnoDB 的区别</h1><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
-<li><strong>事务</strong></li>
-</ol>
-<p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
-<ol start="2">
-<li><strong>外键</strong></li>
-</ol>
-<p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
-<ol start="3">
-<li><p><strong>索引</strong></p>
-<p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
-</li>
-<li><p><strong>锁粒度方面</strong></p>
-</li>
-</ol>
-<p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
-<p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
-<p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
-<ol start="5">
-<li><strong>硬盘存储结构</strong></li>
-</ol>
-<p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
-<pre><code>    * Frm文件：表的定义文件
-    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
-    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
-    * .frm文件存储 表的定义。
-    * .MYD 数据文件（MYData）
-    * .MYI 索引文件 （MYIndex）
-</code></pre>
-<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
-<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
-<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
-<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
-<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
-<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+    <title>Markdown语法</title>
+    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
+
+<p>其效果如下展示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>MySQL</category>
+        <category>Markdown</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -1193,42 +1142,43 @@
       </tags>
   </entry>
   <entry>
-    <title>Quartz 定时任务</title>
-    <url>/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Quartz-定时任务"><a href="#Quartz-定时任务" class="headerlink" title="Quartz 定时任务"></a>Quartz 定时任务</h1><p>设计订单的业务场景常常用到了定时任务来完成，而java中我常用到的定时任务框架就是<em><strong>Quartz</strong></em>。<em>Quartz</em>是OpenSymphony开源组织在Job scheduling领域又一个开源项目，完全由Java开发，可以用来执行定时任务，类似于java.util.Timer。但是相较于Timer， <em>Quartz</em>增加了很多功能：</p>
-<ul>
-<li>持久性作业 - 就是保持调度定时的状态;</li>
-<li>作业管理 - 对调度作业进行有效的管理;</li>
-</ul>
-<p>Quartz由基本的三部分组成：</p>
-<ul>
-<li><strong>JobDetail</strong> 任务 （做什么）</li>
-<li><strong>Trigger</strong> 触发器 （什么时候做）</li>
-<li><strong>Scheduler</strong> 调度器 （定时任务容器，装载任务和触发器）</li>
-</ul>
-<hr>
-<h3 id="Quartz-Demo示例"><a href="#Quartz-Demo示例" class="headerlink" title="Quartz Demo示例"></a>Quartz Demo示例</h3><p>在使用Quartz框架前需先通过maven引入依赖的jar包：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
-
-<p>在导入依赖后创建一个任务，需实现 <strong>org.quartz.Job</strong> 接口并复写 <strong>execute</strong> 方法，在其方法中进行业务逻辑具体实现的编写。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.quartz.Job;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoJob</span> <span class="keyword">implements</span> <span class="title class_">Job</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span>  </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(JobExecutionContext jbContext)</span> <span class="keyword">throws</span> JobExecutionException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;任务执行成功&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在写好一个任务后，还需要创建 <strong>Scheduler</strong> 来调度执行任务。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoScheduler</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException, InterruptedException &#123;</span><br><span class="line">		<span class="comment">// 创建调度器Scheduler</span></span><br><span class="line">		<span class="type">Scheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">		<span class="comment">// 创建任务JobDetail</span></span><br><span class="line">		<span class="type">JobDetail</span> <span class="variable">jobdetail</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JobDetail</span>(<span class="string">&quot;job1&quot;</span>, <span class="string">&quot;group1&quot;</span>, DemoJob.class);</span><br><span class="line">		<span class="comment">// 创建触发器Trigger，指定任务执行策略</span></span><br><span class="line">		<span class="type">Trigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger().withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;triggerGroup1&quot;</span>)</span><br><span class="line">				.starNow() <span class="comment">//立即生效</span></span><br><span class="line">				.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">				.withIntervalInSeconds(<span class="number">1</span>) <span class="comment">//每隔1秒执行一次</span></span><br><span class="line">				.repeatForever()).build(); <span class="comment">//一直执行</span></span><br><span class="line">		<span class="comment">// 执行任务</span></span><br><span class="line">		scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line">		scheduler.star();</span><br><span class="line">		<span class="comment">// 睡眠</span></span><br><span class="line">		Lang.sleep(<span class="number">1000</span> * <span class="number">60</span>);</span><br><span class="line">		<span class="comment">// 关闭任务</span></span><br><span class="line">		scheduler.shutdown();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样一个简单的定时任务就创建好了。</p>
-<hr>
-<h3 id="关键类和接口"><a href="#关键类和接口" class="headerlink" title="关键类和接口"></a>关键类和接口</h3><ul>
-<li><p><strong>Job &amp; JobDetail</strong><br>Job 为作业的接口，为任务调度的对象；JobDetail绑定指定的Job，每次Scheduler调度执行一个Job的时候，首先会拿到对应的Job，然后创建该Job实例，再去执行Job中的execute()的内容，任务执行结束后，关联的Job对象实例会被释放，且会被JVM GC清除。</p>
-<p>  为什么设计成 Job + JobDetail，而不直接使用Job？<br>  JobDetail定义的是任务数据，而真正的执行逻辑是在Job中。<br>  任务是有可能并发执行，如果Scheduler直接使用Job，就会存在对同一个Job实例并发访问的问题。而JobDetail &amp; Job 方式，Sheduler每次执行，都会根据JobDetail接收一个 Job 实现类（JobDetail，描述 Job 的实现类及其他相关的静态信息，如 Job 名字、描述、关联监听器等信息），以便运行时通过 newInstance() 的反射机制实例化 Job。创建一个新的Job实例，这样就可以规避并发访问的问题。</p>
+    <title>MyIsam和InnoDB的区别</title>
+    <url>/2022/08/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="MyIsam-和-InnoDB-的区别"><a href="#MyIsam-和-InnoDB-的区别" class="headerlink" title="MyIsam 和 InnoDB 的区别"></a>MyIsam 和 InnoDB 的区别</h1><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
+<li><strong>事务</strong></li>
+</ol>
+<p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="2">
+<li><strong>外键</strong></li>
+</ol>
+<p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
+<ol start="3">
+<li><p><strong>索引</strong></p>
+<p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
 </li>
-<li><p><strong>JobExecutionContext</strong><br>JobExecutionContext中包含了Quartz运行时的环境以及Job本身的详细数据信息。<br>当Schedule调度执行一个Job的时候，就会将JobExecutionContext传递给该Job的execute()中，Job就可以通过JobExecutionContext对象获取信息。</p>
+<li><p><strong>锁粒度方面</strong></p>
 </li>
-<li><p><strong>Trigger</strong><br>Trigger：是一个类，描述触发 Job 执行的时间触发规则，<strong>一个 Trigger 只能对应一个作业实例，而一个作业实例可对应多个触发器</strong>；主要有 SimpleTrigger 和 CronTrigger 这两个子类。当且仅当需调度一次或者以固定时间间隔周期执行调度，SimpleTrigger 是最适合的选择；而 CronTrigger 则可以通过 Cron 表达式定义出各种复杂时间规则的调度方案。个人在日常开发中CronTrigger用的更多。</p>
-</li>
-<li><p><strong>Scheduler</strong><br>Scheduler 做为定时任务容器，是 Quartz 最上层的东西，它提携了所有触发器和作业，使它们协调工作，每个 Scheduler 都存有 JobDetail 和 Trigger 的注册，一个 Scheduler 中可以注册多个 JobDetail 和多个 Trigger。</p>
-</li>
-</ul>
+</ol>
+<p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
+<p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
+<p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="5">
+<li><strong>硬盘存储结构</strong></li>
+</ol>
+<p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
+<pre><code>    * Frm文件：表的定义文件
+    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
+    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
+    * .frm文件存储 表的定义。
+    * .MYD 数据文件（MYData）
+    * .MYI 索引文件 （MYIndex）
+</code></pre>
+<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
+<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
+<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
+<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
+<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
+<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1236,10 +1186,131 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>Quartz</category>
+        <category>MySQL</category>
       </categories>
       <tags>
-        <tag>Quartz</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL数据库索引原理及类型</title>
+    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
+<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
+<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
+<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>4.删除索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
+<p>1.创建唯一索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+
+<p>2.修改表结构</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
+
+<p>3.创建表时直接指定</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
+<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824&#x2F;article&#x2F;details&#x2F;82261988</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nacos</title>
+    <url>/2022/05/21/Nacos/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><h3 id="使用-nacos-作为注册中心："><a href="#使用-nacos-作为注册中心：" class="headerlink" title="使用 nacos 作为注册中心："></a>使用 nacos 作为注册中心：</h3><p>1.在父项目的maven配置文件中加入alibaba依赖：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos的管理依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.在客户端服务的maven配置文件中加入client依赖：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos客户端依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 升级nacos2.x后cloud-alibaba包需要排除nacos-client --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 通过指定nacos-client方式，提前使用Nacos2.0长连接功能 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.客户端配置文件application.yml配置服务地址和名称</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos服务地址</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="nacos-服务器多级存储模型-集群配置"><a href="#nacos-服务器多级存储模型-集群配置" class="headerlink" title="nacos 服务器多级存储模型-集群配置"></a>nacos 服务器多级存储模型-集群配置</h3><p>在客户端的配置文件中配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">CQ</span> <span class="comment"># 集群名称</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="nacos的负载均衡"><a href="#nacos的负载均衡" class="headerlink" title="nacos的负载均衡"></a>nacos的负载均衡</h3><p>在服务的调用者也就是消费方的配置文件中配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">userservice:</span></span><br><span class="line">  <span class="attr">ribbon:</span></span><br><span class="line">    <span class="attr">NFLoadBalancerRuleClassName:</span> <span class="string">com.alibaba.cloud.nacos.ribbon.NacosRule</span>  <span class="comment"># 负载均衡规则</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="nacos服务器权重配置"><a href="#nacos服务器权重配置" class="headerlink" title="nacos服务器权重配置"></a>nacos服务器权重配置</h3><p>可以在nacos的控制台，实例列表中进行编辑，修改权重配置。配置权重为0时则不被访问。</p>
+<hr>
+<h3 id="nacos-环境隔离"><a href="#nacos-环境隔离" class="headerlink" title="nacos 环境隔离"></a>nacos 环境隔离</h3><p>1.首先在nacos控制台的命名空间中新建一个命名空间，用来隔离环境。可以手动或自动生成命名空间的ID。</p>
+<p>2.然后在客户端的配置中添加配置，设置命名空间。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">CQ</span> <span class="comment"># 集群名称</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">4d6ce343-9e1b-44df-a90f-2cf2b6b3d177</span> <span class="comment"># dev环境的ID</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>namespace用来做环境隔离</li>
+<li>每个namespace都有一个唯一ID</li>
+<li>不同namespace的服务不可见。</li>
+</ul>
+<hr>
+<h3 id="nacos-实现配置中心"><a href="#nacos-实现配置中心" class="headerlink" title="nacos 实现配置中心"></a>nacos 实现配置中心</h3><p>1.在nacos控制台中添加对应环境的配置文件。配置文件的DataId命名格式为：${prefix}-${spring.profile.active}.${file-extension}，如userservice-dev.yaml</p>
+<p>2.引入nacos配置中心依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos的配置管理依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.在服务的resource目录下创建bootstrap.yml文件，该文件为引导文件，优先级高于application.yml</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031432970.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031432970.png?x-oss-process=style/ezio"></a></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">CQ</span> <span class="comment"># 集群名称</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">4d6ce343-9e1b-44df-a90f-2cf2b6b3d177</span> <span class="comment"># dev环境的ID</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 配置文件后缀</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="服务端获取配置并实现热更新"><a href="#服务端获取配置并实现热更新" class="headerlink" title="服务端获取配置并实现热更新"></a>服务端获取配置并实现热更新</h3><p>1.可通过@Value({配置名})注解获取配置，并在该变量所在的类上添加@RefreshScope注解，实现配置热更新</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="meta">@RefreshScope</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;pattern.dateformat&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br></pre></td></tr></table></figure>
+
+<p>2.可通过@ConfigurationProperties实现配置获取和热更新。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;pattern&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PatternProperties</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br><span class="line">    <span class="keyword">private</span> String envSharedValue;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h3><p>1.在nacos控制台中添加配置文件。名称为${prefix}.${file-extension}去掉环境。如userservice.yaml</p>
+<p>2.配置文件优先级：</p>
+<p>​	服务名-profile.yaml &gt; 服务名.yaml &gt; 本地配置</p>
+<hr>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Spring-cloud</category>
+      </categories>
+      <tags>
+        <tag>Nacos</tag>
       </tags>
   </entry>
   <entry>
@@ -1320,85 +1391,42 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis基本操作</title>
-    <url>/2020/07/10/Redis%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Redis-keys-命令"><a href="#Redis-keys-命令" class="headerlink" title="Redis keys 命令"></a>Redis keys 命令</h1><table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><strong>DEL key</strong></td>
-<td align="left">key存在时删除该key</td>
-</tr>
-<tr>
-<td align="center"><strong>DUMP Key</strong></td>
-<td align="left">序列化该key，并返回被序列化的值</td>
-</tr>
-<tr>
-<td align="center"><strong>EXISTS key</strong></td>
-<td align="left">检查给定的key是否存在</td>
-</tr>
-<tr>
-<td align="center"><strong>EXPIRE key seconds</strong></td>
-<td align="left">给该key设置过期时间，单位秒</td>
-</tr>
-<tr>
-<td align="center"><strong>EXPIREAT key timestamp</strong></td>
-<td align="left">EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)</td>
-</tr>
-<tr>
-<td align="center"><strong>PEXPIRE key milliseconds</strong></td>
-<td align="left">设置 key 的过期时间以毫秒计</td>
-</tr>
-<tr>
-<td align="center"><strong>PEXPIREAT key milliseconds-timestamp</strong></td>
-<td align="left">设置 key 过期时间的时间戳(unix timestamp) 以毫秒计</td>
-</tr>
-<tr>
-<td align="center"><strong>KEYS pattern</strong></td>
-<td align="left">查找所有符合给定模式( pattern)的 key</td>
-</tr>
-<tr>
-<td align="center"><strong>MOVE key db</strong></td>
-<td align="left">将当前数据库的 key 移动到给定的数据库 db 当中</td>
-</tr>
-<tr>
-<td align="center"><strong>PERSIST key</strong></td>
-<td align="left">移除 key 的过期时间，key 将持久保持</td>
-</tr>
-<tr>
-<td align="center"><strong>PTTL key</strong></td>
-<td align="left">以毫秒为单位返回 key 的剩余的过期时间</td>
-</tr>
-<tr>
-<td align="center"><strong>TTL key</strong></td>
-<td align="left">以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)</td>
-</tr>
-<tr>
-<td align="center"><strong>RANDOMKEY</strong></td>
-<td align="left">从当前数据库中随机返回一个 key</td>
-</tr>
-<tr>
-<td align="center"><strong>RENAME key newkey</strong></td>
-<td align="left">修改 key 的名称</td>
-</tr>
-<tr>
-<td align="center"><strong>RENAMENX key newkey</strong></td>
-<td align="left">仅当 newkey 不存在时，将 key 改名为 newkey</td>
-</tr>
-<tr>
-<td align="center"><strong>SCAN cursor [MATCH pattern] [COUNT count]</strong></td>
-<td align="left">迭代数据库中的数据库键</td>
-</tr>
-<tr>
-<td align="center"><strong>TYPE key</strong></td>
-<td align="left">返回 key 所储存的值的类型</td>
-</tr>
-</tbody></table>
+    <title>Quartz 定时任务</title>
+    <url>/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Quartz-定时任务"><a href="#Quartz-定时任务" class="headerlink" title="Quartz 定时任务"></a>Quartz 定时任务</h1><p>设计订单的业务场景常常用到了定时任务来完成，而java中我常用到的定时任务框架就是<em><strong>Quartz</strong></em>。<em>Quartz</em>是OpenSymphony开源组织在Job scheduling领域又一个开源项目，完全由Java开发，可以用来执行定时任务，类似于java.util.Timer。但是相较于Timer， <em>Quartz</em>增加了很多功能：</p>
+<ul>
+<li>持久性作业 - 就是保持调度定时的状态;</li>
+<li>作业管理 - 对调度作业进行有效的管理;</li>
+</ul>
+<p>Quartz由基本的三部分组成：</p>
+<ul>
+<li><strong>JobDetail</strong> 任务 （做什么）</li>
+<li><strong>Trigger</strong> 触发器 （什么时候做）</li>
+<li><strong>Scheduler</strong> 调度器 （定时任务容器，装载任务和触发器）</li>
+</ul>
+<hr>
+<h3 id="Quartz-Demo示例"><a href="#Quartz-Demo示例" class="headerlink" title="Quartz Demo示例"></a>Quartz Demo示例</h3><p>在使用Quartz框架前需先通过maven引入依赖的jar包：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>在导入依赖后创建一个任务，需实现 <strong>org.quartz.Job</strong> 接口并复写 <strong>execute</strong> 方法，在其方法中进行业务逻辑具体实现的编写。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.quartz.Job;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoJob</span> <span class="keyword">implements</span> <span class="title class_">Job</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span>  </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(JobExecutionContext jbContext)</span> <span class="keyword">throws</span> JobExecutionException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;任务执行成功&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在写好一个任务后，还需要创建 <strong>Scheduler</strong> 来调度执行任务。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoScheduler</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException, InterruptedException &#123;</span><br><span class="line">		<span class="comment">// 创建调度器Scheduler</span></span><br><span class="line">		<span class="type">Scheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">		<span class="comment">// 创建任务JobDetail</span></span><br><span class="line">		<span class="type">JobDetail</span> <span class="variable">jobdetail</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JobDetail</span>(<span class="string">&quot;job1&quot;</span>, <span class="string">&quot;group1&quot;</span>, DemoJob.class);</span><br><span class="line">		<span class="comment">// 创建触发器Trigger，指定任务执行策略</span></span><br><span class="line">		<span class="type">Trigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger().withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;triggerGroup1&quot;</span>)</span><br><span class="line">				.starNow() <span class="comment">//立即生效</span></span><br><span class="line">				.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">				.withIntervalInSeconds(<span class="number">1</span>) <span class="comment">//每隔1秒执行一次</span></span><br><span class="line">				.repeatForever()).build(); <span class="comment">//一直执行</span></span><br><span class="line">		<span class="comment">// 执行任务</span></span><br><span class="line">		scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line">		scheduler.star();</span><br><span class="line">		<span class="comment">// 睡眠</span></span><br><span class="line">		Lang.sleep(<span class="number">1000</span> * <span class="number">60</span>);</span><br><span class="line">		<span class="comment">// 关闭任务</span></span><br><span class="line">		scheduler.shutdown();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样一个简单的定时任务就创建好了。</p>
+<hr>
+<h3 id="关键类和接口"><a href="#关键类和接口" class="headerlink" title="关键类和接口"></a>关键类和接口</h3><ul>
+<li><p><strong>Job &amp; JobDetail</strong><br>Job 为作业的接口，为任务调度的对象；JobDetail绑定指定的Job，每次Scheduler调度执行一个Job的时候，首先会拿到对应的Job，然后创建该Job实例，再去执行Job中的execute()的内容，任务执行结束后，关联的Job对象实例会被释放，且会被JVM GC清除。</p>
+<p>  为什么设计成 Job + JobDetail，而不直接使用Job？<br>  JobDetail定义的是任务数据，而真正的执行逻辑是在Job中。<br>  任务是有可能并发执行，如果Scheduler直接使用Job，就会存在对同一个Job实例并发访问的问题。而JobDetail &amp; Job 方式，Sheduler每次执行，都会根据JobDetail接收一个 Job 实现类（JobDetail，描述 Job 的实现类及其他相关的静态信息，如 Job 名字、描述、关联监听器等信息），以便运行时通过 newInstance() 的反射机制实例化 Job。创建一个新的Job实例，这样就可以规避并发访问的问题。</p>
+</li>
+<li><p><strong>JobExecutionContext</strong><br>JobExecutionContext中包含了Quartz运行时的环境以及Job本身的详细数据信息。<br>当Schedule调度执行一个Job的时候，就会将JobExecutionContext传递给该Job的execute()中，Job就可以通过JobExecutionContext对象获取信息。</p>
+</li>
+<li><p><strong>Trigger</strong><br>Trigger：是一个类，描述触发 Job 执行的时间触发规则，<strong>一个 Trigger 只能对应一个作业实例，而一个作业实例可对应多个触发器</strong>；主要有 SimpleTrigger 和 CronTrigger 这两个子类。当且仅当需调度一次或者以固定时间间隔周期执行调度，SimpleTrigger 是最适合的选择；而 CronTrigger 则可以通过 Cron 表达式定义出各种复杂时间规则的调度方案。个人在日常开发中CronTrigger用的更多。</p>
+</li>
+<li><p><strong>Scheduler</strong><br>Scheduler 做为定时任务容器，是 Quartz 最上层的东西，它提携了所有触发器和作业，使它们协调工作，每个 Scheduler 都存有 JobDetail 和 Trigger 的注册，一个 Scheduler 中可以注册多个 JobDetail 和多个 Trigger。</p>
+</li>
+</ul>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1406,141 +1434,10 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>Redis</category>
+        <category>Quartz</category>
       </categories>
       <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nacos</title>
-    <url>/2022/05/21/Nacos/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><h3 id="使用-nacos-作为注册中心："><a href="#使用-nacos-作为注册中心：" class="headerlink" title="使用 nacos 作为注册中心："></a>使用 nacos 作为注册中心：</h3><p>1.在父项目的maven配置文件中加入alibaba依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos的管理依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.在客户端服务的maven配置文件中加入client依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos客户端依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 升级nacos2.x后cloud-alibaba包需要排除nacos-client --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 通过指定nacos-client方式，提前使用Nacos2.0长连接功能 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>3.客户端配置文件application.yml配置服务地址和名称</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos服务地址</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="nacos-服务器多级存储模型-集群配置"><a href="#nacos-服务器多级存储模型-集群配置" class="headerlink" title="nacos 服务器多级存储模型-集群配置"></a>nacos 服务器多级存储模型-集群配置</h3><p>在客户端的配置文件中配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">CQ</span> <span class="comment"># 集群名称</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="nacos的负载均衡"><a href="#nacos的负载均衡" class="headerlink" title="nacos的负载均衡"></a>nacos的负载均衡</h3><p>在服务的调用者也就是消费方的配置文件中配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">userservice:</span></span><br><span class="line">  <span class="attr">ribbon:</span></span><br><span class="line">    <span class="attr">NFLoadBalancerRuleClassName:</span> <span class="string">com.alibaba.cloud.nacos.ribbon.NacosRule</span>  <span class="comment"># 负载均衡规则</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="nacos服务器权重配置"><a href="#nacos服务器权重配置" class="headerlink" title="nacos服务器权重配置"></a>nacos服务器权重配置</h3><p>可以在nacos的控制台，实例列表中进行编辑，修改权重配置。配置权重为0时则不被访问。</p>
-<hr>
-<h3 id="nacos-环境隔离"><a href="#nacos-环境隔离" class="headerlink" title="nacos 环境隔离"></a>nacos 环境隔离</h3><p>1.首先在nacos控制台的命名空间中新建一个命名空间，用来隔离环境。可以手动或自动生成命名空间的ID。</p>
-<p>2.然后在客户端的配置中添加配置，设置命名空间。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">CQ</span> <span class="comment"># 集群名称</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">4d6ce343-9e1b-44df-a90f-2cf2b6b3d177</span> <span class="comment"># dev环境的ID</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>namespace用来做环境隔离</li>
-<li>每个namespace都有一个唯一ID</li>
-<li>不同namespace的服务不可见。</li>
-</ul>
-<hr>
-<h3 id="nacos-实现配置中心"><a href="#nacos-实现配置中心" class="headerlink" title="nacos 实现配置中心"></a>nacos 实现配置中心</h3><p>1.在nacos控制台中添加对应环境的配置文件。配置文件的DataId命名格式为：${prefix}-${spring.profile.active}.${file-extension}，如userservice-dev.yaml</p>
-<p>2.引入nacos配置中心依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos的配置管理依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>3.在服务的resource目录下创建bootstrap.yml文件，该文件为引导文件，优先级高于application.yml</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031432970.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031432970.png?x-oss-process=style/ezio"></a></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">CQ</span> <span class="comment"># 集群名称</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">4d6ce343-9e1b-44df-a90f-2cf2b6b3d177</span> <span class="comment"># dev环境的ID</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 配置文件后缀</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="服务端获取配置并实现热更新"><a href="#服务端获取配置并实现热更新" class="headerlink" title="服务端获取配置并实现热更新"></a>服务端获取配置并实现热更新</h3><p>1.可通过@Value({配置名})注解获取配置，并在该变量所在的类上添加@RefreshScope注解，实现配置热更新</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="meta">@RefreshScope</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;pattern.dateformat&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br></pre></td></tr></table></figure>
-
-<p>2.可通过@ConfigurationProperties实现配置获取和热更新。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;pattern&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PatternProperties</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String dateformat;</span><br><span class="line">    <span class="keyword">private</span> String envSharedValue;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h3><p>1.在nacos控制台中添加配置文件。名称为${prefix}.${file-extension}去掉环境。如userservice.yaml</p>
-<p>2.配置文件优先级：</p>
-<p>​	服务名-profile.yaml &gt; 服务名.yaml &gt; 本地配置</p>
-<hr>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Spring-cloud</category>
-      </categories>
-      <tags>
-        <tag>Nacos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis数据类型</title>
-    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
-<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
-<li><strong>string：</strong> key-value</li>
-<li><strong>hash：</strong> key-field-value</li>
-<li><strong>list：</strong>key-value</li>
-<li><strong>set：</strong>key-member</li>
-<li><strong>zset：</strong>key-score-member</li>
-</ul>
-<blockquote>
-<ul>
-<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
-</ul>
-</blockquote>
-<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
-<ul>
-<li><p>涉及随机，不重复：<strong>set</strong></p>
-</li>
-<li><p>多维度排序：<strong>zset</strong></p>
-</li>
-<li><p>单维度排序：<strong>list、zset</strong></p>
-</li>
-</ul>
-<p><strong>2.限制条件的判断</strong></p>
-<ul>
-<li><p>可以通过增加标识key去判断，方式有：</p>
-<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
-</li>
-<li><p>也可以通过set的唯一性去判断：</p>
-<p><strong>sadd、zadd</strong></p>
-</li>
-</ul>
-<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
-<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
-<p>该问题存在以下四个场景：</p>
-<ul>
-<li><p>用户进入房间</p>
-</li>
-<li><p>查询房间榜单</p>
-</li>
-<li><p>用户赠送礼物</p>
-</li>
-<li><p>用户离开房间</p>
-</li>
-</ul>
-<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">long</span> <span class="variable">baseScore</span> <span class="operator">=</span> <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
-
-<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
+        <tag>Quartz</tag>
       </tags>
   </entry>
   <entry>
@@ -1622,69 +1519,57 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring-AMQP</title>
-    <url>/2022/08/07/Spring-AMQP/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Spring-AMQP"><a href="#Spring-AMQP" class="headerlink" title="Spring-AMQP"></a>Spring-AMQP</h1><p><strong>AMQP：</strong>Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。</p>
-<p><strong>Spring-AMQP：</strong>基于AMQP协议定义的一套API规范，提供了模板来发送和接受消息。有两部分，spring-amqp是基础抽象，spring-rabbit是底层的默认实现。</p>
-<h3 id="基本使用流程"><a href="#基本使用流程" class="headerlink" title="基本使用流程"></a>基本使用流程</h3><h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--AMQP依赖，包含RabbitMQ--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息："><a href="#2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息：" class="headerlink" title="2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息："></a>2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息：</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-publisher发送消息"><a href="#3-publisher发送消息" class="headerlink" title="3.publisher发送消息"></a>3.publisher发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringAmqpTest</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//注入rabbitTemplate，用来发送消息</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSendMessage2SimpleQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">queueName</span> <span class="operator">=</span> <span class="string">&quot;simple.queue&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;hello, spring amqp!&quot;</span>;</span><br><span class="line">        rabbitTemplate.convertAndSend(queueName, message);</span><br><span class="line">        System.out.println(<span class="string">&quot;发送消息完成！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-consumer消费消息"><a href="#4-consumer消费消息" class="headerlink" title="4.consumer消费消息"></a>4.consumer消费消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringRabbitListener</span> &#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//@RabbitListener，用于监听队列</span></span><br><span class="line">     <span class="meta">@RabbitListener(queues = &quot;simple.queue&quot;)</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenSimpleQueue</span><span class="params">(String msg)</span> &#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;消费者接收到simple.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-RabbitListener"><a href="#5-RabbitListener" class="headerlink" title="5.@RabbitListener"></a>5.@RabbitListener</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(name = &quot;direct.queue1&quot;), //绑定的队列</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(name = &quot;test.direct&quot;), //声明交换机名称</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;red&quot;, &quot;blue&quot;&#125; //路由key，可配置通配符，red.# or red.*</span></span><br><span class="line"><span class="meta">))</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消息预取"><a href="#消息预取" class="headerlink" title="消息预取"></a>消息预取</h3><p>消费者会预先从队列中获取消息来等待处理，会忽略消费者的处理能力，可以通过设置预取上限（prefetch）来打到竞争模式的效果，能者多劳。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消息转换器"><a href="#消息转换器" class="headerlink" title="消息转换器"></a>消息转换器</h3><p>Spring-AMQP的对消息对象的处理是有org.springframework.amqp.support.converter.MessageConverter来处理的。默认实现是SimpleMessageConverter，基于JDK的ObjectOutputStream完成序列化。想要发送对象消息，需要自定义消息转换器。</p>
-<h4 id="1-引入依赖-1"><a href="#1-引入依赖-1" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-在springboot启动类中，注入bean"><a href="#2-在springboot启动类中，注入bean" class="headerlink" title="2.在springboot启动类中，注入bean"></a>2.在springboot启动类中，注入bean</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PublisherApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(PublisherApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageConverter <span class="title function_">messageConverter</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonMessageConverter</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TCP/IP协议简述</title>
-    <url>/2019/09/11/TCP-IP%E5%8D%8F%E8%AE%AE%E7%AE%80%E8%BF%B0/</url>
+    <title>Redis数据类型</title>
+    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="TCP-x2F-IP协议简述"><a href="#TCP-x2F-IP协议简述" class="headerlink" title="TCP&#x2F;IP协议简述"></a>TCP&#x2F;IP协议简述</h1><p>TCP&#x2F;IP（Transmission Control Protocol&#x2F;Internet Protocol，传输控制协议&#x2F;网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP&#x2F;IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇， 只是因为在TCP&#x2F;IP协议中TCP协议和IP协议最具代表性，所以被称为TCP&#x2F;IP协议。</p>
-<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来出发。</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" title="三次握手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" width="600" height="350" alt="三次握手"/></a>
+<h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
+<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
+<li><strong>string：</strong> key-value</li>
+<li><strong>hash：</strong> key-field-value</li>
+<li><strong>list：</strong>key-value</li>
+<li><strong>set：</strong>key-member</li>
+<li><strong>zset：</strong>key-score-member</li>
+</ul>
+<blockquote>
+<ul>
+<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
+</ul>
+</blockquote>
+<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
+<ul>
+<li><p>涉及随机，不重复：<strong>set</strong></p>
+</li>
+<li><p>多维度排序：<strong>zset</strong></p>
+</li>
+<li><p>单维度排序：<strong>list、zset</strong></p>
+</li>
+</ul>
+<p><strong>2.限制条件的判断</strong></p>
+<ul>
+<li><p>可以通过增加标识key去判断，方式有：</p>
+<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
+</li>
+<li><p>也可以通过set的唯一性去判断：</p>
+<p><strong>sadd、zadd</strong></p>
+</li>
+</ul>
+<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
+<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
+<p>该问题存在以下四个场景：</p>
+<ul>
+<li><p>用户进入房间</p>
+</li>
+<li><p>查询房间榜单</p>
+</li>
+<li><p>用户赠送礼物</p>
+</li>
+<li><p>用户离开房间</p>
+</li>
+</ul>
+<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">long</span> <span class="variable">baseScore</span> <span class="operator">=</span> <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
 
-<p><strong>第一次握手：</strong>建立连接时，Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
-<p><strong>第二次握手：</strong>Server收到数据包后，由标志位SYN&#x3D;1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack&#x3D;J+1，随机产生一个值seq&#x3D;K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
-<p><strong>第三次握手：</strong>Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack&#x3D;K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server都进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
-<p><strong>SYN攻击：</strong> </p>
-<p>在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：<br>#netstat -nap | grep SYN_RECV</p>
-<hr>
-<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发。</p>
-<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" title="四次挥手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" width="600" height="350" alt="四次挥手"/></a>
-
-<p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。</p>
-<p><strong>第一次挥手：</strong>Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</p>
-<p><strong>第二次挥手：</strong>Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</p>
-<p><strong>第三次挥手：</strong>Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</p>
-<p><strong>第四次挥手：</strong>Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
-<hr>
-<p>原文链接：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&utm_medium=social&utm_oi=771062773999206400">https://zhuanlan.zhihu.com/p/81144898?utm_source&#x3D;qq&amp;utm_medium&#x3D;social&amp;utm_oi&#x3D;771062773999206400</a></p>
+<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1692,96 +1577,10 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>TCP/IP</category>
+        <category>Redis</category>
       </categories>
       <tags>
-        <tag>TCP/IP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL数据库索引原理及类型</title>
-    <url>/2019/09/05/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="MySQL数据库索引原理及类型"><a href="#MySQL数据库索引原理及类型" class="headerlink" title="MySQL数据库索引原理及类型"></a>MySQL数据库索引原理及类型</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>索引的建立是为了加快查询的效率。索引本质上是一种数据结构，一般有哈希索引和B+Tree索引。主流的RDBMS都把B+Tree也就是平衡树当作数据表的默认索引数据结构。</p>
-<h3 id="聚簇索引（主键索引）"><a href="#聚簇索引（主键索引）" class="headerlink" title="聚簇索引（主键索引）"></a>聚簇索引（主键索引）</h3><p>我们平时建表的时候都会为表加上主键，在某些关系数据库中，如果建表时不指定主键，数据库会拒绝建表的语句执行。 事实上，一个加了主键的表，并不能被称之为「表」。一个没加主键的表，它的数据无序的放置在磁盘存储器上，一行一行的排列的很整齐，跟我认知中的「表」很接近。如果给表上了主键，那么表在磁盘上的存储结构就由整齐排列的结构转变成了树状结构，也就是上面说的「平衡树」结构，换句话说，就是整个表就变成了一个索引，也就是所谓的「聚集索引」。这就是为什么一个表只能有一个主键，一个表只能有一个「聚集索引」，因为主键的作用就是把「表」的数据格式转换成「索引（平衡树）」的格式放置。</p>
-<h3 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h3><p>非聚集索引和聚集索引一样， 同样是采用平衡树作为索引的数据结构。索引树结构中各节点的值来自于表中的索引字段，假如给user表的name字段加上索引，那么索引就是由name字段中的值构成，在数据改变时， DBMS需要一直维护索引结构的正确性。如果给表中多个字段加上索引，那么就会出现多个独立的索引结构，每个索引（非聚集索引）互相之间不存在关联。每次给字段建一个新索引， 字段中的数据就会被复制一份出来，用于生成索引。因此，给表添加索引，会增加表的体积，用磁盘存储空间。</p>
-<p>非聚集索引和聚集索引的区别在于，通过聚集索引可以查到需要查找的数据，而通过非聚集索引可以查到记录对应的主键值，再使用主键的值通过聚集索引查找到需要的数据。不管以任何方式查询表，最终都会利用主键通过聚集索引来定位到数据，聚集索引（主键）是通往真实数据所在的唯一路径。然而，有一种例外可以不使用聚集索引就能查询出所需要的数据，这种非主流的方法 称之为「覆盖索引」查询，也就是平时所说的复合索引或者多字段索引查询。 </p>
-<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>1.创建普通索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">INDEX [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>4.删除索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>索引列的值必须唯一，但允许有空值；如果是组合索引，则索引值必须唯一。</p>
-<p>1.创建唯一索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX indexName <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-
-<p>2.修改表结构</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span>(username(length));</span><br></pre></td></tr></table></figure>
-
-<p>3.创建表时直接指定</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">UNIQUE</span> [indexName] (username(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>一种特殊的唯一索引，不允许有空值；一般在创建表的时候同时创建。PS：一个表只能有一个主键</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">username <span class="type">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY(ID)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>在之前username字段的基础上再加上age、city字段，然后创建组合索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> INDEX username_age_city(username(<span class="number">10</span>),age,city);</span><br></pre></td></tr></table></figure>
-<p>因为MySQL的“最左匹配原则”，从最左边的开始组合，并不是只要包含这三列的查询都会用到该组合索引。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">上面的组合索引相当于以下三个索引：</span><br><span class="line">username,age,city</span><br><span class="line">username,age</span><br><span class="line">username</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>原文链接：<a href="https://blog.csdn.net/weixin_42181824/article/details/82261988">https://blog.csdn.net/weixin_42181824&#x2F;article&#x2F;details&#x2F;82261988</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringMVC的工作流程</title>
-    <url>/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="SpringMVC的工作流程"><a href="#SpringMVC的工作流程" class="headerlink" title="SpringMVC的工作流程"></a>SpringMVC的工作流程</h1><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio"></a></p>
-<ol>
-<li>用户发送请求至前端控制器DispatcherServlet。</li>
-<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器。</li>
-<li>处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</li>
-<li>DispatcherServlet调用HandlerAdapter处理器适配器。</li>
-<li>HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。</li>
-<li>Controller执行完成返回ModelAndView。</li>
-<li>HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。</li>
-<li>DispatcherServlet将ModelAndView传给ViewReslover视图解析器。</li>
-<li>ViewReslover解析后返回具体View.</li>
-<li>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</li>
-<li>DispatcherServlet响应用户。</li>
-</ol>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -2014,14 +1813,205 @@
       </tags>
   </entry>
   <entry>
-    <title>This is my first blog here</title>
-    <url>/2019/08/20/This-is-my-first-blog-here/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+    <title>SpringMVC的工作流程</title>
+    <url>/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="SpringMVC的工作流程"><a href="#SpringMVC的工作流程" class="headerlink" title="SpringMVC的工作流程"></a>SpringMVC的工作流程</h1><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio"></a></p>
+<ol>
+<li>用户发送请求至前端控制器DispatcherServlet。</li>
+<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器。</li>
+<li>处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</li>
+<li>DispatcherServlet调用HandlerAdapter处理器适配器。</li>
+<li>HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。</li>
+<li>Controller执行完成返回ModelAndView。</li>
+<li>HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。</li>
+<li>DispatcherServlet将ModelAndView传给ViewReslover视图解析器。</li>
+<li>ViewReslover解析后返回具体View.</li>
+<li>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</li>
+<li>DispatcherServlet响应用户。</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TCP/IP协议简述</title>
+    <url>/2019/09/11/TCP-IP%E5%8D%8F%E8%AE%AE%E7%AE%80%E8%BF%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="TCP-x2F-IP协议简述"><a href="#TCP-x2F-IP协议简述" class="headerlink" title="TCP&#x2F;IP协议简述"></a>TCP&#x2F;IP协议简述</h1><p>TCP&#x2F;IP（Transmission Control Protocol&#x2F;Internet Protocol，传输控制协议&#x2F;网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP&#x2F;IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇， 只是因为在TCP&#x2F;IP协议中TCP协议和IP协议最具代表性，所以被称为TCP&#x2F;IP协议。</p>
+<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来出发。</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" title="三次握手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145338.png" width="600" height="350" alt="三次握手"/></a>
+
+<p><strong>第一次握手：</strong>建立连接时，Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
+<p><strong>第二次握手：</strong>Server收到数据包后，由标志位SYN&#x3D;1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack&#x3D;J+1，随机产生一个值seq&#x3D;K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
+<p><strong>第三次握手：</strong>Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack&#x3D;K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server都进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+<p><strong>SYN攻击：</strong> </p>
+<p>在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：<br>#netstat -nap | grep SYN_RECV</p>
+<hr>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发。</p>
+<a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" title="四次挥手" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20201228145341.png" width="600" height="350" alt="四次挥手"/></a>
+
+<p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。</p>
+<p><strong>第一次挥手：</strong>Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</p>
+<p><strong>第二次挥手：</strong>Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</p>
+<p><strong>第三次挥手：</strong>Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</p>
+<p><strong>第四次挥手：</strong>Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
+<hr>
+<p>原文链接：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/81144898?utm_source=qq&utm_medium=social&utm_oi=771062773999206400">https://zhuanlan.zhihu.com/p/81144898?utm_source&#x3D;qq&amp;utm_medium&#x3D;social&amp;utm_oi&#x3D;771062773999206400</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>TCP/IP</category>
+      </categories>
+      <tags>
+        <tag>TCP/IP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis基本操作</title>
+    <url>/2020/07/10/Redis%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Redis-keys-命令"><a href="#Redis-keys-命令" class="headerlink" title="Redis keys 命令"></a>Redis keys 命令</h1><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>DEL key</strong></td>
+<td align="left">key存在时删除该key</td>
+</tr>
+<tr>
+<td align="center"><strong>DUMP Key</strong></td>
+<td align="left">序列化该key，并返回被序列化的值</td>
+</tr>
+<tr>
+<td align="center"><strong>EXISTS key</strong></td>
+<td align="left">检查给定的key是否存在</td>
+</tr>
+<tr>
+<td align="center"><strong>EXPIRE key seconds</strong></td>
+<td align="left">给该key设置过期时间，单位秒</td>
+</tr>
+<tr>
+<td align="center"><strong>EXPIREAT key timestamp</strong></td>
+<td align="left">EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)</td>
+</tr>
+<tr>
+<td align="center"><strong>PEXPIRE key milliseconds</strong></td>
+<td align="left">设置 key 的过期时间以毫秒计</td>
+</tr>
+<tr>
+<td align="center"><strong>PEXPIREAT key milliseconds-timestamp</strong></td>
+<td align="left">设置 key 过期时间的时间戳(unix timestamp) 以毫秒计</td>
+</tr>
+<tr>
+<td align="center"><strong>KEYS pattern</strong></td>
+<td align="left">查找所有符合给定模式( pattern)的 key</td>
+</tr>
+<tr>
+<td align="center"><strong>MOVE key db</strong></td>
+<td align="left">将当前数据库的 key 移动到给定的数据库 db 当中</td>
+</tr>
+<tr>
+<td align="center"><strong>PERSIST key</strong></td>
+<td align="left">移除 key 的过期时间，key 将持久保持</td>
+</tr>
+<tr>
+<td align="center"><strong>PTTL key</strong></td>
+<td align="left">以毫秒为单位返回 key 的剩余的过期时间</td>
+</tr>
+<tr>
+<td align="center"><strong>TTL key</strong></td>
+<td align="left">以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)</td>
+</tr>
+<tr>
+<td align="center"><strong>RANDOMKEY</strong></td>
+<td align="left">从当前数据库中随机返回一个 key</td>
+</tr>
+<tr>
+<td align="center"><strong>RENAME key newkey</strong></td>
+<td align="left">修改 key 的名称</td>
+</tr>
+<tr>
+<td align="center"><strong>RENAMENX key newkey</strong></td>
+<td align="left">仅当 newkey 不存在时，将 key 改名为 newkey</td>
+</tr>
+<tr>
+<td align="center"><strong>SCAN cursor [MATCH pattern] [COUNT count]</strong></td>
+<td align="left">迭代数据库中的数据库键</td>
+</tr>
+<tr>
+<td align="center"><strong>TYPE key</strong></td>
+<td align="left">返回 key 所储存的值的类型</td>
+</tr>
+</tbody></table>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring-AMQP</title>
+    <url>/2022/08/07/Spring-AMQP/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Spring-AMQP"><a href="#Spring-AMQP" class="headerlink" title="Spring-AMQP"></a>Spring-AMQP</h1><p><strong>AMQP：</strong>Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有RabbitMQ等。</p>
+<p><strong>Spring-AMQP：</strong>基于AMQP协议定义的一套API规范，提供了模板来发送和接受消息。有两部分，spring-amqp是基础抽象，spring-rabbit是底层的默认实现。</p>
+<h3 id="基本使用流程"><a href="#基本使用流程" class="headerlink" title="基本使用流程"></a>基本使用流程</h3><h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--AMQP依赖，包含RabbitMQ--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息："><a href="#2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息：" class="headerlink" title="2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息："></a>2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息：</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-publisher发送消息"><a href="#3-publisher发送消息" class="headerlink" title="3.publisher发送消息"></a>3.publisher发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringAmqpTest</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//注入rabbitTemplate，用来发送消息</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSendMessage2SimpleQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">queueName</span> <span class="operator">=</span> <span class="string">&quot;simple.queue&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;hello, spring amqp!&quot;</span>;</span><br><span class="line">        rabbitTemplate.convertAndSend(queueName, message);</span><br><span class="line">        System.out.println(<span class="string">&quot;发送消息完成！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-consumer消费消息"><a href="#4-consumer消费消息" class="headerlink" title="4.consumer消费消息"></a>4.consumer消费消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringRabbitListener</span> &#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//@RabbitListener，用于监听队列</span></span><br><span class="line">     <span class="meta">@RabbitListener(queues = &quot;simple.queue&quot;)</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenSimpleQueue</span><span class="params">(String msg)</span> &#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;消费者接收到simple.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-RabbitListener"><a href="#5-RabbitListener" class="headerlink" title="5.@RabbitListener"></a>5.@RabbitListener</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(name = &quot;direct.queue1&quot;), //绑定的队列</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(name = &quot;test.direct&quot;), //声明交换机名称</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;red&quot;, &quot;blue&quot;&#125; //路由key，可配置通配符，red.# or red.*</span></span><br><span class="line"><span class="meta">))</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消息预取"><a href="#消息预取" class="headerlink" title="消息预取"></a>消息预取</h3><p>消费者会预先从队列中获取消息来等待处理，会忽略消费者的处理能力，可以通过设置预取上限（prefetch）来打到竞争模式的效果，能者多劳。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消息转换器"><a href="#消息转换器" class="headerlink" title="消息转换器"></a>消息转换器</h3><p>Spring-AMQP的对消息对象的处理是有org.springframework.amqp.support.converter.MessageConverter来处理的。默认实现是SimpleMessageConverter，基于JDK的ObjectOutputStream完成序列化。想要发送对象消息，需要自定义消息转换器。</p>
+<h4 id="1-引入依赖-1"><a href="#1-引入依赖-1" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-在springboot启动类中，注入bean"><a href="#2-在springboot启动类中，注入bean" class="headerlink" title="2.在springboot启动类中，注入bean"></a>2.在springboot启动类中，注入bean</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PublisherApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(PublisherApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageConverter <span class="title function_">messageConverter</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonMessageConverter</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -2040,6 +2030,16 @@
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+  </entry>
+  <entry>
+    <title>This is my first blog here</title>
+    <url>/2019/08/20/This-is-my-first-blog-here/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -2189,40 +2189,6 @@
       </tags>
   </entry>
   <entry>
-    <title>事务的隔离级别</title>
-    <url>/2022/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h1><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
-<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
-<ul>
-<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
-</li>
-<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
-</li>
-<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
-</li>
-<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
-</li>
-</ul>
-<p>可能导致的问题有</p>
-<ol>
-<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
-<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
-<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
-</ol>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>死信交换机</title>
     <url>/2022/08/07/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="死信交换机"><a href="#死信交换机" class="headerlink" title="死信交换机"></a>死信交换机</h1><p>当一个队列中的消息满足以下情况之一时，可以成为死信（dead letter）：</p>
@@ -2260,6 +2226,40 @@
       </categories>
       <tags>
         <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>事务的隔离级别</title>
+    <url>/2022/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h1><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
+<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
+<ul>
+<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
+</li>
+<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
+</li>
+<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
+</li>
+<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
+</li>
+</ul>
+<p>可能导致的问题有</p>
+<ol>
+<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
+<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
+<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
