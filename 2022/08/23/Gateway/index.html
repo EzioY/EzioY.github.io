@@ -195,7 +195,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 21, 2022&nbsp;&nbsp;14:31:20</a>
+                        Date: <a href="#">August 23, 2022&nbsp;&nbsp;14:31:20</a>
                         </span>
                     
                     
@@ -211,13 +211,7 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Gateway"><a href="#Gateway" class="headerlink" title="Gateway"></a>Gateway</h1><p>网关功能：</p>
-<ul>
-<li>身份认证和权限校验</li>
-<li>服务路由、负载均衡</li>
-<li>请求限流</li>
-</ul>
-<h3 id="搭建网关服务"><a href="#搭建网关服务" class="headerlink" title="搭建网关服务"></a>搭建网关服务</h3><p>1.新建一个module，引入依赖</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Gateway"><a href="#Gateway" class="headerlink" title="Gateway"></a>Gateway</h1><h3 id="搭建网关服务"><a href="#搭建网关服务" class="headerlink" title="搭建网关服务"></a>搭建网关服务</h3><p>1.新建一个module，引入依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos服务发现依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--网关gateway依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>2.编写路由配置以及nacos配置</p>
@@ -251,8 +245,14 @@
 <h3 id="过滤器执行链顺序"><a href="#过滤器执行链顺序" class="headerlink" title="过滤器执行链顺序"></a>过滤器执行链顺序</h3><p>请求进入网关，会经过三种过滤器：局部路由过滤器、DefaultFilter、GlobalFilter。</p>
 <p>请求路由后，会将当 局部路由过滤器、DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器。</p>
 <p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio"></a></p>
-<p>1.order值越小，优先级越高。</p>
-<p>2.当order值一样时，顺序为 DefaultFilter -&gt; 局部路由过滤器 -&gt; 全局过滤器</p>
+<p><strong>Order值相同时：</strong></p>
+<p>  1.两个GlobalFilter类型的过滤器Order值相同时，根据文件名字母排序，文件名靠前的优先更高。</p>
+<p>原因是包扫描时是按照文件的顺序扫描的，然后封装到List集合的，通过Order值排序时如果Order值相同，文件名在前名的依然会排在前面。</p>
+<p>   2.GlobalFilter类型和GatewayFilter类型的过滤器Order值相同时，GlobalFilter类型优先更高。</p>
+<p>原因是这两种过滤器最终会合并到一个过滤器集合中形成过滤器调用链，源码是通过list.addAll();方法将GatewayFilter类型的过滤器加到了GlobalFilter过滤器集合中，addAll()是末尾添加方式，所以Order值相同时GatewayFilter类型的过滤器会排在后面。</p>
+<p><strong>Order值生成规则：</strong></p>
+<p>  1.GlobalFilter类型过滤器，通过实现Ordered接口的getOrder()方法设置。</p>
+<p>  2.GatewayFilter类型过滤器，通过配置文件中配置的过滤器顺序自动生成，固定从1开始封装，例如配置了三个过滤器，则按照从上往下顺序Order值依次为1、2、3。</p>
 <hr>
 <h3 id="网关跨域问题处理"><a href="#网关跨域问题处理" class="headerlink" title="网关跨域问题处理"></a>网关跨域问题处理</h3><p>跨域：域名不一致或端口不同，浏览器的同源策略导致的跨域问题。浏览器禁止请求的发起者与服务端发生跨域的ajax请求，请求被浏览器拦截。</p>
 <p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio"></a></p>
@@ -275,7 +275,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/07/21/Gateway/">http://ezioy.cn/2022/07/21/Gateway/</a></span>
+                        <span><a href="http://ezioy.cn/2022/08/23/Gateway/">http://ezioy.cn/2022/08/23/Gateway/</a></span>
                     </p>
                 
                 
@@ -312,10 +312,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/07/23/Feign/">Feign</a>
+                <a class="prev" rel="prev" href="/2022/08/30/Spring-Webflux/">Spring Webflux</a>
             
             
-            <a class="next" rel="next" href="/2022/07/20/Docker/">Docker</a>
+            <a class="next" rel="next" href="/2022/08/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/">MyIsam和InnoDB的区别</a>
             
         </section>
 
