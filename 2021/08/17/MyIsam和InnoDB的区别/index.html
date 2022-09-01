@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>事务的四大特性 | Ezio&#39;s blog</title>
+<title>MyIsam和InnoDB的区别 | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">事务的四大特性</h1>
+            <h1 class="post-title">MyIsam和InnoDB的区别</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 15, 2022&nbsp;&nbsp;0:26:20</a>
+                        Date: <a href="#">August 17, 2021&nbsp;&nbsp;9:42:43</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Java/">Java</a>
+                                <a href="/categories/MySQL/">MySQL</a>
                             
                         </span>
                     
@@ -211,23 +211,41 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h1><p>事务的四大特性简称：<strong>ACID</strong>，具体如下：</p>
-<ul>
-<li><p><strong>原子性（Atomicity）</strong></p>
-<p>事务的原子性是指事务必须是一个原子的操作序列单元。事务中包含的各项操作在一次执行过程中，只允许出现两种状态之一，要么都成功，要么都失败</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="MyIsam-和-InnoDB-的区别"><a href="#MyIsam-和-InnoDB-的区别" class="headerlink" title="MyIsam 和 InnoDB 的区别"></a>MyIsam 和 InnoDB 的区别</h1><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
+<li><strong>事务</strong></li>
+</ol>
+<p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="2">
+<li><strong>外键</strong></li>
+</ol>
+<p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
+<ol start="3">
+<li><p><strong>索引</strong></p>
+<p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
 </li>
-<li><p><strong>一致性（Consistency）</strong></p>
-<p>事务的一致性是指事务的执行不能破坏数据库数据的完整性和一致性，一个事务在执行之前和执行之后，数据库都必须处以一致性状态。</p>
-<p>比如：如果从A账户转账到B账户，不可能因为A账户扣了钱，而B账户没有加钱</p>
+<li><p><strong>锁粒度方面</strong></p>
 </li>
-<li><p><strong>隔离性（Isolation）</strong></p>
-<p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
-<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的</p>
-</li>
-<li><p><strong>持久性（Duration）</strong></p>
-<p>事务的持久性是指事务一旦提交后，数据库中的数据必须被永久的保存下来。即使服务器系统崩溃或服务器宕机等故障。只要数据库重新启动，那么一定能够将其恢复到事务成功结束后的状态</p>
-</li>
-</ul>
+</ol>
+<p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
+<p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
+<p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="5">
+<li><strong>硬盘存储结构</strong></li>
+</ol>
+<p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
+<pre><code>    * Frm文件：表的定义文件
+    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
+    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
+    * .frm文件存储 表的定义。
+    * .MYD 数据文件（MYData）
+    * .MYI 索引文件 （MYIndex）
+</code></pre>
+<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
+<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
+<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
+<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
+<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
+<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -247,7 +265,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/">http://ezioy.cn/2022/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/</a></span>
+                        <span><a href="http://ezioy.cn/2021/08/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/">http://ezioy.cn/2021/08/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</a></span>
                     </p>
                 
                 
@@ -271,7 +289,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Java/"># Java</a>
+                        <a href="/tags/MySQL/"># MySQL</a>
                     
                         
                 </span>
@@ -284,10 +302,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">事务的隔离级别</a>
+                <a class="prev" rel="prev" href="/2022/05/21/Nacos/">Nacos</a>
             
             
-            <a class="next" rel="next" href="/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/">消息堆积</a>
+            <a class="next" rel="next" href="/2021/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">事务的隔离级别</a>
             
         </section>
 

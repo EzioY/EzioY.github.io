@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>HashMap | Ezio&#39;s blog</title>
+<title>事务的隔离级别 | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">HashMap</h1>
+            <h1 class="post-title">事务的隔离级别</h1>
             
                 <div class="post-meta">
                     
@@ -195,7 +195,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 21, 2022&nbsp;&nbsp;10:52:20</a>
+                        Date: <a href="#">August 15, 2021&nbsp;&nbsp;9:35:15</a>
                         </span>
                     
                     
@@ -211,28 +211,24 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h1><h3 id="put-方法执行流程"><a href="#put-方法执行流程" class="headerlink" title="put() 方法执行流程"></a>put() 方法执行流程</h3><ol>
-<li>put(key, value)，先通过 <strong>hash()</strong> 方法计算出key的hash值。</li>
-<li>判断Node数组是否初始化，没有则初始化数组，并赋值长度n&#x3D;初始化数组的长度。</li>
-<li>通过key的hash值计算出要放在数组的哪个地方，即计算出数组下标，tab[i]。<strong>i&#x3D;(n-1) &amp; hash</strong>。<strong>限定数组的长度要为2的n次方数</strong></li>
-<li>计算出的要放在数组的位置如果没有数据，则new一个节点将数据直接放进去。tab[i]&#x3D;newNode(hash,key,value,null)。</li>
-<li>如果要放的位置已经有数据了，则判断key是否相等，如果key相等，则会将节点value的值进行替换。</li>
-<li>如果key不想等，判断当前位置的Node类型是否为TreeNode类型，是，则new一个TreeNode对象将数据插入到红黑数中。</li>
-<li>如果是Node类型，遍历Node链表，找到next属性为null的节点即找到尾节点，并new一个节点将原尾节点next值赋值为插入的数据。将数据插入链表尾部。在遍历时，如果发现key相同，则break循环，更新value值。</li>
-<li>遍历过程中，如果发现put新节点时原链表长度&gt;&#x3D;8，判断数组的长度，如果数组的长度&gt;&#x3D;64，则将原链表转为红黑树，否则会对数组进行扩容。<strong>treeifyBin()</strong></li>
-<li>判断是否需要扩容。加载因子0.75 （++size &gt; threshold），满足条件则针对数组进行扩容，扩容为双倍扩容。</li>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h1><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
+<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
+<ul>
+<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
+</li>
+<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
+</li>
+<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
+</li>
+<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
+</li>
+</ul>
+<p>可能导致的问题有</p>
+<ol>
+<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
+<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
+<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
 </ol>
-<h3 id="hash"><a href="#hash" class="headerlink" title="hash()"></a>hash()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">	<span class="type">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="literal">null</span>) ? <span class="number">0</span> : (h = key.hashcode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//扰动+寻址，让hashcode的高位也一起参与到计算数组下标的计算中，减少hash冲突的概率。</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="treeifyBin"><a href="#treeifyBin" class="headerlink" title="treeifyBin()"></a>treeifyBin()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">treeifyBin</span><span class="params">(Node&lt;K,V&gt;[] tab, <span class="type">int</span> hash)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, index; Node&lt;K,V&gt; e;</span><br><span class="line">    <span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) &lt; MIN_TREEIFY_CAPACITY)</span><br><span class="line">        resize();</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((e = tab[index = (n - <span class="number">1</span>) &amp; hash]) != <span class="literal">null</span>) &#123;</span><br><span class="line">        TreeNode&lt;K,V&gt; hd = <span class="literal">null</span>, tl = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="comment">//遍历链表，将每个Node对象替换为TreeNode，并将单向链表改为双向链表方便操作。</span></span><br><span class="line">            TreeNode&lt;K,V&gt; p = replacementTreeNode(e, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (tl == <span class="literal">null</span>)</span><br><span class="line">                hd = p;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                p.prev = tl;</span><br><span class="line">                tl.next = p;</span><br><span class="line">            &#125;</span><br><span class="line">            tl = p;</span><br><span class="line">        &#125; <span class="keyword">while</span> ((e = e.next) != <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> ((tab[index] = hd) != <span class="literal">null</span>)</span><br><span class="line">            hd.treeify(tab);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424932.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424932.png?x-oss-process=style/ezio"></a></p>
-<h3 id="amp-与位运算"><a href="#amp-与位运算" class="headerlink" title="&amp; 与位运算"></a>&amp; 与位运算</h3><p>有一个0则为0，都为1才为1。</p>
-<p>15 0000 1111</p>
-<p>n   0101 0101</p>
-<p>&amp;   0000 0101</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -252,7 +248,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/05/21/HashMap/">http://ezioy.cn/2022/05/21/HashMap/</a></span>
+                        <span><a href="http://ezioy.cn/2021/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">http://ezioy.cn/2021/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</a></span>
                     </p>
                 
                 
@@ -289,10 +285,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/07/20/Docker/">Docker</a>
+                <a class="prev" rel="prev" href="/2021/08/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/">MyIsam和InnoDB的区别</a>
             
             
-            <a class="next" rel="next" href="/2022/05/21/Nacos/">Nacos</a>
+            <a class="next" rel="next" href="/2021/08/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/">事务的四大特性</a>
             
         </section>
 
