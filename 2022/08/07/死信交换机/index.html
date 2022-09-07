@@ -211,7 +211,7 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="死信交换机"><a href="#死信交换机" class="headerlink" title="死信交换机"></a>死信交换机</h1><p>当一个队列中的消息满足以下情况之一时，可以成为死信（dead letter）：</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当一个队列中的消息满足以下情况之一时，可以成为死信（dead letter）：</p>
 <ul>
 <li>消费者使用basic.reject或basic.nack声明消费失败，并且消息的requeue参数设置为false。</li>
 <li>消息是一个过期消息，超时无人消费。</li>

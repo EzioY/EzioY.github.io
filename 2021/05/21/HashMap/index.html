@@ -211,7 +211,7 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h1><h3 id="put-方法执行流程"><a href="#put-方法执行流程" class="headerlink" title="put() 方法执行流程"></a>put() 方法执行流程</h3><ol>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="put-方法执行流程"><a href="#put-方法执行流程" class="headerlink" title="put() 方法执行流程"></a>put() 方法执行流程</h3><ol>
 <li>put(key, value)，先通过 <strong>hash()</strong> 方法计算出key的hash值。</li>
 <li>判断Node数组是否初始化，没有则初始化数组，并赋值长度n&#x3D;初始化数组的长度。</li>
 <li>通过key的hash值计算出要放在数组的哪个地方，即计算出数组下标，tab[i]。<strong>i&#x3D;(n-1) &amp; hash</strong>。<strong>限定数组的长度要为2的n次方数</strong></li>
