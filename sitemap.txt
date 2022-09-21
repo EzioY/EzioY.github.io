@@ -1,3 +1,4 @@
+http://ezioy.cn/2022/08/07/Spring-AMQP/
 http://ezioy.cn/2022/08/25/Spring-Webflux/
 http://ezioy.cn/2022/05/21/Nacos/
 http://ezioy.cn/2022/07/23/Feign/
@@ -7,7 +8,6 @@ http://ezioy.cn/2022/09/07/Kafka%E5%85%A5%E9%97%A8/
 http://ezioy.cn/2021/01/01/2020%E5%B9%B4%E6%84%9F%E6%83%B3/
 http://ezioy.cn/2019/09/11/TCP-IP%E5%8D%8F%E8%AE%AE%E7%AE%80%E8%BF%B0/
 http://ezioy.cn/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/
-http://ezioy.cn/2022/08/07/Spring-AMQP/
 http://ezioy.cn/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/
 http://ezioy.cn/2019/12/03/Redis%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B/
 http://ezioy.cn/2021/04/12/RabbitMQ/
@@ -64,16 +64,17 @@ http://ezioy.cn/tags/Kafka/
 http://ezioy.cn/tags/Linux/
 http://ezioy.cn/tags/Markdown/
 http://ezioy.cn/tags/MySQL/
-http://ezioy.cn/tags/RabbitMQ/
 http://ezioy.cn/tags/Nacos/
 http://ezioy.cn/tags/Quartz/
+http://ezioy.cn/tags/RabbitMQ/
 http://ezioy.cn/tags/Redis/
 http://ezioy.cn/tags/Spring/
 http://ezioy.cn/tags/Spring-Security/
 http://ezioy.cn/tags/Webflux/
 http://ezioy.cn/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/
-http://ezioy.cn/tags/hexo/
 http://ezioy.cn/tags/TCP-IP/
+http://ezioy.cn/tags/Spring-AMQP/
+http://ezioy.cn/tags/hexo/
 http://ezioy.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/
 http://ezioy.cn/categories/%E9%9A%8F%E7%AC%94/
 http://ezioy.cn/categories/AJAX/
@@ -86,11 +87,11 @@ http://ezioy.cn/categories/Kafka/
 http://ezioy.cn/categories/Linux/
 http://ezioy.cn/categories/Markdown/
 http://ezioy.cn/categories/MySQL/
-http://ezioy.cn/categories/RabbitMQ/
 http://ezioy.cn/categories/Quartz/
+http://ezioy.cn/categories/RabbitMQ/
 http://ezioy.cn/categories/Redis/
 http://ezioy.cn/categories/Spring/
 http://ezioy.cn/categories/Spring-Webflux/
-http://ezioy.cn/categories/hexo/
 http://ezioy.cn/categories/TCP-IP/
+http://ezioy.cn/categories/hexo/
 http://ezioy.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/
