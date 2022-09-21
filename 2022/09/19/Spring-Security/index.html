@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Kafka入门 | Ezio&#39;s blog</title>
+<title>Spring Security | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Kafka入门</h1>
+            <h1 class="post-title">Spring Security</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 7, 2022&nbsp;&nbsp;13:57:47</a>
+                        Date: <a href="#">September 19, 2022&nbsp;&nbsp;13:54:06</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Kafka/">Kafka</a>
+                                <a href="/categories/Spring/">Spring</a>
                             
                         </span>
                     
@@ -211,63 +211,31 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="单机安装Kafka"><a href="#单机安装Kafka" class="headerlink" title="单机安装Kafka"></a>单机安装Kafka</h3><ol>
-<li><p>下载Kafka压缩包 <a target="_blank" rel="noopener" href="https://kafka.apache.org/downloads">下载地址</a></p>
-<p>本文下载的版本是 kafka_2.13-3.2.1.tgz。</p>
-</li>
-<li><p>下载好进行解压，即安装完毕</p>
-</li>
-<li><p>启动 Kafka</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Spring Security 是 Spring 项目中的一个安全模块，在 Spring boot 中已经默认集成和开启了 Spring Security。</p>
+<h3 id="Spring-Security-核心组件"><a href="#Spring-Security-核心组件" class="headerlink" title="Spring Security 核心组件"></a>Spring Security 核心组件</h3><h4 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h4><p>在 Spring Security 中 <code>Authentication</code> 用来表示当前用户是谁，一般来讲你可以理解为 <code>authentication</code> 就是一组用户名密码信息。<code>Authentication</code> 也是一个接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Authentication</span> <span class="keyword">extends</span> <span class="title class_">Principal</span>, Serializable &#123;</span><br><span class="line">  </span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	Object <span class="title function_">getCredentials</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getDetails</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getPrincipal</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAuthenticated</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">setAuthenticated</span><span class="params">(<span class="type">boolean</span> isAuthenticated)</span> <span class="keyword">throws</span> IllegalArgumentException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这几个方法作用如下：</p>
 <ul>
-<li>先启动 zookeeper（-daemon：以后台方式启动）</li>
+<li>getAuthorities(): 获取用户权限，一般情况下获取到的是用户的角色信息。</li>
+<li>getCredentials()：获取证明用户认证的信息，通常情况下获取到的是密码等信息。</li>
+<li>getDetails(): 获取用户的额外信息，（这部分信息可以是我们的用户表中的信息）</li>
+<li>getPrincipal(): 获取用户身份信息，在未认证的情况下获取到的是用户名，在已认证的情况下获取到的是 <code>UserDetails</code> (UserDetails也是一个接口，里边的方法有getUsername，getPassword等)。</li>
+<li>isAuthenticated()：获取当前 <code>Authentication</code> 是否已认证。</li>
+<li>setAuthenticated()：设置当前 <code>Authentication</code> 是否已认证（true or false）。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zookeeper-server-start.sh -daemon config/zookeeper.properties</span><br></pre></td></tr></table></figure>
+<h4 id="UserDetails"><a href="#UserDetails" class="headerlink" title="UserDetails"></a>UserDetails</h4><p><code>UserDetails</code>，用户详情。其存储的就是用户信息，其定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetails</span> <span class="keyword">extends</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"></span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getPassword</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getUsername</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonLocked</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isCredentialsNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isEnabled</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>其方法含义如下：</p>
 <ul>
-<li>然后启动 Kafka</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-server-start.sh -daemon config/server.properties   </span><br></pre></td></tr></table></figure>
-<p>在logs目录下查看server.log，如果提示started，则表示启动成功，不然就根据错误的原因重新修改。</p>
-</li>
-</ol>
-<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><ul>
-<li>创建topic</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --create --topic test1 --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看topic</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --list --bootstrap-server localhost:9092</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>生产消息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --topic test1 --bootstrap-server localhost:9092</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>消费消息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.sh --topic test1 --from-beginning --bootstrap-server localhost:9092</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>删除topic</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh --delete --bootstrap-server localhost:9092 --topic test1</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基础架构与名词解释"><a href="#基础架构与名词解释" class="headerlink" title="基础架构与名词解释"></a>基础架构与名词解释</h3><p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202209141552588.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202209141552588.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>Producer：Producer即生产者，消息的产生者，是消息的入口。</li>
-<li>Broker：Broker是kafka实例，每个服务器上有一个或多个kafka的实例，我们姑且认为每个broker对应一台服务器。每个kafka集群内的broker都有一个不重复的编号，如图中的broker-0、broker-1等……</li>
-<li>Topic：消息的主题，可以理解为消息的分类，kafka的数据就保存在topic。在每个broker上都可以创建多个topic。</li>
-<li>Partition：Topic的分区，每个topic可以有多个分区，分区的作用是做负载，提高kafka的吞吐量。同一个topic在不同的分区的数据是不重复的，partition的表现形式就是一个一个的文件夹！</li>
-<li>Replication：每一个分区都有多个副本，副本的作用是做备胎。当主分区（Leader）故障的时候会选择一个备胎（Follower）上位，成为Leader。在kafka中默认副本的最大数量是10个，且副本的数量不能大于Broker的数量，follower和leader绝对是在不同的机器，同一机器对同一个分区也只可能存放一个副本（包括自己）。</li>
-<li>Message：每一条发送的消息主体。</li>
-<li>Consumer：消费者，即消息的消费方，是消息的出口。</li>
-<li>Consumer Group：我们可以将多个消费组组成一个消费者组，在kafka的设计中同一个分区的数据只能被消费者组中的某一个消费者消费。同一个消费者组的消费者可以消费同一个topic的不同分区的数据，这也是为了提高kafka的吞吐量！</li>
-<li>Zookeeper：kafka集群依赖zookeeper来保存集群的的元信息，来保证系统的可用性。</li>
+<li>getAuthorites()：获取用户权限，本质上是用户的角色信息。</li>
+<li>getPassword()：获取密码。</li>
+<li>getUserName()：获取用户名。</li>
+<li>isAccountNonExpired()：账户是否过期。</li>
+<li>isAccountNonLocked()：账户是否被锁定。</li>
+<li>isCredentialsNonExpired(): 密码是否过期。</li>
+<li>isEnabled(): 账户是否可用。</li>
 </ul>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
@@ -288,7 +256,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/09/07/Kafka%E5%85%A5%E9%97%A8/">http://ezioy.cn/2022/09/07/Kafka%E5%85%A5%E9%97%A8/</a></span>
+                        <span><a href="http://ezioy.cn/2022/09/19/Spring-Security/">http://ezioy.cn/2022/09/19/Spring-Security/</a></span>
                     </p>
                 
                 
@@ -312,7 +280,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Kafka/"># Kafka</a>
+                        <a href="/tags/Spring-Spring-Security/"># Spring, Spring Security</a>
                     
                         
                 </span>
@@ -325,10 +293,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/09/19/Spring-Security/">Spring Security</a>
             
-            
-            <a class="next" rel="next" href="/2022/08/25/Spring-Webflux/">Spring Webflux</a>
+            <a class="next" rel="next" href="/2022/09/07/Kafka%E5%85%A5%E9%97%A8/">Kafka入门</a>
             
         </section>
 
