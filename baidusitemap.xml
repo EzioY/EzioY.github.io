@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ezioy.cn/2022/09/22/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2022-09-22</lastmod>
+  </url>
+  <url>
     <loc>http://ezioy.cn/2022/09/19/Spring-Security/</loc>
     <lastmod>2022-09-22</lastmod>
   </url>

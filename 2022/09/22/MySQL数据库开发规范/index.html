@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Git上传远程仓库命令组 | Ezio&#39;s blog</title>
+<title>MySQL数据库开发规范 | Ezio&#39;s blog</title>
 
 
 
@@ -190,7 +190,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Git上传远程仓库命令组</h1>
+            <h1 class="post-title">MySQL数据库开发规范</h1>
             
                 <div class="post-meta">
                     
@@ -199,14 +199,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 2, 2019&nbsp;&nbsp;8:46:35</a>
+                        Date: <a href="#">September 22, 2022&nbsp;&nbsp;15:01:56</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Git/">Git</a>
+                                <a href="/categories/MySQL/">MySQL</a>
                             
                         </span>
                     
@@ -215,9 +215,36 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
-
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>总结一些 Mysql 数据库的设计规范和注意事项</p>
+<h3 id="基本设计规范"><a href="#基本设计规范" class="headerlink" title="基本设计规范"></a>基本设计规范</h3><ul>
+<li>数据库和表的字符集统一使用UTF8，兼容性更好，统一字符集可以避免由于字符集转换产生的乱码，不同的字符集进行比较前需要进行转换会造成索引失效</li>
+<li>所有表和字段都需要添加注释，使用comment从句添加表和列的备注 从一开始就进行数据字典的维护</li>
+<li>尽量控制单表数据量的大小，建议控制在500万以内，500万并不是MySQL数据库的限制，过大会造成修改表结构，备份，恢复都会有很大的问题，可以用历史数据归档（应用于日志数据），分库分表（应用于业务数据）等手段来控制数据量大小</li>
+<li>谨慎使用MySQL分区表，分区表在物理上表现为多个文件，在逻辑上表现为一个表 谨慎选择分区键，跨分区查询效率可能更低 建议采用物理分表的方式管理大数据</li>
+<li>尽量做到冷热数据分离，减小表的宽度，MySQL限制每个表最多存储4096列，并且每一行数据的大小不能超过65535字节 减少磁盘IO,保证热数据的内存缓存命中率（表越宽，把表装载进内存缓冲池时所占用的内存也就越大,也会消耗更多的IO） 更有效的利用缓存，避免读入无用的冷数据 经常一起使用的列放到一个表中（避免更多的关联操作）</li>
+<li>禁止在表中建立预留字段。预留字段的命名很难做到见名识义 预留字段无法确认存储的数据类型，所以无法选择合适的类型 对预留字段类型的修改，会对表进行锁定</li>
+<li>禁止在数据库中存储图片，文件等大的二进制数据。通常文件很大，会短时间内造成数据量快速增长，数据库进行数据库读取时，通常会进行大量的随机IO操作，文件很大时，IO操作很耗时。通常存储于文件服务器，数据库只存储文件地址信息</li>
+</ul>
+<h3 id="数据库字段设计规范"><a href="#数据库字段设计规范" class="headerlink" title="数据库字段设计规范"></a>数据库字段设计规范</h3><ul>
+<li><p>优先选择符合存储需要的最小的数据类型。列的字段越大，建立索引时所需要的空间也就越大，这样一页中所能存储的索引节点的数量也就越少也越少，在遍历时所需要的IO次数也就越多， 索引的性能也就越差 </p>
+</li>
+<li><p>避免使用TEXT、BLOB数据类型，最常见的TEXT类型可以存储64k的数据。建议把BLOB或是TEXT列分离到单独的扩展表中，Mysql内存临时表不支持TEXT、BLOB这样的大数据类型，如果查询中包含这样的数据，在排序等操作时，就不能使用内存临时表，必须使用磁盘临时表进行。而且对于这种数据，Mysql还是要进行二次查询，会使sql性能变得很差，但是不是说一定不能使用这样的数据类型。如果一定要使用，建议把BLOB或是TEXT列分离到单独的扩展表中，查询时一定不要使用select * 而只需要取出必要的列，不需要TEXT列的数据时不要对该列进行查询。TEXT或BLOB类型只能使用前缀索引。因为MySQL对索引字段长度是有限制的，所以TEXT类型只能使用前缀索引，并且TEXT列上是不能有默认值的。</p>
+</li>
+<li><p>避免使用ENUM类型。修改ENUM值需要使用ALTER语句，ENUM类型的ORDER BY操作效率低，需要额外操作。禁止使用数值作为ENUM的枚举值，尽可能把所有列定义为NOT NULL，因为索引NULL列需要额外的空间来保存，所以要占用更多的空间；进行比较和计算时要对NULL值做特别的处理</p>
+</li>
+<li><p>使用TIMESTAMP（4个字节）或DATETIME类型（8个字节）存储时间。TIMESTAMP 存储的时间范围 1970-01-01 00:00:01 ~ 2038-01-19-03:14:07。TIMESTAMP 占用4字节和INT相同，但比INT可读性高，超出TIMESTAMP取值范围的使用DATETIME类型存储。</p>
+</li>
+<li><p>同财务相关的金额类数据必须使用decimal类型。Decimal类型为精准浮点数，在计算时不会丢失精度。占用空间由定义的宽度决定，每4个字节可以存储9位数字，并且小数点要占用一个字节。可用于存储比bigint更大的整型数据。</p>
+</li>
+</ul>
+<h3 id="索引设计规范"><a href="#索引设计规范" class="headerlink" title="索引设计规范"></a>索引设计规范</h3><ul>
+<li><p>限制每张表上的索引数量，建议单张表索引不超过5个。索引并不是越多越好！索引可以增加查询效率，但同样也会降低插入和更新的效率，甚至有些情况下会降低查询效率。因为mysql优化器在选择如何优化查询时，会根据统一信息，对每一个可以用到的索引来进行评估，以生成出一个最好的执行计划，如果同时有很多个索引都可以用于查询，就会增加mysql优化器生成执行计划的时间，同样会降低查询性能。</p>
+</li>
+<li><p>禁止给表中的每一列都建立单独的索引。5.6版本之前，一个sql只能使用到一个表中的一个索引，5.6以后，虽然有了合并索引的优化方式，但是还是远远没有使用一个联合索引的查询方式好。</p>
+</li>
+<li><p>每个Innodb表必须有个主键。不要使用更新频繁的列作为主键，不适用多列主键（相当于联合索引） 不要使用UUID、MD5、HASH、字符串列作为主键（无法保证数据的顺序增长），主键建议使用自增ID值。</p>
+</li>
+</ul>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -237,7 +264,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/">http://ezioy.cn/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</a></span>
+                        <span><a href="http://ezioy.cn/2022/09/22/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/">http://ezioy.cn/2022/09/22/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</a></span>
                     </p>
                 
                 
@@ -261,7 +288,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Git/"># Git</a>
+                        <a href="/tags/MySQL/"># MySQL</a>
                     
                         
                 </span>
@@ -274,10 +301,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/09/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">MySQL数据库多表查询</a>
             
-            
-            <a class="next" rel="next" href="/2019/08/20/This-is-my-first-blog-here/">This is my first blog here</a>
+            <a class="next" rel="next" href="/2022/09/19/Spring-Security/">Spring Security</a>
             
         </section>
 
