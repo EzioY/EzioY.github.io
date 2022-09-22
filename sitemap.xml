@@ -479,7 +479,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tag/index.html</loc>
+    <loc>http://ezioy.cn/projects/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
     
@@ -488,7 +488,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/projects/index.html</loc>
+    <loc>http://ezioy.cn/tag/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
     
@@ -520,6 +520,13 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/tags/Docker/</loc>
+    <lastmod>2022-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/tags/Feign/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -528,13 +535,6 @@
   
   <url>
     <loc>http://ezioy.cn/tags/Spring-Cloud/</loc>
-    <lastmod>2022-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/tags/Docker/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -569,14 +569,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Kafka/</loc>
+    <loc>http://ezioy.cn/tags/Linux/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Linux/</loc>
+    <loc>http://ezioy.cn/tags/Kafka/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -697,14 +697,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Spring-Cloud/</loc>
+    <loc>http://ezioy.cn/categories/Docker/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Docker/</loc>
+    <loc>http://ezioy.cn/categories/Spring-Cloud/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -732,14 +732,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Kafka/</loc>
+    <loc>http://ezioy.cn/categories/Linux/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Linux/</loc>
+    <loc>http://ezioy.cn/categories/Kafka/</loc>
     <lastmod>2022-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
