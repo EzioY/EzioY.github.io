@@ -30,87 +30,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Feign</title>
-    <url>/2022/07/23/Feign/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="基于feign的远程调用"><a href="#基于feign的远程调用" class="headerlink" title="基于feign的远程调用"></a>基于feign的远程调用</h3><p>1.引入依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.在服务调用方即消费者的服务启动类上加上注解 @EnableFeignClients</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients()</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(OrderApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.编写客户端</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;userservice&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">findById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Feign主要是基于注解来声明远程调用的信息，如：</p>
-<ul>
-<li>服务名称：userservice</li>
-<li>请求方式：GET</li>
-<li>请求路径：&#x2F;user&#x2F;{id}</li>
-<li>请求参数：Long id</li>
-<li>返回值类型：User</li>
-</ul>
-<hr>
-<h3 id="自定义Feign配置"><a href="#自定义Feign配置" class="headerlink" title="自定义Feign配置"></a>自定义Feign配置</h3><p><strong>方式一：配置文件方式</strong></p>
-<p>1.全局生效：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">       <span class="attr">default:</span> <span class="comment"># default全局配置</span></span><br><span class="line">       	 <span class="attr">loggerLevel:</span> <span class="string">Full</span> <span class="comment"># 日志级别</span></span><br></pre></td></tr></table></figure>
-
-<p>2.局部服务生效：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">       <span class="attr">userservice:</span> <span class="comment"># 写服务名称就是针对某个服务的配置</span></span><br><span class="line">       	 <span class="attr">loggerLevel:</span> <span class="string">Full</span> <span class="comment"># 日志级别</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>方式二：java代码方式</strong></p>
-<p>1.声明一个bean</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DefaultFeignConfiguration</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Logger.Level <span class="title function_">logLevel</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.BASIC;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.全局配置：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients(defaultConfiguration = DefaultFeignConfiguration.class)</span></span><br></pre></td></tr></table></figure>
-
-<p>3.局部配置：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;userservice&quot;, defaultConfiguration = DefaultFeignConfiguration.class)</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="Feign性能优化"><a href="#Feign性能优化" class="headerlink" title="Feign性能优化"></a>Feign性能优化</h3><p><strong>Feign底层客户端实现：</strong></p>
-<ul>
-<li>URLConnection：默认实现，不支持连接池</li>
-<li>Apache HttpClient：支持连接池</li>
-<li>OKHttp：支持连接池</li>
-</ul>
-<p><strong>优化点：</strong></p>
-<ol>
-<li>使用有连接池的代替默认的URLConnection</li>
-<li>日志级别，最好用basic或none</li>
-</ol>
-<p><strong>连接池配置：</strong></p>
-<p>1.引入依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入HttpClient依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.配置连接池：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">       <span class="attr">default:</span> <span class="comment"># default全局配置</span></span><br><span class="line">       	 <span class="attr">loggerLevel:</span> <span class="string">BASIC</span> <span class="comment"># 日志级别</span></span><br><span class="line">  <span class="attr">httpclient:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 支持HttpClient的开关</span></span><br><span class="line">    <span class="attr">max-connections:</span> <span class="number">200</span> <span class="comment"># 最大连接数</span></span><br><span class="line">    <span class="attr">max-connections-per-route:</span> <span class="number">50</span> <span class="comment"># 单个路径的最大连接数</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="Feign实践方式"><a href="#Feign实践方式" class="headerlink" title="Feign实践方式"></a>Feign实践方式</h3><p>将FeignClient单独抽取一个模块，将pojo、默认配置等放到模块中。</p>
-<p>1.新建一个module，命名例如user-api，引入feign的starter依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.编写Client、pojo、默认配置类</p>
-<p>3.消费者引入user-api的依赖</p>
-<p>4.在@EnableFeignClients上指定client位置。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients(clients = UserClient.class, defaultConfiguration = DefaultFeignConfiguration.class)</span></span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Spring Cloud</category>
-      </categories>
-      <tags>
-        <tag>Feign</tag>
-        <tag>Spring Cloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker</title>
     <url>/2022/07/20/Docker/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows操作系统的机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
@@ -199,63 +118,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git上传远程仓库命令组</title>
-    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HashMap</title>
-    <url>/2021/05/21/HashMap/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="put-方法执行流程"><a href="#put-方法执行流程" class="headerlink" title="put() 方法执行流程"></a>put() 方法执行流程</h3><ol>
-<li>put(key, value)，先通过 <strong>hash()</strong> 方法计算出key的hash值。</li>
-<li>判断Node数组是否初始化，没有则初始化数组，并赋值长度n&#x3D;初始化数组的长度。</li>
-<li>通过key的hash值计算出要放在数组的哪个地方，即计算出数组下标，tab[i]。<strong>i&#x3D;(n-1) &amp; hash</strong>。<strong>限定数组的长度要为2的n次方数</strong></li>
-<li>计算出的要放在数组的位置如果没有数据，则new一个节点将数据直接放进去。tab[i]&#x3D;newNode(hash,key,value,null)。</li>
-<li>如果要放的位置已经有数据了，则判断key是否相等，如果key相等，则会将节点value的值进行替换。</li>
-<li>如果key不想等，判断当前位置的Node类型是否为TreeNode类型，是，则new一个TreeNode对象将数据插入到红黑数中。</li>
-<li>如果是Node类型，遍历Node链表，找到next属性为null的节点即找到尾节点，并new一个节点将原尾节点next值赋值为插入的数据。将数据插入链表尾部。在遍历时，如果发现key相同，则break循环，更新value值。</li>
-<li>遍历过程中，如果发现put新节点时原链表长度&gt;&#x3D;8，判断数组的长度，如果数组的长度&gt;&#x3D;64，则将原链表转为红黑树，否则会对数组进行扩容。<strong>treeifyBin()</strong></li>
-<li>判断是否需要扩容。加载因子0.75 （++size &gt; threshold），满足条件则针对数组进行扩容，扩容为双倍扩容。</li>
-</ol>
-<h3 id="hash"><a href="#hash" class="headerlink" title="hash()"></a>hash()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">	<span class="type">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="literal">null</span>) ? <span class="number">0</span> : (h = key.hashcode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//扰动+寻址，让hashcode的高位也一起参与到计算数组下标的计算中，减少hash冲突的概率。</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="treeifyBin"><a href="#treeifyBin" class="headerlink" title="treeifyBin()"></a>treeifyBin()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">treeifyBin</span><span class="params">(Node&lt;K,V&gt;[] tab, <span class="type">int</span> hash)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, index; Node&lt;K,V&gt; e;</span><br><span class="line">    <span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) &lt; MIN_TREEIFY_CAPACITY)</span><br><span class="line">        resize();</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((e = tab[index = (n - <span class="number">1</span>) &amp; hash]) != <span class="literal">null</span>) &#123;</span><br><span class="line">        TreeNode&lt;K,V&gt; hd = <span class="literal">null</span>, tl = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="comment">//遍历链表，将每个Node对象替换为TreeNode，并将单向链表改为双向链表方便操作。</span></span><br><span class="line">            TreeNode&lt;K,V&gt; p = replacementTreeNode(e, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (tl == <span class="literal">null</span>)</span><br><span class="line">                hd = p;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                p.prev = tl;</span><br><span class="line">                tl.next = p;</span><br><span class="line">            &#125;</span><br><span class="line">            tl = p;</span><br><span class="line">        &#125; <span class="keyword">while</span> ((e = e.next) != <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> ((tab[index] = hd) != <span class="literal">null</span>)</span><br><span class="line">            hd.treeify(tab);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424932.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424932.png?x-oss-process=style/ezio"></a></p>
-<h3 id="amp-与位运算"><a href="#amp-与位运算" class="headerlink" title="&amp; 与位运算"></a>&amp; 与位运算</h3><p>有一个0则为0，都为1才为1。</p>
-<p>15 0000 1111</p>
-<p>n   0101 0101</p>
-<p>&amp;   0000 0101</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AJAX异步请求</title>
     <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -281,6 +143,87 @@
       </categories>
       <tags>
         <tag>AJAX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Feign</title>
+    <url>/2022/07/23/Feign/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="基于feign的远程调用"><a href="#基于feign的远程调用" class="headerlink" title="基于feign的远程调用"></a>基于feign的远程调用</h3><p>1.引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.在服务调用方即消费者的服务启动类上加上注解 @EnableFeignClients</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients()</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(OrderApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.编写客户端</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;userservice&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">findById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Feign主要是基于注解来声明远程调用的信息，如：</p>
+<ul>
+<li>服务名称：userservice</li>
+<li>请求方式：GET</li>
+<li>请求路径：&#x2F;user&#x2F;{id}</li>
+<li>请求参数：Long id</li>
+<li>返回值类型：User</li>
+</ul>
+<hr>
+<h3 id="自定义Feign配置"><a href="#自定义Feign配置" class="headerlink" title="自定义Feign配置"></a>自定义Feign配置</h3><p><strong>方式一：配置文件方式</strong></p>
+<p>1.全局生效：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">       <span class="attr">default:</span> <span class="comment"># default全局配置</span></span><br><span class="line">       	 <span class="attr">loggerLevel:</span> <span class="string">Full</span> <span class="comment"># 日志级别</span></span><br></pre></td></tr></table></figure>
+
+<p>2.局部服务生效：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">       <span class="attr">userservice:</span> <span class="comment"># 写服务名称就是针对某个服务的配置</span></span><br><span class="line">       	 <span class="attr">loggerLevel:</span> <span class="string">Full</span> <span class="comment"># 日志级别</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二：java代码方式</strong></p>
+<p>1.声明一个bean</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DefaultFeignConfiguration</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Logger.Level <span class="title function_">logLevel</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.BASIC;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.全局配置：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients(defaultConfiguration = DefaultFeignConfiguration.class)</span></span><br></pre></td></tr></table></figure>
+
+<p>3.局部配置：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;userservice&quot;, defaultConfiguration = DefaultFeignConfiguration.class)</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Feign性能优化"><a href="#Feign性能优化" class="headerlink" title="Feign性能优化"></a>Feign性能优化</h3><p><strong>Feign底层客户端实现：</strong></p>
+<ul>
+<li>URLConnection：默认实现，不支持连接池</li>
+<li>Apache HttpClient：支持连接池</li>
+<li>OKHttp：支持连接池</li>
+</ul>
+<p><strong>优化点：</strong></p>
+<ol>
+<li>使用有连接池的代替默认的URLConnection</li>
+<li>日志级别，最好用basic或none</li>
+</ol>
+<p><strong>连接池配置：</strong></p>
+<p>1.引入依赖：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入HttpClient依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.配置连接池：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">       <span class="attr">default:</span> <span class="comment"># default全局配置</span></span><br><span class="line">       	 <span class="attr">loggerLevel:</span> <span class="string">BASIC</span> <span class="comment"># 日志级别</span></span><br><span class="line">  <span class="attr">httpclient:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 支持HttpClient的开关</span></span><br><span class="line">    <span class="attr">max-connections:</span> <span class="number">200</span> <span class="comment"># 最大连接数</span></span><br><span class="line">    <span class="attr">max-connections-per-route:</span> <span class="number">50</span> <span class="comment"># 单个路径的最大连接数</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Feign实践方式"><a href="#Feign实践方式" class="headerlink" title="Feign实践方式"></a>Feign实践方式</h3><p>将FeignClient单独抽取一个模块，将pojo、默认配置等放到模块中。</p>
+<p>1.新建一个module，命名例如user-api，引入feign的starter依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.编写Client、pojo、默认配置类</p>
+<p>3.消费者引入user-api的依赖</p>
+<p>4.在@EnableFeignClients上指定client位置。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients(clients = UserClient.class, defaultConfiguration = DefaultFeignConfiguration.class)</span></span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Feign</tag>
+        <tag>Spring Cloud</tag>
       </tags>
   </entry>
   <entry>
@@ -387,6 +330,63 @@
       </categories>
       <tags>
         <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git上传远程仓库命令组</title>
+    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HashMap</title>
+    <url>/2021/05/21/HashMap/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="put-方法执行流程"><a href="#put-方法执行流程" class="headerlink" title="put() 方法执行流程"></a>put() 方法执行流程</h3><ol>
+<li>put(key, value)，先通过 <strong>hash()</strong> 方法计算出key的hash值。</li>
+<li>判断Node数组是否初始化，没有则初始化数组，并赋值长度n&#x3D;初始化数组的长度。</li>
+<li>通过key的hash值计算出要放在数组的哪个地方，即计算出数组下标，tab[i]。<strong>i&#x3D;(n-1) &amp; hash</strong>。<strong>限定数组的长度要为2的n次方数</strong></li>
+<li>计算出的要放在数组的位置如果没有数据，则new一个节点将数据直接放进去。tab[i]&#x3D;newNode(hash,key,value,null)。</li>
+<li>如果要放的位置已经有数据了，则判断key是否相等，如果key相等，则会将节点value的值进行替换。</li>
+<li>如果key不想等，判断当前位置的Node类型是否为TreeNode类型，是，则new一个TreeNode对象将数据插入到红黑数中。</li>
+<li>如果是Node类型，遍历Node链表，找到next属性为null的节点即找到尾节点，并new一个节点将原尾节点next值赋值为插入的数据。将数据插入链表尾部。在遍历时，如果发现key相同，则break循环，更新value值。</li>
+<li>遍历过程中，如果发现put新节点时原链表长度&gt;&#x3D;8，判断数组的长度，如果数组的长度&gt;&#x3D;64，则将原链表转为红黑树，否则会对数组进行扩容。<strong>treeifyBin()</strong></li>
+<li>判断是否需要扩容。加载因子0.75 （++size &gt; threshold），满足条件则针对数组进行扩容，扩容为双倍扩容。</li>
+</ol>
+<h3 id="hash"><a href="#hash" class="headerlink" title="hash()"></a>hash()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">	<span class="type">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="literal">null</span>) ? <span class="number">0</span> : (h = key.hashcode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//扰动+寻址，让hashcode的高位也一起参与到计算数组下标的计算中，减少hash冲突的概率。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="treeifyBin"><a href="#treeifyBin" class="headerlink" title="treeifyBin()"></a>treeifyBin()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">treeifyBin</span><span class="params">(Node&lt;K,V&gt;[] tab, <span class="type">int</span> hash)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, index; Node&lt;K,V&gt; e;</span><br><span class="line">    <span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) &lt; MIN_TREEIFY_CAPACITY)</span><br><span class="line">        resize();</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((e = tab[index = (n - <span class="number">1</span>) &amp; hash]) != <span class="literal">null</span>) &#123;</span><br><span class="line">        TreeNode&lt;K,V&gt; hd = <span class="literal">null</span>, tl = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="comment">//遍历链表，将每个Node对象替换为TreeNode，并将单向链表改为双向链表方便操作。</span></span><br><span class="line">            TreeNode&lt;K,V&gt; p = replacementTreeNode(e, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (tl == <span class="literal">null</span>)</span><br><span class="line">                hd = p;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                p.prev = tl;</span><br><span class="line">                tl.next = p;</span><br><span class="line">            &#125;</span><br><span class="line">            tl = p;</span><br><span class="line">        &#125; <span class="keyword">while</span> ((e = e.next) != <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">if</span> ((tab[index] = hd) != <span class="literal">null</span>)</span><br><span class="line">            hd.treeify(tab);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424932.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424932.png?x-oss-process=style/ezio"></a></p>
+<h3 id="amp-与位运算"><a href="#amp-与位运算" class="headerlink" title="&amp; 与位运算"></a>&amp; 与位运算</h3><p>有一个0则为0，都为1才为1。</p>
+<p>15 0000 1111</p>
+<p>n   0101 0101</p>
+<p>&amp;   0000 0101</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -568,75 +568,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java8-LocalDateTime</title>
-    <url>/2021/04/13/Java8-LocalDateTime/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>在 <em>Java8</em> 中引入了新的日期类 <strong>LocalDateTime</strong> ，其主要原因是 <code>Java.util.Date</code> 和 <code>SimpleDateFormatter</code> 都不是线程安全的，而<code>LocalDate</code>和<code>LocalTime</code>和最基本的<code>String</code>一样，是 final 类型，不但线程安全，且不能修改。日期和时间被明确划分为 <code>LocalDate</code> 和 <code>LocalTime</code> ，<code>LocalDate</code> 无法包含时间，<code>LocalTime</code> 无法包含日期，<code>LocalDateTime</code> 才能同时包含日期和时间。</p>
-<hr>
-<h4 id="LocalTime-只含时分秒的时间对象"><a href="#LocalTime-只含时分秒的时间对象" class="headerlink" title="LocalTime 只含时分秒的时间对象"></a>LocalTime 只含时分秒的时间对象</h4><ul>
-<li>获取当前时间 now()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前时间 14:40:29.899</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">now</span> <span class="operator">=</span> LocalTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间 = &quot;</span> + now);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取指定时间 of()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定时间 12:30:45</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">of</span> <span class="operator">=</span> LocalTime.of(<span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定时间 = &quot;</span> + of);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="LocalDate-只含年月日的日期对象"><a href="#LocalDate-只含年月日的日期对象" class="headerlink" title="LocalDate 只含年月日的日期对象"></a>LocalDate 只含年月日的日期对象</h4><ul>
-<li>获取当前日期 now()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期 2022-04-11</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDateNow</span> <span class="operator">=</span> LocalDate.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期 = &quot;</span> + localDateNow);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取指定日期 of()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期 2021-11-12</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDate</span> <span class="operator">=</span> LocalDate.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期 = &quot;</span> + localDate);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="LocalDateTime-同时含有年月日时分秒的日期对象"><a href="#LocalDateTime-同时含有年月日时分秒的日期对象" class="headerlink" title="LocalDateTime 同时含有年月日时分秒的日期对象"></a>LocalDateTime 同时含有年月日时分秒的日期对象</h4><ul>
-<li>获取当前时间 now()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期时间 2022-04-11T14:40:29.900</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">now1</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期时间 = &quot;</span> + now1);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取指定时间 of()</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期时间 2021-11-12T12:30:45</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">of1</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期时间 = &quot;</span> + of1);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>时间格式化 DateTimeFormatter</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//时间日期格式化 2022-04-11 14:40:29</span></span><br><span class="line"><span class="type">String</span> <span class="variable">format1</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line"><span class="type">String</span> <span class="variable">format2</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ISO_DATE);  </span><br><span class="line"><span class="type">String</span> <span class="variable">format3</span> <span class="operator">=</span> now1.format(DateTimeFormatter.BASIC_ISO_DATE);  </span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format1); <span class="comment">//2022-04-11 14:40:29  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format2); <span class="comment">//2022-04-11  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format3); <span class="comment">//20220411</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取具体的时间</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间: &quot;</span> + localDateTime);  </span><br><span class="line">System.out.println(<span class="string">&quot;年: &quot;</span> + localDateTime.getYear());  </span><br><span class="line">System.out.println(<span class="string">&quot;月: &quot;</span> + localDateTime.getMonth().getValue());  </span><br><span class="line">System.out.println(<span class="string">&quot;日: &quot;</span> + localDateTime.getDayOfMonth());  </span><br><span class="line">System.out.println(<span class="string">&quot;时: &quot;</span> + localDateTime.getHour());  </span><br><span class="line">System.out.println(<span class="string">&quot;分: &quot;</span> + localDateTime.getMinute());  </span><br><span class="line">System.out.println(<span class="string">&quot;秒: &quot;</span> + localDateTime.getSecond());  </span><br><span class="line">System.out.println(<span class="string">&quot;减少一年 = &quot;</span> + localDateTime.minusYears(<span class="number">1</span>)); <span class="comment">// 减少一年 2018-12-12 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;增加一年 = &quot;</span> + localDateTime.plusDays(<span class="number">1</span>)); <span class="comment">// 增加一天 2018-12-13 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;直接修改年份 = &quot;</span> + localDateTime.withYear(<span class="number">2020</span>)); <span class="comment">// 直接修改年份 2020-12-13 08:12:12</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>时间反解析 parse( )</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime1</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2022-04-11 14:53:00&quot;</span>, DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line">System.out.println(<span class="string">&quot;反解析 = &quot;</span> + localDateTime1);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Date To LocalDateTime</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> instant.atZone(zoneId).toLocalDateTime();</span><br></pre></td></tr></table></figure>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java Serializable接口</title>
     <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -653,6 +584,23 @@
 <h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​	序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
 <p>​	如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8-Predicate函数</title>
+    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -791,82 +739,61 @@
       </tags>
   </entry>
   <entry>
-    <title>Java集合</title>
-    <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
-<h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
-<li><p><strong>有序性：</strong>  </p>
+    <title>Java8-LocalDateTime</title>
+    <url>/2021/04/13/Java8-LocalDateTime/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>在 <em>Java8</em> 中引入了新的日期类 <strong>LocalDateTime</strong> ，其主要原因是 <code>Java.util.Date</code> 和 <code>SimpleDateFormatter</code> 都不是线程安全的，而<code>LocalDate</code>和<code>LocalTime</code>和最基本的<code>String</code>一样，是 final 类型，不但线程安全，且不能修改。日期和时间被明确划分为 <code>LocalDate</code> 和 <code>LocalTime</code> ，<code>LocalDate</code> 无法包含时间，<code>LocalTime</code> 无法包含日期，<code>LocalDateTime</code> 才能同时包含日期和时间。</p>
+<hr>
+<h4 id="LocalTime-只含时分秒的时间对象"><a href="#LocalTime-只含时分秒的时间对象" class="headerlink" title="LocalTime 只含时分秒的时间对象"></a>LocalTime 只含时分秒的时间对象</h4><ul>
+<li>获取当前时间 now()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前时间 14:40:29.899</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">now</span> <span class="operator">=</span> LocalTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间 = &quot;</span> + now);</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><strong>List：保证按插入顺序排序</strong>  </li>
-<li><strong>set：set存储和取出顺序不一致</strong></li>
+<li>获取指定时间 of()</li>
 </ul>
-</li>
-<li><p><strong>唯一性：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定时间 12:30:45</span></span><br><span class="line"><span class="type">LocalTime</span> <span class="variable">of</span> <span class="operator">=</span> LocalTime.of(<span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定时间 = &quot;</span> + of);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="LocalDate-只含年月日的日期对象"><a href="#LocalDate-只含年月日的日期对象" class="headerlink" title="LocalDate 只含年月日的日期对象"></a>LocalDate 只含年月日的日期对象</h4><ul>
+<li>获取当前日期 now()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期 2022-04-11</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDateNow</span> <span class="operator">=</span> LocalDate.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期 = &quot;</span> + localDateNow);</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><strong>List：可以重复</strong>  </li>
-<li><strong>set：元素唯一</strong></li>
+<li>获取指定日期 of()</li>
 </ul>
-</li>
-<li><p><strong>获取元素：</strong>  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期 2021-11-12</span></span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">localDate</span> <span class="operator">=</span> LocalDate.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期 = &quot;</span> + localDate);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="LocalDateTime-同时含有年月日时分秒的日期对象"><a href="#LocalDateTime-同时含有年月日时分秒的日期对象" class="headerlink" title="LocalDateTime 同时含有年月日时分秒的日期对象"></a>LocalDateTime 同时含有年月日时分秒的日期对象</h4><ul>
+<li>获取当前时间 now()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取当前日期时间 2022-04-11T14:40:29.900</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">now1</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前日期时间 = &quot;</span> + now1);</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><strong>List：可以通过索引直接操作元素</strong>  </li>
-<li><strong>set：set不能根据索引获取元素</strong></li>
+<li>获取指定时间 of()</li>
 </ul>
-</li>
-</ul>
-<h3 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h3><p>（1）<strong>ArrayList</strong>：底层数据结构是<strong>数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</strong></p>
-<p>（2）<strong>LinkedList</strong> ：底层数据结构是<strong>链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</strong></p>
-<p>（3）<strong>Vector</strong>:底层数据结构是<strong>数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</strong></p>
-<h3 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h3><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
-<p>(2)<strong>LinkedHashSet</strong>：底层数据结构采用链表和哈希表共同实现，链表保证了元素的顺序与存储顺序一致，哈希表保证了元素的唯一性。线程不安全，效率高。</p>
-<p>(3)<strong>TreeSet</strong>：底层数据结构采用二叉树来实现，元素唯一，它不保留元素的插入顺序，它按升序对元素排序，他不是线程安全的。</p>
-<h3 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h3><ul>
-<li><p><strong>线程安全：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取指定日期时间 2021-11-12T12:30:45</span></span><br><span class="line"><span class="type">LocalDateTime</span> <span class="variable">of1</span> <span class="operator">=</span> LocalDateTime.of(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">30</span>, <span class="number">45</span>);  </span><br><span class="line">System.out.println(<span class="string">&quot;指定日期时间 = &quot;</span> + of1);</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>HashTable：类中一些方法加入了synchronized关键字，来保证线程安全。 </li>
-<li>HashMap：线程不安全。</li>
+<li>时间格式化 DateTimeFormatter</li>
 </ul>
-</li>
-<li><p><strong>空值：</strong>  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//时间日期格式化 2022-04-11 14:40:29</span></span><br><span class="line"><span class="type">String</span> <span class="variable">format1</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line"><span class="type">String</span> <span class="variable">format2</span> <span class="operator">=</span> now1.format(DateTimeFormatter.ISO_DATE);  </span><br><span class="line"><span class="type">String</span> <span class="variable">format3</span> <span class="operator">=</span> now1.format(DateTimeFormatter.BASIC_ISO_DATE);  </span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format1); <span class="comment">//2022-04-11 14:40:29  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format2); <span class="comment">//2022-04-11  </span></span><br><span class="line">System.out.println(<span class="string">&quot;格式化后时间日期为 = &quot;</span> + format3); <span class="comment">//20220411</span></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>HashTable：不能放入空值  </li>
-<li>HashMap：只有一个key可以为null，但是可以有多个value为null。</li>
+<li>获取具体的时间</li>
 </ul>
-</li>
-<li><p><strong>性能：</strong>  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> LocalDateTime.now();  </span><br><span class="line">System.out.println(<span class="string">&quot;当前时间: &quot;</span> + localDateTime);  </span><br><span class="line">System.out.println(<span class="string">&quot;年: &quot;</span> + localDateTime.getYear());  </span><br><span class="line">System.out.println(<span class="string">&quot;月: &quot;</span> + localDateTime.getMonth().getValue());  </span><br><span class="line">System.out.println(<span class="string">&quot;日: &quot;</span> + localDateTime.getDayOfMonth());  </span><br><span class="line">System.out.println(<span class="string">&quot;时: &quot;</span> + localDateTime.getHour());  </span><br><span class="line">System.out.println(<span class="string">&quot;分: &quot;</span> + localDateTime.getMinute());  </span><br><span class="line">System.out.println(<span class="string">&quot;秒: &quot;</span> + localDateTime.getSecond());  </span><br><span class="line">System.out.println(<span class="string">&quot;减少一年 = &quot;</span> + localDateTime.minusYears(<span class="number">1</span>)); <span class="comment">// 减少一年 2018-12-12 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;增加一年 = &quot;</span> + localDateTime.plusDays(<span class="number">1</span>)); <span class="comment">// 增加一天 2018-12-13 08:12:12</span></span><br><span class="line">System.out.println(<span class="string">&quot;直接修改年份 = &quot;</span> + localDateTime.withYear(<span class="number">2020</span>)); <span class="comment">// 直接修改年份 2020-12-13 08:12:12</span></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>HashTable因为加入synchronized关键字，所以性能较于HashMap较差</li>
-<li>HashMap性能最好。不能保证其元素顺序用作key的对象必须实现hashCode()和equals()方法。</li>
+<li>时间反解析 parse( )</li>
 </ul>
-</li>
-</ul>
-<h4 id="TreeMap："><a href="#TreeMap：" class="headerlink" title="TreeMap："></a>TreeMap：</h4><ul>
-<li><p>实现SortMap接口，基于红黑树对所有key进行排序。</p>
-</li>
-<li><p>排序方式：自然排序和定制排序key以TreeSet的形式存储，要求与TreeSet一致。</p>
-</li>
-</ul>
-<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：<strong>newsize &#x3D; olesize*2+1</strong>     计算index的方法：<strong>index &#x3D; (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
-<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，<strong>扩容：newsize &#x3D; oldsize*2</strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀<strong>计算index方法：index &#x3D; hash &amp; (tab.length – 1)</strong></p>
-<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h4><p>底层采用分段的数组+链表实现，<strong>线程安全</strong>；通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</p>
-<p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
-<h3 id="HashMap底层实现原理："><a href="#HashMap底层实现原理：" class="headerlink" title="HashMap底层实现原理："></a>HashMap底层实现原理：</h3><ul>
-<li>HashMap的底层主要是基于数组和链表来实现的，它之所以有相当快的查询速度主要是因为它是通过计算散列码来决定存储的位置。</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime1</span> <span class="operator">=</span> LocalDateTime.parse(<span class="string">&quot;2022-04-11 14:53:00&quot;</span>, DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));  </span><br><span class="line">System.out.println(<span class="string">&quot;反解析 = &quot;</span> + localDateTime1);</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>HashMap中主要是通过key的hashCode来计算hash值的，只要hashCode相同，计算出来的hash值就一样。</li>
-<li>如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。</li>
-<li>HashMap底层是通过链表来解决hash冲突的。</li>
+<li>Date To LocalDateTime</li>
 </ul>
-<h3 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h3><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
-<p>在1.8之前，新插入的元素都是放在了链表的头部位置，但是这种操作在高并发的环境下容易导致死锁，所以1.8之后，新插入的元素都放在了链表的尾部。</p>
-<ul>
-<li>HashMap采用hash算法来决定Map中key的存储，并通过hash算法来增加集合的大小。</li>
-<li>hash表里可以存储元素的位置称为<strong>桶（bucket）</strong>，如果通过key计算hash值发生冲突时，那么将采用链表的形式，来存储元素。</li>
-<li>HashMap的扩容操作是一项很耗时的任务，所以如果能估算Map的容量，最好给它一个默认初始值，避免进行多次扩容。</li>
-<li>HashMap的线程是不安全的，多线程环境中推荐是ConcurrentHashMap。</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> instant.atZone(zoneId).toLocalDateTime();</span><br></pre></td></tr></table></figure>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -979,6 +906,96 @@
       </tags>
   </entry>
   <entry>
+    <title>Java集合</title>
+    <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
+<h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
+<li><p><strong>有序性：</strong>  </p>
+<ul>
+<li><strong>List：保证按插入顺序排序</strong>  </li>
+<li><strong>set：set存储和取出顺序不一致</strong></li>
+</ul>
+</li>
+<li><p><strong>唯一性：</strong> </p>
+<ul>
+<li><strong>List：可以重复</strong>  </li>
+<li><strong>set：元素唯一</strong></li>
+</ul>
+</li>
+<li><p><strong>获取元素：</strong>  </p>
+<ul>
+<li><strong>List：可以通过索引直接操作元素</strong>  </li>
+<li><strong>set：set不能根据索引获取元素</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h3><p>（1）<strong>ArrayList</strong>：底层数据结构是<strong>数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（2）<strong>LinkedList</strong> ：底层数据结构是<strong>链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（3）<strong>Vector</strong>:底层数据结构是<strong>数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</strong></p>
+<h3 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h3><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
+<p>(2)<strong>LinkedHashSet</strong>：底层数据结构采用链表和哈希表共同实现，链表保证了元素的顺序与存储顺序一致，哈希表保证了元素的唯一性。线程不安全，效率高。</p>
+<p>(3)<strong>TreeSet</strong>：底层数据结构采用二叉树来实现，元素唯一，它不保留元素的插入顺序，它按升序对元素排序，他不是线程安全的。</p>
+<h3 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h3><ul>
+<li><p><strong>线程安全：</strong></p>
+<ul>
+<li>HashTable：类中一些方法加入了synchronized关键字，来保证线程安全。 </li>
+<li>HashMap：线程不安全。</li>
+</ul>
+</li>
+<li><p><strong>空值：</strong>  </p>
+<ul>
+<li>HashTable：不能放入空值  </li>
+<li>HashMap：只有一个key可以为null，但是可以有多个value为null。</li>
+</ul>
+</li>
+<li><p><strong>性能：</strong>  </p>
+<ul>
+<li>HashTable因为加入synchronized关键字，所以性能较于HashMap较差</li>
+<li>HashMap性能最好。不能保证其元素顺序用作key的对象必须实现hashCode()和equals()方法。</li>
+</ul>
+</li>
+</ul>
+<h4 id="TreeMap："><a href="#TreeMap：" class="headerlink" title="TreeMap："></a>TreeMap：</h4><ul>
+<li><p>实现SortMap接口，基于红黑树对所有key进行排序。</p>
+</li>
+<li><p>排序方式：自然排序和定制排序key以TreeSet的形式存储，要求与TreeSet一致。</p>
+</li>
+</ul>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：<strong>newsize &#x3D; olesize*2+1</strong>     计算index的方法：<strong>index &#x3D; (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，<strong>扩容：newsize &#x3D; oldsize*2</strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀<strong>计算index方法：index &#x3D; hash &amp; (tab.length – 1)</strong></p>
+<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h4><p>底层采用分段的数组+链表实现，<strong>线程安全</strong>；通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</p>
+<p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<h3 id="HashMap底层实现原理："><a href="#HashMap底层实现原理：" class="headerlink" title="HashMap底层实现原理："></a>HashMap底层实现原理：</h3><ul>
+<li>HashMap的底层主要是基于数组和链表来实现的，它之所以有相当快的查询速度主要是因为它是通过计算散列码来决定存储的位置。</li>
+</ul>
+<ul>
+<li>HashMap中主要是通过key的hashCode来计算hash值的，只要hashCode相同，计算出来的hash值就一样。</li>
+<li>如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。</li>
+<li>HashMap底层是通过链表来解决hash冲突的。</li>
+</ul>
+<h3 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h3><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
+<p>在1.8之前，新插入的元素都是放在了链表的头部位置，但是这种操作在高并发的环境下容易导致死锁，所以1.8之后，新插入的元素都放在了链表的尾部。</p>
+<ul>
+<li>HashMap采用hash算法来决定Map中key的存储，并通过hash算法来增加集合的大小。</li>
+<li>hash表里可以存储元素的位置称为<strong>桶（bucket）</strong>，如果通过key计算hash值发生冲突时，那么将采用链表的形式，来存储元素。</li>
+<li>HashMap的扩容操作是一项很耗时的任务，所以如果能估算Map的容量，最好给它一个默认初始值，避免进行多次扩容。</li>
+<li>HashMap的线程是不安全的，多线程环境中推荐是ConcurrentHashMap。</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux挂载</title>
     <url>/2020/01/10/Linux%E6%8C%82%E8%BD%BD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -1001,20 +1018,62 @@
       </tags>
   </entry>
   <entry>
-    <title>Java8-Predicate函数</title>
-    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
+    <title>Linux环境下安装JDK</title>
+    <url>/2019/12/04/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85JDK/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+<p>1.首先去官网或者通过其他途径获取压缩包</p>
+<p>2.把压缩包上传到服务器&#x2F;usr&#x2F;local&#x2F;tmp</p>
+<p>3.解压压缩包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar -zxvf jdk</span><br></pre></td></tr></table></figure>
+
+<p>4.把解压后的文件复制到&#x2F;usr&#x2F;local&#x2F;jdk8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> -r 文件名 /usr/local/jdk8</span><br></pre></td></tr></table></figure>
+
+<p>5.配置环境变量，执行命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>6.修改文件中的内容，内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/local/jdk8</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br></pre></td></tr></table></figure>
+
+<p>export 添加或修改变量</p>
+<p>7.解析文件（或重启系统）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>8.验证配置是否成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ java-version</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>Java</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法</title>
+    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
+
+<p>其效果如下展示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -1052,49 +1111,6 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 错误：$r: command not found</title>
-    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Linux-错误：-‘-r‘-command-not-found"><a href="#Linux-错误：-‘-r‘-command-not-found" class="headerlink" title="Linux 错误：$‘\r‘:command not found"></a>Linux 错误：$‘\r‘:command not found</h1><p>在linux系统上执行shell脚本时，如果出现’$‘\r‘:command not found’报错，其原因是：shell脚本在windows系统下进行编辑后上传到linux系统上执行所报的错，因为在windows下换行时回车符+换行符（\r\n），而unix下是换行符（\n），linux下不识别 <strong>\r</strong> 为回车符，所以导致脚本执行报错，其本质是不同系统的编码问题。</p>
-<p><strong>解决方案：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install dos2unix</span><br><span class="line">dos2unix <span class="string">&#x27;脚本名.sh&#x27;</span> </span><br></pre></td></tr></table></figure>
-
-<p>执行后该命令后再执行原脚本，报错消失。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
-
-<p>其效果如下展示：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -1449,6 +1465,28 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux 错误：$r: command not found</title>
+    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Linux-错误：-‘-r‘-command-not-found"><a href="#Linux-错误：-‘-r‘-command-not-found" class="headerlink" title="Linux 错误：$‘\r‘:command not found"></a>Linux 错误：$‘\r‘:command not found</h1><p>在linux系统上执行shell脚本时，如果出现’$‘\r‘:command not found’报错，其原因是：shell脚本在windows系统下进行编辑后上传到linux系统上执行所报的错，因为在windows下换行时回车符+换行符（\r\n），而unix下是换行符（\n），linux下不识别 <strong>\r</strong> 为回车符，所以导致脚本执行报错，其本质是不同系统的编码问题。</p>
+<p><strong>解决方案：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install dos2unix</span><br><span class="line">dos2unix <span class="string">&#x27;脚本名.sh&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<p>执行后该命令后再执行原脚本，报错消失。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RabbitMQ</title>
     <url>/2021/04/12/RabbitMQ/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>RabbitMQ是基于Erlang语言开发的开源消息通信中间件，<a href="https://www.rabbitmq.com/">官网地址</a></p>
@@ -1697,6 +1735,46 @@
       </tags>
   </entry>
   <entry>
+    <title>Spring AMQP</title>
+    <url>/2022/08/07/Spring-AMQP/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>AMQP：</strong>Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同的开发语言等条件的限制。Erlang 中的实现有 RabbitMQ 等。</p>
+<p><strong>Spring AMQP：</strong>基于AMQP协议定义的一套API规范，提供了模板来发送和接受消息。有两部分，spring-amqp 是基础抽象，spring-rabbit 是底层的默认实现。</p>
+<h3 id="基本使用流程"><a href="#基本使用流程" class="headerlink" title="基本使用流程"></a>基本使用流程</h3><h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--AMQP依赖，包含RabbitMQ--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息："><a href="#2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息：" class="headerlink" title="2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息："></a>2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息：</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-publisher发送消息"><a href="#3-publisher发送消息" class="headerlink" title="3.publisher发送消息"></a>3.publisher发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringAmqpTest</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//注入rabbitTemplate，用来发送消息</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSendMessage2SimpleQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">queueName</span> <span class="operator">=</span> <span class="string">&quot;simple.queue&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;hello, spring amqp!&quot;</span>;</span><br><span class="line">        rabbitTemplate.convertAndSend(queueName, message);</span><br><span class="line">        System.out.println(<span class="string">&quot;发送消息完成！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-consumer消费消息"><a href="#4-consumer消费消息" class="headerlink" title="4.consumer消费消息"></a>4.consumer消费消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringRabbitListener</span> &#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//@RabbitListener，用于监听队列</span></span><br><span class="line">     <span class="meta">@RabbitListener(queues = &quot;simple.queue&quot;)</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenSimpleQueue</span><span class="params">(String msg)</span> &#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;消费者接收到simple.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-RabbitListener"><a href="#5-RabbitListener" class="headerlink" title="5.@RabbitListener"></a>5.@RabbitListener</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(name = &quot;direct.queue1&quot;), //绑定的队列</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(name = &quot;test.direct&quot;), //声明交换机名称</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;red&quot;, &quot;blue&quot;&#125; //路由key，可配置通配符，red.# or red.*</span></span><br><span class="line"><span class="meta">))</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消息预取"><a href="#消息预取" class="headerlink" title="消息预取"></a>消息预取</h3><p>消费者会预先从队列中获取消息来等待处理，会忽略消费者的处理能力，可以通过设置预取上限（prefetch）来打到竞争模式的效果，能者多劳。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消息转换器"><a href="#消息转换器" class="headerlink" title="消息转换器"></a>消息转换器</h3><p>Spring AMQP的对消息对象的处理是有org.springframework.amqp.support.converter.MessageConverter来处理的。默认实现是<code>SimpleMessageConverter</code>，基于JDK的 <code>ObjectOutputStream</code> 完成序列化。想要发送对象消息，需要自定义消息转换器。</p>
+<h4 id="1-引入依赖-1"><a href="#1-引入依赖-1" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-在springboot启动类中，注入bean"><a href="#2-在springboot启动类中，注入bean" class="headerlink" title="2.在springboot启动类中，注入bean"></a>2.在springboot启动类中，注入bean</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PublisherApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(PublisherApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageConverter <span class="title function_">messageConverter</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonMessageConverter</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+        <tag>Spring AMQP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis数据类型</title>
     <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -1759,146 +1837,6 @@
       </categories>
       <tags>
         <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux环境下安装JDK</title>
-    <url>/2019/12/04/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85JDK/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<p>1.首先去官网或者通过其他途径获取压缩包</p>
-<p>2.把压缩包上传到服务器&#x2F;usr&#x2F;local&#x2F;tmp</p>
-<p>3.解压压缩包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tar -zxvf jdk</span><br></pre></td></tr></table></figure>
-
-<p>4.把解压后的文件复制到&#x2F;usr&#x2F;local&#x2F;jdk8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> -r 文件名 /usr/local/jdk8</span><br></pre></td></tr></table></figure>
-
-<p>5.配置环境变量，执行命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>6.修改文件中的内容，内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/local/jdk8</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br></pre></td></tr></table></figure>
-
-<p>export 添加或修改变量</p>
-<p>7.解析文件（或重启系统）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>8.验证配置是否成功</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ java-version</span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring AMQP</title>
-    <url>/2022/08/07/Spring-AMQP/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>AMQP：</strong>Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同的开发语言等条件的限制。Erlang 中的实现有 RabbitMQ 等。</p>
-<p><strong>Spring AMQP：</strong>基于AMQP协议定义的一套API规范，提供了模板来发送和接受消息。有两部分，spring-amqp 是基础抽象，spring-rabbit 是底层的默认实现。</p>
-<h3 id="基本使用流程"><a href="#基本使用流程" class="headerlink" title="基本使用流程"></a>基本使用流程</h3><h4 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--AMQP依赖，包含RabbitMQ--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息："><a href="#2-在publisher服务和consumer服务中编写application-yml文件，添加mq连接信息：" class="headerlink" title="2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息："></a>2.在publisher服务和consumer服务中编写application.yml文件，添加mq连接信息：</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-publisher发送消息"><a href="#3-publisher发送消息" class="headerlink" title="3.publisher发送消息"></a>3.publisher发送消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringAmqpTest</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//注入rabbitTemplate，用来发送消息</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSendMessage2SimpleQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">queueName</span> <span class="operator">=</span> <span class="string">&quot;simple.queue&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;hello, spring amqp!&quot;</span>;</span><br><span class="line">        rabbitTemplate.convertAndSend(queueName, message);</span><br><span class="line">        System.out.println(<span class="string">&quot;发送消息完成！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-consumer消费消息"><a href="#4-consumer消费消息" class="headerlink" title="4.consumer消费消息"></a>4.consumer消费消息</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringRabbitListener</span> &#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//@RabbitListener，用于监听队列</span></span><br><span class="line">     <span class="meta">@RabbitListener(queues = &quot;simple.queue&quot;)</span></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenSimpleQueue</span><span class="params">(String msg)</span> &#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;消费者接收到simple.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-RabbitListener"><a href="#5-RabbitListener" class="headerlink" title="5.@RabbitListener"></a>5.@RabbitListener</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(name = &quot;direct.queue1&quot;), //绑定的队列</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(name = &quot;test.direct&quot;), //声明交换机名称</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;red&quot;, &quot;blue&quot;&#125; //路由key，可配置通配符，red.# or red.*</span></span><br><span class="line"><span class="meta">))</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消息预取"><a href="#消息预取" class="headerlink" title="消息预取"></a>消息预取</h3><p>消费者会预先从队列中获取消息来等待处理，会忽略消费者的处理能力，可以通过设置预取上限（prefetch）来打到竞争模式的效果，能者多劳。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消息转换器"><a href="#消息转换器" class="headerlink" title="消息转换器"></a>消息转换器</h3><p>Spring AMQP的对消息对象的处理是有org.springframework.amqp.support.converter.MessageConverter来处理的。默认实现是<code>SimpleMessageConverter</code>，基于JDK的 <code>ObjectOutputStream</code> 完成序列化。想要发送对象消息，需要自定义消息转换器。</p>
-<h4 id="1-引入依赖-1"><a href="#1-引入依赖-1" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-在springboot启动类中，注入bean"><a href="#2-在springboot启动类中，注入bean" class="headerlink" title="2.在springboot启动类中，注入bean"></a>2.在springboot启动类中，注入bean</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PublisherApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(PublisherApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageConverter <span class="title function_">messageConverter</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonMessageConverter</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-        <tag>Spring AMQP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring Security</title>
-    <url>/2022/09/19/Spring-Security/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Spring Security 是 Spring 项目中的一个安全模块，在 Spring boot 中已经默认集成和开启了 Spring Security。</p>
-<h3 id="Spring-Security-核心组件"><a href="#Spring-Security-核心组件" class="headerlink" title="Spring Security 核心组件"></a>Spring Security 核心组件</h3><p>spring security 核心组件有：Userdetails 、Authentication，UserDetailsService、AuthenticationProvider、AuthenticationManager。</p>
-<h4 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h4><p>在 Spring Security 中 <code>Authentication</code> 用来表示当前用户是谁，一般来讲你可以理解为 <code>authentication</code> 就是一组用户名密码信息。<code>Authentication</code> 也是一个接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Authentication</span> <span class="keyword">extends</span> <span class="title class_">Principal</span>, Serializable &#123;</span><br><span class="line">  </span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	Object <span class="title function_">getCredentials</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getDetails</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getPrincipal</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAuthenticated</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">setAuthenticated</span><span class="params">(<span class="type">boolean</span> isAuthenticated)</span> <span class="keyword">throws</span> IllegalArgumentException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这几个方法作用如下：</p>
-<ul>
-<li>getAuthorities(): 获取用户权限，一般情况下获取到的是用户的角色信息。</li>
-<li>getCredentials()：获取证明用户认证的信息，通常情况下获取到的是密码等信息。</li>
-<li>getDetails(): 获取用户的额外信息，（这部分信息可以是我们的用户表中的信息）</li>
-<li>getPrincipal(): 获取用户身份信息，在未认证的情况下获取到的是用户名，在已认证的情况下获取到的是 <code>UserDetails</code> (UserDetails也是一个接口，里边的方法有getUsername，getPassword等)。</li>
-<li>isAuthenticated()：获取当前 <code>Authentication</code> 是否已认证。</li>
-<li>setAuthenticated()：设置当前 <code>Authentication</code> 是否已认证（true or false）。</li>
-</ul>
-<h4 id="UserDetails"><a href="#UserDetails" class="headerlink" title="UserDetails"></a>UserDetails</h4><p><code>UserDetails</code>，用户详情。其存储的就是用户信息，其定义如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetails</span> <span class="keyword">extends</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"></span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getPassword</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getUsername</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonLocked</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isCredentialsNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isEnabled</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其方法含义如下：</p>
-<ul>
-<li>getAuthorites()：获取用户权限，本质上是用户的角色信息。</li>
-<li>getPassword()：获取密码。</li>
-<li>getUserName()：获取用户名。</li>
-<li>isAccountNonExpired()：账户是否过期。</li>
-<li>isAccountNonLocked()：账户是否被锁定。</li>
-<li>isCredentialsNonExpired(): 密码是否过期。</li>
-<li>isEnabled(): 账户是否可用。</li>
-</ul>
-<h4 id="UserDetailsService"><a href="#UserDetailsService" class="headerlink" title="UserDetailsService"></a>UserDetailsService</h4><p><code>UserDetailsService</code> 是一个接口，且只有一个方法 loadUserByUsername，它可以用来获取 <code>UserDetails</code>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetailsService</span> &#123;</span><br><span class="line"></span><br><span class="line">	UserDetails <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通常在 Spring Security 应用中，我们会自定义一个 CustomUserDetailsService 来实现 <code>UserDetailsService</code> 接口，并实现 loadUserByUsername(); 方法。一般通过查询数据库（或者是缓存、或者是其他的存储形式）来获取用户信息，然后组装成一个 <code>UserDetails</code>，（通常是一个 <code>org.springframework.security.core.userdetails.User</code>，它继承自 <code>UserDetails</code> ）并返回。</p>
-<p>在实现 loadUserByUsername 方法的时候，如果通过查数据库没有查询到相关记录，需要抛出一个异常来告诉 Spring Security 来“善后”。这个异常是 <code>org.springframework.security.core.userdetails.UsernameNotFoundException</code>。</p>
-<h4 id="AuthenticationManager"><a href="#AuthenticationManager" class="headerlink" title="AuthenticationManager"></a>AuthenticationManager</h4><p>认证是由 <code>AuthenticationManager</code> 来管理的，但是真正进行认证的是 <code>AuthenticationManager</code> 中定义的 <code>AuthenticationProvider</code>。<code>AuthenticationManager</code> 中可以定义有多个 <code>AuthenticationProvider</code>。</p>
-<p><code>AuthenticationManager</code> 是一个接口，其定义如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationManager</span> &#123;</span><br><span class="line">  </span><br><span class="line">    Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">            <span class="keyword">throws</span> AuthenticationException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>AuthenticationManager</code> 的作用就是校验 <code>Authentication</code>，如果验证失败会抛出 <code>AuthenticationException</code> 异常。<code>AuthenticationException</code> 是一个抽象类，因此代码逻辑并不能实例化一个 <code>AuthenticationException</code> 异常并抛出，实际上抛出的异常通常是其实现类，如 <code>DisabledException</code>，<code>LockedException</code>，<code>BadCredentialsException</code> 等。<code>BadCredentialsException</code> 可能会比较常见，即密码错误的时候。</p>
-<h4 id="AuthenticationProvider"><a href="#AuthenticationProvider" class="headerlink" title="AuthenticationProvider"></a>AuthenticationProvider</h4><p>身份认证提供者，负责真正的认证处理。它是一个接口，在未指定 provider 时，Spring Security 默认使用 <code>DaoAuthenticationProvider</code> 来进行身份认证，<code>DaoAuthenticationProvider</code> 在认证时通过 <code>UserDetailsService</code> 获取 <code>UserDetails</code> ，其中包括用户名、密码和所拥有的权限等。</p>
-<p>如果想自定义认证逻辑，可以通过继承 <code>AuthenticationProvider</code> 接口，并通过 <code>AuthenticationManager</code> 配置自定义 provider。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationProvider</span> &#123;</span><br><span class="line">  </span><br><span class="line">	Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">			<span class="keyword">throws</span> AuthenticationException;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">supports</span><span class="params">(Class&lt;?&gt; authentication)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>authenticate() 表示认证的动作。</li>
-<li>supports() 表示所支持的 <code>Authentication</code> 类型。<code>Authentication</code> 包含很多子类，如果 <code>AbstractAuthenticationToken</code> 。</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>Spring Security</tag>
       </tags>
   </entry>
   <entry>
@@ -2201,6 +2139,78 @@
       </tags>
   </entry>
   <entry>
+    <title>This is my first blog here</title>
+    <url>/2019/08/20/This-is-my-first-blog-here/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+  </entry>
+  <entry>
+    <title>Spring Security</title>
+    <url>/2022/09/19/Spring-Security/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Spring Security 是 Spring 项目中的一个安全模块，在 Spring boot 中已经默认集成和开启了 Spring Security。</p>
+<h3 id="Spring-Security-核心组件"><a href="#Spring-Security-核心组件" class="headerlink" title="Spring Security 核心组件"></a>Spring Security 核心组件</h3><p>spring security 核心组件有：Userdetails 、Authentication，UserDetailsService、AuthenticationProvider、AuthenticationManager。</p>
+<h4 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h4><p>在 Spring Security 中 <code>Authentication</code> 用来表示当前用户是谁，一般来讲你可以理解为 <code>authentication</code> 就是一组用户名密码信息。<code>Authentication</code> 也是一个接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Authentication</span> <span class="keyword">extends</span> <span class="title class_">Principal</span>, Serializable &#123;</span><br><span class="line">  </span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	Object <span class="title function_">getCredentials</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getDetails</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getPrincipal</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAuthenticated</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">setAuthenticated</span><span class="params">(<span class="type">boolean</span> isAuthenticated)</span> <span class="keyword">throws</span> IllegalArgumentException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这几个方法作用如下：</p>
+<ul>
+<li>getAuthorities(): 获取用户权限，一般情况下获取到的是用户的角色信息。</li>
+<li>getCredentials()：获取证明用户认证的信息，通常情况下获取到的是密码等信息。</li>
+<li>getDetails(): 获取用户的额外信息，（这部分信息可以是我们的用户表中的信息）</li>
+<li>getPrincipal(): 获取用户身份信息，在未认证的情况下获取到的是用户名，在已认证的情况下获取到的是 <code>UserDetails</code> (UserDetails也是一个接口，里边的方法有getUsername，getPassword等)。</li>
+<li>isAuthenticated()：获取当前 <code>Authentication</code> 是否已认证。</li>
+<li>setAuthenticated()：设置当前 <code>Authentication</code> 是否已认证（true or false）。</li>
+</ul>
+<h4 id="UserDetails"><a href="#UserDetails" class="headerlink" title="UserDetails"></a>UserDetails</h4><p><code>UserDetails</code>，用户详情。其存储的就是用户信息，其定义如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetails</span> <span class="keyword">extends</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"></span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getPassword</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getUsername</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonLocked</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isCredentialsNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isEnabled</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其方法含义如下：</p>
+<ul>
+<li>getAuthorites()：获取用户权限，本质上是用户的角色信息。</li>
+<li>getPassword()：获取密码。</li>
+<li>getUserName()：获取用户名。</li>
+<li>isAccountNonExpired()：账户是否过期。</li>
+<li>isAccountNonLocked()：账户是否被锁定。</li>
+<li>isCredentialsNonExpired(): 密码是否过期。</li>
+<li>isEnabled(): 账户是否可用。</li>
+</ul>
+<h4 id="UserDetailsService"><a href="#UserDetailsService" class="headerlink" title="UserDetailsService"></a>UserDetailsService</h4><p><code>UserDetailsService</code> 是一个接口，且只有一个方法 loadUserByUsername，它可以用来获取 <code>UserDetails</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetailsService</span> &#123;</span><br><span class="line"></span><br><span class="line">	UserDetails <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常在 Spring Security 应用中，我们会自定义一个 CustomUserDetailsService 来实现 <code>UserDetailsService</code> 接口，并实现 loadUserByUsername(); 方法。一般通过查询数据库（或者是缓存、或者是其他的存储形式）来获取用户信息，然后组装成一个 <code>UserDetails</code>，（通常是一个 <code>org.springframework.security.core.userdetails.User</code>，它继承自 <code>UserDetails</code> ）并返回。</p>
+<p>在实现 loadUserByUsername 方法的时候，如果通过查数据库没有查询到相关记录，需要抛出一个异常来告诉 Spring Security 来“善后”。这个异常是 <code>org.springframework.security.core.userdetails.UsernameNotFoundException</code>。</p>
+<h4 id="AuthenticationManager"><a href="#AuthenticationManager" class="headerlink" title="AuthenticationManager"></a>AuthenticationManager</h4><p>认证是由 <code>AuthenticationManager</code> 来管理的，但是真正进行认证的是 <code>AuthenticationManager</code> 中定义的 <code>AuthenticationProvider</code>。<code>AuthenticationManager</code> 中可以定义有多个 <code>AuthenticationProvider</code>。</p>
+<p><code>AuthenticationManager</code> 是一个接口，其定义如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationManager</span> &#123;</span><br><span class="line">  </span><br><span class="line">    Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">            <span class="keyword">throws</span> AuthenticationException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>AuthenticationManager</code> 的作用就是校验 <code>Authentication</code>，如果验证失败会抛出 <code>AuthenticationException</code> 异常。<code>AuthenticationException</code> 是一个抽象类，因此代码逻辑并不能实例化一个 <code>AuthenticationException</code> 异常并抛出，实际上抛出的异常通常是其实现类，如 <code>DisabledException</code>，<code>LockedException</code>，<code>BadCredentialsException</code> 等。<code>BadCredentialsException</code> 可能会比较常见，即密码错误的时候。</p>
+<h4 id="AuthenticationProvider"><a href="#AuthenticationProvider" class="headerlink" title="AuthenticationProvider"></a>AuthenticationProvider</h4><p>身份认证提供者，负责真正的认证处理。它是一个接口，在未指定 provider 时，Spring Security 默认使用 <code>DaoAuthenticationProvider</code> 来进行身份认证，<code>DaoAuthenticationProvider</code> 在认证时通过 <code>UserDetailsService</code> 获取 <code>UserDetails</code> ，其中包括用户名、密码和所拥有的权限等。</p>
+<p>如果想自定义认证逻辑，可以通过继承 <code>AuthenticationProvider</code> 接口，并通过 <code>AuthenticationManager</code> 配置自定义 provider。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationProvider</span> &#123;</span><br><span class="line">  </span><br><span class="line">	Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">			<span class="keyword">throws</span> AuthenticationException;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">supports</span><span class="params">(Class&lt;?&gt; authentication)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>authenticate() 表示认证的动作。</li>
+<li>supports() 表示所支持的 <code>Authentication</code> 类型。<code>Authentication</code> 包含很多子类，如果 <code>AbstractAuthenticationToken</code> 。</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Spring Security</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2019/08/20/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -2222,322 +2232,6 @@
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
-  </entry>
-  <entry>
-    <title>This is my first blog here</title>
-    <url>/2019/08/20/This-is-my-first-blog-here/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-  </entry>
-  <entry>
-    <title>事务的四大特性</title>
-    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的四大特性简称：<strong>ACID</strong>，具体如下：</p>
-<ul>
-<li><p><strong>原子性（Atomicity）</strong></p>
-<p>事务的原子性是指事务必须是一个原子的操作序列单元。事务中包含的各项操作在一次执行过程中，只允许出现两种状态之一，要么都成功，要么都失败</p>
-</li>
-<li><p><strong>一致性（Consistency）</strong></p>
-<p>事务的一致性是指事务的执行不能破坏数据库数据的完整性和一致性，一个事务在执行之前和执行之后，数据库都必须处以一致性状态。</p>
-<p>比如：如果从A账户转账到B账户，不可能因为A账户扣了钱，而B账户没有加钱</p>
-</li>
-<li><p><strong>隔离性（Isolation）</strong></p>
-<p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
-<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的</p>
-</li>
-<li><p><strong>持久性（Duration）</strong></p>
-<p>事务的持久性是指事务一旦提交后，数据库中的数据必须被永久的保存下来。即使服务器系统崩溃或服务器宕机等故障。只要数据库重新启动，那么一定能够将其恢复到事务成功结束后的状态</p>
-</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>事务的隔离级别</title>
-    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
-<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
-<ul>
-<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
-</li>
-<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
-</li>
-<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
-</li>
-<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
-</li>
-</ul>
-<p>可能导致的问题有</p>
-<ol>
-<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
-<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
-<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
-</ol>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>死信交换机</title>
-    <url>/2022/08/07/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当一个队列中的消息满足以下情况之一时，可以成为死信（dead letter）：</p>
-<ul>
-<li>消费者使用basic.reject或basic.nack声明消费失败，并且消息的requeue参数设置为false。</li>
-<li>消息是一个过期消息，超时无人消费。</li>
-<li>要投递的队列消息堆积满了，最早的消息可能成为死信</li>
-</ul>
-<p>如果该队列配置了dead-letter-exchange属性，指定了一个交换机，则队列中的死信就会投递到这个交换机中。这个交换机被称为死信交换机（Dead Letter Exchange，简称DLX）</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248918.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248918.png?x-oss-process=style/ezio"></a></p>
-<h3 id="TTL"><a href="#TTL" class="headerlink" title="TTL"></a>TTL</h3><p>TLL，即Time-To-Live。如果一个队列中的消息TTL结束仍未消费，会变为死信，ttl超时分两种情况：</p>
-<ul>
-<li>消息所在队列设置了存活时间</li>
-<li>消息本身设置了存活时间</li>
-</ul>
-<p>1.声明死信交换机和队列</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;dl.queue&quot;, durable = &quot;true&quot;),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;dl.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenDeadQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到dl.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.基于队列设置存活时间，绑定TTL交换机和队列</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TTL消息处理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TTLMessageConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DirectExchange <span class="title function_">ttlExchange</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DirectExchange</span>(<span class="string">&quot;ttl.direct&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Queue <span class="title function_">ttlQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;ttl.queue&quot;</span>)</span><br><span class="line">                .ttl(<span class="number">1000</span>) <span class="comment">//队列设置存活时间</span></span><br><span class="line">                .deadLetterExchange(<span class="string">&quot;dl.direct&quot;</span>)</span><br><span class="line">                .deadLetterRoutingKey(<span class="string">&quot;dl&quot;</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Binding <span class="title function_">ttlBinding</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder</span><br><span class="line">                .bind(ttlQueue())</span><br><span class="line">                .to(ttlExchange())</span><br><span class="line">                .with(<span class="string">&quot;ttl&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.基于消息设置存活时间</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 消息</span></span><br><span class="line">        <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> MessageBuilder.withBody(<span class="string">&quot;今天天气不错&quot;</span>.getBytes(StandardCharsets.UTF_8))</span><br><span class="line">                .setDeliveryMode(MessageDeliveryMode.PERSISTENT)</span><br><span class="line">                .setExpiration(<span class="string">&quot;5000&quot;</span>)</span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
-
-<p>4.基于死信交换机的延迟队列</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248989.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248989.png?x-oss-process=style/ezio"></a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>消息堆积</title>
-    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
-<p>解决消息堆积三种思路：</p>
-<ul>
-<li>增加更多消费者，加快消费速度</li>
-<li>在消费者内开启线程池加快消息处理速度</li>
-<li>扩大队列容积，提高堆积上限</li>
-</ul>
-<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
-<p>惰性队列特征如下：</p>
-<ul>
-<li>接收到消息后直接存入磁盘而非内存</li>
-<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
-<li>支持数百万条的消息存储</li>
-</ul>
-<p>用SpringAMQP声明惰性队列的方式：</p>
-<ul>
-<li>@Bean的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>基于注解的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>惰性队列的优点：</p>
-<ul>
-<li>基于磁盘存储，消息上限更高</li>
-<li>没有间歇性的page-out，性能比较稳定</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>基于磁盘存储，消息时效性会降低</li>
-<li>性能受限于磁盘的IO</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>消息丢失</title>
-    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>MQ消息丢失的情况：</p>
-<ul>
-<li><p>发送时丢失消息（生产者发送消息失败）</p>
-<ul>
-<li><p>生成者发送的消息未送到exchange</p>
-</li>
-<li><p>消息到达exchange后为到达queue</p>
-</li>
-</ul>
-</li>
-<li><p>MQ宕机，queue将消息丢失 （队列消息丢失）</p>
-</li>
-<li><p>consumer接受到消息后未消费就宕机 （消费者消费消息失败）</p>
-</li>
-</ul>
-<h3 id="生产者确认机制"><a href="#生产者确认机制" class="headerlink" title="生产者确认机制"></a>生产者确认机制</h3><p>RabbitMQ 提供了 publisher confirm 机制来避免消息发送到MQ过程中丢失。消息发送到MQ后，会返回一个结果给发送者，表示消息是否处理成功。结果有两种请求：</p>
-<ul>
-<li>publisher-confirm，发送者确认<ul>
-<li>消息成功投递到交换机，返回ack</li>
-<li>消息未成功投递到交换机，返回nack</li>
-</ul>
-</li>
-<li>publisher-return，发送者回执<ul>
-<li>消息投递到交换机了，但是没有路由到队列，返回ACK，及路由失败原因。</li>
-</ul>
-</li>
-</ul>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247210.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247210.png?x-oss-process=style/ezio"></a></p>
-<p><strong>PS：确认机制发送消息时，需要给每个消息设置一个全局唯一id，以区分不同消息，避免ack冲突。</strong></p>
-<p>1.在生产者服务中的application.yml添加配置：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">publisher-returns:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">publisher-confirm-type:</span> <span class="string">correlated</span></span><br><span class="line">    <span class="attr">template:</span></span><br><span class="line">      <span class="attr">mandatory:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>配置说明：</p>
-<ul>
-<li><p>publisher-confirm-type：开启publisher-confirm，支持的两种类型：</p>
-<ul>
-<li>simple：同步等待confirm结果，直到超时</li>
-<li>correlated：异步回调，定义ConfirmCallback，MQ返回结果时回调ConfirmCallback</li>
-</ul>
-</li>
-<li><p>publisher-returns：开启publisher-return功能，同样基于callback机制，定义ReturnCallback</p>
-</li>
-<li><p>template.mandatory：定义消息路由失败时的策略。true，则调用ReturnCallback；false，则直接丢弃消息</p>
-</li>
-</ul>
-<p>2.配置ReturnCallback</p>
-<p>每个RabbitTemplate只能配置一个ReturnCallback，因此需要在项目启动过程中配置：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置ReturnCallBack</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CommonConfig</span> <span class="keyword">implements</span> <span class="title class_">ApplicationContextAware</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        <span class="type">RabbitTemplate</span> <span class="variable">rabbitTemplate</span> <span class="operator">=</span> applicationContext.getBean(RabbitTemplate.class);</span><br><span class="line">        rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -&gt; &#123;</span><br><span class="line">            log.info(<span class="string">&quot;消息发生失败，应答码=&#123;&#125;，原因=&#123;&#125;，交换机=&#123;&#125;，路由键=&#123;&#125;，消息=&#123;&#125;&quot;</span>,</span><br><span class="line">                    replyCode, replyText, exchange, routingKey, message.toString());</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.设置ConfirmCallback，指定的消息ID</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringAmqpTest</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">confirmTest</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 交换机名称</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">exchangeName</span> <span class="operator">=</span> <span class="string">&quot;ezio.topic&quot;</span>;</span><br><span class="line">        <span class="comment">// 消息</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;今天天气不错&quot;</span>;</span><br><span class="line">        <span class="comment">//消息确认</span></span><br><span class="line">        <span class="type">CorrelationData</span> <span class="variable">correlationData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorrelationData</span>(UUID.randomUUID().toString());</span><br><span class="line">        correlationData.getFuture().addCallback(</span><br><span class="line">                result -&gt; &#123;</span><br><span class="line">                    <span class="comment">//判断结果</span></span><br><span class="line">                    <span class="keyword">if</span> (result.isAck()) &#123;</span><br><span class="line">                        <span class="comment">//ack</span></span><br><span class="line">                        log.debug(<span class="string">&quot;消息成功投递到交换机！消息ID：&#123;&#125;&quot;</span>, correlationData.getId());</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//nack</span></span><br><span class="line">                        log.error(<span class="string">&quot;消息投递到交换机失败！消息ID：&#123;&#125;&quot;</span>, correlationData.getId());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                ex -&gt; log.error(<span class="string">&quot;消息发送失败！&quot;</span>，ex)</span><br><span class="line">        );</span><br><span class="line">        <span class="comment">// 发送消息</span></span><br><span class="line">        rabbitTemplate.convertAndSend(exchangeName, <span class="string">&quot;china.weather&quot;</span>, message, correlationData);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h3><p>MQ默认时内存存储消息，开启持久化功能可以确保消息缓存在mq中的消息不丢失。</p>
-<p>1.交换机持久化：默认true开启</p>
-<p>2.队列持久化：在定义队列时设置</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(name = &quot;direct.queue1&quot;, durable = &quot;true&quot;), //绑定的队列</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(name = &quot;test.direct&quot;), //声明交换机名称</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;red&quot;, &quot;blue&quot;&#125; //路由key，可配置通配符，red.# or red.*</span></span><br><span class="line"><span class="meta">))</span></span><br></pre></td></tr></table></figure>
-
-<p>3.消息持久化，SpringAMQP中消息默认持久，可以通过MessageProperties中的DeliveryMode指定：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> MessageBuilder.withBody(<span class="string">&quot;今天天气不错&quot;</span>.getBytes(StandardCharsets.UTF_8)) <span class="comment">// 消息体</span></span><br><span class="line">                .setDeliveryMode(MessageDeliveryMode.PERSISTENT) <span class="comment">// 持久化</span></span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消费者确认"><a href="#消费者确认" class="headerlink" title="消费者确认"></a>消费者确认</h3><p>RabbitMQ支持消费者确认机制，即：消费者处理消息后可以向MQ发送ack回执，MQ收到回执后才会删除该消息，SpringAMQP提供三种确认模式：</p>
-<ul>
-<li>manual：手动ack，需要在业务代码结束后，调用API发送ack。</li>
-<li>auto：自动ack，有spring检测listener代码是否出现异常，没有异常则返回ack；抛出异常则返回nack</li>
-<li>none：关闭ack，消息投递后立即被删除。</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br><span class="line">      	<span class="attr">acknowledge-mode:</span> <span class="string">auto</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消费者失败重试"><a href="#消费者失败重试" class="headerlink" title="消费者失败重试"></a>消费者失败重试</h3><p>消费者出现异常后，消息会不断requeue（重新入队）到队列，在重新发送给消费者，然后再次异常，再次requeue，导致mq的消息处理飙升，带来不必要的压力。</p>
-<p>可以利用spring的retry机制，在消费者出现异常时利用本地重试，而不是无限制的requeue到mq队列</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br><span class="line">      	<span class="attr">acknowledge-mode:</span> <span class="string">auto</span></span><br><span class="line">      	<span class="attr">retry:</span></span><br><span class="line">          <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#开启消费者失败重试</span></span><br><span class="line">          <span class="attr">initial-interval:</span> <span class="number">1000</span> <span class="comment">#初始的失败等待时长1秒</span></span><br><span class="line">          <span class="attr">multiplier:</span> <span class="number">1</span> <span class="comment">#下次失败的等待时长倍数，下次等待时长 = multiplier * last-interval</span></span><br><span class="line">          <span class="attr">max-attempts:</span> <span class="number">3</span> <span class="comment">#最大重试次数</span></span><br><span class="line">          <span class="attr">stateless:</span> <span class="literal">true</span> <span class="comment">#true无状态，false有状态，有事务用有状态</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="消费者失败消息处理策略"><a href="#消费者失败消息处理策略" class="headerlink" title="消费者失败消息处理策略"></a>消费者失败消息处理策略</h3><p>在开启重试模式后，重试次数耗尽，如果依然失败，则需要有MessageRecoverer接口来处理，它包含三个不同实现：</p>
-<ul>
-<li>RejectAndDontRequeueRecoverer：重试耗尽后，直接reject，丢弃消息。默认实现方式</li>
-<li>ImmediateRequeueMessageRecoverer：重试耗尽后，返回nack，消息重新入队</li>
-<li>RepublishMessageRecoverer：重试耗尽后，将失败消息投递到指定的交换机</li>
-</ul>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247588.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247588.png?x-oss-process=style/ezio"></a></p>
-<p>实现方式：定义接受失败消息的交换机，队列及其绑定关系</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 消费者消息重试，接受消费失败的消息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ErrorMessageConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DirectExchange <span class="title function_">errorExchange</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DirectExchange</span>(<span class="string">&quot;error.direct&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Queue <span class="title function_">errorQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Queue</span>(<span class="string">&quot;error.queue&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Binding <span class="title function_">errorBinding</span><span class="params">(Queue errorQueue, DirectExchange errorExchange)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder</span><br><span class="line">                .bind(errorQueue)</span><br><span class="line">                .to(errorExchange).with(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageRecoverer <span class="title function_">republishMessageRecoverer</span><span class="params">(RabbitTemplate rabbitTemplate)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RepublishMessageRecoverer</span>(rabbitTemplate, <span class="string">&quot;error.direct&quot;</span>, <span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>理解计算机系统中的局部性原理</title>
-    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<blockquote>
-<ul>
-<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
-</ul>
-</blockquote>
-<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
-<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
-<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
-<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
-<ul>
-<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
-</li>
-<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
-</li>
-<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
-</li>
-<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
-</li>
-<li><p>访问主存，cpu大约需要200个时钟周期</p>
-</li>
-<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
-</li>
-</ul>
-<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>计算机</tag>
-      </tags>
   </entry>
   <entry>
     <title>hexo+GitHub pages搭建个人博客</title>
@@ -2649,6 +2343,261 @@
       </tags>
   </entry>
   <entry>
+    <title>事务的四大特性</title>
+    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的四大特性简称：<strong>ACID</strong>，具体如下：</p>
+<ul>
+<li><p><strong>原子性（Atomicity）</strong></p>
+<p>事务的原子性是指事务必须是一个原子的操作序列单元。事务中包含的各项操作在一次执行过程中，只允许出现两种状态之一，要么都成功，要么都失败</p>
+</li>
+<li><p><strong>一致性（Consistency）</strong></p>
+<p>事务的一致性是指事务的执行不能破坏数据库数据的完整性和一致性，一个事务在执行之前和执行之后，数据库都必须处以一致性状态。</p>
+<p>比如：如果从A账户转账到B账户，不可能因为A账户扣了钱，而B账户没有加钱</p>
+</li>
+<li><p><strong>隔离性（Isolation）</strong></p>
+<p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
+<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的</p>
+</li>
+<li><p><strong>持久性（Duration）</strong></p>
+<p>事务的持久性是指事务一旦提交后，数据库中的数据必须被永久的保存下来。即使服务器系统崩溃或服务器宕机等故障。只要数据库重新启动，那么一定能够将其恢复到事务成功结束后的状态</p>
+</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>事务的隔离级别</title>
+    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
+<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
+<ul>
+<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
+</li>
+<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
+</li>
+<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
+</li>
+<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
+</li>
+</ul>
+<p>可能导致的问题有</p>
+<ol>
+<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
+<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
+<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>死信交换机</title>
+    <url>/2022/08/07/%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当一个队列中的消息满足以下情况之一时，可以成为死信（dead letter）：</p>
+<ul>
+<li>消费者使用basic.reject或basic.nack声明消费失败，并且消息的requeue参数设置为false。</li>
+<li>消息是一个过期消息，超时无人消费。</li>
+<li>要投递的队列消息堆积满了，最早的消息可能成为死信</li>
+</ul>
+<p>如果该队列配置了dead-letter-exchange属性，指定了一个交换机，则队列中的死信就会投递到这个交换机中。这个交换机被称为死信交换机（Dead Letter Exchange，简称DLX）</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248918.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248918.png?x-oss-process=style/ezio"></a></p>
+<h3 id="TTL"><a href="#TTL" class="headerlink" title="TTL"></a>TTL</h3><p>TLL，即Time-To-Live。如果一个队列中的消息TTL结束仍未消费，会变为死信，ttl超时分两种情况：</p>
+<ul>
+<li>消息所在队列设置了存活时间</li>
+<li>消息本身设置了存活时间</li>
+</ul>
+<p>1.声明死信交换机和队列</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;dl.queue&quot;, durable = &quot;true&quot;),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;dl.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenDeadQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到dl.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.基于队列设置存活时间，绑定TTL交换机和队列</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * TTL消息处理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TTLMessageConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DirectExchange <span class="title function_">ttlExchange</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DirectExchange</span>(<span class="string">&quot;ttl.direct&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Queue <span class="title function_">ttlQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;ttl.queue&quot;</span>)</span><br><span class="line">                .ttl(<span class="number">1000</span>) <span class="comment">//队列设置存活时间</span></span><br><span class="line">                .deadLetterExchange(<span class="string">&quot;dl.direct&quot;</span>)</span><br><span class="line">                .deadLetterRoutingKey(<span class="string">&quot;dl&quot;</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Binding <span class="title function_">ttlBinding</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder</span><br><span class="line">                .bind(ttlQueue())</span><br><span class="line">                .to(ttlExchange())</span><br><span class="line">                .with(<span class="string">&quot;ttl&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.基于消息设置存活时间</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 消息</span></span><br><span class="line">        <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> MessageBuilder.withBody(<span class="string">&quot;今天天气不错&quot;</span>.getBytes(StandardCharsets.UTF_8))</span><br><span class="line">                .setDeliveryMode(MessageDeliveryMode.PERSISTENT)</span><br><span class="line">                .setExpiration(<span class="string">&quot;5000&quot;</span>)</span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
+
+<p>4.基于死信交换机的延迟队列</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248989.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072248989.png?x-oss-process=style/ezio"></a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理解计算机系统中的局部性原理</title>
+    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<blockquote>
+<ul>
+<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
+</ul>
+</blockquote>
+<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
+<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
+<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
+<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
+<ul>
+<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
+</li>
+<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
+</li>
+<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
+</li>
+<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
+</li>
+<li><p>访问主存，cpu大约需要200个时钟周期</p>
+</li>
+<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
+</li>
+</ul>
+<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>计算机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>消息丢失</title>
+    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>MQ消息丢失的情况：</p>
+<ul>
+<li><p>发送时丢失消息（生产者发送消息失败）</p>
+<ul>
+<li><p>生成者发送的消息未送到exchange</p>
+</li>
+<li><p>消息到达exchange后为到达queue</p>
+</li>
+</ul>
+</li>
+<li><p>MQ宕机，queue将消息丢失 （队列消息丢失）</p>
+</li>
+<li><p>consumer接受到消息后未消费就宕机 （消费者消费消息失败）</p>
+</li>
+</ul>
+<h3 id="生产者确认机制"><a href="#生产者确认机制" class="headerlink" title="生产者确认机制"></a>生产者确认机制</h3><p>RabbitMQ 提供了 publisher confirm 机制来避免消息发送到MQ过程中丢失。消息发送到MQ后，会返回一个结果给发送者，表示消息是否处理成功。结果有两种请求：</p>
+<ul>
+<li>publisher-confirm，发送者确认<ul>
+<li>消息成功投递到交换机，返回ack</li>
+<li>消息未成功投递到交换机，返回nack</li>
+</ul>
+</li>
+<li>publisher-return，发送者回执<ul>
+<li>消息投递到交换机了，但是没有路由到队列，返回ACK，及路由失败原因。</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247210.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247210.png?x-oss-process=style/ezio"></a></p>
+<p><strong>PS：确认机制发送消息时，需要给每个消息设置一个全局唯一id，以区分不同消息，避免ack冲突。</strong></p>
+<p>1.在生产者服务中的application.yml添加配置：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">publisher-returns:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">publisher-confirm-type:</span> <span class="string">correlated</span></span><br><span class="line">    <span class="attr">template:</span></span><br><span class="line">      <span class="attr">mandatory:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>配置说明：</p>
+<ul>
+<li><p>publisher-confirm-type：开启publisher-confirm，支持的两种类型：</p>
+<ul>
+<li>simple：同步等待confirm结果，直到超时</li>
+<li>correlated：异步回调，定义ConfirmCallback，MQ返回结果时回调ConfirmCallback</li>
+</ul>
+</li>
+<li><p>publisher-returns：开启publisher-return功能，同样基于callback机制，定义ReturnCallback</p>
+</li>
+<li><p>template.mandatory：定义消息路由失败时的策略。true，则调用ReturnCallback；false，则直接丢弃消息</p>
+</li>
+</ul>
+<p>2.配置ReturnCallback</p>
+<p>每个RabbitTemplate只能配置一个ReturnCallback，因此需要在项目启动过程中配置：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置ReturnCallBack</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CommonConfig</span> <span class="keyword">implements</span> <span class="title class_">ApplicationContextAware</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException &#123;</span><br><span class="line">        <span class="type">RabbitTemplate</span> <span class="variable">rabbitTemplate</span> <span class="operator">=</span> applicationContext.getBean(RabbitTemplate.class);</span><br><span class="line">        rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -&gt; &#123;</span><br><span class="line">            log.info(<span class="string">&quot;消息发生失败，应答码=&#123;&#125;，原因=&#123;&#125;，交换机=&#123;&#125;，路由键=&#123;&#125;，消息=&#123;&#125;&quot;</span>,</span><br><span class="line">                    replyCode, replyText, exchange, routingKey, message.toString());</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.设置ConfirmCallback，指定的消息ID</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringAmqpTest</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">confirmTest</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 交换机名称</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">exchangeName</span> <span class="operator">=</span> <span class="string">&quot;ezio.topic&quot;</span>;</span><br><span class="line">        <span class="comment">// 消息</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;今天天气不错&quot;</span>;</span><br><span class="line">        <span class="comment">//消息确认</span></span><br><span class="line">        <span class="type">CorrelationData</span> <span class="variable">correlationData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorrelationData</span>(UUID.randomUUID().toString());</span><br><span class="line">        correlationData.getFuture().addCallback(</span><br><span class="line">                result -&gt; &#123;</span><br><span class="line">                    <span class="comment">//判断结果</span></span><br><span class="line">                    <span class="keyword">if</span> (result.isAck()) &#123;</span><br><span class="line">                        <span class="comment">//ack</span></span><br><span class="line">                        log.debug(<span class="string">&quot;消息成功投递到交换机！消息ID：&#123;&#125;&quot;</span>, correlationData.getId());</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//nack</span></span><br><span class="line">                        log.error(<span class="string">&quot;消息投递到交换机失败！消息ID：&#123;&#125;&quot;</span>, correlationData.getId());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                ex -&gt; log.error(<span class="string">&quot;消息发送失败！&quot;</span>，ex)</span><br><span class="line">        );</span><br><span class="line">        <span class="comment">// 发送消息</span></span><br><span class="line">        rabbitTemplate.convertAndSend(exchangeName, <span class="string">&quot;china.weather&quot;</span>, message, correlationData);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h3><p>MQ默认时内存存储消息，开启持久化功能可以确保消息缓存在mq中的消息不丢失。</p>
+<p>1.交换机持久化：默认true开启</p>
+<p>2.队列持久化：在定义队列时设置</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(name = &quot;direct.queue1&quot;, durable = &quot;true&quot;), //绑定的队列</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(name = &quot;test.direct&quot;), //声明交换机名称</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;red&quot;, &quot;blue&quot;&#125; //路由key，可配置通配符，red.# or red.*</span></span><br><span class="line"><span class="meta">))</span></span><br></pre></td></tr></table></figure>
+
+<p>3.消息持久化，SpringAMQP中消息默认持久，可以通过MessageProperties中的DeliveryMode指定：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> MessageBuilder.withBody(<span class="string">&quot;今天天气不错&quot;</span>.getBytes(StandardCharsets.UTF_8)) <span class="comment">// 消息体</span></span><br><span class="line">                .setDeliveryMode(MessageDeliveryMode.PERSISTENT) <span class="comment">// 持久化</span></span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消费者确认"><a href="#消费者确认" class="headerlink" title="消费者确认"></a>消费者确认</h3><p>RabbitMQ支持消费者确认机制，即：消费者处理消息后可以向MQ发送ack回执，MQ收到回执后才会删除该消息，SpringAMQP提供三种确认模式：</p>
+<ul>
+<li>manual：手动ack，需要在业务代码结束后，调用API发送ack。</li>
+<li>auto：自动ack，有spring检测listener代码是否出现异常，没有异常则返回ack；抛出异常则返回nack</li>
+<li>none：关闭ack，消息投递后立即被删除。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br><span class="line">      	<span class="attr">acknowledge-mode:</span> <span class="string">auto</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消费者失败重试"><a href="#消费者失败重试" class="headerlink" title="消费者失败重试"></a>消费者失败重试</h3><p>消费者出现异常后，消息会不断requeue（重新入队）到队列，在重新发送给消费者，然后再次异常，再次requeue，导致mq的消息处理飙升，带来不必要的压力。</p>
+<p>可以利用spring的retry机制，在消费者出现异常时利用本地重试，而不是无限制的requeue到mq队列</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="comment"># rabbitMQ的ip地址</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">ezio</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 预取上限，默认250条，每次取一条，谁消费快则消费得多</span></span><br><span class="line">      	<span class="attr">acknowledge-mode:</span> <span class="string">auto</span></span><br><span class="line">      	<span class="attr">retry:</span></span><br><span class="line">          <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#开启消费者失败重试</span></span><br><span class="line">          <span class="attr">initial-interval:</span> <span class="number">1000</span> <span class="comment">#初始的失败等待时长1秒</span></span><br><span class="line">          <span class="attr">multiplier:</span> <span class="number">1</span> <span class="comment">#下次失败的等待时长倍数，下次等待时长 = multiplier * last-interval</span></span><br><span class="line">          <span class="attr">max-attempts:</span> <span class="number">3</span> <span class="comment">#最大重试次数</span></span><br><span class="line">          <span class="attr">stateless:</span> <span class="literal">true</span> <span class="comment">#true无状态，false有状态，有事务用有状态</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="消费者失败消息处理策略"><a href="#消费者失败消息处理策略" class="headerlink" title="消费者失败消息处理策略"></a>消费者失败消息处理策略</h3><p>在开启重试模式后，重试次数耗尽，如果依然失败，则需要有MessageRecoverer接口来处理，它包含三个不同实现：</p>
+<ul>
+<li>RejectAndDontRequeueRecoverer：重试耗尽后，直接reject，丢弃消息。默认实现方式</li>
+<li>ImmediateRequeueMessageRecoverer：重试耗尽后，返回nack，消息重新入队</li>
+<li>RepublishMessageRecoverer：重试耗尽后，将失败消息投递到指定的交换机</li>
+</ul>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247588.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072247588.png?x-oss-process=style/ezio"></a></p>
+<p>实现方式：定义接受失败消息的交换机，队列及其绑定关系</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 消费者消息重试，接受消费失败的消息</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ErrorMessageConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> DirectExchange <span class="title function_">errorExchange</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DirectExchange</span>(<span class="string">&quot;error.direct&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Queue <span class="title function_">errorQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Queue</span>(<span class="string">&quot;error.queue&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Binding <span class="title function_">errorBinding</span><span class="params">(Queue errorQueue, DirectExchange errorExchange)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder</span><br><span class="line">                .bind(errorQueue)</span><br><span class="line">                .to(errorExchange).with(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageRecoverer <span class="title function_">republishMessageRecoverer</span><span class="params">(RabbitTemplate rabbitTemplate)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RepublishMessageRecoverer</span>(rabbitTemplate, <span class="string">&quot;error.direct&quot;</span>, <span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>观《互联网是我们时代的集体健忘症》有感</title>
     <url>/2020/01/02/%E8%A7%82%E3%80%8A%E4%BA%92%E8%81%94%E7%BD%91%E6%98%AF%E6%88%91%E4%BB%AC%E6%97%B6%E4%BB%A3%E7%9A%84%E9%9B%86%E4%BD%93%E5%81%A5%E5%BF%98%E7%97%87%E3%80%8B%E6%9C%89%E6%84%9F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>原视频：<iframe height="400" width="650" src="//player.bilibili.com/player.html?aid=81397786&cid=139313826&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></p>
@@ -2671,6 +2620,57 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>消息堆积</title>
+    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
+<p>解决消息堆积三种思路：</p>
+<ul>
+<li>增加更多消费者，加快消费速度</li>
+<li>在消费者内开启线程池加快消息处理速度</li>
+<li>扩大队列容积，提高堆积上限</li>
+</ul>
+<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
+<p>惰性队列特征如下：</p>
+<ul>
+<li>接收到消息后直接存入磁盘而非内存</li>
+<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
+<li>支持数百万条的消息存储</li>
+</ul>
+<p>用SpringAMQP声明惰性队列的方式：</p>
+<ul>
+<li>@Bean的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基于注解的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>惰性队列的优点：</p>
+<ul>
+<li>基于磁盘存储，消息上限更高</li>
+<li>没有间歇性的page-out，性能比较稳定</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>基于磁盘存储，消息时效性会降低</li>
+<li>性能受限于磁盘的IO</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
       </tags>
   </entry>
 </search>
