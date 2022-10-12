@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>RabbitMQ | Ezio&#39;s blog</title>
+<title>Java8-Optional | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">RabbitMQ</h1>
+            <h1 class="post-title">Java8-Optional</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 12, 2021&nbsp;&nbsp;14:03:57</a>
+                        Date: <a href="#">October 12, 2022&nbsp;&nbsp;16:36:32</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/RabbitMQ/">RabbitMQ</a>
+                                <a href="/categories/Java/">Java</a>
                             
                         </span>
                     
@@ -211,67 +211,25 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>RabbitMQ是基于Erlang语言开发的开源消息通信中间件，<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/">官网地址</a></p>
-<h5 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h5><p>优点：</p>
-<ul>
-<li>时效性强，立即得到结果</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>耦合度高</li>
-<li>如果调用链过长，性能和吞吐能力下降</li>
-<li>在调用链等待过程中，请求占用的资源不能释放，高并发下浪费资源</li>
-<li>有级联失败问题，提供方出现问题，会导致调用方都跟着出问题</li>
-</ul>
-<h5 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h5><p>优点：</p>
-<ul>
-<li>通过发布事件的方式，耦合度更低</li>
-<li>吞吐量提升，调用链变短，不用等待其他服务执行完成，耗时更短</li>
-<li>故障隔离，因为不存在调用，其他服务挂了也不会影响</li>
-<li>流量削峰，由broker承担压力</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>增加服务架构复杂度，不好追踪管理</li>
-<li>依赖Broker的可靠性、安全性、吞吐能力</li>
-</ul>
-<h3 id="MQ对比："><a href="#MQ对比：" class="headerlink" title="MQ对比："></a>MQ对比：</h3><p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio"></a></p>
-<h3 id="RabbitMQ中的几个概念："><a href="#RabbitMQ中的几个概念：" class="headerlink" title="RabbitMQ中的几个概念："></a>RabbitMQ中的几个概念：</h3><ul>
-<li>channel：操作mq的工具</li>
-<li>exchange：路由消息到队列中</li>
-<li>queue：缓存消息</li>
-<li>virtual host：虚拟主机，是对queue、exchange等资源的逻辑分组。</li>
-</ul>
-<hr>
-<h3 id="RabbitMQ的安装"><a href="#RabbitMQ的安装" class="headerlink" title="RabbitMQ的安装"></a>RabbitMQ的安装</h3><h5 id="1-通过docker拉取镜像"><a href="#1-通过docker拉取镜像" class="headerlink" title="1.通过docker拉取镜像"></a>1.通过docker拉取镜像</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>Optional</strong> 类是一个可以为 null 的容器对象。如果值存在则 <code>isPresent()</code> 方法会返回 true，调用 <code>get()</code> 方法会返回该对象。Optional提供很多有用的方法，这样我们就不用显式进行空值检测，它旨在减少代码中的 <em>NullPointerExceptions</em>，虽然还不能完全消除这些异常。</p>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Optional.empty();          <span class="comment">//创建一个空的 Optional 实例</span></span><br><span class="line">Optional.of(T t);          <span class="comment">//创建一个 Optional 实例，当 t 为 null 时抛出异常</span></span><br><span class="line">Optional.ofNullable(T t);  <span class="comment">//创建一个 Optional 实例，但当 t 为 null 时不会抛出异常，而是返回一个空的实例</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="2-运行容器"><a href="#2-运行容器" class="headerlink" title="2.运行容器"></a>2.运行容器</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -e RABBITMQ_DEFAULT_USER=ezio \  # 用户名</span><br><span class="line"> -e RABBITMQ_DEFAULT_PASS=123456 \  # 密码</span><br><span class="line"> --name mq \</span><br><span class="line"> --hostname mq1 \  # 主机名，集群部署会用到</span><br><span class="line"> -p 15672:15672 \  # rabbitmq管理平台端口</span><br><span class="line"> -p 5672:5672 \  # rabbitmq消息通信端口</span><br><span class="line"> -d \</span><br><span class="line"> rabbitmq:3-management</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h4 id="常见消息模型"><a href="#常见消息模型" class="headerlink" title="常见消息模型"></a>常见消息模型</h4><p><strong>publisher：</strong>消息发布者，将消息发送到交换机或队列</p>
-<p><strong>queue：</strong>消息队列，负责接收和缓存消息</p>
-<p><strong>consumer：</strong>消息消费者，订阅队列，处理队列中的消息</p>
-<ul>
-<li>基本模式：一对一</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>工作模式（竞争模式）：一对多</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>发布&#x2F;订阅模式（广播Fanout）：</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>路由模式：</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>主题模式：</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio"></a></p>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio"></a></p>
+
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get();  <span class="comment">//获取optional实例中的对象，当 optional 容器为空时报错</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断 optional 是否为空，如果空则返回 false，否则返回 true</span></span><br><span class="line">isPresent();</span><br><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象传给 Comsumer 函数</span></span><br><span class="line">ifPresent(Consumer c);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则返回 other 这个默认值</span></span><br><span class="line">orElse(T other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则使用 Supplier 函数生成默认值 other</span></span><br><span class="line">orElseGet(Supplier&lt;T&gt; other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则抛出 Supplier 函数生成的异常</span></span><br><span class="line">orElseThrow(Supplier&lt;X&gt; exception);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(Predicate&lt;T&gt; p);  <span class="comment">//如果 optional 不为空，则执行断言函数 p，如果 p 的结果为 true，则返回原本的 optional，否则返回空的 optional</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象 t 映射成另外一个对象 u，并将 u 存放到一个新的 optional 容器中。</span></span><br><span class="line">map(Function&lt;T, U&gt; mapper);</span><br><span class="line"><span class="comment">//跟上面一样，在 optional 不为空的情况下，将对象 t 映射成另外一个 optional</span></span><br><span class="line">flatMap(Function&lt; T,Optional&lt;U&gt;&gt; mapper);</span><br><span class="line"></span><br><span class="line"><span class="comment">//区别：map会自动将u放到optional中，而flatMap则需要手动给u创建一个optional</span></span><br></pre></td></tr></table></figure>
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -291,7 +249,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2021/04/12/RabbitMQ/">http://ezioy.cn/2021/04/12/RabbitMQ/</a></span>
+                        <span><a href="http://ezioy.cn/2022/10/12/Java8-Optional/">http://ezioy.cn/2022/10/12/Java8-Optional/</a></span>
                     </p>
                 
                 
@@ -315,7 +273,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/RabbitMQ/"># RabbitMQ</a>
+                        <a href="/tags/Java/"># Java</a>
                     
                         
                 </span>
@@ -328,10 +286,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/04/13/Java8-LocalDateTime/">Java8-LocalDateTime</a>
             
-            
-            <a class="next" rel="next" href="/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">Quartz 定时任务</a>
+            <a class="next" rel="next" href="/2022/09/22/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/">MySQL数据库开发规范</a>
             
         </section>
 
