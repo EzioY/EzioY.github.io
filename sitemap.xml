@@ -522,6 +522,13 @@
   </url>
   
   <url>
+    <loc>http://ezioy.cn/tags/AJAX/</loc>
+    <lastmod>2022-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://ezioy.cn/tags/Feign/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -536,28 +543,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/AJAX/</loc>
-    <lastmod>2022-10-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://ezioy.cn/tags/Docker/</loc>
-    <lastmod>2022-10-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/tags/Go/</loc>
-    <lastmod>2022-10-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/tags/Git/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -578,14 +564,21 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Linux/</loc>
+    <loc>http://ezioy.cn/tags/Git/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Markdown/</loc>
+    <loc>http://ezioy.cn/tags/Go/</loc>
+    <lastmod>2022-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/tags/Linux/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -606,14 +599,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Nacos/</loc>
+    <loc>http://ezioy.cn/tags/Markdown/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/tags/Quartz/</loc>
+    <loc>http://ezioy.cn/tags/Nacos/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -628,6 +621,13 @@
   
   <url>
     <loc>http://ezioy.cn/tags/Redis/</loc>
+    <lastmod>2022-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/tags/Quartz/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -699,14 +699,14 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Spring-Cloud/</loc>
+    <loc>http://ezioy.cn/categories/AJAX/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/AJAX/</loc>
+    <loc>http://ezioy.cn/categories/Spring-Cloud/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -720,7 +720,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Go/</loc>
+    <loc>http://ezioy.cn/categories/Java/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -734,7 +734,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Java/</loc>
+    <loc>http://ezioy.cn/categories/Go/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -742,13 +742,6 @@
   
   <url>
     <loc>http://ezioy.cn/categories/Linux/</loc>
-    <lastmod>2022-10-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://ezioy.cn/categories/Markdown/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -769,7 +762,7 @@
   </url>
   
   <url>
-    <loc>http://ezioy.cn/categories/Quartz/</loc>
+    <loc>http://ezioy.cn/categories/Markdown/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -784,6 +777,13 @@
   
   <url>
     <loc>http://ezioy.cn/categories/Redis/</loc>
+    <lastmod>2022-10-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://ezioy.cn/categories/Quartz/</loc>
     <lastmod>2022-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
