@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ezioy.cn/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2022-10-14</lastmod>
+  </url>
+  <url>
+    <loc>http://ezioy.cn/2021/01/01/2020%E5%B9%B4%E6%84%9F%E6%83%B3/</loc>
+    <lastmod>2022-10-13</lastmod>
+  </url>
+  <url>
     <loc>http://ezioy.cn/2022/10/12/Java8-Optional/</loc>
     <lastmod>2022-10-12</lastmod>
   </url>
@@ -35,10 +43,6 @@
   <url>
     <loc>http://ezioy.cn/2022/09/07/Kafka%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2022-09-14</lastmod>
-  </url>
-  <url>
-    <loc>http://ezioy.cn/2021/01/01/2020%E5%B9%B4%E6%84%9F%E6%83%B3/</loc>
-    <lastmod>2022-09-07</lastmod>
   </url>
   <url>
     <loc>http://ezioy.cn/2019/09/11/TCP-IP%E5%8D%8F%E8%AE%AE%E7%AE%80%E8%BF%B0/</loc>
@@ -86,10 +90,6 @@
   </url>
   <url>
     <loc>http://ezioy.cn/2020/01/10/Linux%E6%8C%82%E8%BD%BD/</loc>
-    <lastmod>2022-09-07</lastmod>
-  </url>
-  <url>
-    <loc>http://ezioy.cn/2019/09/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2022-09-07</lastmod>
   </url>
   <url>
