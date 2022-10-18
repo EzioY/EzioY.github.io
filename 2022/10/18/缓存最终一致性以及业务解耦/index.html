@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Mac下安装Docker | Ezio&#39;s blog</title>
+<title>缓存最终一致性以及业务解耦 | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Mac下安装Docker</h1>
+            <h1 class="post-title">缓存最终一致性以及业务解耦</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 18, 2022&nbsp;&nbsp;10:43:02</a>
+                        Date: <a href="#">October 18, 2022&nbsp;&nbsp;16:40:37</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Docker/">Docker</a>
+                                <a href="/categories/Redis/">Redis</a>
                             
                         </span>
                     
@@ -211,29 +211,69 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>建议通过 Homebrew 来安装 Docker，十分方便。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="1-Homebrew-安装-Docker"><a href="#1-Homebrew-安装-Docker" class="headerlink" title="1.Homebrew 安装 Docker"></a>1.Homebrew 安装 Docker</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install --cask --appdir=/Applications docker</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-看见-docker-was-successfully-installed-则安装成功，可以在应用中看到-docker图标。"><a href="#2-看见-docker-was-successfully-installed-则安装成功，可以在应用中看到-docker图标。" class="headerlink" title="2.看见 docker was successfully installed! 则安装成功，可以在应用中看到 docker图标。"></a>2.看见 <code>docker was successfully installed!</code> 则安装成功，可以在应用中看到 docker图标。</h4><h4 id="3-第一次启动需要本机密码确认"><a href="#3-第一次启动需要本机密码确认" class="headerlink" title="3.第一次启动需要本机密码确认"></a>3.第一次启动需要本机密码确认</h4><p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181049323.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181049323.png?x-oss-process=style/ezio"></a></p>
-<h4 id="4-输入密码后弹出此界面，通过就行"><a href="#4-输入密码后弹出此界面，通过就行" class="headerlink" title="4.输入密码后弹出此界面，通过就行"></a>4.输入密码后弹出此界面，通过就行</h4><p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181051490.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181051490.png?x-oss-process=style/ezio"></a></p>
-<h4 id="5-安装成功后可以在终端查看版本"><a href="#5-安装成功后可以在终端查看版本" class="headerlink" title="5.安装成功后可以在终端查看版本"></a>5.安装成功后可以在终端查看版本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181055346.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181055346.png?x-oss-process=style/ezio"></a></p>
-<h3 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h3><p>在设置中可以看到 docker 引擎配置，在红框部分进行配置。</p>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181059591.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181059591.png?x-oss-process=style/ezio"></a></p>
-<p>可以通过命令查看docker信息，看是否配置成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181101702.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181101702.png?x-oss-process=style/ezio"></a></p>
-<p>常用的国内镜像如下：</p>
-<blockquote>
-<p>1、中科大: <a target="_blank" rel="noopener" href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></p>
-<p>2、网易: <a target="_blank" rel="noopener" href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></p>
-<p>3、Docker 官方中国区: <a target="_blank" rel="noopener" href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a></p>
-<p>4、七牛云: <a target="_blank" rel="noopener" href="https://reg-mirror.qiniu.com/">https://reg-mirror.qiniu.com</a></p>
-</blockquote>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="为什么需要缓存"><a href="#为什么需要缓存" class="headerlink" title="为什么需要缓存"></a>为什么需要缓存</h3><p>存储如 mysql 通常支持完整的 ACID 特性，因为可靠性，持久性等因素，性能普遍不高，高并发的查询会给 mysql 带来压力，造成数据库系统的不稳定，同时也容易产生延迟。根据局部性原理，80% 请求会落到 20% 的热点数据上，在读多写少场景，增加一层缓存有助提升系统吞吐量和健壮性。</p>
+<h3 id="引入缓存后所出现的问题"><a href="#引入缓存后所出现的问题" class="headerlink" title="引入缓存后所出现的问题"></a>引入缓存后所出现的问题</h3><p>存储的数据随着时间可能会发生变化，而缓存中的数据就会不一致。具体能容忍的不一致时间，需要具体业务具体分析，但是通常的业务，都需要做到最终一致。</p>
+<h3 id="Redis-作为-Mysql-缓存"><a href="#Redis-作为-Mysql-缓存" class="headerlink" title="Redis 作为 Mysql 缓存"></a>Redis 作为 Mysql 缓存</h3><p>在我个人接触的开发中，通常会使用 mysql 作为数据存储，而 redis 作为缓存，加速和保护mysql。但是，当 mysql 数据更新之后，就需要考虑 redis 怎样去保持数据的同步。强一致性同步维护成本太高，如果追求强一致，那么没必要用缓存了，直接用 mysql 即可。通常考虑的，都是最终一致性。</p>
+<h3 id="常用解决方案"><a href="#常用解决方案" class="headerlink" title="常用解决方案"></a>常用解决方案</h3><ul>
+<li><h4 id="方案一（缓存过期时间控制）"><a href="#方案一（缓存过期时间控制）" class="headerlink" title="方案一（缓存过期时间控制）"></a>方案一（缓存过期时间控制）</h4><p>通过设置缓存key的过期时间，mysql 更新时，redis 不同步更新，延时更新。这种方式实现简单，需要根据不同的业务需求设置合理的过期时间，但并不能完全规避问题，如果在设置的过期时间范围内数据发生了更新，则会在此期间产生很多长期的脏数据。</p>
+<p>优点：</p>
+<ul>
+<li>开发成本低，易于实现；</li>
+<li>维护管理成本低，出问题的概率会比较小。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>完全依赖过期时间，时间太短缓存频繁失效，失去意义，时间过长易有长时间更新延迟（数据不一致）</li>
+</ul>
+</li>
+<li><h4 id="方案二（同步更新缓存）"><a href="#方案二（同步更新缓存）" class="headerlink" title="方案二（同步更新缓存）"></a>方案二（同步更新缓存）</h4><p>在方案一的基础上扩展，通过设置缓存key的过期时间兜底，并且，在更新 mysql 时，同时更新 redis。</p>
+<p>优点：</p>
+<ul>
+<li>相对方案一，更新延迟更小。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果更新 mysql 成功，更新 redis 却失败，就退化到了方案一；</li>
+<li>增加耦合度，因同步更新 redis，造成业务与缓存代码的紧密耦合，如果因 redis 更新异常而导致正常业务不能进行则得不偿失。</li>
+<li>在高并发场景，业务 server 需要和 mysql，redis 同时进行连接。这样是损耗双倍的连接资源，容易造成连接数过多的问题。</li>
+</ul>
+</li>
+<li><h4 id="方案三（异步更新缓存）"><a href="#方案三（异步更新缓存）" class="headerlink" title="方案三（异步更新缓存）"></a>方案三（异步更新缓存）</h4><p>针对方案二进行优化，引入中间件，如消息队列，将同步更新 redis 的方式改为异步更新。将 redis 更新操作交给消息队列去完成，完成业务和缓存操作代码的解耦，由消息队列保证可靠性，再搭建一个消费服务，来异步更新 redis。</p>
+<p>优点：</p>
+<ul>
+<li><p>引入消息队列中间件，实现了逻辑上的解耦；</p>
+</li>
+<li><p>消息队列可以用一个句柄，很多消息队列客户端还支持本地缓存发送，有效解决了方案二连接数过多的问题；</p>
+</li>
+<li><p>消息队列本身具有可靠性，通过手动提交等手段，可以至少一次消费到redis。</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>依旧解决不了时序性问题，如果多台业务服务器分别处理针对同一行数据的两条请求，举个栗子，a &#x3D; 1；a &#x3D; 5;，如果mysql中是第一条先执行，而进入kafka的顺序是第二条先执行，那么数据就会产生不一致。</li>
+<li>引入了消息队列中间件，增加了服务的复杂度，同时要增加服务来消费消息，成本较高。</li>
+</ul>
+</li>
+<li><h4 id="方案四（订阅-binlog-来更新-redis）"><a href="#方案四（订阅-binlog-来更新-redis）" class="headerlink" title="方案四（订阅 binlog 来更新 redis）"></a>方案四（订阅 binlog 来更新 redis）</h4><p>通过订阅 binlog 来更新 redis，把我们搭建的消费服务，作为 mysql 的一个slave，订阅 binlog，解析出更新内容，再更新到 redis。</p>
+<p>优点：</p>
+<ul>
+<li>在mysql压力不大情况下，延迟较低；</li>
+<li>和业务完全解耦；</li>
+<li>解决了时序性问题。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>要单独搭建一个同步服务，并且引入binlog同步机制，成本较大。</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="方案选型"><a href="#方案选型" class="headerlink" title="方案选型"></a>方案选型</h4><ol>
+<li>首先确认产品上对延迟性的要求，如果要求极高，且数据有可能变化，不建议用缓存。</li>
+<li>通常来说，方案1就够了，因为能用缓存方案，通常是读多写少场景，同时业务上对延迟具有一定的包容性。方案1没有开发成本，其实比较实用。</li>
+<li>如果想增加更新时的即时性，就选择方案2，不过没必要做重试保证之类的。</li>
+<li>方案3，方案4针对于对延时要求比较高业务，一个是推模式，一个是拉模式，而方案4具备更强的可靠性，既然都愿意花功夫做处理消息的逻辑，不如一步到位，用方案4。</li>
+</ol>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>任何事物都存在多面性，缓存虽好但不是万能的，不能滥用。没有完美的方案，只有最适合的方案。不论在技术选型还是在架构设计上，都需要考虑实际业务场景和具体需求。那些看似高大上完美的方案，增加了项目的复杂度和维护难度的同时，也增加了开发难度和增大经费资源开销，并不是每个项目都适合。脱离实际纸上谈兵都是空谈。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -253,7 +293,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/10/18/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Docker/">http://ezioy.cn/2022/10/18/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Docker/</a></span>
+                        <span><a href="http://ezioy.cn/2022/10/18/%E7%BC%93%E5%AD%98%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E4%BB%A5%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%A7%A3%E8%80%A6/">http://ezioy.cn/2022/10/18/%E7%BC%93%E5%AD%98%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E4%BB%A5%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%A7%A3%E8%80%A6/</a></span>
                     </p>
                 
                 
@@ -277,9 +317,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Docker/"># Docker</a>
-                    
-                        <a href="/tags/Mac/"># Mac</a>
+                        <a href="/tags/Redis/"># Redis</a>
                     
                         
                 </span>
@@ -292,10 +330,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/10/18/%E7%BC%93%E5%AD%98%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E4%BB%A5%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%A7%A3%E8%80%A6/">缓存最终一致性以及业务解耦</a>
             
-            
-            <a class="next" rel="next" href="/2022/10/12/Java8-Optional/">Java8-Optional</a>
+            <a class="next" rel="next" href="/2022/10/18/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Docker/">Mac下安装Docker</a>
             
         </section>
 
