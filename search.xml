@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Mac下安装Docker</title>
+      <link href="/2022/10/18/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Docker/"/>
+      <url>/2022/10/18/Mac%E4%B8%8B%E5%AE%89%E8%A3%85Docker/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>建议通过 Homebrew 来安装 Docker，十分方便。</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="1-Homebrew-安装-Docker"><a href="#1-Homebrew-安装-Docker" class="headerlink" title="1.Homebrew 安装 Docker"></a>1.Homebrew 安装 Docker</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install --cask --appdir=/Applications docker</span><br></pre></td></tr></table></figure><h4 id="2-看见-docker-was-successfully-installed-则安装成功，可以在应用中看到-docker图标。"><a href="#2-看见-docker-was-successfully-installed-则安装成功，可以在应用中看到-docker图标。" class="headerlink" title="2.看见 docker was successfully installed! 则安装成功，可以在应用中看到 docker图标。"></a>2.看见 <code>docker was successfully installed!</code> 则安装成功，可以在应用中看到 docker图标。</h4><h4 id="3-第一次启动需要本机密码确认"><a href="#3-第一次启动需要本机密码确认" class="headerlink" title="3.第一次启动需要本机密码确认"></a>3.第一次启动需要本机密码确认</h4><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181049323.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181049323.png?x-oss-process=style/ezio"></a></p><h4 id="4-输入密码后弹出此界面，通过就行"><a href="#4-输入密码后弹出此界面，通过就行" class="headerlink" title="4.输入密码后弹出此界面，通过就行"></a>4.输入密码后弹出此界面，通过就行</h4><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181051490.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181051490.png?x-oss-process=style/ezio"></a></p><h4 id="5-安装成功后可以在终端查看版本"><a href="#5-安装成功后可以在终端查看版本" class="headerlink" title="5.安装成功后可以在终端查看版本"></a>5.安装成功后可以在终端查看版本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181051677.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181051677.png?x-oss-process=style/ezio"></a></p><h3 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h3><p>在设置中可以看到 docker 引擎配置，在红框部分进行配置。</p><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181059591.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181059591.png?x-oss-process=style/ezio"></a></p><p>可以通过命令查看docker信息，看是否配置成功</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181101702.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210181101702.png?x-oss-process=style/ezio"></a></p><p>常用的国内镜像如下：</p><blockquote><p>1、中科大: <a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></p><p>2、网易: <a href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></p><p>3、Docker 官方中国区: <a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a></p><p>4、七牛云: <a href="https://reg-mirror.qiniu.com/">https://reg-mirror.qiniu.com</a></p></blockquote></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java8-Optional</title>
       <link href="/2022/10/12/Java8-Optional/"/>
       <url>/2022/10/12/Java8-Optional/</url>
@@ -149,9 +176,9 @@
       
         <tags>
             
-            <tag> Spring Gateway </tag>
-            
             <tag> Spring Cloud </tag>
+            
+            <tag> Spring Gateway </tag>
             
         </tags>
       
@@ -278,9 +305,9 @@
       
         <tags>
             
-            <tag> Spring Cloud </tag>
-            
             <tag> Feign </tag>
+            
+            <tag> Spring Cloud </tag>
             
         </tags>
       
