@@ -225,7 +225,8 @@
 <li>完全依赖过期时间，时间太短缓存频繁失效，失去意义，时间过长易有长时间更新延迟（数据不一致）</li>
 </ul>
 <h4 id="方案二（同步更新缓存）"><a href="#方案二（同步更新缓存）" class="headerlink" title="方案二（同步更新缓存）"></a>方案二（同步更新缓存）</h4><p>  在方案一的基础上扩展，通过设置缓存key的过期时间兜底，并且，在更新 mysql 时，同时更新 redis。</p>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191027572.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191027572.png?x-oss-process=style/ezio"></a></p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191027572.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191027572.png?x-oss-process=style/ezio" style="zoom:50%"/></a>
+
 <p>  优点：</p>
 <ul>
 <li>相对方案一，更新延迟更小。</li>
@@ -237,7 +238,8 @@
 <li>在高并发场景，业务 server 需要和 mysql，redis 同时进行连接。这样是损耗双倍的连接资源，容易造成连接数过多的问题。</li>
 </ul>
 <h4 id="方案三（异步更新缓存）"><a href="#方案三（异步更新缓存）" class="headerlink" title="方案三（异步更新缓存）"></a>方案三（异步更新缓存）</h4><p>  针对方案二进行优化，引入中间件，如消息队列，将同步更新 redis 的方式改为异步更新。将 redis 更新操作交给消息队列去完成，完成业务和缓存操作代码的解耦，由消息队列保证可靠性，再搭建一个消费服务，来异步更新 redis。</p>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191034209.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191034209.png?x-oss-process=style/ezio"></a></p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191034209.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191034209.png?x-oss-process=style/ezio" style="zoom:50%"/></a>
+
 <p>  优点：</p>
 <ul>
 <li><p>引入消息队列中间件，实现了逻辑上的解耦；</p>
@@ -253,7 +255,8 @@
 <li>引入了消息队列中间件，增加了服务的复杂度，同时要增加服务来消费消息，成本较高。</li>
 </ul>
 <h4 id="方案四（订阅-binlog-来更新-redis）"><a href="#方案四（订阅-binlog-来更新-redis）" class="headerlink" title="方案四（订阅 binlog 来更新 redis）"></a>方案四（订阅 binlog 来更新 redis）</h4><p>  通过订阅 binlog 来更新 redis，把我们搭建的消费服务，作为 mysql 的一个slave，订阅 binlog，解析出更新内容，再更新到 redis。</p>
-<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191042840.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191042840.png?x-oss-process=style/ezio"></a></p>
+<a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191042840.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210191042840.png?x-oss-process=style/ezio" style="zoom:50%"/></a>
+
 <p>  优点：</p>
 <ul>
 <li>在mysql压力不大情况下，延迟较低；</li>
