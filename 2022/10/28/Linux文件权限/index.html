@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Linux Kill命令 | Ezio&#39;s blog</title>
+<title>Linux文件权限 | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Linux Kill命令</h1>
+            <h1 class="post-title">Linux文件权限</h1>
             
                 <div class="post-meta">
                     
@@ -195,7 +195,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 28, 2022&nbsp;&nbsp;11:01:42</a>
+                        Date: <a href="#">October 28, 2022&nbsp;&nbsp;18:00:26</a>
                         </span>
                     
                     
@@ -211,45 +211,54 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="kill-命令介绍"><a href="#kill-命令介绍" class="headerlink" title="kill 命令介绍"></a>kill 命令介绍</h3><p>我们都知道，想要在 Linux 中终止一个进程常用的有两种方式，如果是前台进程可以使用 Ctrl+C 键进行终止；如果是后台进程，那么需要使用 kill 命令来终止。（其实Ctrl+C也是kill命令）</p>
-<p>kill 命令的格式是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span>[参数][进程号]</span><br><span class="line"> </span><br><span class="line">例如：</span><br><span class="line"> </span><br><span class="line"><span class="built_in">kill</span> 21121</span><br><span class="line"> </span><br><span class="line"><span class="built_in">kill</span> -9 21121</span><br></pre></td></tr></table></figure>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>记录 linux 系统下文件权限相关的内容，Mac OS 下类似。</p>
+<h2 id="查看文件权限"><a href="#查看文件权限" class="headerlink" title="查看文件权限"></a>查看文件权限</h2><p>查看 linux 系统下的文件权限，可以使用 <code>ll</code> 命令或者 <code>ls</code> 命令 带 <code>-l</code>（长列表选项）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ll</span><br><span class="line">total 160</span><br><span class="line">drwx------@  8 ezio  staff   256B Jul  5 14:47 Applications</span><br><span class="line">drwx------@ 10 ezio  staff   320B Jul 27 11:31 Desktop</span><br><span class="line">drwx------+  7 ezio  staff   224B Jun 17 15:01 Documents</span><br><span class="line">drwx------@ 22 ezio  staff   704B Jul 29 16:35 Downloads</span><br><span class="line">drwx------@ 94 ezio  staff   2.9K Jul 23 19:02 Library</span><br><span class="line">drwx------   4 ezio  staff   128B Nov 13  2021 Movies</span><br><span class="line">drwx------+  6 ezio  staff   192B Nov 18  2021 Music</span><br><span class="line">drwx------+  9 ezio  staff   288B Apr 26 10:25 Pictures</span><br><span class="line">drwxr-xr-x+  5 ezio  staff   160B Nov 14  2021 Public</span><br><span class="line">drwxr-xr-x   5 ezio  staff   160B Jul 29 17:48 file-share</span><br><span class="line">drwxr-xr-x   3 ezio  staff    96B Jul 26 17:17 node_modules</span><br><span class="line">-rw-r--r--   1 ezio  staff    27B Jun 24 13:47 package-lock.json</span><br><span class="line">drwxr-xr-x  20 ezio  staff   640B Jul 29 22:20 workspace</span><br><span class="line">-rw-r--r--   1 ezio  staff    86B Jul 26 17:17 yarn.lock</span><br></pre></td></tr></table></figure>
 
-<p>其中[参数]是可选的，进程号可以通过jps&#x2F;ps&#x2F;pidof&#x2F;pstree&#x2F;top等工具获取。</p>
-<p>kill 的命令参数有以下几种：</p>
-<blockquote>
-<p>-l 信号，若果不加信号的编号参数，则使用“-l”参数会列出全部的信号名称</p>
-<p>-a 当处理当前进程时，不限制命令名和进程号的对应关系</p>
-<p>-p 指定kill 命令只打印相关进程的进程号，而不发送任何信号</p>
-<p>-s 指定发送信号</p>
-<p>-u 指定用户</p>
-</blockquote>
-<p>通常情况下，我们使用的<code>-l</code>(信号)的时候比较多，如我们前文提到的<code>kill -9</code>中的<code>9</code>就是信号。</p>
-<p>信号如果没有指定的话，默认会发出终止信号(15)。常用的信号如下：</p>
-<blockquote>
-<p>HUP 1 终端断线</p>
-<p>INT 2 中断（同 Ctrl + C）</p>
-<p>QUIT 3 退出（同 Ctrl + \）</p>
-<p>TERM 15 终止</p>
-<p>KILL 9 强制终止</p>
-<p>CONT 18 继续（与STOP相反， fg&#x2F;bg命令）</p>
-<p>STOP 19 暂停（同 Ctrl + Z）</p>
-</blockquote>
-<p>比较常用的就是<code>强制终止信号：9</code>和<code>终止信号：15</code>，另外，<code>中断信号：2</code>其实就是我们前文提到的Ctrl + C结束前台进程。</p>
-<h3 id="kill-9-和-kill-15的区别"><a href="#kill-9-和-kill-15的区别" class="headerlink" title="kill -9 和 kill -15的区别"></a>kill -9 和 kill -15的区别</h3><p>kill命令默认的信号就是15，首先来说一下这个默认的kill -15信号。</p>
-<p>当使用kill -15时，系统会发送一个SIGTERM的信号给对应的程序。当程序接收到该信号后，具体要如何处理是自己可以决定的。</p>
-<p>这时候，应用程序可以选择：</p>
-<p>1、立即停止程序<br>2、释放响应资源后停止程序<br>3、忽略该信号，继续执行程序</p>
-<p>因为kill -15信号只是通知对应的进程要进行”安全、干净的退出”，程序接到信号之后，退出前一般会进行一些”准备工作”，如资源释放、临时文件清理等等，如果准备工作做完了，再进行程序的终止。但是，如果在”准备工作”进行过程中，遇到阻塞或者其他问题导致无法成功，那么应用程序可以选择忽略该终止信号。这也就是为什么我们有的时候使用kill命令是没办法”杀死”应用的原因，因为默认的kill信号是SIGTERM（15），而SIGTERM（15）的信号是可以被阻塞和忽略的。</p>
-<p>和kill -15相比，kill -9就相对强硬一点，系统会发出SIGKILL信号，他要求接收到该信号的程序应该立即结束运行，不能被阻塞或者忽略。所以，相比于kill -15命令，kill -9在执行时，应用程序是没有时间进行”准备工作”的，所以这通常会带来一些副作用，数据丢失或者终端无法恢复到正常状态等。<br>Java是如何处理SIGTERM（15）的我们都知道，在Linux中，Java应用是作为一个独立进程运行的，Java程序的终止运行是基于JVM的关闭实现的，JVM关闭方式分为3种：</p>
+<p>文件列表信息分为：文件类型、权限、链接数、所属用户、所属用户组、文件大小、最后修改时间、文件名。</p>
+<h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><p>linux 一共有 7 种文件类型，分别如下：</p>
 <ul>
-<li>正常关闭：当最后一个非守护线程结束或者调用了System.exit或者通过其他特定平台的方法关闭（接收到SIGINT（2）、SIGTERM（15）信号等）</li>
-<li>强制关闭：通过调用Runtime.halt方法或者是在操作系统中强制kill（接收到SIGKILL（9）信号)</li>
-<li>异常关闭：运行中遇到RuntimeException异常等。</li>
+<li><code>-</code>: 普通文件</li>
+<li><code>d</code>: 目录文件</li>
+<li><code>l</code>: 链接文件</li>
+<li><code>b</code>: 块设备文件</li>
+<li><code>p</code>: 管道文件</li>
+<li><code>c</code>: 字符设备文件</li>
+<li><code>s</code>: 套接口文件 &#x2F; 数据接口文件</li>
 </ul>
-<p>JVM进程在接收到kill -15信号通知的时候，是可以做一些清理动作的，比如删除临时文件等。当然，开发者也是可以自定义做一些额外的事情的，比如让tomcat容器停止，让dubbo服务下线等。而这种自定义JVM清理动作的方式，是通过JDK中提供的shutdown hook实现的。JDK提供了Java.Runtime.addShutdownHook(Thread hook)方法，可以注册一个JVM关闭的钩子。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>kill命令用于终止Linux进程，默认情况下，如果不指定信号，kill 等价于kill -15。kill -15执行时，系统向对应的程序发送SIGTERM（15）信号，该信号是可以被执行、阻塞和忽略的，所以应用程序接收到信号后，可以做一些准备工作，再进行程序终止。</p>
-<p>有的时候，kill -15无法终止程序，因为他可能被忽略，这时候可以使用kill -9，系统会发出SIGKILL（9）信号，该信号不允许忽略和阻塞，所以应用程序会立即终止。这也会带来很多副作用，如数据丢失等，所以，在非必要时，不要使用kill -9命令，尤其是那些web应用、提供RPC服务、执行定时任务、包含长事务等应用中，因为kill -9 没给spring容器、tomcat服务器、dubbo服务、流程引擎、状态机等足够的时间进行收尾。</p>
+<p><em>后四种是特殊文件</em></p>
+<h2 id="文件权限对应关系"><a href="#文件权限对应关系" class="headerlink" title="文件权限对应关系"></a>文件权限对应关系</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>含义</th>
+<th>对应数字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>读权限</td>
+<td>4</td>
+</tr>
+<tr>
+<td>w</td>
+<td>写权限</td>
+<td>2</td>
+</tr>
+<tr>
+<td>x</td>
+<td>执行权限</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>读、写、运行三项权限用数字表示就是 <strong>r&#x3D;4,w&#x3D;2,x&#x3D;1</strong>。所以，<code>-rw-r--r--</code> 用数字表示成 644。</p>
+<p>权限字段 <code>-rwxrwxrwx</code> 的内容总共会有 10 个 <code>-</code>，第一个表示文件类型，如该文件是<strong>文件 (- 表示）</strong>，<strong>文件夹 (d 表示）</strong>, <strong>连接文件 (l 表示）</strong>，后面 9 个按照每三位为一组分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x  5  ezio  staff  160B Jul 29 17:48 file-share</span><br></pre></td></tr></table></figure>
+
+<p><strong>d</strong>: 代表文件夹</p>
+<p><strong>rwx</strong>: 代表文件所有者 (u 表示）权限，这里是 ezio，ezio 对该文件拥有读写执行权限。</p>
+<p><strong>r-x</strong>: 代表所属（g 表示）的权限，这里同组用户拥有对该文件读和执行的权限。</p>
+<p><strong>r-x</strong>: 代表其他用户（o 表示）的权限，这里和上面权限一样。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -269,7 +278,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/10/28/Linux-Kill%E5%91%BD%E4%BB%A4/">http://ezioy.cn/2022/10/28/Linux-Kill%E5%91%BD%E4%BB%A4/</a></span>
+                        <span><a href="http://ezioy.cn/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">http://ezioy.cn/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</a></span>
                     </p>
                 
                 
@@ -306,10 +315,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">Linux文件权限</a>
             
-            
-            <a class="next" rel="next" href="/2022/10/28/Java-Shutdown-Hook/">Java-Shutdown Hook</a>
+            <a class="next" rel="next" href="/2022/10/28/Linux-Kill%E5%91%BD%E4%BB%A4/">Linux Kill命令</a>
             
         </section>
 
