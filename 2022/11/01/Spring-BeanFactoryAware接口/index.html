@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Linux文件权限 | Ezio&#39;s blog</title>
+<title>Spring-BeanFactoryAware接口 | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Linux文件权限</h1>
+            <h1 class="post-title">Spring-BeanFactoryAware接口</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 28, 2022&nbsp;&nbsp;18:00:26</a>
+                        Date: <a href="#">November 1, 2022&nbsp;&nbsp;16:27:52</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Linux/">Linux</a>
+                                <a href="/categories/Spring/">Spring</a>
                             
                         </span>
                     
@@ -211,54 +211,8 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>记录 linux 系统下文件权限相关的内容，Mac OS 下类似。</p>
-<h2 id="查看文件权限"><a href="#查看文件权限" class="headerlink" title="查看文件权限"></a>查看文件权限</h2><p>查看 linux 系统下的文件权限，可以使用 <code>ll</code> 命令或者 <code>ls</code> 命令 带 <code>-l</code>（长列表选项）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ll</span><br><span class="line">total 160</span><br><span class="line">drwx------@  8 ezio  staff   256B Jul  5 14:47 Applications</span><br><span class="line">drwx------@ 10 ezio  staff   320B Jul 27 11:31 Desktop</span><br><span class="line">drwx------+  7 ezio  staff   224B Jun 17 15:01 Documents</span><br><span class="line">drwx------@ 22 ezio  staff   704B Jul 29 16:35 Downloads</span><br><span class="line">drwx------@ 94 ezio  staff   2.9K Jul 23 19:02 Library</span><br><span class="line">drwx------   4 ezio  staff   128B Nov 13  2021 Movies</span><br><span class="line">drwx------+  6 ezio  staff   192B Nov 18  2021 Music</span><br><span class="line">drwx------+  9 ezio  staff   288B Apr 26 10:25 Pictures</span><br><span class="line">drwxr-xr-x+  5 ezio  staff   160B Nov 14  2021 Public</span><br><span class="line">drwxr-xr-x   5 ezio  staff   160B Jul 29 17:48 file-share</span><br><span class="line">drwxr-xr-x   3 ezio  staff    96B Jul 26 17:17 node_modules</span><br><span class="line">-rw-r--r--   1 ezio  staff    27B Jun 24 13:47 package-lock.json</span><br><span class="line">drwxr-xr-x  20 ezio  staff   640B Jul 29 22:20 workspace</span><br><span class="line">-rw-r--r--   1 ezio  staff    86B Jul 26 17:17 yarn.lock</span><br></pre></td></tr></table></figure>
-
-<p>文件列表信息分为：文件类型、权限、链接数、所属用户、所属用户组、文件大小、最后修改时间、文件名。</p>
-<h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><p>linux 一共有 7 种文件类型，分别如下：</p>
-<ul>
-<li><code>-</code>: 普通文件</li>
-<li><code>d</code>: 目录文件</li>
-<li><code>l</code>: 链接文件</li>
-<li><code>b</code>: 块设备文件</li>
-<li><code>p</code>: 管道文件</li>
-<li><code>c</code>: 字符设备文件</li>
-<li><code>s</code>: 套接口文件 &#x2F; 数据接口文件</li>
-</ul>
-<p><em>后四种是特殊文件</em></p>
-<h2 id="文件权限对应关系"><a href="#文件权限对应关系" class="headerlink" title="文件权限对应关系"></a>文件权限对应关系</h2><table>
-<thead>
-<tr>
-<th>权限</th>
-<th>含义</th>
-<th>对应数字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>r</td>
-<td>读权限</td>
-<td>4</td>
-</tr>
-<tr>
-<td>w</td>
-<td>写权限</td>
-<td>2</td>
-</tr>
-<tr>
-<td>x</td>
-<td>执行权限</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<p>读、写、运行三项权限用数字表示就是 <strong>r&#x3D;4,w&#x3D;2,x&#x3D;1</strong>。所以，<code>-rw-r--r--</code> 用数字表示成 644。</p>
-<p>权限字段 <code>-rwxrwxrwx</code> 的内容总共会有 10 个 <code>-</code>，第一个表示文件类型，如该文件是<strong>文件 (- 表示）</strong>，<strong>文件夹 (d 表示）</strong>, <strong>连接文件 (l 表示）</strong>，后面 9 个按照每三位为一组分。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x  5  ezio  staff  160B Jul 29 17:48 file-share</span><br></pre></td></tr></table></figure>
-
-<p><strong>d</strong>: 代表文件夹</p>
-<p><strong>rwx</strong>: 代表文件所有者 (u 表示）权限，这里是 ezio，ezio 对该文件拥有读写执行权限。</p>
-<p><strong>r-x</strong>: 代表所属（g 表示）的权限，这里同组用户拥有对该文件读和执行的权限。</p>
-<p><strong>r-x</strong>: 代表其他用户（o 表示）的权限，这里和上面权限一样。</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="1、用处"><a href="#1、用处" class="headerlink" title="1、用处"></a>1、用处</h3><p>获取bean</p>
+<h3 id="2、使用方法"><a href="#2、使用方法" class="headerlink" title="2、使用方法"></a>2、使用方法</h3><p>实现BeanFactoryAware接口的setBeanFactory方法。BeanFactoryAware也只有这个方法。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -278,7 +232,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">http://ezioy.cn/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</a></span>
+                        <span><a href="http://ezioy.cn/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/">http://ezioy.cn/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/</a></span>
                     </p>
                 
                 
@@ -302,7 +256,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Linux/"># Linux</a>
+                        <a href="/tags/Spring/"># Spring</a>
                     
                         
                 </span>
@@ -315,10 +269,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/">Spring-BeanFactoryAware接口</a>
             
-            
-            <a class="next" rel="next" href="/2022/10/28/Linux-Kill%E5%91%BD%E4%BB%A4/">Linux Kill命令</a>
+            <a class="next" rel="next" href="/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">Linux文件权限</a>
             
         </section>
 

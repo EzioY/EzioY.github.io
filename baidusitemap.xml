@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ezioy.cn/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
     <loc>http://ezioy.cn/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</loc>
     <lastmod>2022-10-28</lastmod>
   </url>
