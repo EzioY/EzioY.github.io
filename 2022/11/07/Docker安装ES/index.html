@@ -16,7 +16,7 @@
     <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
 
 
-<title>Spring-BeanFactoryAware接口 | Ezio&#39;s blog</title>
+<title>Docker安装ES | Ezio&#39;s blog</title>
 
 
 
@@ -186,7 +186,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Spring-BeanFactoryAware接口</h1>
+            <h1 class="post-title">Docker安装ES</h1>
             
                 <div class="post-meta">
                     
@@ -195,14 +195,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 1, 2022&nbsp;&nbsp;16:27:52</a>
+                        Date: <a href="#">November 7, 2022&nbsp;&nbsp;10:39:14</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Spring/">Spring</a>
+                                <a href="/categories/Docker/">Docker</a>
                             
                         </span>
                     
@@ -211,12 +211,33 @@
         </header>
 
         <div class="post-content">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="1、用处"><a href="#1、用处" class="headerlink" title="1、用处"></a>1、用处</h3><p>获取bean</p>
-<h3 id="2、使用方法"><a href="#2、使用方法" class="headerlink" title="2、使用方法"></a>2、使用方法</h3><p>实现BeanFactoryAware接口的setBeanFactory方法。BeanFactoryAware也只有这个方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> BeanFactory beanFactory;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setBeanFactory</span><span class="params">(BeanFactory beanFactory)</span> <span class="keyword">throws</span> BeansException &#123;  </span><br><span class="line">    <span class="built_in">this</span>.beanFactory = beanFactory;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="type">Object</span> <span class="variable">object</span> <span class="operator">=</span> beanFactory.getBean(beanName); </span><br><span class="line"></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="built_in">this</span>.getBean(beanName); </span><br></pre></td></tr></table></figure>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="1、拉取镜像"><a href="#1、拉取镜像" class="headerlink" title="1、拉取镜像"></a>1、拉取镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull elasticsearch:7.17.7</span><br></pre></td></tr></table></figure>
 
-<h3 id="3、注意"><a href="#3、注意" class="headerlink" title="3、注意"></a>3、注意</h3><p>spring的IoC容器核心为BeanFactory接口，该接口的最常用实现是XmlBeanFactory类，该类使用xml配置文件来初始化一个BeanFactory实例。</p>
-<p>ApplicationContext是对BeanFactory接口的扩展，在大多数的应用中，使用ApplicationContext的优先级要高于BeanFactory</p>
+
+
+<h3 id="2、创建挂载目录"><a href="#2、创建挂载目录" class="headerlink" title="2、创建挂载目录"></a>2、创建挂载目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/config</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/data</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/plugins</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、配置文件"><a href="#3、配置文件" class="headerlink" title="3、配置文件"></a>3、配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;http.host: 0.0.0.0&quot;</span> &gt;&gt; /opt/elasticsearch/config/elasticsearch.yml</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、创建容器"><a href="#4、创建容器" class="headerlink" title="4、创建容器"></a>4、创建容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --name myes -p 9200:9200  -p 9300:9300 \ <span class="comment"># 端口号映射</span></span><br><span class="line"> -e <span class="string">&quot;discovery.type=single-node&quot;</span> \     <span class="comment"># 单点模式启动</span></span><br><span class="line"> -e ES_JAVA_OPTS=<span class="string">&quot;-Xms84m -Xmx512m&quot;</span> \  <span class="comment"># 设置启动占用的内存范围</span></span><br><span class="line"> -v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \ <span class="comment">#目录挂载</span></span><br><span class="line"> -v /opt/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line"> -v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line"> -d elasticsearch:7.17.7 <span class="comment"># 后台启动</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、查看启动详情"><a href="#5、查看启动详情" class="headerlink" title="5、查看启动详情"></a>5、查看启动详情</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps  查看是否启动</span><br><span class="line">docker logs elasticsearch  启动日志查询</span><br><span class="line">docker restart elasticsearch   重启</span><br><span class="line">docker <span class="built_in">exec</span> -it elasticsearch bash 进入</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6、安装-es-head-插件"><a href="#6、安装-es-head-插件" class="headerlink" title="6、安装 es-head 插件"></a>6、安装 es-head 插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker pull mobz/elasticsearch-head:5-alpine</span><br><span class="line"></span><br><span class="line">docker run --name es-head -p 9100:9100 \</span><br><span class="line"> -d mobz/elasticsearch-head:5-alpine</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7、可能出现问题"><a href="#7、可能出现问题" class="headerlink" title="7、可能出现问题"></a>7、可能出现问题</h3><p><code>文件夹无权限，启动失败</code>，可用如下命令解决：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> -R 777 /opt/elasticsearch</span><br></pre></td></tr></table></figure>
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -236,7 +257,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://ezioy.cn/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/">http://ezioy.cn/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/</a></span>
+                        <span><a href="http://ezioy.cn/2022/11/07/Docker%E5%AE%89%E8%A3%85ES/">http://ezioy.cn/2022/11/07/Docker%E5%AE%89%E8%A3%85ES/</a></span>
                     </p>
                 
                 
@@ -260,7 +281,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Spring/"># Spring</a>
+                        <a href="/tags/Docker/"># Docker</a>
+                    
+                        <a href="/tags/Linux/"># Linux</a>
+                    
+                        <a href="/tags/ElasticSearch/"># ElasticSearch</a>
                     
                         
                 </span>
@@ -273,10 +298,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">工厂方法模式</a>
             
-            
-            <a class="next" rel="next" href="/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">Linux文件权限</a>
+            <a class="next" rel="next" href="/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">工厂方法模式</a>
             
         </section>
 
