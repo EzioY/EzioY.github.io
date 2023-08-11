@@ -245,6 +245,23 @@
 <p>成功出现Windows安装页面<br><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101532993.png?x-oss-process=style/ezio" title="Windows安装界面" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101532993.png?x-oss-process=style/ezio" alt="Windows安装界面"></a></p>
 <p>按照傻瓜式操作，一步一步安装即可，在选择版本的时候选择 <strong>专业版</strong> 即可</p>
 <p>当出现下面这个界面的时候选自定义安装即可<br><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101553688.png?x-oss-process=style/ezio" title="自定义安装" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101553688.png?x-oss-process=style/ezio" alt="自定义安装"></a><br>然后继续跟随提示下一步，等待安装完成重启</p>
+<p>之后会出现选择地区的界面：<br><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111138107.png?x-oss-process=style/ezio" title="选择地区" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111138107.png?x-oss-process=style/ezio" alt="选择地区"></a><br>在此界面通过快捷键 Fn + Shfit + F10 调出Windows命令行窗口，然后输入以下命令并敲击回车：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ OOBE\BYPASSNRO</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111142738.png?x-oss-process=style/ezio" title="开启OOBE" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111142738.png?x-oss-process=style/ezio" alt="开启OOBE"></a></p>
+<p>执行此命令的原因是在OOBE下，win11可以在无法连接网络的情况下继续安装，不然等会进行到后面的需要联网的步骤时无法继续安装；等待虚拟机重启完成，然后继续按照提示一步步安装就行了</p>
+<p>等出现这个界面就是安装好了：</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111150434.png?x-oss-process=style/ezio" title="win11界面" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111150434.png?x-oss-process=style/ezio" alt="win11界面"></a></p>
+<p>但是现在还没有办法联网，需要安装 VMware Tools，点击工具栏的虚拟机，选择安装 VMware Tools 选项</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111153581.png?x-oss-process=style/ezio" title="安装VMware Tools" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111153581.png?x-oss-process=style/ezio" alt="安装VMware Tools"></a></p>
+<p>等一会儿会跳出光驱已经加载好了，然后需要我们手动安装：</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111156892.png?x-oss-process=style/ezio" title="加载光驱" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111156892.png?x-oss-process=style/ezio" alt="加载光驱"></a></p>
+<p>以管理员身份运行 PowerShell</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111457477.png?x-oss-process=style/ezio" title="打开powershell" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111457477.png?x-oss-process=style/ezio" alt="打开powershell"></a></p>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ set-executionpolicy remotesigned</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111505089.png?x-oss-process=style/ezio" title="执行命令" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111505089.png?x-oss-process=style/ezio" alt="执行命令"></a><br>然后输入“A” 即可</p>
+<p>打开文件资源管理器，进入驱动D盘，会看到一个 setup 文件，右键用PowerShell运行该文件，安装完成就可以联网了</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
