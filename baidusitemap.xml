@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://ezioy.cn/2023/08/22/Docker%E5%AE%89%E8%A3%85Redis/</loc>
+    <lastmod>2023-08-22</lastmod>
+  </url>
+  <url>
     <loc>http://ezioy.cn/2020/01/02/%E8%A7%82%E3%80%8A%E4%BA%92%E8%81%94%E7%BD%91%E6%98%AF%E6%88%91%E4%BB%AC%E6%97%B6%E4%BB%A3%E7%9A%84%E9%9B%86%E4%BD%93%E5%81%A5%E5%BF%98%E7%97%87%E3%80%8B%E6%9C%89%E6%84%9F/</loc>
     <lastmod>2023-08-22</lastmod>
   </url>
