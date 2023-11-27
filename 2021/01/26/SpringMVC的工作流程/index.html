@@ -227,14 +227,9 @@
             
         </section>
 
-
-	    
-		    <section id="comments" class="comments">
-		      <style>
-		        .comments{margin:30px;padding:10px;background:#fff}
-		        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-		      </style>
-		      <div class="valine_comment"></div>
+        
+        <section id="comments" style="margin:20px;padding:10px;background:#fff;">
+          <div id="vcomment" class="comment"></div>
 <!--载入js，在</body>之前插入即可-->
 <!--Leancloud 操作库:-->
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
@@ -242,7 +237,7 @@
 <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 <script>
   new Valine({
-      el: '.valine_comment',
+      el: '#vcomment',
       app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
       app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
       placeholder: '这里留言。。',
@@ -251,11 +246,9 @@
       avatar: 'monsterid',
     });
 </script>
-		    </section>
-		
+        </section>
+        
     </article>
-
-	
 </div>
 
         </div>
