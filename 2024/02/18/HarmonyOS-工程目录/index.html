@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>HarmonyOS-工程目录 | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HarmonyOS-工程目录</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 18, 2024&nbsp;&nbsp;10:29:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/HarmonyOS/">HarmonyOS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h3><p>新建工程目录如下：</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181041312.png?x-oss-process=style/ezio" title="image-20240218104119893" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181041312.png?x-oss-process=style/ezio" alt="image-20240218104119893"></a></p>
+<p>其中详细如下：</p>
+<ul>
+<li>AppScope 中存放应用全局所需要的资源文件。</li>
+<li>entry 是应用的主模块，存放 HarmonyOS 应用的代码、资源等。</li>
+<li>oh_modules 是工程的依赖包，存放工程依赖的源文件。</li>
+<li>build-profile.json5 是工程级配置信息，包括签名、产品配置等。</li>
+<li>hvigorfile.ts 是工程级编译构建任务脚本，hvigor 是基于任务管理机制实现的一款全新的自动化构建工具，主要提供任务注册编排，工程模型管理、配置管理等核心能力。</li>
+<li>oh-package.json5 是工程级依赖配置文件，用于记录引入包的配置信息。</li>
+</ul>
+<p>在 AppScope，其中有 resources 文件夹和配置文件 app.json5。AppScope &gt; resources &gt; base 中包含 element 和 media 两个文件夹，</p>
+<ul>
+<li>其中 element 文件夹主要存放公共的字符串、布局文件等资源。</li>
+<li>media 存放全局公共的多媒体资源文件。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181049646.png?x-oss-process=style/ezio" title="image-20240218104956334" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181049646.png?x-oss-process=style/ezio" alt="image-20240218104956334"></a></p>
+<h3 id="模块级目录"><a href="#模块级目录" class="headerlink" title="模块级目录"></a>模块级目录</h3><p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181052884.png?x-oss-process=style/ezio" title="image-20240218105255198" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181052884.png?x-oss-process=style/ezio" alt="image-20240218105255198"></a></p>
+<p>entry &gt; src 目录中主要包含总的 main 文件夹，单元测试目录 ohosTest，以及模块级的配置文件。</p>
+<ul>
+<li>main 文件夹中，ets 文件夹用于存放ets代码，resources 文件存放模块内的多媒体及布局文件等，module.json5 文件为模块的配置文件。</li>
+<li>ohosTest 是单元测试目录。</li>
+<li>build-profile.json5 是模块级配置信息，包括编译构建配置项。</li>
+<li>hvigorfile.ts 文件是模块级构建脚本。</li>
+<li>oh-package.json5 是模块级依赖配置信息文件。</li>
+</ul>
+<p>进入 src &gt; main &gt; ets 目录中，其分为 entryability、pages 两个文件夹。</p>
+<ul>
+<li>entryability 存放 ability 文件，用于当前 ability 应用逻辑和生命周期管理。</li>
+<li>pages 存放UI界面相关代码文件，初始会生成一个Index页面。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181057101.png?x-oss-process=style/ezio" title="image-20240218105727600" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181057101.png?x-oss-process=style/ezio" alt="image-20240218105727600"></a></p>
+<p>resources 目录下存放模块公共的多媒体、字符串及布局文件等资源，分别存放在 element、media 文件夹中。</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181059092.png?x-oss-process=style/ezio" title="image-20240218105902429" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181059092.png?x-oss-process=style/ezio" alt="image-20240218105902429"></a></p>
+<h3 id="app-json5"><a href="#app-json5" class="headerlink" title="app.json5"></a>app.json5</h3><p>AppScope &gt; app.json5 是应用的全局的配置文件，用于存放应用公共的配置信息。</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181101807.png?x-oss-process=style/ezio" title="image-20240218110118182" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181101807.png?x-oss-process=style/ezio" alt="image-20240218110118182"></a></p>
+<p>其中配置信息如下：</p>
+<ul>
+<li>bundleName 是包名。</li>
+<li>vendor 是应用程序供应商。</li>
+<li>versionCode 是用于区分应用版本。</li>
+<li>versionName 是版本号。</li>
+<li>icon 对应于应用的显示图标。</li>
+<li>label 是应用名。</li>
+</ul>
+<h3 id="module-json5"><a href="#module-json5" class="headerlink" title="module.json5"></a>module.json5</h3><p>entry &gt; src &gt; main &gt; module.json5 是模块的配置文件，包含当前模块的配置信息。</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181104491.png?x-oss-process=style/ezio" title="image-20240218110423258" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181104491.png?x-oss-process=style/ezio" alt="image-20240218110423258"></a></p>
+<p>其中 module 对应的是模块的配置信息，一个模块对应一个打包后的 hap 包，hap 包全称是 <strong>HarmonyOS Ability Package</strong>，其中包含了 ability、第三方库、资源和配置文件。其具体属性及其描述可以参照下表。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>该标签标识当前 module 的名字，module 打包成 hap 后，表示 hap 的名称，标签值采用字符串表示（最大长度31个字节），该名称在整个应用要唯一。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>表示模块的类型，类型有三种，分别是 entry、feature 和 har。</td>
+</tr>
+<tr>
+<td>srcEntry</td>
+<td>当前模块的入口文件路径。</td>
+</tr>
+<tr>
+<td>description</td>
+<td>当前模块的描述信息。</td>
+</tr>
+<tr>
+<td>mainElement</td>
+<td>该标签标识 hap 的入口 ability 名称或者 extension 名称。只有配置为 mainElement 的 ability 或者 extension 才允许在服务中心露出。</td>
+</tr>
+<tr>
+<td>deviceTypes</td>
+<td>该标签标识 hap 可以运行在哪类设备上，标签值采用字符串数组的表示。</td>
+</tr>
+<tr>
+<td>deliveryWithInstall</td>
+<td>标识当前 Module 是否在用户主动安装的时候安装，表示该 Module 对应的HAP是否跟随应用一起安装。- true：主动安装时安装。- false：主动安装时不安装。</td>
+</tr>
+<tr>
+<td>installationFree</td>
+<td>标识当前 Module 是否支持免安装特性。- true：表示支持免安装特性，且符合免安装约束。- false：表示不支持免安装特性。</td>
+</tr>
+<tr>
+<td>pages</td>
+<td>对应的是 main_pages.json 文件，用于配置 ability 中用到的 page 信息。</td>
+</tr>
+<tr>
+<td>abilities</td>
+<td>是一个数组，存放当前模块中所有的 ability 元能力的配置信息，其中可以有多个 ability。</td>
+</tr>
+</tbody></table>
+<p>对于 abilities 中每一个 ability 的属性项，其描述信息如下表:</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>该标签标识当前 ability 的逻辑名，该名称在整个应用要唯一，标签值采用字符串表示（最大长度127个字节）。</td>
+</tr>
+<tr>
+<td>srcEntry</td>
+<td>ability 的入口代码路径。</td>
+</tr>
+<tr>
+<td>description</td>
+<td>ability 的描述信息。</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>ability 的图标。该标签标识 ability 图标，标签值为资源文件的索引。该标签可缺省，缺省值为空。如果ability 被配置为 MainElement，该标签必须配置。</td>
+</tr>
+<tr>
+<td>label</td>
+<td>ability的标签名。</td>
+</tr>
+<tr>
+<td>startWindowIcon</td>
+<td>启动页面的图标。</td>
+</tr>
+<tr>
+<td>startWindowBackground</td>
+<td>启动页面的背景色。</td>
+</tr>
+<tr>
+<td>visible</td>
+<td>ability 是否可以被其他应用程序调用，true 表示可以被其它应用调用， false 表示不可以被其它应用调用。</td>
+</tr>
+<tr>
+<td>skills</td>
+<td>标识能够接收的意图的 action 值的集合，取值通常为系统预定义的 action 值，也允许自定义。</td>
+</tr>
+<tr>
+<td>entities</td>
+<td>标识能够接收 Want 的 Entity 值的集合。</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>标识能够接收的 Want 的 Action 值的集合，取值通常为系统预定义的 action 值，也允许自定义。</td>
+</tr>
+</tbody></table>
+<h3 id="main-pages-json"><a href="#main-pages-json" class="headerlink" title="main_pages.json"></a>main_pages.json</h3><p>src &#x2F; main &#x2F; resources &#x2F; base &#x2F; profile &#x2F; main_pages.json 文件保存的是页面 page 的路径配置信息，所有需要进行路由跳转的 page 页面都要在这里进行配置。</p>
+<p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181110162.png?x-oss-process=style/ezio" title="image-20240218111023836" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202402181110162.png?x-oss-process=style/ezio" alt="image-20240218111023836"></a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://ezioy.cn/2024/02/18/HarmonyOS-%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95/">https://ezioy.cn/2024/02/18/HarmonyOS-%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/HarmonyOS/"># HarmonyOS</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/09/26/Mac%E5%AE%89%E8%A3%85Jenkins/">Mac安装Jenkins</a>
+            
+        </section>
+
+        
+        <section id="comments" style="margin:20px;padding:10px;background:#fff;">
+          <div id="vcomment" class="comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '#vcomment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+        </section>
+        
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        | <img src=/image/beian.png width="15"> <a href=\"https://beian.mps.gov.cn/#/query/webSearch?code=50011302222043\" rel=\"noreferrer\" target=\"_blank\">渝公网安备50011302222043</a> | <a href="https://beian.miit.gov.cn/" target="_blank">渝ICP备2023013933号-1</a>
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
