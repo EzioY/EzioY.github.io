@@ -30,34 +30,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AJAX异步请求</title>
-    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getXhr</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.<span class="property">responseText</span>;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">status</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.<span class="title function_">getJSON</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
-<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>AJAX</category>
-      </categories>
-      <tags>
-        <tag>AJAX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker</title>
     <url>/2022/07/20/Docker/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows操作系统的机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
@@ -143,6 +115,34 @@
       </categories>
       <tags>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AJAX异步请求</title>
+    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getXhr</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.<span class="property">responseText</span>;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">status</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.<span class="title function_">getJSON</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
+<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>AJAX</category>
+      </categories>
+      <tags>
+        <tag>AJAX</tag>
       </tags>
   </entry>
   <entry>
@@ -316,11 +316,53 @@
       </tags>
   </entry>
   <entry>
-    <title>Git上传远程仓库命令组</title>
-    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+    <title>Spring Gateway</title>
+    <url>/2022/08/23/Gateway/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="搭建网关服务"><a href="#搭建网关服务" class="headerlink" title="搭建网关服务"></a>搭建网关服务</h3><p>1.新建一个module，引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos服务发现依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--网关gateway依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>2.编写路由配置以及nacos配置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">10010</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">cn.ezio:</span> <span class="string">debug</span> <span class="comment"># 日志级别</span></span><br><span class="line">  <span class="attr">pattern:</span></span><br><span class="line">    <span class="attr">dateformat:</span> <span class="string">MM-dd</span> <span class="string">HH:mm:ss:SSS</span> <span class="comment"># 日期格式</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> <span class="comment"># 路由标示，必须唯一</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://userservice</span> <span class="comment"># 路由的目标地址</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment"># 路由断言，判断请求是否符合规则</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/user/**</span> <span class="comment"># 路径断言，判断路径是否是以/user开头，如果是则符合</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">order-service</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://orderservice</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/order/**</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="路由的过滤器配置-GatewayFilter"><a href="#路由的过滤器配置-GatewayFilter" class="headerlink" title="路由的过滤器配置 GatewayFilter"></a>路由的过滤器配置 GatewayFilter</h3><p>在配置用添加过滤器配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> <span class="comment"># 路由标示，必须唯一</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://userservice</span> <span class="comment"># 路由的目标地址</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment"># 路由断言，判断请求是否符合规则</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/user/**</span> <span class="comment"># 路径断言，判断路径是否是以/user开头，如果是则符合</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">order-service</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://orderservice</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/order/**</span></span><br><span class="line">	  <span class="attr">default-filters:</span> <span class="comment"># 路由过滤器配置，default-filters默认过滤器，全局过滤所有路由都生效。</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddRequestHeader=Truth,Java</span> <span class="string">is</span> <span class="string">Best!</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="自定义路由断言工厂"><a href="#自定义路由断言工厂" class="headerlink" title="自定义路由断言工厂"></a>自定义路由断言工厂</h3><p>继承 AbstractRoutePredicateFactory 类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyRoutePredicateFactory</span> <span class="keyword">extends</span> <span class="title class_">AbstractRoutePredicateFactory</span>&lt;MyRoutePredicateFactory.Config&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyRoutePredicateFactory</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(Config.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Predicate&lt;ServerWebExchange&gt; <span class="title function_">apply</span><span class="params">(Config config)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> exchange -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (config.getName().equals(<span class="string">&quot;ylw&quot;</span>)) &#123;</span><br><span class="line">                log.info(<span class="string">&quot;路由失败&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">shortcutFieldOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.singletonList(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Config</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="自定义过滤器工厂"><a href="#自定义过滤器工厂" class="headerlink" title="自定义过滤器工厂"></a>自定义过滤器工厂</h3><p>继承 AbstractGatewayFilterFactory 或 AbstractNameValueGatewayFilterFactory 类，两者区别在于接受参数的个数，前者一个，后者可接受两个。</p>
+<ul>
+<li>Pre 类型过滤器，逻辑处理在 chain.filter() 之前。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PreGatewayFilterFactory</span> <span class="keyword">extends</span> <span class="title class_">AbstractNameValueGatewayFilterFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> GatewayFilter <span class="title function_">apply</span><span class="params">(NameValueConfig config)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (exchange, chain) -&gt; &#123;</span><br><span class="line">            log.info(<span class="string">&quot;调用PreGatewayFilterFactory===&quot;</span></span><br><span class="line">                    + config.getName() + <span class="string">&quot;:&quot;</span> + config.getValue());</span><br><span class="line">            <span class="type">ServerHttpRequest</span> <span class="variable">request</span> <span class="operator">=</span> exchange.getRequest();</span><br><span class="line">            <span class="type">HttpHeaders</span> <span class="variable">headers</span> <span class="operator">=</span> request.getHeaders();</span><br><span class="line">            System.out.println(<span class="string">&quot;请求头:&quot;</span> + headers);</span><br><span class="line">            <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Post 类型过滤器，逻辑处理在 chain.filter() 执行后。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PostGatewayFilterFactory</span> <span class="keyword">extends</span> <span class="title class_">AbstractGatewayFilterFactory</span>&lt;PostGatewayFilterFactory.Config&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PostGatewayFilterFactory</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(Config.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> GatewayFilter <span class="title function_">apply</span><span class="params">(Config config)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (exchange, chain) -&gt; chain.filter(exchange).then(Mono.fromRunnable(() -&gt; &#123;</span><br><span class="line">            log.info(<span class="string">&quot;调用PostGatewayFilterFactory===&quot;</span></span><br><span class="line">                    + config.getName() + <span class="string">&quot;:&quot;</span> + config.getValue());</span><br><span class="line">        &#125;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">shortcutFieldOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(GatewayFilter.NAME_KEY, GatewayFilter.VALUE_KEY);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Config</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String value;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">getValue</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setValue</span><span class="params">(String value)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.value = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="自定义全局过滤器-GlobalFilter"><a href="#自定义全局过滤器-GlobalFilter" class="headerlink" title="自定义全局过滤器 GlobalFilter"></a>自定义全局过滤器 GlobalFilter</h3><p>实现GlobalFilter接口，自定义处理逻辑</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyGlobalFilter</span> <span class="keyword">implements</span> <span class="title class_">GatewayFilter</span>, Ordered &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Mono&lt;Void&gt; <span class="title function_">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> &#123;</span><br><span class="line">        log.info(exchange.getRequest().getPath().value());</span><br><span class="line">        <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="过滤器执行链顺序"><a href="#过滤器执行链顺序" class="headerlink" title="过滤器执行链顺序"></a>过滤器执行链顺序</h3><p>请求进入网关，会经过三种过滤器：局部路由过滤器、DefaultFilter、GlobalFilter。</p>
+<p>请求路由后，会将当 局部路由过滤器、DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器。</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio"></a></p>
+<p><strong>Order值相同时：</strong></p>
+<p>  1.两个GlobalFilter类型的过滤器Order值相同时，根据文件名字母排序，文件名靠前的优先更高。</p>
+<p>原因是包扫描时是按照文件的顺序扫描的，然后封装到List集合的，通过Order值排序时如果Order值相同，文件名在前名的依然会排在前面。</p>
+<p>   2.GlobalFilter类型和GatewayFilter类型的过滤器Order值相同时，GlobalFilter类型优先更高。</p>
+<p>原因是这两种过滤器最终会合并到一个过滤器集合中形成过滤器调用链，源码是通过list.addAll();方法将GatewayFilter类型的过滤器加到了GlobalFilter过滤器集合中，addAll()是末尾添加方式，所以Order值相同时GatewayFilter类型的过滤器会排在后面。</p>
+<p><strong>Order值生成规则：</strong></p>
+<p>  1.GlobalFilter类型过滤器，通过实现Ordered接口的getOrder()方法设置。</p>
+<p>  2.GatewayFilter类型过滤器，通过配置文件中配置的过滤器顺序自动生成，固定从1开始封装，例如配置了三个过滤器，则按照从上往下顺序Order值依次为1、2、3。</p>
+<hr>
+<h3 id="网关跨域问题处理"><a href="#网关跨域问题处理" class="headerlink" title="网关跨域问题处理"></a>网关跨域问题处理</h3><p>跨域：域名不一致或端口不同，浏览器的同源策略导致的跨域问题。浏览器禁止请求的发起者与服务端发生跨域的ajax请求，请求被浏览器拦截。</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio"></a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -328,10 +370,11 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>Git</category>
+        <category>Spring Cloud</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>Spring Cloud</tag>
+        <tag>Spring Gateway</tag>
       </tags>
   </entry>
   <entry>
@@ -438,68 +481,6 @@
       </categories>
       <tags>
         <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring Gateway</title>
-    <url>/2022/08/23/Gateway/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="搭建网关服务"><a href="#搭建网关服务" class="headerlink" title="搭建网关服务"></a>搭建网关服务</h3><p>1.新建一个module，引入依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos服务发现依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--网关gateway依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.编写路由配置以及nacos配置</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">10010</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">cn.ezio:</span> <span class="string">debug</span> <span class="comment"># 日志级别</span></span><br><span class="line">  <span class="attr">pattern:</span></span><br><span class="line">    <span class="attr">dateformat:</span> <span class="string">MM-dd</span> <span class="string">HH:mm:ss:SSS</span> <span class="comment"># 日期格式</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> <span class="comment"># 路由标示，必须唯一</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://userservice</span> <span class="comment"># 路由的目标地址</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment"># 路由断言，判断请求是否符合规则</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/user/**</span> <span class="comment"># 路径断言，判断路径是否是以/user开头，如果是则符合</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">order-service</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://orderservice</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/order/**</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="路由的过滤器配置-GatewayFilter"><a href="#路由的过滤器配置-GatewayFilter" class="headerlink" title="路由的过滤器配置 GatewayFilter"></a>路由的过滤器配置 GatewayFilter</h3><p>在配置用添加过滤器配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> <span class="comment"># 路由标示，必须唯一</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://userservice</span> <span class="comment"># 路由的目标地址</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment"># 路由断言，判断请求是否符合规则</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/user/**</span> <span class="comment"># 路径断言，判断路径是否是以/user开头，如果是则符合</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">order-service</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://orderservice</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/order/**</span></span><br><span class="line">	  <span class="attr">default-filters:</span> <span class="comment"># 路由过滤器配置，default-filters默认过滤器，全局过滤所有路由都生效。</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">AddRequestHeader=Truth,Java</span> <span class="string">is</span> <span class="string">Best!</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="自定义路由断言工厂"><a href="#自定义路由断言工厂" class="headerlink" title="自定义路由断言工厂"></a>自定义路由断言工厂</h3><p>继承 AbstractRoutePredicateFactory 类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyRoutePredicateFactory</span> <span class="keyword">extends</span> <span class="title class_">AbstractRoutePredicateFactory</span>&lt;MyRoutePredicateFactory.Config&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyRoutePredicateFactory</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(Config.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Predicate&lt;ServerWebExchange&gt; <span class="title function_">apply</span><span class="params">(Config config)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> exchange -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (config.getName().equals(<span class="string">&quot;ylw&quot;</span>)) &#123;</span><br><span class="line">                log.info(<span class="string">&quot;路由失败&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">shortcutFieldOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.singletonList(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Config</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="自定义过滤器工厂"><a href="#自定义过滤器工厂" class="headerlink" title="自定义过滤器工厂"></a>自定义过滤器工厂</h3><p>继承 AbstractGatewayFilterFactory 或 AbstractNameValueGatewayFilterFactory 类，两者区别在于接受参数的个数，前者一个，后者可接受两个。</p>
-<ul>
-<li>Pre 类型过滤器，逻辑处理在 chain.filter() 之前。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PreGatewayFilterFactory</span> <span class="keyword">extends</span> <span class="title class_">AbstractNameValueGatewayFilterFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> GatewayFilter <span class="title function_">apply</span><span class="params">(NameValueConfig config)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (exchange, chain) -&gt; &#123;</span><br><span class="line">            log.info(<span class="string">&quot;调用PreGatewayFilterFactory===&quot;</span></span><br><span class="line">                    + config.getName() + <span class="string">&quot;:&quot;</span> + config.getValue());</span><br><span class="line">            <span class="type">ServerHttpRequest</span> <span class="variable">request</span> <span class="operator">=</span> exchange.getRequest();</span><br><span class="line">            <span class="type">HttpHeaders</span> <span class="variable">headers</span> <span class="operator">=</span> request.getHeaders();</span><br><span class="line">            System.out.println(<span class="string">&quot;请求头:&quot;</span> + headers);</span><br><span class="line">            <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Post 类型过滤器，逻辑处理在 chain.filter() 执行后。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PostGatewayFilterFactory</span> <span class="keyword">extends</span> <span class="title class_">AbstractGatewayFilterFactory</span>&lt;PostGatewayFilterFactory.Config&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PostGatewayFilterFactory</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(Config.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> GatewayFilter <span class="title function_">apply</span><span class="params">(Config config)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (exchange, chain) -&gt; chain.filter(exchange).then(Mono.fromRunnable(() -&gt; &#123;</span><br><span class="line">            log.info(<span class="string">&quot;调用PostGatewayFilterFactory===&quot;</span></span><br><span class="line">                    + config.getName() + <span class="string">&quot;:&quot;</span> + config.getValue());</span><br><span class="line">        &#125;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">shortcutFieldOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(GatewayFilter.NAME_KEY, GatewayFilter.VALUE_KEY);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Config</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String value;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">getValue</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setValue</span><span class="params">(String value)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.value = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="自定义全局过滤器-GlobalFilter"><a href="#自定义全局过滤器-GlobalFilter" class="headerlink" title="自定义全局过滤器 GlobalFilter"></a>自定义全局过滤器 GlobalFilter</h3><p>实现GlobalFilter接口，自定义处理逻辑</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyGlobalFilter</span> <span class="keyword">implements</span> <span class="title class_">GatewayFilter</span>, Ordered &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Mono&lt;Void&gt; <span class="title function_">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> &#123;</span><br><span class="line">        log.info(exchange.getRequest().getPath().value());</span><br><span class="line">        <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="过滤器执行链顺序"><a href="#过滤器执行链顺序" class="headerlink" title="过滤器执行链顺序"></a>过滤器执行链顺序</h3><p>请求进入网关，会经过三种过滤器：局部路由过滤器、DefaultFilter、GlobalFilter。</p>
-<p>请求路由后，会将当 局部路由过滤器、DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器。</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031431449.png?x-oss-process=style/ezio"></a></p>
-<p><strong>Order值相同时：</strong></p>
-<p>  1.两个GlobalFilter类型的过滤器Order值相同时，根据文件名字母排序，文件名靠前的优先更高。</p>
-<p>原因是包扫描时是按照文件的顺序扫描的，然后封装到List集合的，通过Order值排序时如果Order值相同，文件名在前名的依然会排在前面。</p>
-<p>   2.GlobalFilter类型和GatewayFilter类型的过滤器Order值相同时，GlobalFilter类型优先更高。</p>
-<p>原因是这两种过滤器最终会合并到一个过滤器集合中形成过滤器调用链，源码是通过list.addAll();方法将GatewayFilter类型的过滤器加到了GlobalFilter过滤器集合中，addAll()是末尾添加方式，所以Order值相同时GatewayFilter类型的过滤器会排在后面。</p>
-<p><strong>Order值生成规则：</strong></p>
-<p>  1.GlobalFilter类型过滤器，通过实现Ordered接口的getOrder()方法设置。</p>
-<p>  2.GatewayFilter类型过滤器，通过配置文件中配置的过滤器顺序自动生成，固定从1开始封装，例如配置了三个过滤器，则按照从上往下顺序Order值依次为1、2、3。</p>
-<hr>
-<h3 id="网关跨域问题处理"><a href="#网关跨域问题处理" class="headerlink" title="网关跨域问题处理"></a>网关跨域问题处理</h3><p>跨域：域名不一致或端口不同，浏览器的同源策略导致的跨域问题。浏览器禁止请求的发起者与服务端发生跨域的ajax请求，请求被浏览器拦截。</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208031424759.png?x-oss-process=style/ezio"></a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Spring Cloud</category>
-      </categories>
-      <tags>
-        <tag>Spring Cloud</tag>
-        <tag>Spring Gateway</tag>
       </tags>
   </entry>
   <entry>
@@ -708,71 +689,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JVM运行时数据区</title>
-    <url>/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区包含：本地方法栈、虚拟机栈、堆、元空间（JDK1.8）、程序计数器</p>
-<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是线程私有的,虽然名字叫计数器,但主要用途还是用来确定指令的执行顺序,比如循环,分支,跳转,异常捕获等.而JVM对于多线程的实现是通过轮流切换线程实现的,所以为了保证每个线程都能按正确顺序执行,将程序计数器作为线程私有.程序计数器是唯一一个JVM没有规定任何OOM的区块</p>
-<p>程序计数器是一块非常小的内存空间，可以看做是当前线程执行字节码的行号指示器，每个线程都有一个独立的程序计数器，因此程序计数器是线程私有的一块空间，此外，程序计数器是Java虚拟机规定的唯一不会发生内存溢出的区域</p>
-<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>Java虚拟机栈也是线程私有的,每个方法执行都会创建一个栈帧,局部变量就存放在栈帧中,还有一些其他的动态链接之类的.通常有两个错误会跟这个有关系,一个是StackOverFlowError,一个是OOM(OutOfMemoryError).前者是因为线程请求栈深度超出虚拟机所允许的范围,后者是动态扩展栈的大小的时候,申请不到足够的内存空间.而前者提到的栈深度,也就是刚才说到的每个方法会创建一个栈帧,栈帧从开始执行方法时压入Java虚拟机栈,执行完的时候弹出栈.当压入的栈帧太多了,就会报出这个StackOverflowError.</p>
-<p>虚拟机会为每个线程分配一个虚拟机栈，每个虚拟机栈中都有若干个栈帧，每个栈帧中存储了局部变量表、操作数栈、动态链接、返回地址等。一个栈帧就对应Java代码中的一个方法，当线程执行到一个方法时，就代表这个方法对应的栈帧已经进入虚拟机栈并且处于栈顶的位置，每一个Java方法从被调用到执行结束，就对应了一个栈帧从入栈到出栈的过程。</p>
-<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈的区别是，虚拟机栈执行的是Java方法，本地方法栈执行的是本地方法（Native Method）,其他基本上一致，在HotSpot中直接把本地方法栈和虚拟机栈合二为一。</p>
-<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>和永久代类似，都是JVM规范对方法区的实现，但是元空间并不在虚拟机中，而是使用本地内存，元空间的大小仅受本地内存限制，但可以通过-XX:MetaspaceSize和-XX:MaxMetaspaceSize来指定元空间的大小</p>
-<p>jdk1.8中，存储的类信息、编译后的代码数据等已经移动到了<strong>元空间（MetaSpace）</strong>中，元空间并没有处于堆内存上，而是直接占用的本地内存（NativeMemory）。</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio"></a></p>
-<p><strong>去永久代的原因有：</strong></p>
-<p>（1）字符串存在永久代中，容易出现性能问题和内存溢出。 </p>
-<p>（2）类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
-<p>（3）永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
-<p>gc garbage collection</p>
-<p>1.8以后把静态变量 字符串常量池放到了堆中 </p>
-<p> 类的信息 编译后的代码放到元空间 占用的是本地内存</p>
-<h3 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h3><p>堆和方法区一样(确切来说JVM规范中方法区就是堆的一个逻辑分区),就是一个所有线程共享的,存放对象的区域,也是GC的主要区域.其中的分区分为新生代,老年代.新生代中又可以细分为一个Eden,两个Survivor区(From,To).Eden中存放的是通过new 或者newInstance方法创建出来的对象,绝大多数都是很短命的.正常情况下经历一次gc之后,存活的对象会转入到其中一个Survivor区,然后再经历默认15次的gc,就转入到老年代.这是常规状态下，在Survivor区已经满了的情况下，JVM会依据担保机制将一些对象直接放入老年代。</p>
-<p>堆内存主要用于存放对象和数组，它是JVM管理的内存中最大的一块区域，堆内存和方法区都被所有线程共享，在虚拟机启动时创建。在垃圾收集的层面上来看，由于现在收集器基本上都采用分代收集算法，因此堆还可以分为<strong>新生代（YoungGeneration）和老年代（OldGeneration）</strong>，新生代还可以分为<strong>Eden、From</strong> <strong>Survivor、To Survivor</strong></p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio"></a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java Serializable接口</title>
-    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
-<p>​	在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
-<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​	 web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
-<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​	<strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
-<p>​	Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
-<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
-<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
-<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
-<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
-<p>​	其实很早就知道的，在Java中常见的几个类，如：Interger&#x2F;String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
-<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​	序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
-<p>​	如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM 类加载过程</title>
     <url>/2019/12/30/JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -853,61 +769,76 @@
       </tags>
   </entry>
   <entry>
-    <title>Java-Shutdown Hook</title>
-    <url>/2022/10/28/Java-Shutdown-Hook/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="什么是-Shutdown-Hook"><a href="#什么是-Shutdown-Hook" class="headerlink" title="什么是 Shutdown Hook"></a>什么是 Shutdown Hook</h3><p>Shutdown Hook 是一种比较特殊的结构，一般用于在 JVM 关闭之前，需要执行的一些操作的时候。常见的，比如说你的程序退出时需要做一些清理工作的时候，就可以考虑使用Shutdown Hook。但是如果你的JVM是非正常退出的，比如接收了SIGKILL，这个时候就不能保证shutdown hook能够正常执行。</p>
-<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>在java程序中，可以通过添加关闭钩子函数，实现在程序退出时关闭资源、平滑退出的功能。</p>
-<h4 id="JVM自带的shutdownHook"><a href="#JVM自带的shutdownHook" class="headerlink" title="JVM自带的shutdownHook"></a>JVM自带的shutdownHook</h4><p>特点： jvm自带，使用方便，多个钩子间是并行执行的</p>
-<p>主要就是通过 <strong>Runtime.addShutDownHook(Thread hook)</strong> 来实现的。下面我们来简单看一个示例</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutDownHookTest</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">  &#123;</span><br><span class="line">  </span><br><span class="line">    Runtime.getRuntime().addShutdownHook(<span class="keyword">new</span> <span class="title class_">Thread</span>()</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span></span><br><span class="line">      &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Shutdown Hook now&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">&quot;exit&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Git上传远程仓库命令组</title>
+    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
 
-
-
-<h4 id="监听-Spring-的-ContextClosedEvent"><a href="#监听-Spring-的-ContextClosedEvent" class="headerlink" title="监听 Spring 的 ContextClosedEvent"></a>监听 Spring 的 ContextClosedEvent</h4><p>以下是 Spring 官网的对于 ContextClosedEvent 的描述</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210281053975.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210281053975.png?x-oss-process=style/ezio"></a></p>
-<p>实现ApplicationListener接口，监听ContextClosedEvent</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutdownHookDemo</span> <span class="keyword">implements</span> <span class="title class_">ApplicationListener</span>&lt;ContextClosedEvent&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onApplicationEvent</span><span class="params">(ContextClosedEvent event)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;shutdown hook, ContextClosedEvent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="实现-DisposableBean-接口"><a href="#实现-DisposableBean-接口" class="headerlink" title="实现 DisposableBean 接口"></a>实现 DisposableBean 接口</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutdownHookDemo</span> <span class="keyword">implements</span> <span class="title class_">DisposableBean</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        log.info(<span class="string">&quot;shutdown hook, disposable bean&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="使用注解-PreDestory"><a href="#使用注解-PreDestory" class="headerlink" title="使用注解@PreDestory"></a>使用注解@PreDestory</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutdownHookDemo</span> &#123;</span><br><span class="line">    <span class="meta">@PreDestroy</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">preDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;shutdown hook, pre destroy&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li><p>程序正常退出</p>
-</li>
-<li><p>程序出现异常</p>
-</li>
-<li><p>使用 System.exit()</p>
-</li>
-<li><p>终端使用 Ctrl+C 触发的中断</p>
-</li>
-<li><p>系统关闭</p>
-</li>
-<li><p>OutofMemory宕机</p>
-</li>
-<li><p>使用 Kill pid 杀死进程（使用kill -9是不会被调用的）</p>
-</li>
-</ul>
-<h3 id="JVM-Shutdown-Hook-注意事项"><a href="#JVM-Shutdown-Hook-注意事项" class="headerlink" title="JVM Shutdown Hook 注意事项"></a>JVM Shutdown Hook 注意事项</h3><ul>
-<li><p><strong>Shutdown Hook不能保证一定执行</strong><br>如果JVM crashe了, Shutdown Hook并不能保证一定执行。例如如果收到了SIGKILL的时候，程序会立刻终止执行，JVM立刻退出，导致没有机会执行Shutdown Hook.如果调用了Runtime.halt()的情况下，也可以导致JVM在没有执行Shutdown Hook的时候直接退出。当然，如果一个程序正常结束，会在JVM退出去调用Shutdown Hook。如果JVM因为用户要求中断或者是接受到SIGTERM，也是会调用Shutdown Hook的。</p>
-</li>
-<li><p><strong>Shutdown Hook是可以被强制中断的</strong><br>即使已经开始执行Shutdown Hook,也是可以被中断的，比如当接收到了SIGTERM，但是shutdown hook没有在一定时间内完成，也是会被强制中断，导致shutdown hook没有完整执行。所以一般在Shutdown hook中的操作都应该是可以快速执行完毕，不应该是一些long time的任务。</p>
-</li>
-<li><p><strong>Shutdown Hook可以有多个</strong><br>一个程序中可以注册多个shutdown hook，但是JVM执行shutdown hook的时候是一个任意顺序，并且JVM执行hook的时候是并发的。</p>
-</li>
-<li><p><strong>Shutdown hook中不可以regist&#x2F;unregister shutdown hook</strong><br>如果这么做了，JVM会抛IllegalStateException。</p>
-</li>
-<li><p><strong>Shutdown hook可以被停止</strong><br>如果一个Shutdown已经开始执行了，除了例如SIGKILL这样的外部干预，需要且只能通过Runtime.halt()中断。</p>
-</li>
-<li><p><strong>Shutdown hook需要安全权限</strong></p>
-</li>
-</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM运行时数据区</title>
+    <url>/2021/02/11/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区包含：本地方法栈、虚拟机栈、堆、元空间（JDK1.8）、程序计数器</p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是线程私有的,虽然名字叫计数器,但主要用途还是用来确定指令的执行顺序,比如循环,分支,跳转,异常捕获等.而JVM对于多线程的实现是通过轮流切换线程实现的,所以为了保证每个线程都能按正确顺序执行,将程序计数器作为线程私有.程序计数器是唯一一个JVM没有规定任何OOM的区块</p>
+<p>程序计数器是一块非常小的内存空间，可以看做是当前线程执行字节码的行号指示器，每个线程都有一个独立的程序计数器，因此程序计数器是线程私有的一块空间，此外，程序计数器是Java虚拟机规定的唯一不会发生内存溢出的区域</p>
+<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>Java虚拟机栈也是线程私有的,每个方法执行都会创建一个栈帧,局部变量就存放在栈帧中,还有一些其他的动态链接之类的.通常有两个错误会跟这个有关系,一个是StackOverFlowError,一个是OOM(OutOfMemoryError).前者是因为线程请求栈深度超出虚拟机所允许的范围,后者是动态扩展栈的大小的时候,申请不到足够的内存空间.而前者提到的栈深度,也就是刚才说到的每个方法会创建一个栈帧,栈帧从开始执行方法时压入Java虚拟机栈,执行完的时候弹出栈.当压入的栈帧太多了,就会报出这个StackOverflowError.</p>
+<p>虚拟机会为每个线程分配一个虚拟机栈，每个虚拟机栈中都有若干个栈帧，每个栈帧中存储了局部变量表、操作数栈、动态链接、返回地址等。一个栈帧就对应Java代码中的一个方法，当线程执行到一个方法时，就代表这个方法对应的栈帧已经进入虚拟机栈并且处于栈顶的位置，每一个Java方法从被调用到执行结束，就对应了一个栈帧从入栈到出栈的过程。</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈的区别是，虚拟机栈执行的是Java方法，本地方法栈执行的是本地方法（Native Method）,其他基本上一致，在HotSpot中直接把本地方法栈和虚拟机栈合二为一。</p>
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>和永久代类似，都是JVM规范对方法区的实现，但是元空间并不在虚拟机中，而是使用本地内存，元空间的大小仅受本地内存限制，但可以通过-XX:MetaspaceSize和-XX:MaxMetaspaceSize来指定元空间的大小</p>
+<p>jdk1.8中，存储的类信息、编译后的代码数据等已经移动到了<strong>元空间（MetaSpace）</strong>中，元空间并没有处于堆内存上，而是直接占用的本地内存（NativeMemory）。</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio"></a></p>
+<p><strong>去永久代的原因有：</strong></p>
+<p>（1）字符串存在永久代中，容易出现性能问题和内存溢出。 </p>
+<p>（2）类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
+<p>（3）永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
+<p>gc garbage collection</p>
+<p>1.8以后把静态变量 字符串常量池放到了堆中 </p>
+<p> 类的信息 编译后的代码放到元空间 占用的是本地内存</p>
+<h3 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h3><p>堆和方法区一样(确切来说JVM规范中方法区就是堆的一个逻辑分区),就是一个所有线程共享的,存放对象的区域,也是GC的主要区域.其中的分区分为新生代,老年代.新生代中又可以细分为一个Eden,两个Survivor区(From,To).Eden中存放的是通过new 或者newInstance方法创建出来的对象,绝大多数都是很短命的.正常情况下经历一次gc之后,存活的对象会转入到其中一个Survivor区,然后再经历默认15次的gc,就转入到老年代.这是常规状态下，在Survivor区已经满了的情况下，JVM会依据担保机制将一些对象直接放入老年代。</p>
+<p>堆内存主要用于存放对象和数组，它是JVM管理的内存中最大的一块区域，堆内存和方法区都被所有线程共享，在虚拟机启动时创建。在垃圾收集的层面上来看，由于现在收集器基本上都采用分代收集算法，因此堆还可以分为<strong>新生代（YoungGeneration）和老年代（OldGeneration）</strong>，新生代还可以分为<strong>Eden、From</strong> <strong>Survivor、To Survivor</strong></p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172919.png?x-oss-process=style/ezio"></a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java Serializable接口</title>
+    <url>/2020/07/24/Java-Serializable%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Java-实体类为什么需要实现Serializable接口"><a href="#Java-实体类为什么需要实现Serializable接口" class="headerlink" title="Java 实体类为什么需要实现Serializable接口"></a>Java 实体类为什么需要实现Serializable接口</h1><p>本文转载自<a href="https://blog.csdn.net/qq_18298439/article/details/80607057">原文链接</a></p>
+<p>​	在web项目中，javabean实体类一般用来封装数据。当客户端访问某个能开启会话功能的资源，web服务器会创建一个与该客户端匹配对应的HttpSession对象，且每个HttpSession对象都需要占用一定的内存空间。如果在某一时间段内站点的访问量增多，web服务器就会积累大量的HttpSession对象，消耗大量的服务器内存，即使用户离开了网页或者关闭了浏览器，web服务器仍要保留与之对应的HttpSession对象，在他们超时之前一直占用服务器资源。</p>
+<h3 id="Session-持久化"><a href="#Session-持久化" class="headerlink" title="Session 持久化"></a>Session 持久化</h3><p>​	 web服务器通常将那些暂时不活动但未超时的HttpSession对象转移到文件系统或数据库中保存，服务器要使用他们时再将他们从文件系统或数据库中装载入内存，这种技术称为Session的持久化。将HttpSession对象保存到文件系统或数据库中，需要采用序列化的方式将HttpSession对象中的每个属性对象保存到文件系统或数据库中；将HttpSession对象从文件系统或数据库中装载入内存时，需要采用反序列化的方式，恢复HttpSession对象中的每个属性对象。所以存储在HttpSession对象中的每个属性对象必须实现Serializable接口。</p>
+<h3 id="serialVersionUID-的作用"><a href="#serialVersionUID-的作用" class="headerlink" title="serialVersionUID 的作用"></a>serialVersionUID 的作用</h3><p>​	<strong>serialVersionUID</strong> 用来表明类的不同版本间的兼容性</p>
+<p>​	Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。</p>
+<p>   当实现java.io.Serializable接口的实体（类）没有显式地定义一个名为serialVersionUID，类型为long的变量时，Java序列化机制会根据编译的class自动生成一个serialVersionUID作序列化版本比较用，这种情况下，只有同一次编译生成的class才会生成相同的serialVersionUID 。</p>
+<p>​    如果我们不希望通过编译来强制划分软件版本，即实现序列化接口的实体能够兼容先前版本，未作更改的类，就需要显式地定义一个名为serialVersionUID，类型为long的变量，不修改这个变量值的序列化实体都可以相互进行串行化和反串行化。</p>
+<p>   引起这个疑问，还是从Hibernate使用查询缓存说起；对象实例除了存在于内存，二级缓存还会将对象写进硬盘在需要的时候再读取出来使用，此时就必须提到一个概念：<strong>序列化</strong>。</p>
+<p>   程序在运行时实例化出对象，这些对象存在于内存中，随着程序运行停止而消失，但如果我们想把某些对象（一般都是各不相同的属性）保存下来或者传输给其他进程，在程序终止运行后这些对象仍然存在，可以在程序再次运行时读取这些对象的信息，或者在其他程序中利用这些保存下来的对象信息恢复成实例对象。这种情况下就要用到对象的序列化和反序列化。</p>
+<p>​	其实很早就知道的，在Java中常见的几个类，如：Interger&#x2F;String等，都实现了java.io.Serializable接口。这个序列化接口没有任何方法和域，仅用于标识序列化语意；实现 Serializable 接口的类是可序列化的，没有实现此接口的类将不能被序列化和反序列化。序列化类的所有子类本身都是可序列化的，不再需要显式实现 Serializable 接口。只有经过序列化，才能兼容对象在磁盘文本以及在网络中的传输，以及恢复对象的时候反序列化等操作。</p>
+<h3 id="为何要实现序列化？"><a href="#为何要实现序列化？" class="headerlink" title="为何要实现序列化？"></a>为何要实现序列化？</h3><p>​	序列化就是对实例对象的状态(State 对象属性而不包括对象方法)进行通用编码（如格式化的字节码）并保存，以保证对象的完整性和可传递性。简而言之：序列化，就是为了在不同时间或不同平台的JVM之间共享实例对象。</p>
+<p>​	如没有 实现Serializable接口，在序列化时，使用ObjectOutputStream的write（object）方法将对象保存时将会出现异常。其实 java.io.Serializable 只是一个没有属性和方法的空接口。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1030,6 +961,96 @@
     <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java集合</title>
+    <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
+<h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
+<li><p><strong>有序性：</strong>  </p>
+<ul>
+<li><strong>List：保证按插入顺序排序</strong>  </li>
+<li><strong>set：set存储和取出顺序不一致</strong></li>
+</ul>
+</li>
+<li><p><strong>唯一性：</strong> </p>
+<ul>
+<li><strong>List：可以重复</strong>  </li>
+<li><strong>set：元素唯一</strong></li>
+</ul>
+</li>
+<li><p><strong>获取元素：</strong>  </p>
+<ul>
+<li><strong>List：可以通过索引直接操作元素</strong>  </li>
+<li><strong>set：set不能根据索引获取元素</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h3><p>（1）<strong>ArrayList</strong>：底层数据结构是<strong>数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（2）<strong>LinkedList</strong> ：底层数据结构是<strong>链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</strong></p>
+<p>（3）<strong>Vector</strong>:底层数据结构是<strong>数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</strong></p>
+<h3 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h3><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
+<p>(2)<strong>LinkedHashSet</strong>：底层数据结构采用链表和哈希表共同实现，链表保证了元素的顺序与存储顺序一致，哈希表保证了元素的唯一性。线程不安全，效率高。</p>
+<p>(3)<strong>TreeSet</strong>：底层数据结构采用二叉树来实现，元素唯一，它不保留元素的插入顺序，它按升序对元素排序，他不是线程安全的。</p>
+<h3 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h3><ul>
+<li><p><strong>线程安全：</strong></p>
+<ul>
+<li>HashTable：类中一些方法加入了synchronized关键字，来保证线程安全。 </li>
+<li>HashMap：线程不安全。</li>
+</ul>
+</li>
+<li><p><strong>空值：</strong>  </p>
+<ul>
+<li>HashTable：不能放入空值  </li>
+<li>HashMap：只有一个key可以为null，但是可以有多个value为null。</li>
+</ul>
+</li>
+<li><p><strong>性能：</strong>  </p>
+<ul>
+<li>HashTable因为加入synchronized关键字，所以性能较于HashMap较差</li>
+<li>HashMap性能最好。不能保证其元素顺序用作key的对象必须实现hashCode()和equals()方法。</li>
+</ul>
+</li>
+</ul>
+<h4 id="TreeMap："><a href="#TreeMap：" class="headerlink" title="TreeMap："></a>TreeMap：</h4><ul>
+<li><p>实现SortMap接口，基于红黑树对所有key进行排序。</p>
+</li>
+<li><p>排序方式：自然排序和定制排序key以TreeSet的形式存储，要求与TreeSet一致。</p>
+</li>
+</ul>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：<strong>newsize &#x3D; olesize*2+1</strong>     计算index的方法：<strong>index &#x3D; (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，<strong>扩容：newsize &#x3D; oldsize*2</strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀<strong>计算index方法：index &#x3D; hash &amp; (tab.length – 1)</strong></p>
+<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h4><p>底层采用分段的数组+链表实现，<strong>线程安全</strong>；通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</p>
+<p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
+<h3 id="HashMap底层实现原理："><a href="#HashMap底层实现原理：" class="headerlink" title="HashMap底层实现原理："></a>HashMap底层实现原理：</h3><ul>
+<li>HashMap的底层主要是基于数组和链表来实现的，它之所以有相当快的查询速度主要是因为它是通过计算散列码来决定存储的位置。</li>
+</ul>
+<ul>
+<li>HashMap中主要是通过key的hashCode来计算hash值的，只要hashCode相同，计算出来的hash值就一样。</li>
+<li>如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。</li>
+<li>HashMap底层是通过链表来解决hash冲突的。</li>
+</ul>
+<h3 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h3><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
+<p>在1.8之前，新插入的元素都是放在了链表的头部位置，但是这种操作在高并发的环境下容易导致死锁，所以1.8之后，新插入的元素都放在了链表的尾部。</p>
+<ul>
+<li>HashMap采用hash算法来决定Map中key的存储，并通过hash算法来增加集合的大小。</li>
+<li>hash表里可以存储元素的位置称为<strong>桶（bucket）</strong>，如果通过key计算hash值发生冲突时，那么将采用链表的形式，来存储元素。</li>
+<li>HashMap的扩容操作是一项很耗时的任务，所以如果能估算Map的容量，最好给它一个默认初始值，避免进行多次扩容。</li>
+<li>HashMap的线程是不安全的，多线程环境中推荐是ConcurrentHashMap。</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -1168,96 +1189,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java集合</title>
-    <url>/2021/02/01/Java%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h3 id="常用集合树："><a href="#常用集合树：" class="headerlink" title="常用集合树："></a><strong>常用集合树：</strong></h3><p><strong>Collection</strong> 接口的接口 对象的集合（单列集合）<br>├ ——-<strong>List</strong> 接口：元素按进入先后有序保存，可重复<br>│—————-├ <strong>LinkedList</strong> 接口实现类， 链表， 插入删除， 没有同步， 线程不安全<br>│—————-├ <strong>ArrayList</strong> 接口实现类， 数组， 随机访问， 没有同步， 线程不安全<br>│—————-└ <strong>Vector</strong> 接口实现类 数组， 同步， 线程安全<br>│———————-└ <strong>Stack</strong> 是Vector类的实现类<br>└ ——-<strong>Set</strong> 接口： 仅接收一次，不可重复，并做内部排序<br>├ —————-└ <strong>HashSet</strong> 使用hash表（数组）存储元素<br>│————————└ <strong>LinkedHashSet</strong> 链表维护元素的插入次序<br>└ —————-<strong>TreeSet</strong> 底层实现为二叉树，元素排好序<br><strong>Map</strong> 接口 键值对的集合 （双列集合）<br>├ ———<strong>Hashtable</strong> 接口实现类， 同步， 线程安全<br>├ ———<strong>HashMap</strong> 接口实现类 ，没有同步， 线程不安全-<br>│—————–├ <strong>LinkedHashMap</strong> 双向链表和哈希表实现<br>│—————–└ <strong>WeakHashMap</strong><br>├ ——–<strong>TreeMap</strong> 红黑树对所有的key进行排序<br>└ ———<strong>IdentifyHashMap</strong></p>
-<h3 id="List和Set的区别："><a href="#List和Set的区别：" class="headerlink" title="List和Set的区别："></a>List和Set的区别：</h3><ul>
-<li><p><strong>有序性：</strong>  </p>
-<ul>
-<li><strong>List：保证按插入顺序排序</strong>  </li>
-<li><strong>set：set存储和取出顺序不一致</strong></li>
-</ul>
-</li>
-<li><p><strong>唯一性：</strong> </p>
-<ul>
-<li><strong>List：可以重复</strong>  </li>
-<li><strong>set：元素唯一</strong></li>
-</ul>
-</li>
-<li><p><strong>获取元素：</strong>  </p>
-<ul>
-<li><strong>List：可以通过索引直接操作元素</strong>  </li>
-<li><strong>set：set不能根据索引获取元素</strong></li>
-</ul>
-</li>
-</ul>
-<h3 id="List："><a href="#List：" class="headerlink" title="List："></a><strong>List：</strong></h3><p>（1）<strong>ArrayList</strong>：底层数据结构是<strong>数组，查询快，增删慢，线程不安全，效率高，可以存储重复元素</strong></p>
-<p>（2）<strong>LinkedList</strong> ：底层数据结构是<strong>链表，查询慢，增删快，线程不安全，效率高，可以存储重复元素</strong></p>
-<p>（3）<strong>Vector</strong>:底层数据结构是<strong>数组，查询快，增删慢，线程安全，效率低，可以存储重复元素</strong></p>
-<h3 id="Set："><a href="#Set：" class="headerlink" title="Set："></a><strong>Set：</strong></h3><p>(1)<strong>HashSet</strong>：底层数据结构采用哈希表实现，元素无序且唯一，线程不安全，效率高，可以存储null元素，元素的唯一性是靠所存储元素类型是否重写hashCode()和equals()方法来保证的。</p>
-<p>(2)<strong>LinkedHashSet</strong>：底层数据结构采用链表和哈希表共同实现，链表保证了元素的顺序与存储顺序一致，哈希表保证了元素的唯一性。线程不安全，效率高。</p>
-<p>(3)<strong>TreeSet</strong>：底层数据结构采用二叉树来实现，元素唯一，它不保留元素的插入顺序，它按升序对元素排序，他不是线程安全的。</p>
-<h3 id="HashTable和hashMap的区别："><a href="#HashTable和hashMap的区别：" class="headerlink" title="HashTable和hashMap的区别："></a><strong>HashTable和hashMap的区别：</strong></h3><ul>
-<li><p><strong>线程安全：</strong></p>
-<ul>
-<li>HashTable：类中一些方法加入了synchronized关键字，来保证线程安全。 </li>
-<li>HashMap：线程不安全。</li>
-</ul>
-</li>
-<li><p><strong>空值：</strong>  </p>
-<ul>
-<li>HashTable：不能放入空值  </li>
-<li>HashMap：只有一个key可以为null，但是可以有多个value为null。</li>
-</ul>
-</li>
-<li><p><strong>性能：</strong>  </p>
-<ul>
-<li>HashTable因为加入synchronized关键字，所以性能较于HashMap较差</li>
-<li>HashMap性能最好。不能保证其元素顺序用作key的对象必须实现hashCode()和equals()方法。</li>
-</ul>
-</li>
-</ul>
-<h4 id="TreeMap："><a href="#TreeMap：" class="headerlink" title="TreeMap："></a>TreeMap：</h4><ul>
-<li><p>实现SortMap接口，基于红黑树对所有key进行排序。</p>
-</li>
-<li><p>排序方式：自然排序和定制排序key以TreeSet的形式存储，要求与TreeSet一致。</p>
-</li>
-</ul>
-<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a><strong>HashTable</strong></h4><p><strong>底层数组+链表实现</strong>，无论key还是value都<strong>不能为null</strong>，<strong>线程安全</strong>，实现线程安全的方式是在修改数据时锁住整个HashTable，<strong>效率低</strong>，ConcurrentHashMap做了相关优化<strong>初始size为11</strong>，扩容：<strong>newsize &#x3D; olesize*2+1</strong>     计算index的方法：<strong>index &#x3D; (hash &amp; 0x7FFFFFFF) % tab.length</strong></p>
-<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a><strong>HashMap</strong></h4><p><strong>底层数组+链表实现</strong>，可<strong>以存储null键和null值</strong>，<strong>线程不安全</strong>，<strong>初始size为16</strong>，<strong>扩容：newsize &#x3D; oldsize*2</strong>，size一定为2的n次幂扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀<strong>计算index方法：index &#x3D; hash &amp; (tab.length – 1)</strong></p>
-<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h4><p>底层采用分段的数组+链表实现，<strong>线程安全</strong>；通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提升N倍，默认提升16倍。(读操作不加锁，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。)Hashtable的synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁扩容：段内扩容（段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个Map进行扩容），插入前检测需不需要扩容，有效避免无效扩容</p>
-<p><strong>锁分段技术</strong>：首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问。</p>
-<h3 id="HashMap底层实现原理："><a href="#HashMap底层实现原理：" class="headerlink" title="HashMap底层实现原理："></a>HashMap底层实现原理：</h3><ul>
-<li>HashMap的底层主要是基于数组和链表来实现的，它之所以有相当快的查询速度主要是因为它是通过计算散列码来决定存储的位置。</li>
-</ul>
-<ul>
-<li>HashMap中主要是通过key的hashCode来计算hash值的，只要hashCode相同，计算出来的hash值就一样。</li>
-<li>如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。</li>
-<li>HashMap底层是通过链表来解决hash冲突的。</li>
-</ul>
-<h3 id="JDK-1-8的-改变"><a href="#JDK-1-8的-改变" class="headerlink" title="JDK 1.8的 改变"></a>JDK 1.8的 改变</h3><p>在Jdk1.8中HashMap的实现方式做了一些改变，但是基本思想还是没有变得，只是在一些地方做了优化，下面来看一下这些改变的地方,数据结构的存储由数组+链表的方式，<strong>变化为数组+链表+红黑树的存储方式</strong>，在性能上进一步得到提升。</p>
-<p>在1.8之前，新插入的元素都是放在了链表的头部位置，但是这种操作在高并发的环境下容易导致死锁，所以1.8之后，新插入的元素都放在了链表的尾部。</p>
-<ul>
-<li>HashMap采用hash算法来决定Map中key的存储，并通过hash算法来增加集合的大小。</li>
-<li>hash表里可以存储元素的位置称为<strong>桶（bucket）</strong>，如果通过key计算hash值发生冲突时，那么将采用链表的形式，来存储元素。</li>
-<li>HashMap的扩容操作是一项很耗时的任务，所以如果能估算Map的容量，最好给它一个默认初始值，避免进行多次扩容。</li>
-<li>HashMap的线程是不安全的，多线程环境中推荐是ConcurrentHashMap。</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Kafka入门</title>
     <url>/2022/09/07/Kafka%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="单机安装Kafka"><a href="#单机安装Kafka" class="headerlink" title="单机安装Kafka"></a>单机安装Kafka</h3><ol>
@@ -1329,6 +1260,75 @@
       </categories>
       <tags>
         <tag>Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java-Shutdown Hook</title>
+    <url>/2022/10/28/Java-Shutdown-Hook/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="什么是-Shutdown-Hook"><a href="#什么是-Shutdown-Hook" class="headerlink" title="什么是 Shutdown Hook"></a>什么是 Shutdown Hook</h3><p>Shutdown Hook 是一种比较特殊的结构，一般用于在 JVM 关闭之前，需要执行的一些操作的时候。常见的，比如说你的程序退出时需要做一些清理工作的时候，就可以考虑使用Shutdown Hook。但是如果你的JVM是非正常退出的，比如接收了SIGKILL，这个时候就不能保证shutdown hook能够正常执行。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>在java程序中，可以通过添加关闭钩子函数，实现在程序退出时关闭资源、平滑退出的功能。</p>
+<h4 id="JVM自带的shutdownHook"><a href="#JVM自带的shutdownHook" class="headerlink" title="JVM自带的shutdownHook"></a>JVM自带的shutdownHook</h4><p>特点： jvm自带，使用方便，多个钩子间是并行执行的</p>
+<p>主要就是通过 <strong>Runtime.addShutDownHook(Thread hook)</strong> 来实现的。下面我们来简单看一个示例</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutDownHookTest</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">  &#123;</span><br><span class="line">  </span><br><span class="line">    Runtime.getRuntime().addShutdownHook(<span class="keyword">new</span> <span class="title class_">Thread</span>()</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span></span><br><span class="line">      &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Shutdown Hook now&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(<span class="string">&quot;exit&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="监听-Spring-的-ContextClosedEvent"><a href="#监听-Spring-的-ContextClosedEvent" class="headerlink" title="监听 Spring 的 ContextClosedEvent"></a>监听 Spring 的 ContextClosedEvent</h4><p>以下是 Spring 官网的对于 ContextClosedEvent 的描述</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210281053975.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202210281053975.png?x-oss-process=style/ezio"></a></p>
+<p>实现ApplicationListener接口，监听ContextClosedEvent</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutdownHookDemo</span> <span class="keyword">implements</span> <span class="title class_">ApplicationListener</span>&lt;ContextClosedEvent&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onApplicationEvent</span><span class="params">(ContextClosedEvent event)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;shutdown hook, ContextClosedEvent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="实现-DisposableBean-接口"><a href="#实现-DisposableBean-接口" class="headerlink" title="实现 DisposableBean 接口"></a>实现 DisposableBean 接口</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutdownHookDemo</span> <span class="keyword">implements</span> <span class="title class_">DisposableBean</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        log.info(<span class="string">&quot;shutdown hook, disposable bean&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="使用注解-PreDestory"><a href="#使用注解-PreDestory" class="headerlink" title="使用注解@PreDestory"></a>使用注解@PreDestory</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShutdownHookDemo</span> &#123;</span><br><span class="line">    <span class="meta">@PreDestroy</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">preDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;shutdown hook, pre destroy&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li><p>程序正常退出</p>
+</li>
+<li><p>程序出现异常</p>
+</li>
+<li><p>使用 System.exit()</p>
+</li>
+<li><p>终端使用 Ctrl+C 触发的中断</p>
+</li>
+<li><p>系统关闭</p>
+</li>
+<li><p>OutofMemory宕机</p>
+</li>
+<li><p>使用 Kill pid 杀死进程（使用kill -9是不会被调用的）</p>
+</li>
+</ul>
+<h3 id="JVM-Shutdown-Hook-注意事项"><a href="#JVM-Shutdown-Hook-注意事项" class="headerlink" title="JVM Shutdown Hook 注意事项"></a>JVM Shutdown Hook 注意事项</h3><ul>
+<li><p><strong>Shutdown Hook不能保证一定执行</strong><br>如果JVM crashe了, Shutdown Hook并不能保证一定执行。例如如果收到了SIGKILL的时候，程序会立刻终止执行，JVM立刻退出，导致没有机会执行Shutdown Hook.如果调用了Runtime.halt()的情况下，也可以导致JVM在没有执行Shutdown Hook的时候直接退出。当然，如果一个程序正常结束，会在JVM退出去调用Shutdown Hook。如果JVM因为用户要求中断或者是接受到SIGTERM，也是会调用Shutdown Hook的。</p>
+</li>
+<li><p><strong>Shutdown Hook是可以被强制中断的</strong><br>即使已经开始执行Shutdown Hook,也是可以被中断的，比如当接收到了SIGTERM，但是shutdown hook没有在一定时间内完成，也是会被强制中断，导致shutdown hook没有完整执行。所以一般在Shutdown hook中的操作都应该是可以快速执行完毕，不应该是一些long time的任务。</p>
+</li>
+<li><p><strong>Shutdown Hook可以有多个</strong><br>一个程序中可以注册多个shutdown hook，但是JVM执行shutdown hook的时候是一个任意顺序，并且JVM执行hook的时候是并发的。</p>
+</li>
+<li><p><strong>Shutdown hook中不可以regist&#x2F;unregister shutdown hook</strong><br>如果这么做了，JVM会抛IllegalStateException。</p>
+</li>
+<li><p><strong>Shutdown hook可以被停止</strong><br>如果一个Shutdown已经开始执行了，除了例如SIGKILL这样的外部干预，需要且只能通过Runtime.halt()中断。</p>
+</li>
+<li><p><strong>Shutdown hook需要安全权限</strong></p>
+</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -1634,58 +1634,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Mac安装Jenkins</title>
-    <url>/2023/09/26/Mac%E5%AE%89%E8%A3%85Jenkins/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h4 id="使用-Homebrew-安装-Jenkins"><a href="#使用-Homebrew-安装-Jenkins" class="headerlink" title="使用 Homebrew 安装 Jenkins"></a>使用 Homebrew 安装 Jenkins</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install jenkins-lts</span><br></pre></td></tr></table></figure>
-
-<p>安装成功后执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 启动Jenkins服务</span><br><span class="line">$ brew services start jenkins-lts</span><br></pre></td></tr></table></figure>
-
-<p>启动服务可能遇到如下的报错:</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261117499.png?x-oss-process=style/ezio" title="image-20230926111704465" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261117499.png?x-oss-process=style/ezio" alt="image-20230926111704465"></a></p>
-<p>解决方法：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/homebrew/Library/Taps/homebrew</span><br><span class="line">$ <span class="built_in">rm</span> -rf ./homebrew-services</span><br><span class="line">$ brew tap homebrew/services</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261124026.png?x-oss-process=style/ezio" title="image-20230926112416187" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261124026.png?x-oss-process=style/ezio" alt="image-20230926112416187"></a></p>
-<p>成功后再次启动就行了</p>
-<p>相关命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 安装jenkins</span><br><span class="line">$ brew install jenkins-lts</span><br><span class="line">// 启动Jenkins服务</span><br><span class="line">$ brew services start jenkins-lts</span><br><span class="line">// 重启Jenkins服务</span><br><span class="line">$ brew services restart jenkins-lts</span><br><span class="line">// 停止Jenkins服务</span><br><span class="line">$ brew services stop jenkins-lts</span><br><span class="line">// 更新版本</span><br><span class="line">$ brew upgrade jenkins-lts</span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Mac</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Markdown语法</title>
-    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
-
-<p>其效果如下展示：</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MyIsam和InnoDB的区别</title>
     <url>/2021/04/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
@@ -1734,6 +1682,27 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法</title>
+    <url>/2020/07/10/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h1><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题，可用 # 号将所需要的文字括起来</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">以此类推，#号与文字之间有空格</span><br></pre></td></tr></table></figure>
+
+<p>其效果如下展示：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -1920,6 +1889,37 @@
       </tags>
   </entry>
   <entry>
+    <title>Mac安装Jenkins</title>
+    <url>/2023/09/26/Mac%E5%AE%89%E8%A3%85Jenkins/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h4 id="使用-Homebrew-安装-Jenkins"><a href="#使用-Homebrew-安装-Jenkins" class="headerlink" title="使用 Homebrew 安装 Jenkins"></a>使用 Homebrew 安装 Jenkins</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install jenkins-lts</span><br></pre></td></tr></table></figure>
+
+<p>安装成功后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 启动Jenkins服务</span><br><span class="line">$ brew services start jenkins-lts</span><br></pre></td></tr></table></figure>
+
+<p>启动服务可能遇到如下的报错:</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261117499.png?x-oss-process=style/ezio" title="image-20230926111704465" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261117499.png?x-oss-process=style/ezio" alt="image-20230926111704465"></a></p>
+<p>解决方法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/homebrew/Library/Taps/homebrew</span><br><span class="line">$ <span class="built_in">rm</span> -rf ./homebrew-services</span><br><span class="line">$ brew tap homebrew/services</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261124026.png?x-oss-process=style/ezio" title="image-20230926112416187" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202309261124026.png?x-oss-process=style/ezio" alt="image-20230926112416187"></a></p>
+<p>成功后再次启动就行了</p>
+<p>相关命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 安装jenkins</span><br><span class="line">$ brew install jenkins-lts</span><br><span class="line">// 启动Jenkins服务</span><br><span class="line">$ brew services start jenkins-lts</span><br><span class="line">// 重启Jenkins服务</span><br><span class="line">$ brew services restart jenkins-lts</span><br><span class="line">// 停止Jenkins服务</span><br><span class="line">$ brew services stop jenkins-lts</span><br><span class="line">// 更新版本</span><br><span class="line">$ brew upgrade jenkins-lts</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Mac</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nacos</title>
     <url>/2022/05/21/Nacos/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="使用-nacos-作为注册中心："><a href="#使用-nacos-作为注册中心：" class="headerlink" title="使用 nacos 作为注册中心："></a>使用 nacos 作为注册中心：</h3><p>1.在父项目的maven配置文件中加入alibaba依赖：</p>
@@ -1984,56 +1984,6 @@
       <tags>
         <tag>Spring Cloud</tag>
         <tag>Nacos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Quartz 定时任务</title>
-    <url>/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>设计订单的业务场景常常用到了定时任务来完成，而java中我常用到的定时任务框架就是<em><strong>Quartz</strong></em>。<em>Quartz</em>是OpenSymphony开源组织在Job scheduling领域又一个开源项目，完全由Java开发，可以用来执行定时任务，类似于java.util.Timer。但是相较于Timer， <em>Quartz</em>增加了很多功能：</p>
-<ul>
-<li>持久性作业 - 就是保持调度定时的状态;</li>
-<li>作业管理 - 对调度作业进行有效的管理;</li>
-</ul>
-<p>Quartz由基本的三部分组成：</p>
-<ul>
-<li><strong>JobDetail</strong> 任务 （做什么）</li>
-<li><strong>Trigger</strong> 触发器 （什么时候做）</li>
-<li><strong>Scheduler</strong> 调度器 （定时任务容器，装载任务和触发器）</li>
-</ul>
-<hr>
-<h3 id="Quartz-Demo示例"><a href="#Quartz-Demo示例" class="headerlink" title="Quartz Demo示例"></a>Quartz Demo示例</h3><p>在使用Quartz框架前需先通过maven引入依赖的jar包：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
-
-<p>在导入依赖后创建一个任务，需实现 <strong>org.quartz.Job</strong> 接口并复写 <strong>execute</strong> 方法，在其方法中进行业务逻辑具体实现的编写。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.quartz.Job;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoJob</span> <span class="keyword">implements</span> <span class="title class_">Job</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span>  </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(JobExecutionContext jbContext)</span> <span class="keyword">throws</span> JobExecutionException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;任务执行成功&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在写好一个任务后，还需要创建 <strong>Scheduler</strong> 来调度执行任务。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoScheduler</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException, InterruptedException &#123;</span><br><span class="line">		<span class="comment">// 创建调度器Scheduler</span></span><br><span class="line">		<span class="type">Scheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">		<span class="comment">// 创建任务JobDetail</span></span><br><span class="line">		<span class="type">JobDetail</span> <span class="variable">jobdetail</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JobDetail</span>(<span class="string">&quot;job1&quot;</span>, <span class="string">&quot;group1&quot;</span>, DemoJob.class);</span><br><span class="line">		<span class="comment">// 创建触发器Trigger，指定任务执行策略</span></span><br><span class="line">		<span class="type">Trigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger().withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;triggerGroup1&quot;</span>)</span><br><span class="line">				.starNow() <span class="comment">//立即生效</span></span><br><span class="line">				.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">				.withIntervalInSeconds(<span class="number">1</span>) <span class="comment">//每隔1秒执行一次</span></span><br><span class="line">				.repeatForever()).build(); <span class="comment">//一直执行</span></span><br><span class="line">		<span class="comment">// 执行任务</span></span><br><span class="line">		scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line">		scheduler.star();</span><br><span class="line">		<span class="comment">// 睡眠</span></span><br><span class="line">		Lang.sleep(<span class="number">1000</span> * <span class="number">60</span>);</span><br><span class="line">		<span class="comment">// 关闭任务</span></span><br><span class="line">		scheduler.shutdown();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样一个简单的定时任务就创建好了。</p>
-<hr>
-<h3 id="关键类和接口"><a href="#关键类和接口" class="headerlink" title="关键类和接口"></a>关键类和接口</h3><ul>
-<li><p><strong>Job &amp; JobDetail</strong><br>Job 为作业的接口，为任务调度的对象；JobDetail绑定指定的Job，每次Scheduler调度执行一个Job的时候，首先会拿到对应的Job，然后创建该Job实例，再去执行Job中的execute()的内容，任务执行结束后，关联的Job对象实例会被释放，且会被JVM GC清除。</p>
-<p>  为什么设计成 Job + JobDetail，而不直接使用Job？<br>  JobDetail定义的是任务数据，而真正的执行逻辑是在Job中。<br>  任务是有可能并发执行，如果Scheduler直接使用Job，就会存在对同一个Job实例并发访问的问题。而JobDetail &amp; Job 方式，Sheduler每次执行，都会根据JobDetail接收一个 Job 实现类（JobDetail，描述 Job 的实现类及其他相关的静态信息，如 Job 名字、描述、关联监听器等信息），以便运行时通过 newInstance() 的反射机制实例化 Job。创建一个新的Job实例，这样就可以规避并发访问的问题。</p>
-</li>
-<li><p><strong>JobExecutionContext</strong><br>JobExecutionContext中包含了Quartz运行时的环境以及Job本身的详细数据信息。<br>当Schedule调度执行一个Job的时候，就会将JobExecutionContext传递给该Job的execute()中，Job就可以通过JobExecutionContext对象获取信息。</p>
-</li>
-<li><p><strong>Trigger</strong><br>Trigger：是一个类，描述触发 Job 执行的时间触发规则，<strong>一个 Trigger 只能对应一个作业实例，而一个作业实例可对应多个触发器</strong>；主要有 SimpleTrigger 和 CronTrigger 这两个子类。当且仅当需调度一次或者以固定时间间隔周期执行调度，SimpleTrigger 是最适合的选择；而 CronTrigger 则可以通过 Cron 表达式定义出各种复杂时间规则的调度方案。个人在日常开发中CronTrigger用的更多。</p>
-</li>
-<li><p><strong>Scheduler</strong><br>Scheduler 做为定时任务容器，是 Quartz 最上层的东西，它提携了所有触发器和作业，使它们协调工作，每个 Scheduler 都存有 JobDetail 和 Trigger 的注册，一个 Scheduler 中可以注册多个 JobDetail 和多个 Trigger。</p>
-</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Quartz</category>
-      </categories>
-      <tags>
-        <tag>Quartz</tag>
       </tags>
   </entry>
   <entry>
@@ -2111,6 +2061,56 @@
       </categories>
       <tags>
         <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Quartz 定时任务</title>
+    <url>/2021/04/12/Quartz%20%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>设计订单的业务场景常常用到了定时任务来完成，而java中我常用到的定时任务框架就是<em><strong>Quartz</strong></em>。<em>Quartz</em>是OpenSymphony开源组织在Job scheduling领域又一个开源项目，完全由Java开发，可以用来执行定时任务，类似于java.util.Timer。但是相较于Timer， <em>Quartz</em>增加了很多功能：</p>
+<ul>
+<li>持久性作业 - 就是保持调度定时的状态;</li>
+<li>作业管理 - 对调度作业进行有效的管理;</li>
+</ul>
+<p>Quartz由基本的三部分组成：</p>
+<ul>
+<li><strong>JobDetail</strong> 任务 （做什么）</li>
+<li><strong>Trigger</strong> 触发器 （什么时候做）</li>
+<li><strong>Scheduler</strong> 调度器 （定时任务容器，装载任务和触发器）</li>
+</ul>
+<hr>
+<h3 id="Quartz-Demo示例"><a href="#Quartz-Demo示例" class="headerlink" title="Quartz Demo示例"></a>Quartz Demo示例</h3><p>在使用Quartz框架前需先通过maven引入依赖的jar包：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>在导入依赖后创建一个任务，需实现 <strong>org.quartz.Job</strong> 接口并复写 <strong>execute</strong> 方法，在其方法中进行业务逻辑具体实现的编写。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.quartz.Job;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;  </span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoJob</span> <span class="keyword">implements</span> <span class="title class_">Job</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span>  </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(JobExecutionContext jbContext)</span> <span class="keyword">throws</span> JobExecutionException &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;任务执行成功&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在写好一个任务后，还需要创建 <strong>Scheduler</strong> 来调度执行任务。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoScheduler</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException, InterruptedException &#123;</span><br><span class="line">		<span class="comment">// 创建调度器Scheduler</span></span><br><span class="line">		<span class="type">Scheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">		<span class="comment">// 创建任务JobDetail</span></span><br><span class="line">		<span class="type">JobDetail</span> <span class="variable">jobdetail</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JobDetail</span>(<span class="string">&quot;job1&quot;</span>, <span class="string">&quot;group1&quot;</span>, DemoJob.class);</span><br><span class="line">		<span class="comment">// 创建触发器Trigger，指定任务执行策略</span></span><br><span class="line">		<span class="type">Trigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger().withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;triggerGroup1&quot;</span>)</span><br><span class="line">				.starNow() <span class="comment">//立即生效</span></span><br><span class="line">				.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">				.withIntervalInSeconds(<span class="number">1</span>) <span class="comment">//每隔1秒执行一次</span></span><br><span class="line">				.repeatForever()).build(); <span class="comment">//一直执行</span></span><br><span class="line">		<span class="comment">// 执行任务</span></span><br><span class="line">		scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line">		scheduler.star();</span><br><span class="line">		<span class="comment">// 睡眠</span></span><br><span class="line">		Lang.sleep(<span class="number">1000</span> * <span class="number">60</span>);</span><br><span class="line">		<span class="comment">// 关闭任务</span></span><br><span class="line">		scheduler.shutdown();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样一个简单的定时任务就创建好了。</p>
+<hr>
+<h3 id="关键类和接口"><a href="#关键类和接口" class="headerlink" title="关键类和接口"></a>关键类和接口</h3><ul>
+<li><p><strong>Job &amp; JobDetail</strong><br>Job 为作业的接口，为任务调度的对象；JobDetail绑定指定的Job，每次Scheduler调度执行一个Job的时候，首先会拿到对应的Job，然后创建该Job实例，再去执行Job中的execute()的内容，任务执行结束后，关联的Job对象实例会被释放，且会被JVM GC清除。</p>
+<p>  为什么设计成 Job + JobDetail，而不直接使用Job？<br>  JobDetail定义的是任务数据，而真正的执行逻辑是在Job中。<br>  任务是有可能并发执行，如果Scheduler直接使用Job，就会存在对同一个Job实例并发访问的问题。而JobDetail &amp; Job 方式，Sheduler每次执行，都会根据JobDetail接收一个 Job 实现类（JobDetail，描述 Job 的实现类及其他相关的静态信息，如 Job 名字、描述、关联监听器等信息），以便运行时通过 newInstance() 的反射机制实例化 Job。创建一个新的Job实例，这样就可以规避并发访问的问题。</p>
+</li>
+<li><p><strong>JobExecutionContext</strong><br>JobExecutionContext中包含了Quartz运行时的环境以及Job本身的详细数据信息。<br>当Schedule调度执行一个Job的时候，就会将JobExecutionContext传递给该Job的execute()中，Job就可以通过JobExecutionContext对象获取信息。</p>
+</li>
+<li><p><strong>Trigger</strong><br>Trigger：是一个类，描述触发 Job 执行的时间触发规则，<strong>一个 Trigger 只能对应一个作业实例，而一个作业实例可对应多个触发器</strong>；主要有 SimpleTrigger 和 CronTrigger 这两个子类。当且仅当需调度一次或者以固定时间间隔周期执行调度，SimpleTrigger 是最适合的选择；而 CronTrigger 则可以通过 Cron 表达式定义出各种复杂时间规则的调度方案。个人在日常开发中CronTrigger用的更多。</p>
+</li>
+<li><p><strong>Scheduler</strong><br>Scheduler 做为定时任务容器，是 Quartz 最上层的东西，它提携了所有触发器和作业，使它们协调工作，每个 Scheduler 都存有 JobDetail 和 Trigger 的注册，一个 Scheduler 中可以注册多个 JobDetail 和多个 Trigger。</p>
+</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Quartz</category>
+      </categories>
+      <tags>
+        <tag>Quartz</tag>
       </tags>
   </entry>
   <entry>
@@ -2285,71 +2285,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis数据类型</title>
-    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
-<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
-<li><strong>string：</strong> key-value</li>
-<li><strong>hash：</strong> key-field-value</li>
-<li><strong>list：</strong>key-value</li>
-<li><strong>set：</strong>key-member</li>
-<li><strong>zset：</strong>key-score-member</li>
-</ul>
-<blockquote>
-<ul>
-<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
-</ul>
-</blockquote>
-<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
-<ul>
-<li><p>涉及随机，不重复：<strong>set</strong></p>
-</li>
-<li><p>多维度排序：<strong>zset</strong></p>
-</li>
-<li><p>单维度排序：<strong>list、zset</strong></p>
-</li>
-</ul>
-<p><strong>2.限制条件的判断</strong></p>
-<ul>
-<li><p>可以通过增加标识key去判断，方式有：</p>
-<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
-</li>
-<li><p>也可以通过set的唯一性去判断：</p>
-<p><strong>sadd、zadd</strong></p>
-</li>
-</ul>
-<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
-<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
-<p>该问题存在以下四个场景：</p>
-<ul>
-<li><p>用户进入房间</p>
-</li>
-<li><p>查询房间榜单</p>
-</li>
-<li><p>用户赠送礼物</p>
-</li>
-<li><p>用户离开房间</p>
-</li>
-</ul>
-<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">long</span> <span class="variable">baseScore</span> <span class="operator">=</span> <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
-
-<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring AMQP</title>
     <url>/2022/08/07/Spring-AMQP/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>AMQP：</strong>Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同的开发语言等条件的限制。Erlang 中的实现有 RabbitMQ 等。</p>
@@ -2409,68 +2344,6 @@
       </categories>
       <tags>
         <tag>Spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring Security</title>
-    <url>/2022/09/19/Spring-Security/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Spring Security 是 Spring 项目中的一个安全模块，在 Spring boot 中已经默认集成和开启了 Spring Security。</p>
-<h3 id="Spring-Security-核心组件"><a href="#Spring-Security-核心组件" class="headerlink" title="Spring Security 核心组件"></a>Spring Security 核心组件</h3><p>spring security 核心组件有：Userdetails 、Authentication，UserDetailsService、AuthenticationProvider、AuthenticationManager。</p>
-<h4 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h4><p>在 Spring Security 中 <code>Authentication</code> 用来表示当前用户是谁，一般来讲你可以理解为 <code>authentication</code> 就是一组用户名密码信息。<code>Authentication</code> 也是一个接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Authentication</span> <span class="keyword">extends</span> <span class="title class_">Principal</span>, Serializable &#123;</span><br><span class="line">  </span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	Object <span class="title function_">getCredentials</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getDetails</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getPrincipal</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAuthenticated</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">setAuthenticated</span><span class="params">(<span class="type">boolean</span> isAuthenticated)</span> <span class="keyword">throws</span> IllegalArgumentException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这几个方法作用如下：</p>
-<ul>
-<li>getAuthorities(): 获取用户权限，一般情况下获取到的是用户的角色信息。</li>
-<li>getCredentials()：获取证明用户认证的信息，通常情况下获取到的是密码等信息。</li>
-<li>getDetails(): 获取用户的额外信息，（这部分信息可以是我们的用户表中的信息）</li>
-<li>getPrincipal(): 获取用户身份信息，在未认证的情况下获取到的是用户名，在已认证的情况下获取到的是 <code>UserDetails</code> (UserDetails也是一个接口，里边的方法有getUsername，getPassword等)。</li>
-<li>isAuthenticated()：获取当前 <code>Authentication</code> 是否已认证。</li>
-<li>setAuthenticated()：设置当前 <code>Authentication</code> 是否已认证（true or false）。</li>
-</ul>
-<h4 id="UserDetails"><a href="#UserDetails" class="headerlink" title="UserDetails"></a>UserDetails</h4><p><code>UserDetails</code>，用户详情。其存储的就是用户信息，其定义如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetails</span> <span class="keyword">extends</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"></span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getPassword</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getUsername</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonLocked</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isCredentialsNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isEnabled</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其方法含义如下：</p>
-<ul>
-<li>getAuthorites()：获取用户权限，本质上是用户的角色信息。</li>
-<li>getPassword()：获取密码。</li>
-<li>getUserName()：获取用户名。</li>
-<li>isAccountNonExpired()：账户是否过期。</li>
-<li>isAccountNonLocked()：账户是否被锁定。</li>
-<li>isCredentialsNonExpired(): 密码是否过期。</li>
-<li>isEnabled(): 账户是否可用。</li>
-</ul>
-<h4 id="UserDetailsService"><a href="#UserDetailsService" class="headerlink" title="UserDetailsService"></a>UserDetailsService</h4><p><code>UserDetailsService</code> 是一个接口，且只有一个方法 loadUserByUsername，它可以用来获取 <code>UserDetails</code>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetailsService</span> &#123;</span><br><span class="line"></span><br><span class="line">	UserDetails <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通常在 Spring Security 应用中，我们会自定义一个 CustomUserDetailsService 来实现 <code>UserDetailsService</code> 接口，并实现 loadUserByUsername(); 方法。一般通过查询数据库（或者是缓存、或者是其他的存储形式）来获取用户信息，然后组装成一个 <code>UserDetails</code>，（通常是一个 <code>org.springframework.security.core.userdetails.User</code>，它继承自 <code>UserDetails</code> ）并返回。</p>
-<p>在实现 loadUserByUsername 方法的时候，如果通过查数据库没有查询到相关记录，需要抛出一个异常来告诉 Spring Security 来“善后”。这个异常是 <code>org.springframework.security.core.userdetails.UsernameNotFoundException</code>。</p>
-<h4 id="AuthenticationManager"><a href="#AuthenticationManager" class="headerlink" title="AuthenticationManager"></a>AuthenticationManager</h4><p>认证是由 <code>AuthenticationManager</code> 来管理的，但是真正进行认证的是 <code>AuthenticationManager</code> 中定义的 <code>AuthenticationProvider</code>。<code>AuthenticationManager</code> 中可以定义有多个 <code>AuthenticationProvider</code>。</p>
-<p><code>AuthenticationManager</code> 是一个接口，其定义如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationManager</span> &#123;</span><br><span class="line">  </span><br><span class="line">    Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">            <span class="keyword">throws</span> AuthenticationException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>AuthenticationManager</code> 的作用就是校验 <code>Authentication</code>，如果验证失败会抛出 <code>AuthenticationException</code> 异常。<code>AuthenticationException</code> 是一个抽象类，因此代码逻辑并不能实例化一个 <code>AuthenticationException</code> 异常并抛出，实际上抛出的异常通常是其实现类，如 <code>DisabledException</code>，<code>LockedException</code>，<code>BadCredentialsException</code> 等。<code>BadCredentialsException</code> 可能会比较常见，即密码错误的时候。</p>
-<h4 id="AuthenticationProvider"><a href="#AuthenticationProvider" class="headerlink" title="AuthenticationProvider"></a>AuthenticationProvider</h4><p>身份认证提供者，负责真正的认证处理。它是一个接口，在未指定 provider 时，Spring Security 默认使用 <code>DaoAuthenticationProvider</code> 来进行身份认证，<code>DaoAuthenticationProvider</code> 在认证时通过 <code>UserDetailsService</code> 获取 <code>UserDetails</code> ，其中包括用户名、密码和所拥有的权限等。</p>
-<p>如果想自定义认证逻辑，可以通过继承 <code>AuthenticationProvider</code> 接口，并通过 <code>AuthenticationManager</code> 配置自定义 provider。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationProvider</span> &#123;</span><br><span class="line">  </span><br><span class="line">	Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">			<span class="keyword">throws</span> AuthenticationException;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">supports</span><span class="params">(Class&lt;?&gt; authentication)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>authenticate() 表示认证的动作。</li>
-<li>supports() 表示所支持的 <code>Authentication</code> 类型。<code>Authentication</code> 包含很多子类，如果 <code>AbstractAuthenticationToken</code> 。</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>Spring Security</tag>
       </tags>
   </entry>
   <entry>
@@ -2792,6 +2665,68 @@
       </tags>
   </entry>
   <entry>
+    <title>Spring Security</title>
+    <url>/2022/09/19/Spring-Security/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Spring Security 是 Spring 项目中的一个安全模块，在 Spring boot 中已经默认集成和开启了 Spring Security。</p>
+<h3 id="Spring-Security-核心组件"><a href="#Spring-Security-核心组件" class="headerlink" title="Spring Security 核心组件"></a>Spring Security 核心组件</h3><p>spring security 核心组件有：Userdetails 、Authentication，UserDetailsService、AuthenticationProvider、AuthenticationManager。</p>
+<h4 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h4><p>在 Spring Security 中 <code>Authentication</code> 用来表示当前用户是谁，一般来讲你可以理解为 <code>authentication</code> 就是一组用户名密码信息。<code>Authentication</code> 也是一个接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Authentication</span> <span class="keyword">extends</span> <span class="title class_">Principal</span>, Serializable &#123;</span><br><span class="line">  </span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	Object <span class="title function_">getCredentials</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getDetails</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	Object <span class="title function_">getPrincipal</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAuthenticated</span><span class="params">()</span>;</span><br><span class="line">  </span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">setAuthenticated</span><span class="params">(<span class="type">boolean</span> isAuthenticated)</span> <span class="keyword">throws</span> IllegalArgumentException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这几个方法作用如下：</p>
+<ul>
+<li>getAuthorities(): 获取用户权限，一般情况下获取到的是用户的角色信息。</li>
+<li>getCredentials()：获取证明用户认证的信息，通常情况下获取到的是密码等信息。</li>
+<li>getDetails(): 获取用户的额外信息，（这部分信息可以是我们的用户表中的信息）</li>
+<li>getPrincipal(): 获取用户身份信息，在未认证的情况下获取到的是用户名，在已认证的情况下获取到的是 <code>UserDetails</code> (UserDetails也是一个接口，里边的方法有getUsername，getPassword等)。</li>
+<li>isAuthenticated()：获取当前 <code>Authentication</code> 是否已认证。</li>
+<li>setAuthenticated()：设置当前 <code>Authentication</code> 是否已认证（true or false）。</li>
+</ul>
+<h4 id="UserDetails"><a href="#UserDetails" class="headerlink" title="UserDetails"></a>UserDetails</h4><p><code>UserDetails</code>，用户详情。其存储的就是用户信息，其定义如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetails</span> <span class="keyword">extends</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"></span><br><span class="line">	Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities();</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getPassword</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	String <span class="title function_">getUsername</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isAccountNonLocked</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isCredentialsNonExpired</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">isEnabled</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其方法含义如下：</p>
+<ul>
+<li>getAuthorites()：获取用户权限，本质上是用户的角色信息。</li>
+<li>getPassword()：获取密码。</li>
+<li>getUserName()：获取用户名。</li>
+<li>isAccountNonExpired()：账户是否过期。</li>
+<li>isAccountNonLocked()：账户是否被锁定。</li>
+<li>isCredentialsNonExpired(): 密码是否过期。</li>
+<li>isEnabled(): 账户是否可用。</li>
+</ul>
+<h4 id="UserDetailsService"><a href="#UserDetailsService" class="headerlink" title="UserDetailsService"></a>UserDetailsService</h4><p><code>UserDetailsService</code> 是一个接口，且只有一个方法 loadUserByUsername，它可以用来获取 <code>UserDetails</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserDetailsService</span> &#123;</span><br><span class="line"></span><br><span class="line">	UserDetails <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常在 Spring Security 应用中，我们会自定义一个 CustomUserDetailsService 来实现 <code>UserDetailsService</code> 接口，并实现 loadUserByUsername(); 方法。一般通过查询数据库（或者是缓存、或者是其他的存储形式）来获取用户信息，然后组装成一个 <code>UserDetails</code>，（通常是一个 <code>org.springframework.security.core.userdetails.User</code>，它继承自 <code>UserDetails</code> ）并返回。</p>
+<p>在实现 loadUserByUsername 方法的时候，如果通过查数据库没有查询到相关记录，需要抛出一个异常来告诉 Spring Security 来“善后”。这个异常是 <code>org.springframework.security.core.userdetails.UsernameNotFoundException</code>。</p>
+<h4 id="AuthenticationManager"><a href="#AuthenticationManager" class="headerlink" title="AuthenticationManager"></a>AuthenticationManager</h4><p>认证是由 <code>AuthenticationManager</code> 来管理的，但是真正进行认证的是 <code>AuthenticationManager</code> 中定义的 <code>AuthenticationProvider</code>。<code>AuthenticationManager</code> 中可以定义有多个 <code>AuthenticationProvider</code>。</p>
+<p><code>AuthenticationManager</code> 是一个接口，其定义如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationManager</span> &#123;</span><br><span class="line">  </span><br><span class="line">    Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">            <span class="keyword">throws</span> AuthenticationException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>AuthenticationManager</code> 的作用就是校验 <code>Authentication</code>，如果验证失败会抛出 <code>AuthenticationException</code> 异常。<code>AuthenticationException</code> 是一个抽象类，因此代码逻辑并不能实例化一个 <code>AuthenticationException</code> 异常并抛出，实际上抛出的异常通常是其实现类，如 <code>DisabledException</code>，<code>LockedException</code>，<code>BadCredentialsException</code> 等。<code>BadCredentialsException</code> 可能会比较常见，即密码错误的时候。</p>
+<h4 id="AuthenticationProvider"><a href="#AuthenticationProvider" class="headerlink" title="AuthenticationProvider"></a>AuthenticationProvider</h4><p>身份认证提供者，负责真正的认证处理。它是一个接口，在未指定 provider 时，Spring Security 默认使用 <code>DaoAuthenticationProvider</code> 来进行身份认证，<code>DaoAuthenticationProvider</code> 在认证时通过 <code>UserDetailsService</code> 获取 <code>UserDetails</code> ，其中包括用户名、密码和所拥有的权限等。</p>
+<p>如果想自定义认证逻辑，可以通过继承 <code>AuthenticationProvider</code> 接口，并通过 <code>AuthenticationManager</code> 配置自定义 provider。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AuthenticationProvider</span> &#123;</span><br><span class="line">  </span><br><span class="line">	Authentication <span class="title function_">authenticate</span><span class="params">(Authentication authentication)</span></span><br><span class="line">			<span class="keyword">throws</span> AuthenticationException;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">supports</span><span class="params">(Class&lt;?&gt; authentication)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>authenticate() 表示认证的动作。</li>
+<li>supports() 表示所支持的 <code>Authentication</code> 类型。<code>Authentication</code> 包含很多子类，如果 <code>AbstractAuthenticationToken</code> 。</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Spring Security</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>This is my first blog here</title>
     <url>/2019/08/20/This-is-my-first-blog-here/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
@@ -2997,6 +2932,71 @@
       </tags>
   </entry>
   <entry>
+    <title>Redis数据类型</title>
+    <url>/2019/12/30/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<p>Redis支持五种数据类型，分别是string（字符串）、list（列表）、hash（哈希）、set（集合）、zset（sorted set：有序集合）</p>
+<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><ul>
+<li><strong>string：</strong> key-value</li>
+<li><strong>hash：</strong> key-field-value</li>
+<li><strong>list：</strong>key-value</li>
+<li><strong>set：</strong>key-member</li>
+<li><strong>zset：</strong>key-score-member</li>
+</ul>
+<blockquote>
+<ul>
+<li><a href="http://redisdoc.com/">http://redisdoc.com/</a> Redis命令查询</li>
+</ul>
+</blockquote>
+<h2 id="Redis场景应用思路"><a href="#Redis场景应用思路" class="headerlink" title="Redis场景应用思路"></a>Redis场景应用思路</h2><p><strong>1.针对具体场景选用适合的数据结构</strong></p>
+<ul>
+<li><p>涉及随机，不重复：<strong>set</strong></p>
+</li>
+<li><p>多维度排序：<strong>zset</strong></p>
+</li>
+<li><p>单维度排序：<strong>list、zset</strong></p>
+</li>
+</ul>
+<p><strong>2.限制条件的判断</strong></p>
+<ul>
+<li><p>可以通过增加标识key去判断，方式有：</p>
+<p><strong>setnx、hsetnx、incrby、hincrby、zincrby</strong></p>
+</li>
+<li><p>也可以通过set的唯一性去判断：</p>
+<p><strong>sadd、zadd</strong></p>
+</li>
+</ul>
+<p><strong>3.zset数据结构的权重值score设计在某些场景可以通过设置一个基准值进行比较</strong></p>
+<p>例如：送礼成功后，房间送礼榜单实时计算用户送礼总金额及房间送礼排名，并且不在房间的用户无排名，如何设计？</p>
+<p>该问题存在以下四个场景：</p>
+<ul>
+<li><p>用户进入房间</p>
+</li>
+<li><p>查询房间榜单</p>
+</li>
+<li><p>用户赠送礼物</p>
+</li>
+<li><p>用户离开房间</p>
+</li>
+</ul>
+<p>其中，在用户进入房间和离开房间时，通过给每个进入的用户设置较大基准值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户基本权重</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">long</span> <span class="variable">baseScore</span> <span class="operator">=</span> <span class="number">1000000000L</span>;</span><br></pre></td></tr></table></figure>
+
+<p>来实现用户离开和进入对排名的影响，查询房间列表只取基准值以上的，离开房间则减去基准值。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>事务的隔离级别</title>
     <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
@@ -3145,10 +3145,9 @@
       </tags>
   </entry>
   <entry>
-    <title>工厂方法模式</title>
-    <url>/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>亦称：</strong> 虚拟构造函数、Virtual Constructor、Factory Method</p>
-<p>**工厂方法模式 **是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+    <title>接口隔离原则</title>
+    <url>/2024/04/01/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>客户端不应该被迫依赖于它不使用的方法；一个类对另一个类的依赖应该建立在最小的接口上。</strong></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -3156,10 +3155,10 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>设计模式</category>
+        <category>软件设计原则</category>
       </categories>
       <tags>
-        <tag>设计模式</tag>
+        <tag>软件设计原则</tag>
       </tags>
   </entry>
   <entry>
@@ -3183,9 +3182,43 @@
       </tags>
   </entry>
   <entry>
-    <title>接口隔离原则</title>
-    <url>/2024/04/01/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>客户端不应该被迫依赖于它不使用的方法；一个类对另一个类的依赖应该建立在最小的接口上。</strong></p>
+    <title>消息堆积</title>
+    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
+<p>解决消息堆积三种思路：</p>
+<ul>
+<li>增加更多消费者，加快消费速度</li>
+<li>在消费者内开启线程池加快消息处理速度</li>
+<li>扩大队列容积，提高堆积上限</li>
+</ul>
+<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
+<p>惰性队列特征如下：</p>
+<ul>
+<li>接收到消息后直接存入磁盘而非内存</li>
+<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
+<li>支持数百万条的消息存储</li>
+</ul>
+<p>用SpringAMQP声明惰性队列的方式：</p>
+<ul>
+<li>@Bean的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基于注解的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>惰性队列的优点：</p>
+<ul>
+<li>基于磁盘存储，消息上限更高</li>
+<li>没有间歇性的page-out，性能比较稳定</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>基于磁盘存储，消息时效性会降低</li>
+<li>性能受限于磁盘的IO</li>
+</ul>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -3193,10 +3226,70 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>软件设计原则</category>
+        <category>RabbitMQ</category>
       </categories>
       <tags>
-        <tag>软件设计原则</tag>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工厂方法模式</title>
+    <url>/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>亦称：</strong> 虚拟构造函数、Virtual Constructor、Factory Method</p>
+<p>**工厂方法模式 **是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理解计算机系统中的局部性原理</title>
+    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<blockquote>
+<ul>
+<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
+</ul>
+</blockquote>
+<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
+<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
+<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
+<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
+<ul>
+<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
+</li>
+<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
+</li>
+<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
+</li>
+<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
+</li>
+<li><p>访问主存，cpu大约需要200个时钟周期</p>
+</li>
+<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
+</li>
+</ul>
+<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>计算机</tag>
       </tags>
   </entry>
   <entry>
@@ -3346,99 +3439,6 @@
       </tags>
   </entry>
   <entry>
-    <title>消息堆积</title>
-    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
-<p>解决消息堆积三种思路：</p>
-<ul>
-<li>增加更多消费者，加快消费速度</li>
-<li>在消费者内开启线程池加快消息处理速度</li>
-<li>扩大队列容积，提高堆积上限</li>
-</ul>
-<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
-<p>惰性队列特征如下：</p>
-<ul>
-<li>接收到消息后直接存入磁盘而非内存</li>
-<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
-<li>支持数百万条的消息存储</li>
-</ul>
-<p>用SpringAMQP声明惰性队列的方式：</p>
-<ul>
-<li>@Bean的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>基于注解的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>惰性队列的优点：</p>
-<ul>
-<li>基于磁盘存储，消息上限更高</li>
-<li>没有间歇性的page-out，性能比较稳定</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>基于磁盘存储，消息时效性会降低</li>
-<li>性能受限于磁盘的IO</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>理解计算机系统中的局部性原理</title>
-    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<blockquote>
-<ul>
-<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
-</ul>
-</blockquote>
-<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
-<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
-<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
-<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
-<ul>
-<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
-</li>
-<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
-</li>
-<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
-</li>
-<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
-</li>
-<li><p>访问主存，cpu大约需要200个时钟周期</p>
-</li>
-<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
-</li>
-</ul>
-<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>计算机</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>缓存最终一致性以及业务解耦</title>
     <url>/2022/10/18/%E7%BC%93%E5%AD%98%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E4%BB%A5%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%A7%A3%E8%80%A6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="为什么需要缓存"><a href="#为什么需要缓存" class="headerlink" title="为什么需要缓存"></a>为什么需要缓存</h3><p>存储如 mysql 通常支持完整的 ACID 特性，因为可靠性，持久性等因素，性能普遍不高，高并发的查询会给 mysql 带来压力，造成数据库系统的不稳定，同时也容易产生延迟。根据局部性原理，80% 请求会落到 20% 的热点数据上，在读多写少场景，增加一层缓存有助提升系统吞吐量和健壮性。</p>
@@ -3518,26 +3518,6 @@
       </tags>
   </entry>
   <entry>
-    <title>迪米特法则</title>
-    <url>/2024/04/01/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>迪米特法则又叫最少知识原则。</p>
-<p>只和你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。</p>
-<p>其含义是：<strong>如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。</strong></p>
-<p>迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>软件设计原则</category>
-      </categories>
-      <tags>
-        <tag>软件设计原则</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>观《互联网是我们时代的集体健忘症》有感</title>
     <url>/2020/01/02/%E8%A7%82%E3%80%8A%E4%BA%92%E8%81%94%E7%BD%91%E6%98%AF%E6%88%91%E4%BB%AC%E6%97%B6%E4%BB%A3%E7%9A%84%E9%9B%86%E4%BD%93%E5%81%A5%E5%BF%98%E7%97%87%E3%80%8B%E6%9C%89%E6%84%9F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>原视频：<iframe height="400" width="650" src="//player.bilibili.com/player.html?aid=81397786&cid=139313826&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></p>
@@ -3560,6 +3540,26 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迪米特法则</title>
+    <url>/2024/04/01/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>迪米特法则又叫最少知识原则。</p>
+<p>只和你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。</p>
+<p>其含义是：<strong>如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。</strong></p>
+<p>迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>软件设计原则</category>
+      </categories>
+      <tags>
+        <tag>软件设计原则</tag>
       </tags>
   </entry>
   <entry>
