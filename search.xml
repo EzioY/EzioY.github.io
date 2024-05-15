@@ -30,34 +30,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AJAX异步请求</title>
-    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getXhr</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.<span class="property">responseText</span>;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">status</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.<span class="title function_">getJSON</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
-<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>AJAX</category>
-      </categories>
-      <tags>
-        <tag>AJAX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker</title>
     <url>/2022/07/20/Docker/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows操作系统的机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
@@ -143,6 +115,34 @@
       </categories>
       <tags>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AJAX异步请求</title>
+    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getXhr</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.<span class="property">responseText</span>;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">status</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.<span class="title function_">getJSON</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
+<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>AJAX</category>
+      </categories>
+      <tags>
+        <tag>AJAX</tag>
       </tags>
   </entry>
   <entry>
@@ -378,25 +378,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git上传远程仓库命令组</title>
-    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Go程序结构</title>
     <url>/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -500,6 +481,25 @@
       </categories>
       <tags>
         <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git上传远程仓库命令组</title>
+    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -922,6 +922,41 @@
       </tags>
   </entry>
   <entry>
+    <title>Java8-Optional</title>
+    <url>/2022/10/12/Java8-Optional/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>Optional</strong> 类是一个可以为 null 的容器对象。如果值存在则 <code>isPresent()</code> 方法会返回 true，调用 <code>get()</code> 方法会返回该对象。Optional提供很多有用的方法，这样我们就不用显式进行空值检测，它旨在减少代码中的 <em>NullPointerExceptions</em>，虽然还不能完全消除这些异常。</p>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Optional.empty();          <span class="comment">//创建一个空的 Optional 实例</span></span><br><span class="line">Optional.of(T t);          <span class="comment">//创建一个 Optional 实例，当 t 为 null 时抛出异常</span></span><br><span class="line">Optional.ofNullable(T t);  <span class="comment">//创建一个 Optional 实例，但当 t 为 null 时不会抛出异常，而是返回一个空的实例</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">get();  <span class="comment">//获取optional实例中的对象，当 optional 容器为空时报错</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断 optional 是否为空，如果空则返回 false，否则返回 true</span></span><br><span class="line">isPresent();</span><br><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象传给 Comsumer 函数</span></span><br><span class="line">ifPresent(Consumer c);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则返回 other 这个默认值</span></span><br><span class="line">orElse(T other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则使用 Supplier 函数生成默认值 other</span></span><br><span class="line">orElseGet(Supplier&lt;T&gt; other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则抛出 Supplier 函数生成的异常</span></span><br><span class="line">orElseThrow(Supplier&lt;X&gt; exception);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">filter(Predicate&lt;T&gt; p);  </span><br><span class="line"><span class="comment">//如果 optional 不为空，则执行断言函数 p，如果 p 的结果为 true，则返回原本的 optional，否则返回空的 optional</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象 t 映射成另外一个对象 u，并将 u 存放到一个新的 optional 容器中。</span></span><br><span class="line">map(Function&lt;T, U&gt; mapper);</span><br><span class="line"><span class="comment">//跟上面一样，在 optional 不为空的情况下，将对象 t 映射成另外一个 optional</span></span><br><span class="line">flatMap(Function&lt; T,Optional&lt;U&gt;&gt; mapper);</span><br><span class="line"></span><br><span class="line"><span class="comment">//区别：map会自动将u放到optional中，而flatMap则需要手动给u创建一个optional</span></span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java8-LocalDateTime</title>
     <url>/2021/04/13/Java8-LocalDateTime/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>在 <em>Java8</em> 中引入了新的日期类 <strong>LocalDateTime</strong> ，其主要原因是 <code>Java.util.Date</code> 和 <code>SimpleDateFormatter</code> 都不是线程安全的，而<code>LocalDate</code>和<code>LocalTime</code>和最基本的<code>String</code>一样，是 final 类型，不但线程安全，且不能修改。日期和时间被明确划分为 <code>LocalDate</code> 和 <code>LocalTime</code> ，<code>LocalDate</code> 无法包含时间，<code>LocalTime</code> 无法包含日期，<code>LocalDateTime</code> 才能同时包含日期和时间。</p>
@@ -978,58 +1013,6 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> instant.atZone(zoneId).toLocalDateTime();</span><br></pre></td></tr></table></figure>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java8-Optional</title>
-    <url>/2022/10/12/Java8-Optional/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>Optional</strong> 类是一个可以为 null 的容器对象。如果值存在则 <code>isPresent()</code> 方法会返回 true，调用 <code>get()</code> 方法会返回该对象。Optional提供很多有用的方法，这样我们就不用显式进行空值检测，它旨在减少代码中的 <em>NullPointerExceptions</em>，虽然还不能完全消除这些异常。</p>
-<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Optional.empty();          <span class="comment">//创建一个空的 Optional 实例</span></span><br><span class="line">Optional.of(T t);          <span class="comment">//创建一个 Optional 实例，当 t 为 null 时抛出异常</span></span><br><span class="line">Optional.ofNullable(T t);  <span class="comment">//创建一个 Optional 实例，但当 t 为 null 时不会抛出异常，而是返回一个空的实例</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">get();  <span class="comment">//获取optional实例中的对象，当 optional 容器为空时报错</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断 optional 是否为空，如果空则返回 false，否则返回 true</span></span><br><span class="line">isPresent();</span><br><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象传给 Comsumer 函数</span></span><br><span class="line">ifPresent(Consumer c);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则返回 other 这个默认值</span></span><br><span class="line">orElse(T other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则使用 Supplier 函数生成默认值 other</span></span><br><span class="line">orElseGet(Supplier&lt;T&gt; other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则抛出 Supplier 函数生成的异常</span></span><br><span class="line">orElseThrow(Supplier&lt;X&gt; exception);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">filter(Predicate&lt;T&gt; p);  </span><br><span class="line"><span class="comment">//如果 optional 不为空，则执行断言函数 p，如果 p 的结果为 true，则返回原本的 optional，否则返回空的 optional</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象 t 映射成另外一个对象 u，并将 u 存放到一个新的 optional 容器中。</span></span><br><span class="line">map(Function&lt;T, U&gt; mapper);</span><br><span class="line"><span class="comment">//跟上面一样，在 optional 不为空的情况下，将对象 t 映射成另外一个 optional</span></span><br><span class="line">flatMap(Function&lt; T,Optional&lt;U&gt;&gt; mapper);</span><br><span class="line"></span><br><span class="line"><span class="comment">//区别：map会自动将u放到optional中，而flatMap则需要手动给u创建一个optional</span></span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java8-Predicate函数</title>
-    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -1155,6 +1138,23 @@
 <p>\2.    控制并发数量：（核心线程和最大线程数控制）</p>
 <p>\3.    管理线程（设置线程的状态）</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8-Predicate函数</title>
+    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -1686,57 +1686,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MyIsam和InnoDB的区别</title>
-    <url>/2021/04/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
-<li><strong>事务</strong></li>
-</ol>
-<p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
-<ol start="2">
-<li><strong>外键</strong></li>
-</ol>
-<p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
-<ol start="3">
-<li><p><strong>索引</strong></p>
-<p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
-</li>
-<li><p><strong>锁粒度方面</strong></p>
-</li>
-</ol>
-<p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
-<p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
-<p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
-<ol start="5">
-<li><strong>硬盘存储结构</strong></li>
-</ol>
-<p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
-<pre><code>    * Frm文件：表的定义文件
-    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
-    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
-    * .frm文件存储 表的定义。
-    * .MYD 数据文件（MYData）
-    * .MYI 索引文件 （MYIndex）
-</code></pre>
-<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
-<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
-<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
-<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
-<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
-<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL数据库多表查询</title>
     <url>/2019/09/03/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -1805,6 +1754,57 @@
 <p>该场景下得到的是A，B中不满足某一条件的记录之和。</p>
 <hr>
 <p>该文章借鉴参考于<a href="https://www.cnblogs.com/yuzhanhong/p/9286910.html">https://www.cnblogs.com/yuzhanhong/p/9286910.html</a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyIsam和InnoDB的区别</title>
+    <url>/2021/04/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
+<li><strong>事务</strong></li>
+</ol>
+<p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="2">
+<li><strong>外键</strong></li>
+</ol>
+<p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
+<ol start="3">
+<li><p><strong>索引</strong></p>
+<p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
+</li>
+<li><p><strong>锁粒度方面</strong></p>
+</li>
+</ol>
+<p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
+<p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
+<p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="5">
+<li><strong>硬盘存储结构</strong></li>
+</ol>
+<p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
+<pre><code>    * Frm文件：表的定义文件
+    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
+    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
+    * .frm文件存储 表的定义。
+    * .MYD 数据文件（MYData）
+    * .MYI 索引文件 （MYIndex）
+</code></pre>
+<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
+<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
+<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
+<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
+<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
+<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -2037,83 +2037,6 @@
       </tags>
   </entry>
   <entry>
-    <title>RabbitMQ</title>
-    <url>/2021/04/12/RabbitMQ/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>RabbitMQ是基于Erlang语言开发的开源消息通信中间件，<a href="https://www.rabbitmq.com/">官网地址</a></p>
-<h5 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h5><p>优点：</p>
-<ul>
-<li>时效性强，立即得到结果</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>耦合度高</li>
-<li>如果调用链过长，性能和吞吐能力下降</li>
-<li>在调用链等待过程中，请求占用的资源不能释放，高并发下浪费资源</li>
-<li>有级联失败问题，提供方出现问题，会导致调用方都跟着出问题</li>
-</ul>
-<h5 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h5><p>优点：</p>
-<ul>
-<li>通过发布事件的方式，耦合度更低</li>
-<li>吞吐量提升，调用链变短，不用等待其他服务执行完成，耗时更短</li>
-<li>故障隔离，因为不存在调用，其他服务挂了也不会影响</li>
-<li>流量削峰，由broker承担压力</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>增加服务架构复杂度，不好追踪管理</li>
-<li>依赖Broker的可靠性、安全性、吞吐能力</li>
-</ul>
-<h3 id="MQ对比："><a href="#MQ对比：" class="headerlink" title="MQ对比："></a>MQ对比：</h3><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio"></a></p>
-<h3 id="RabbitMQ中的几个概念："><a href="#RabbitMQ中的几个概念：" class="headerlink" title="RabbitMQ中的几个概念："></a>RabbitMQ中的几个概念：</h3><ul>
-<li>channel：操作mq的工具</li>
-<li>exchange：路由消息到队列中</li>
-<li>queue：缓存消息</li>
-<li>virtual host：虚拟主机，是对queue、exchange等资源的逻辑分组。</li>
-</ul>
-<hr>
-<h3 id="RabbitMQ的安装"><a href="#RabbitMQ的安装" class="headerlink" title="RabbitMQ的安装"></a>RabbitMQ的安装</h3><h5 id="1-通过docker拉取镜像"><a href="#1-通过docker拉取镜像" class="headerlink" title="1.通过docker拉取镜像"></a>1.通过docker拉取镜像</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull rabbitmq:3-management</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-运行容器"><a href="#2-运行容器" class="headerlink" title="2.运行容器"></a>2.运行容器</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -e RABBITMQ_DEFAULT_USER=ezio \  # 用户名</span><br><span class="line"> -e RABBITMQ_DEFAULT_PASS=123456 \  # 密码</span><br><span class="line"> --name mq \</span><br><span class="line"> --hostname mq1 \  # 主机名，集群部署会用到</span><br><span class="line"> -p 15672:15672 \  # rabbitmq管理平台端口</span><br><span class="line"> -p 5672:5672 \  # rabbitmq消息通信端口</span><br><span class="line"> -d \</span><br><span class="line"> rabbitmq:3-management</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="常见消息模型"><a href="#常见消息模型" class="headerlink" title="常见消息模型"></a>常见消息模型</h4><p><strong>publisher：</strong>消息发布者，将消息发送到交换机或队列</p>
-<p><strong>queue：</strong>消息队列，负责接收和缓存消息</p>
-<p><strong>consumer：</strong>消息消费者，订阅队列，处理队列中的消息</p>
-<ul>
-<li>基本模式：一对一</li>
-</ul>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>工作模式（竞争模式）：一对多</li>
-</ul>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>发布&#x2F;订阅模式（广播Fanout）：</li>
-</ul>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>路由模式：</li>
-</ul>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio"></a></p>
-<ul>
-<li>主题模式：</li>
-</ul>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio"></a></p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio"></a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis基本操作</title>
     <url>/2020/07/10/Redis%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -2204,6 +2127,83 @@
       </categories>
       <tags>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RabbitMQ</title>
+    <url>/2021/04/12/RabbitMQ/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>RabbitMQ是基于Erlang语言开发的开源消息通信中间件，<a href="https://www.rabbitmq.com/">官网地址</a></p>
+<h5 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h5><p>优点：</p>
+<ul>
+<li>时效性强，立即得到结果</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>耦合度高</li>
+<li>如果调用链过长，性能和吞吐能力下降</li>
+<li>在调用链等待过程中，请求占用的资源不能释放，高并发下浪费资源</li>
+<li>有级联失败问题，提供方出现问题，会导致调用方都跟着出问题</li>
+</ul>
+<h5 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h5><p>优点：</p>
+<ul>
+<li>通过发布事件的方式，耦合度更低</li>
+<li>吞吐量提升，调用链变短，不用等待其他服务执行完成，耗时更短</li>
+<li>故障隔离，因为不存在调用，其他服务挂了也不会影响</li>
+<li>流量削峰，由broker承担压力</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>增加服务架构复杂度，不好追踪管理</li>
+<li>依赖Broker的可靠性、安全性、吞吐能力</li>
+</ul>
+<h3 id="MQ对比："><a href="#MQ对比：" class="headerlink" title="MQ对比："></a>MQ对比：</h3><p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072241069.png?x-oss-process=style/ezio"></a></p>
+<h3 id="RabbitMQ中的几个概念："><a href="#RabbitMQ中的几个概念：" class="headerlink" title="RabbitMQ中的几个概念："></a>RabbitMQ中的几个概念：</h3><ul>
+<li>channel：操作mq的工具</li>
+<li>exchange：路由消息到队列中</li>
+<li>queue：缓存消息</li>
+<li>virtual host：虚拟主机，是对queue、exchange等资源的逻辑分组。</li>
+</ul>
+<hr>
+<h3 id="RabbitMQ的安装"><a href="#RabbitMQ的安装" class="headerlink" title="RabbitMQ的安装"></a>RabbitMQ的安装</h3><h5 id="1-通过docker拉取镜像"><a href="#1-通过docker拉取镜像" class="headerlink" title="1.通过docker拉取镜像"></a>1.通过docker拉取镜像</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-运行容器"><a href="#2-运行容器" class="headerlink" title="2.运行容器"></a>2.运行容器</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -e RABBITMQ_DEFAULT_USER=ezio \  # 用户名</span><br><span class="line"> -e RABBITMQ_DEFAULT_PASS=123456 \  # 密码</span><br><span class="line"> --name mq \</span><br><span class="line"> --hostname mq1 \  # 主机名，集群部署会用到</span><br><span class="line"> -p 15672:15672 \  # rabbitmq管理平台端口</span><br><span class="line"> -p 5672:5672 \  # rabbitmq消息通信端口</span><br><span class="line"> -d \</span><br><span class="line"> rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="常见消息模型"><a href="#常见消息模型" class="headerlink" title="常见消息模型"></a>常见消息模型</h4><p><strong>publisher：</strong>消息发布者，将消息发送到交换机或队列</p>
+<p><strong>queue：</strong>消息队列，负责接收和缓存消息</p>
+<p><strong>consumer：</strong>消息消费者，订阅队列，处理队列中的消息</p>
+<ul>
+<li>基本模式：一对一</li>
+</ul>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243306.png?x-oss-process=style/ezio"></a></p>
+<ul>
+<li>工作模式（竞争模式）：一对多</li>
+</ul>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072243256.png?x-oss-process=style/ezio"></a></p>
+<ul>
+<li>发布&#x2F;订阅模式（广播Fanout）：</li>
+</ul>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072244781.png?x-oss-process=style/ezio"></a></p>
+<ul>
+<li>路由模式：</li>
+</ul>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245169.png?x-oss-process=style/ezio"></a></p>
+<ul>
+<li>主题模式：</li>
+</ul>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072245480.png?x-oss-process=style/ezio"></a></p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202208072246565.png?x-oss-process=style/ezio"></a></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
       </tags>
   </entry>
   <entry>
@@ -2474,23 +2474,11 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringMVC的工作流程</title>
-    <url>/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio"></a></p>
-<ol>
-<li>用户发送请求至前端控制器DispatcherServlet。</li>
-<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器。</li>
-<li>处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</li>
-<li>DispatcherServlet调用HandlerAdapter处理器适配器。</li>
-<li>HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。</li>
-<li>Controller执行完成返回ModelAndView。</li>
-<li>HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。</li>
-<li>DispatcherServlet将ModelAndView传给ViewReslover视图解析器。</li>
-<li>ViewReslover解析后返回具体View.</li>
-<li>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</li>
-<li>DispatcherServlet响应用户。</li>
-</ol>
+    <title>Spring Validation</title>
+    <url>/2022/10/19/Spring-Validation/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Spring Validation 是对 hibernate validation 的二次封装，用于支持spring mvc参数自动校验。</p>
+<h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Null</span>                     <span class="comment">// 限制只能为null</span></span><br><span class="line"><span class="meta">@NotNull</span>                  <span class="comment">// 限制必须不为null</span></span><br><span class="line"><span class="meta">@AssertFalse</span>              <span class="comment">// 限制必须为false</span></span><br><span class="line"><span class="meta">@AssertTrue</span>               <span class="comment">// 限制必须为true</span></span><br><span class="line"><span class="meta">@DecimalMax(value)</span>        <span class="comment">// 限制必须为一个不大于指定值的数字</span></span><br><span class="line"><span class="meta">@DecimalMin(value)</span>        <span class="comment">// 限制必须为一个不小于指定值的数字</span></span><br><span class="line"><span class="meta">@Digits(integer, fraction)</span> <span class="comment">// 限制必须为一个小数，且整数部分的位数不能超过integer，小数部分的位数不能超过fraction</span></span><br><span class="line"><span class="meta">@Future</span>                   <span class="comment">// 限制必须是一个将来的日期</span></span><br><span class="line"><span class="meta">@Max(value)</span>               <span class="comment">// 限制必须为一个不大于指定值的数字</span></span><br><span class="line"><span class="meta">@Min(value)</span>               <span class="comment">// 限制必须为一个不小于指定值的数字</span></span><br><span class="line"><span class="meta">@Past</span>                     <span class="comment">// 限制必须是一个过去的日期</span></span><br><span class="line"><span class="meta">@Pattern(value)</span>           <span class="comment">// 限制必须符合指定的正则表达式</span></span><br><span class="line"><span class="meta">@Size(max, min)</span>            <span class="comment">// 限制字符长度必须在min到max之间</span></span><br><span class="line"><span class="meta">@Past</span>                     <span class="comment">// 验证注解的元素值（日期类型）比当前时间早</span></span><br><span class="line"><span class="meta">@NotEmpty</span>                 <span class="comment">// 验证注解的元素值不为null且不为空（字符串长度不为0、集合大小不为0）</span></span><br><span class="line"><span class="meta">@NotBlank</span>                 <span class="comment">// 验证注解的元素值不为空（不为null、去除首位空格后长度为0），不同于@NotEmpty，@NotBlank只应用于字符串且在比较时会去除字符串的空格</span></span><br><span class="line"><span class="meta">@Email</span>                    <span class="comment">// 验证注解的元素值是Email，也可以通过正则表达式和flag指定自定义的email格式</span></span><br></pre></td></tr></table></figure>
+
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -2735,11 +2723,23 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring Validation</title>
-    <url>/2022/10/19/Spring-Validation/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Spring Validation 是对 hibernate validation 的二次封装，用于支持spring mvc参数自动校验。</p>
-<h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Null</span>                     <span class="comment">// 限制只能为null</span></span><br><span class="line"><span class="meta">@NotNull</span>                  <span class="comment">// 限制必须不为null</span></span><br><span class="line"><span class="meta">@AssertFalse</span>              <span class="comment">// 限制必须为false</span></span><br><span class="line"><span class="meta">@AssertTrue</span>               <span class="comment">// 限制必须为true</span></span><br><span class="line"><span class="meta">@DecimalMax(value)</span>        <span class="comment">// 限制必须为一个不大于指定值的数字</span></span><br><span class="line"><span class="meta">@DecimalMin(value)</span>        <span class="comment">// 限制必须为一个不小于指定值的数字</span></span><br><span class="line"><span class="meta">@Digits(integer, fraction)</span> <span class="comment">// 限制必须为一个小数，且整数部分的位数不能超过integer，小数部分的位数不能超过fraction</span></span><br><span class="line"><span class="meta">@Future</span>                   <span class="comment">// 限制必须是一个将来的日期</span></span><br><span class="line"><span class="meta">@Max(value)</span>               <span class="comment">// 限制必须为一个不大于指定值的数字</span></span><br><span class="line"><span class="meta">@Min(value)</span>               <span class="comment">// 限制必须为一个不小于指定值的数字</span></span><br><span class="line"><span class="meta">@Past</span>                     <span class="comment">// 限制必须是一个过去的日期</span></span><br><span class="line"><span class="meta">@Pattern(value)</span>           <span class="comment">// 限制必须符合指定的正则表达式</span></span><br><span class="line"><span class="meta">@Size(max, min)</span>            <span class="comment">// 限制字符长度必须在min到max之间</span></span><br><span class="line"><span class="meta">@Past</span>                     <span class="comment">// 验证注解的元素值（日期类型）比当前时间早</span></span><br><span class="line"><span class="meta">@NotEmpty</span>                 <span class="comment">// 验证注解的元素值不为null且不为空（字符串长度不为0、集合大小不为0）</span></span><br><span class="line"><span class="meta">@NotBlank</span>                 <span class="comment">// 验证注解的元素值不为空（不为null、去除首位空格后长度为0），不同于@NotEmpty，@NotBlank只应用于字符串且在比较时会去除字符串的空格</span></span><br><span class="line"><span class="meta">@Email</span>                    <span class="comment">// 验证注解的元素值是Email，也可以通过正则表达式和flag指定自定义的email格式</span></span><br></pre></td></tr></table></figure>
-
+    <title>SpringMVC的工作流程</title>
+    <url>/2021/01/26/SpringMVC%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210201094433.png?x-oss-process=style/ezio"></a></p>
+<ol>
+<li>用户发送请求至前端控制器DispatcherServlet。</li>
+<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器。</li>
+<li>处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</li>
+<li>DispatcherServlet调用HandlerAdapter处理器适配器。</li>
+<li>HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。</li>
+<li>Controller执行完成返回ModelAndView。</li>
+<li>HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。</li>
+<li>DispatcherServlet将ModelAndView传给ViewReslover视图解析器。</li>
+<li>ViewReslover解析后返回具体View.</li>
+<li>DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。</li>
+<li>DispatcherServlet响应用户。</li>
+</ol>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -2792,6 +2792,16 @@
       </tags>
   </entry>
   <entry>
+    <title>This is my first blog here</title>
+    <url>/2019/08/20/This-is-my-first-blog-here/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+  </entry>
+  <entry>
     <title>Vue入门</title>
     <url>/2023/06/19/Vue%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="创建VUE项目"><a href="#创建VUE项目" class="headerlink" title="创建VUE项目"></a>创建VUE项目</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init vue@latest</span><br></pre></td></tr></table></figure>
@@ -2822,16 +2832,6 @@
       </tags>
   </entry>
   <entry>
-    <title>This is my first blog here</title>
-    <url>/2019/08/20/This-is-my-first-blog-here/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2019/08/20/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -2853,170 +2853,6 @@
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
-  </entry>
-  <entry>
-    <title>事务的四大特性</title>
-    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的四大特性简称：<strong>ACID</strong>，具体如下：</p>
-<ul>
-<li><p><strong>原子性（Atomicity）</strong></p>
-<p>事务的原子性是指事务必须是一个原子的操作序列单元。事务中包含的各项操作在一次执行过程中，只允许出现两种状态之一，要么都成功，要么都失败</p>
-</li>
-<li><p><strong>一致性（Consistency）</strong></p>
-<p>事务的一致性是指事务的执行不能破坏数据库数据的完整性和一致性，一个事务在执行之前和执行之后，数据库都必须处以一致性状态。</p>
-<p>比如：如果从A账户转账到B账户，不可能因为A账户扣了钱，而B账户没有加钱</p>
-</li>
-<li><p><strong>隔离性（Isolation）</strong></p>
-<p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
-<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的</p>
-</li>
-<li><p><strong>持久性（Duration）</strong></p>
-<p>事务的持久性是指事务一旦提交后，数据库中的数据必须被永久的保存下来。即使服务器系统崩溃或服务器宕机等故障。只要数据库重新启动，那么一定能够将其恢复到事务成功结束后的状态</p>
-</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>事务的隔离级别</title>
-    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
-<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
-<ul>
-<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
-</li>
-<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
-</li>
-<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
-</li>
-<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
-</li>
-</ul>
-<p>可能导致的问题有</p>
-<ol>
-<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
-<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
-<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
-</ol>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>合成复用原则</title>
-    <url>/2024/04/01/%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>合成复用原则是指：<strong>尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。</strong></p>
-<p>通常类的复用分为继承复用和合成复用两种。</p>
-<p>继承复用虽然有简单和易实现的优点，但它也存在以下缺点：</p>
-<ol>
-<li>继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。</li>
-<li>子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。</li>
-<li>它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。</li>
-</ol>
-<p>采用组合或聚合复用时，可以将已有对象纳入新对象中，使之成为新对象的一部分，新对象可以调用已有对象的功能，它有以下优点：</p>
-<ol>
-<li>它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。</li>
-<li>对象间的耦合度低。可以在类的成员位置声明抽象。</li>
-<li>复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。</li>
-</ol>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>软件设计原则</category>
-      </categories>
-      <tags>
-        <tag>软件设计原则</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在M1/M2芯片的Mac上通过VMware Fusion 13安装Windows 11</title>
-    <url>/2023/08/09/%E5%9C%A8M1:M2%E8%8A%AF%E7%89%87%E7%9A%84Mac%E4%B8%8A%E9%80%9A%E8%BF%87VMware-Fusion-13%E5%AE%89%E8%A3%85Windows-11/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
-<p>电脑：MacBook Pro</p>
-<p>CPU：M1 Pro芯片</p>
-<p>前期准备：首先需要在电脑上安装的有 <strong>VMware Fusion 13</strong> 软件，且需要Mac为安装 Windows 11系统 预留至少 70GB 的存储空间</p>
-</blockquote>
-<h3 id="下载安装-VMware-Fusion-13"><a href="#下载安装-VMware-Fusion-13" class="headerlink" title="下载安装 VMware Fusion 13"></a>下载安装 VMware Fusion 13</h3><p>可以通过官网地址进行下载安装：<a href="https://www.vmware.com/in/products/fusion.html">VMware Fusion 官网</a>；点击此链接跳转到官网，然后注册个人用户账户，注册完后再登录该官网。</p>
-<p>登录后，在许可证和下载部分下，您将看到适用于 Apple Silicon 的 VMware Fusion 13 和许可证密钥。 继续复制免费许可证密钥，并下载 dmg 文件。<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091531961.png?x-oss-process=style/ezio" title="VMware Fusion 13下载安装" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091531961.png?x-oss-process=style/ezio" alt="VMware Fusion 13下载安装"></a><br>下载好dmg文件后双击进行安装，安装好后通过官网上的免费许可证密钥进行激活，关于 VMware Fusion 的一些选项都选择允许，然后重启VMware即可正常使用。</p>
-<h3 id="下载-Windows-11-ARM64-OR-ISO"><a href="#下载-Windows-11-ARM64-OR-ISO" class="headerlink" title="下载 Windows 11 ARM64 OR ISO"></a>下载 Windows 11 ARM64 OR ISO</h3><p>安装 Windows 11 系统的话，可以通过两种方式进行操作，分别是通过官网直接下载 win11 arm64版本 和 下载ISO镜像文件 安装。</p>
-<h4 id="下载-ARM64"><a href="#下载-ARM64" class="headerlink" title="下载 ARM64"></a>下载 ARM64</h4><p>官网链接🔗：<a href="https://www.microsoft.com/en-us/windowsinsider/getting-started#flight">https://www.microsoft.com/en-us/windowsinsider/getting-started#flight</a><br>点击链接后注册账户，如果有的话就不用注册了。</p>
-<p>然后点击第二个链接：<a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64">https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64</a>下载，选择 beta 测试版本<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091552563.png?x-oss-process=style/ezio" title="下载Win11 ARM" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091552563.png?x-oss-process=style/ezio" alt="下载Win11 ARM"></a></p>
-<p>镜像下载下来后，需要将文件转为VMDK：<br>首先如果没有安装Homebrew的话就先安装，教程在网上有很多，不是本文重点，就不在这里展开了。<br>安装好 Homebrew 后，打开命令行，安装 QEMU 包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install qemu</span><br></pre></td></tr></table></figure>
-
-<p>再通过命令，将下载下来的 VHDX 文件转为 VMDK，注意自己下载的文件路径</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ qemu-img convert -O vmdk ~/Downloads/Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX ~/Downloads/windows11.vmdk -p</span><br></pre></td></tr></table></figure>
-
-<p>就这样，我们创建了一个 VMware 兼容的磁盘文件。</p>
-<h4 id="下载-ISO-推荐"><a href="#下载-ISO-推荐" class="headerlink" title="下载 ISO (推荐)"></a>下载 ISO (推荐)</h4><p>这个渠道就比较多了，也很好找，可以通过百度、官网、阿里云 或者 <a href="https://next.itellyou.cn/">I TELL YOU</a>网站（个人之前在上面下载镜像）<br>也可以用我自己阿里云盘分享的镜像：<a href="https://www.aliyundrive.com/s/if9jB5Rp9yF">https://www.aliyundrive.com/s/if9jB5Rp9yF</a> 下载下来后将文件后缀 <strong>.mp4</strong> 改为 <strong>.iso</strong></p>
-<h3 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h3><p>这里以下载的 ISO 镜像文件创建虚拟机为例，打开安装好的 VMware Fusion 13，新建一个虚拟机，也可以快捷键 command + N。</p>
-<p>直接将下载好的 ISO 文件拖放到创建虚拟机窗口。如图：</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101449628.png?x-oss-process=style/ezio" title="创建虚拟机" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101449628.png?x-oss-process=style/ezio" alt="创建虚拟机"></a></p>
-<p>点击继续，固件选择UEFI</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101452590.png?x-oss-process=style/ezio" title="选择固件" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101452590.png?x-oss-process=style/ezio" alt="选择固件"></a></p>
-<p>设置密码</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101505126.png?x-oss-process=style/ezio" title="设置密码" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101505126.png?x-oss-process=style/ezio" alt="设置密码"></a></p>
-<p>设置完成后点击自定义配置</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101508439.png?x-oss-process=style/ezio" title="完成设置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101508439.png?x-oss-process=style/ezio" alt="完成设置"></a></p>
-<p>需先选择虚拟机存储位置，没有特殊需求默认即可</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101512810.png?x-oss-process=style/ezio" title="选择虚拟机存储位置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101512810.png?x-oss-process=style/ezio" alt="选择虚拟机存储位置"></a></p>
-<p>选择玩存储位置后，会弹出设置选项界面，然后根据自己电脑配置和需求给虚拟机分配资源<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516460.png?x-oss-process=style/ezio" title="虚拟机设置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516460.png?x-oss-process=style/ezio" alt="虚拟机设置"></a><br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516873.png?x-oss-process=style/ezio" title="CPU配置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516873.png?x-oss-process=style/ezio" alt="CPU配置"></a></p>
-<h3 id="安装操作系统"><a href="#安装操作系统" class="headerlink" title="安装操作系统"></a>安装操作系统</h3><p>在配置完后，可以看到一个有播放按钮的窗口，这就是刚创建的虚拟机，点击播放按钮运行。<br>第一次点击了播放按钮后▶️的时候，<strong>记得狂敲击回车键 ！！！！</strong><br>等出现了 VMware转圈加载画面后就可以停了<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101530253.png?x-oss-process=style/ezio" title="VMware加载" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101530253.png?x-oss-process=style/ezio" alt="VMware加载"></a></p>
-<p>成功出现Windows安装页面<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101532993.png?x-oss-process=style/ezio" title="Windows安装界面" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101532993.png?x-oss-process=style/ezio" alt="Windows安装界面"></a></p>
-<p>按照傻瓜式操作，一步一步安装即可，在选择版本的时候选择 <strong>专业版</strong> 即可</p>
-<p>当出现下面这个界面的时候选自定义安装即可<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101553688.png?x-oss-process=style/ezio" title="自定义安装" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101553688.png?x-oss-process=style/ezio" alt="自定义安装"></a><br>然后继续跟随提示下一步，等待安装完成重启</p>
-<p>之后会出现选择地区的界面：<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111138107.png?x-oss-process=style/ezio" title="选择地区" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111138107.png?x-oss-process=style/ezio" alt="选择地区"></a><br>在此界面通过快捷键 Fn + Shfit + F10 调出Windows命令行窗口，然后输入以下命令并敲击回车：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ OOBE\BYPASSNRO</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111142738.png?x-oss-process=style/ezio" title="开启OOBE" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111142738.png?x-oss-process=style/ezio" alt="开启OOBE"></a></p>
-<p>执行此命令的原因是在OOBE下，win11可以在无法连接网络的情况下继续安装，不然等会进行到后面的需要联网的步骤时无法继续安装；等待虚拟机重启完成，然后继续按照提示一步步安装就行了</p>
-<p>等出现这个界面就是安装好了：</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111150434.png?x-oss-process=style/ezio" title="win11界面" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111150434.png?x-oss-process=style/ezio" alt="win11界面"></a></p>
-<p>但是现在还没有办法联网，需要安装 VMware Tools，点击工具栏的虚拟机，选择安装 VMware Tools 选项</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111153581.png?x-oss-process=style/ezio" title="安装VMware Tools" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111153581.png?x-oss-process=style/ezio" alt="安装VMware Tools"></a></p>
-<p>等一会儿会跳出光驱已经加载好了，然后需要我们手动安装：</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111156892.png?x-oss-process=style/ezio" title="加载光驱" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111156892.png?x-oss-process=style/ezio" alt="加载光驱"></a></p>
-<p>以管理员身份运行 PowerShell</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111457477.png?x-oss-process=style/ezio" title="打开powershell" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111457477.png?x-oss-process=style/ezio" alt="打开powershell"></a></p>
-<p>执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ set-executionpolicy remotesigned</span><br></pre></td></tr></table></figure>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111505089.png?x-oss-process=style/ezio" title="执行命令" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111505089.png?x-oss-process=style/ezio" alt="执行命令"></a><br>然后输入“A” 即可</p>
-<p>打开文件资源管理器，进入驱动D盘，会看到一个 setup 文件，右键用PowerShell运行该文件，安装完成就可以联网了</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Mac</category>
-      </categories>
-      <tags>
-        <tag>Mac</tag>
-      </tags>
   </entry>
   <entry>
     <title>hexo+GitHub pages搭建个人博客</title>
@@ -3128,10 +2964,25 @@
       </tags>
   </entry>
   <entry>
-    <title>工厂方法模式</title>
-    <url>/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>亦称：</strong> 虚拟构造函数、Virtual Constructor、Factory Method</p>
-<p>**工厂方法模式 **是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+    <title>事务的四大特性</title>
+    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的四大特性简称：<strong>ACID</strong>，具体如下：</p>
+<ul>
+<li><p><strong>原子性（Atomicity）</strong></p>
+<p>事务的原子性是指事务必须是一个原子的操作序列单元。事务中包含的各项操作在一次执行过程中，只允许出现两种状态之一，要么都成功，要么都失败</p>
+</li>
+<li><p><strong>一致性（Consistency）</strong></p>
+<p>事务的一致性是指事务的执行不能破坏数据库数据的完整性和一致性，一个事务在执行之前和执行之后，数据库都必须处以一致性状态。</p>
+<p>比如：如果从A账户转账到B账户，不可能因为A账户扣了钱，而B账户没有加钱</p>
+</li>
+<li><p><strong>隔离性（Isolation）</strong></p>
+<p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
+<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的</p>
+</li>
+<li><p><strong>持久性（Duration）</strong></p>
+<p>事务的持久性是指事务一旦提交后，数据库中的数据必须被永久的保存下来。即使服务器系统崩溃或服务器宕机等故障。只要数据库重新启动，那么一定能够将其恢复到事务成功结束后的状态</p>
+</li>
+</ul>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -3139,16 +2990,33 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>设计模式</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>设计模式</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
-    <title>接口隔离原则</title>
-    <url>/2024/04/01/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>客户端不应该被迫依赖于它不使用的方法；一个类对另一个类的依赖应该建立在最小的接口上。</strong></p>
+    <title>事务的隔离级别</title>
+    <url>/2021/04/15/%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>事务的隔离性是指在并发环境中，并发的事务是互相隔离的，一个事务的执行不能被其它事务干扰。也就是说，不同的事务并发操作相同的数据时，每个事务都有各自完整的数据空间。</p>
+<p>一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务是不能互相干扰的。<br>不同的隔离级别可以解决不同的问题，SQL的标准事务隔离级别包括：</p>
+<ul>
+<li><p><strong>读未提交</strong>（read uncommitted）： 一个事务还没有提交时，它做的变更就能被别的事务看到。</p>
+</li>
+<li><p><strong>读提交</strong>（read committed）： 一个事物提交之后，它做的变更才会被其他事务看到。</p>
+</li>
+<li><p><strong>可重复读</strong>（repeatable read）： 一个事物执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。未提交变更对其他事务也是不可见的。</p>
+</li>
+<li><p><strong>串行化</strong>（serializable）： 对于同一行记录，写会加“写锁”，读会加“读锁”，当出现锁冲突时，后访问的事务需要等前一个事务执行完成，才能继续执行。</p>
+</li>
+</ul>
+<p>可能导致的问题有</p>
+<ol>
+<li><strong>脏读</strong>： 一个事务读到另一个事务未提交的更新数据。</li>
+<li><strong>不可重复读</strong>： 一个事务两次读同一行数据，可是这两次读到的数据不一样。</li>
+<li><strong>幻读</strong>：一个事务执行两次查询，但第二次查询比第一次查询多出了一些数据行。</li>
+</ol>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -3156,10 +3024,10 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>软件设计原则</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>软件设计原则</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -3180,6 +3048,103 @@
       </tags>
   </entry>
   <entry>
+    <title>合成复用原则</title>
+    <url>/2024/04/01/%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>合成复用原则是指：<strong>尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。</strong></p>
+<p>通常类的复用分为继承复用和合成复用两种。</p>
+<p>继承复用虽然有简单和易实现的优点，但它也存在以下缺点：</p>
+<ol>
+<li>继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。</li>
+<li>子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。</li>
+<li>它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。</li>
+</ol>
+<p>采用组合或聚合复用时，可以将已有对象纳入新对象中，使之成为新对象的一部分，新对象可以调用已有对象的功能，它有以下优点：</p>
+<ol>
+<li>它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。</li>
+<li>对象间的耦合度低。可以在类的成员位置声明抽象。</li>
+<li>复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>软件设计原则</category>
+      </categories>
+      <tags>
+        <tag>软件设计原则</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在M1/M2芯片的Mac上通过VMware Fusion 13安装Windows 11</title>
+    <url>/2023/08/09/%E5%9C%A8M1:M2%E8%8A%AF%E7%89%87%E7%9A%84Mac%E4%B8%8A%E9%80%9A%E8%BF%87VMware-Fusion-13%E5%AE%89%E8%A3%85Windows-11/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
+<p>电脑：MacBook Pro</p>
+<p>CPU：M1 Pro芯片</p>
+<p>前期准备：首先需要在电脑上安装的有 <strong>VMware Fusion 13</strong> 软件，且需要Mac为安装 Windows 11系统 预留至少 70GB 的存储空间</p>
+</blockquote>
+<h3 id="下载安装-VMware-Fusion-13"><a href="#下载安装-VMware-Fusion-13" class="headerlink" title="下载安装 VMware Fusion 13"></a>下载安装 VMware Fusion 13</h3><p>可以通过官网地址进行下载安装：<a href="https://www.vmware.com/in/products/fusion.html">VMware Fusion 官网</a>；点击此链接跳转到官网，然后注册个人用户账户，注册完后再登录该官网。</p>
+<p>登录后，在许可证和下载部分下，您将看到适用于 Apple Silicon 的 VMware Fusion 13 和许可证密钥。 继续复制免费许可证密钥，并下载 dmg 文件。<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091531961.png?x-oss-process=style/ezio" title="VMware Fusion 13下载安装" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091531961.png?x-oss-process=style/ezio" alt="VMware Fusion 13下载安装"></a><br>下载好dmg文件后双击进行安装，安装好后通过官网上的免费许可证密钥进行激活，关于 VMware Fusion 的一些选项都选择允许，然后重启VMware即可正常使用。</p>
+<h3 id="下载-Windows-11-ARM64-OR-ISO"><a href="#下载-Windows-11-ARM64-OR-ISO" class="headerlink" title="下载 Windows 11 ARM64 OR ISO"></a>下载 Windows 11 ARM64 OR ISO</h3><p>安装 Windows 11 系统的话，可以通过两种方式进行操作，分别是通过官网直接下载 win11 arm64版本 和 下载ISO镜像文件 安装。</p>
+<h4 id="下载-ARM64"><a href="#下载-ARM64" class="headerlink" title="下载 ARM64"></a>下载 ARM64</h4><p>官网链接🔗：<a href="https://www.microsoft.com/en-us/windowsinsider/getting-started#flight">https://www.microsoft.com/en-us/windowsinsider/getting-started#flight</a><br>点击链接后注册账户，如果有的话就不用注册了。</p>
+<p>然后点击第二个链接：<a href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64">https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewARM64</a>下载，选择 beta 测试版本<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091552563.png?x-oss-process=style/ezio" title="下载Win11 ARM" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308091552563.png?x-oss-process=style/ezio" alt="下载Win11 ARM"></a></p>
+<p>镜像下载下来后，需要将文件转为VMDK：<br>首先如果没有安装Homebrew的话就先安装，教程在网上有很多，不是本文重点，就不在这里展开了。<br>安装好 Homebrew 后，打开命令行，安装 QEMU 包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install qemu</span><br></pre></td></tr></table></figure>
+
+<p>再通过命令，将下载下来的 VHDX 文件转为 VMDK，注意自己下载的文件路径</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ qemu-img convert -O vmdk ~/Downloads/Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX ~/Downloads/windows11.vmdk -p</span><br></pre></td></tr></table></figure>
+
+<p>就这样，我们创建了一个 VMware 兼容的磁盘文件。</p>
+<h4 id="下载-ISO-推荐"><a href="#下载-ISO-推荐" class="headerlink" title="下载 ISO (推荐)"></a>下载 ISO (推荐)</h4><p>这个渠道就比较多了，也很好找，可以通过百度、官网、阿里云 或者 <a href="https://next.itellyou.cn/">I TELL YOU</a>网站（个人之前在上面下载镜像）<br>也可以用我自己阿里云盘分享的镜像：<a href="https://www.aliyundrive.com/s/if9jB5Rp9yF">https://www.aliyundrive.com/s/if9jB5Rp9yF</a> 下载下来后将文件后缀 <strong>.mp4</strong> 改为 <strong>.iso</strong></p>
+<h3 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h3><p>这里以下载的 ISO 镜像文件创建虚拟机为例，打开安装好的 VMware Fusion 13，新建一个虚拟机，也可以快捷键 command + N。</p>
+<p>直接将下载好的 ISO 文件拖放到创建虚拟机窗口。如图：</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101449628.png?x-oss-process=style/ezio" title="创建虚拟机" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101449628.png?x-oss-process=style/ezio" alt="创建虚拟机"></a></p>
+<p>点击继续，固件选择UEFI</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101452590.png?x-oss-process=style/ezio" title="选择固件" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101452590.png?x-oss-process=style/ezio" alt="选择固件"></a></p>
+<p>设置密码</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101505126.png?x-oss-process=style/ezio" title="设置密码" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101505126.png?x-oss-process=style/ezio" alt="设置密码"></a></p>
+<p>设置完成后点击自定义配置</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101508439.png?x-oss-process=style/ezio" title="完成设置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101508439.png?x-oss-process=style/ezio" alt="完成设置"></a></p>
+<p>需先选择虚拟机存储位置，没有特殊需求默认即可</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101512810.png?x-oss-process=style/ezio" title="选择虚拟机存储位置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101512810.png?x-oss-process=style/ezio" alt="选择虚拟机存储位置"></a></p>
+<p>选择玩存储位置后，会弹出设置选项界面，然后根据自己电脑配置和需求给虚拟机分配资源<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516460.png?x-oss-process=style/ezio" title="虚拟机设置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516460.png?x-oss-process=style/ezio" alt="虚拟机设置"></a><br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516873.png?x-oss-process=style/ezio" title="CPU配置" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101516873.png?x-oss-process=style/ezio" alt="CPU配置"></a></p>
+<h3 id="安装操作系统"><a href="#安装操作系统" class="headerlink" title="安装操作系统"></a>安装操作系统</h3><p>在配置完后，可以看到一个有播放按钮的窗口，这就是刚创建的虚拟机，点击播放按钮运行。<br>第一次点击了播放按钮后▶️的时候，<strong>记得狂敲击回车键 ！！！！</strong><br>等出现了 VMware转圈加载画面后就可以停了<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101530253.png?x-oss-process=style/ezio" title="VMware加载" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101530253.png?x-oss-process=style/ezio" alt="VMware加载"></a></p>
+<p>成功出现Windows安装页面<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101532993.png?x-oss-process=style/ezio" title="Windows安装界面" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101532993.png?x-oss-process=style/ezio" alt="Windows安装界面"></a></p>
+<p>按照傻瓜式操作，一步一步安装即可，在选择版本的时候选择 <strong>专业版</strong> 即可</p>
+<p>当出现下面这个界面的时候选自定义安装即可<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101553688.png?x-oss-process=style/ezio" title="自定义安装" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308101553688.png?x-oss-process=style/ezio" alt="自定义安装"></a><br>然后继续跟随提示下一步，等待安装完成重启</p>
+<p>之后会出现选择地区的界面：<br><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111138107.png?x-oss-process=style/ezio" title="选择地区" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111138107.png?x-oss-process=style/ezio" alt="选择地区"></a><br>在此界面通过快捷键 Fn + Shfit + F10 调出Windows命令行窗口，然后输入以下命令并敲击回车：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ OOBE\BYPASSNRO</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111142738.png?x-oss-process=style/ezio" title="开启OOBE" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111142738.png?x-oss-process=style/ezio" alt="开启OOBE"></a></p>
+<p>执行此命令的原因是在OOBE下，win11可以在无法连接网络的情况下继续安装，不然等会进行到后面的需要联网的步骤时无法继续安装；等待虚拟机重启完成，然后继续按照提示一步步安装就行了</p>
+<p>等出现这个界面就是安装好了：</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111150434.png?x-oss-process=style/ezio" title="win11界面" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111150434.png?x-oss-process=style/ezio" alt="win11界面"></a></p>
+<p>但是现在还没有办法联网，需要安装 VMware Tools，点击工具栏的虚拟机，选择安装 VMware Tools 选项</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111153581.png?x-oss-process=style/ezio" title="安装VMware Tools" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111153581.png?x-oss-process=style/ezio" alt="安装VMware Tools"></a></p>
+<p>等一会儿会跳出光驱已经加载好了，然后需要我们手动安装：</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111156892.png?x-oss-process=style/ezio" title="加载光驱" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111156892.png?x-oss-process=style/ezio" alt="加载光驱"></a></p>
+<p>以管理员身份运行 PowerShell</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111457477.png?x-oss-process=style/ezio" title="打开powershell" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111457477.png?x-oss-process=style/ezio" alt="打开powershell"></a></p>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ set-executionpolicy remotesigned</span><br></pre></td></tr></table></figure>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111505089.png?x-oss-process=style/ezio" title="执行命令" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/202308111505089.png?x-oss-process=style/ezio" alt="执行命令"></a><br>然后输入“A” 即可</p>
+<p>打开文件资源管理器，进入驱动D盘，会看到一个 setup 文件，右键用PowerShell运行该文件，安装完成就可以联网了</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Mac</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开闭原则</title>
     <url>/2024/03/26/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>对扩展开放，对修改关闭</strong>。</p>
@@ -3197,6 +3162,24 @@
       </categories>
       <tags>
         <tag>软件设计原则</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工厂方法模式</title>
+    <url>/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>亦称：</strong> 虚拟构造函数、Virtual Constructor、Factory Method</p>
+<p>**工厂方法模式 **是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -3237,6 +3220,116 @@
       </categories>
       <tags>
         <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>消息堆积</title>
+    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
+<p>解决消息堆积三种思路：</p>
+<ul>
+<li>增加更多消费者，加快消费速度</li>
+<li>在消费者内开启线程池加快消息处理速度</li>
+<li>扩大队列容积，提高堆积上限</li>
+</ul>
+<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
+<p>惰性队列特征如下：</p>
+<ul>
+<li>接收到消息后直接存入磁盘而非内存</li>
+<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
+<li>支持数百万条的消息存储</li>
+</ul>
+<p>用SpringAMQP声明惰性队列的方式：</p>
+<ul>
+<li>@Bean的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基于注解的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>惰性队列的优点：</p>
+<ul>
+<li>基于磁盘存储，消息上限更高</li>
+<li>没有间歇性的page-out，性能比较稳定</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>基于磁盘存储，消息时效性会降低</li>
+<li>性能受限于磁盘的IO</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理解计算机系统中的局部性原理</title>
+    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<blockquote>
+<ul>
+<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
+</ul>
+</blockquote>
+<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
+<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
+<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
+<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
+<ul>
+<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
+</li>
+<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
+</li>
+<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
+</li>
+<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
+</li>
+<li><p>访问主存，cpu大约需要200个时钟周期</p>
+</li>
+<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
+</li>
+</ul>
+<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>计算机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>接口隔离原则</title>
+    <url>/2024/04/01/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>客户端不应该被迫依赖于它不使用的方法；一个类对另一个类的依赖应该建立在最小的接口上。</strong></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>软件设计原则</category>
+      </categories>
+      <tags>
+        <tag>软件设计原则</tag>
       </tags>
   </entry>
   <entry>
@@ -3343,99 +3436,6 @@
       </categories>
       <tags>
         <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>消息堆积</title>
-    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
-<p>解决消息堆积三种思路：</p>
-<ul>
-<li>增加更多消费者，加快消费速度</li>
-<li>在消费者内开启线程池加快消息处理速度</li>
-<li>扩大队列容积，提高堆积上限</li>
-</ul>
-<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
-<p>惰性队列特征如下：</p>
-<ul>
-<li>接收到消息后直接存入磁盘而非内存</li>
-<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
-<li>支持数百万条的消息存储</li>
-</ul>
-<p>用SpringAMQP声明惰性队列的方式：</p>
-<ul>
-<li>@Bean的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>基于注解的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>惰性队列的优点：</p>
-<ul>
-<li>基于磁盘存储，消息上限更高</li>
-<li>没有间歇性的page-out，性能比较稳定</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>基于磁盘存储，消息时效性会降低</li>
-<li>性能受限于磁盘的IO</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>理解计算机系统中的局部性原理</title>
-    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<blockquote>
-<ul>
-<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
-</ul>
-</blockquote>
-<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
-<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
-<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
-<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
-<ul>
-<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
-</li>
-<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
-</li>
-<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
-</li>
-<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
-</li>
-<li><p>访问主存，cpu大约需要200个时钟周期</p>
-</li>
-<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
-</li>
-</ul>
-<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>计算机</tag>
       </tags>
   </entry>
   <entry>
