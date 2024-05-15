@@ -668,7 +668,7 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/tag/index.html</loc>
+    <loc>https://ezioy.cn/projects/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
     
@@ -677,7 +677,7 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/projects/index.html</loc>
+    <loc>https://ezioy.cn/tag/index.html</loc>
     
     <lastmod>2020-01-16</lastmod>
     
@@ -702,14 +702,14 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/tags/Docker/</loc>
+    <loc>https://ezioy.cn/tags/AJAX/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ezioy.cn/tags/AJAX/</loc>
+    <loc>https://ezioy.cn/tags/Docker/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -737,7 +737,7 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/tags/Feign/</loc>
+    <loc>https://ezioy.cn/tags/Spring-Gateway/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -751,7 +751,14 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/tags/Spring-Gateway/</loc>
+    <loc>https://ezioy.cn/tags/Feign/</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ezioy.cn/tags/Git/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -779,13 +786,6 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/tags/Git/</loc>
-    <lastmod>2024-05-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ezioy.cn/tags/Kafka/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -794,13 +794,6 @@
   
   <url>
     <loc>https://ezioy.cn/tags/Mac/</loc>
-    <lastmod>2024-05-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ezioy.cn/tags/Markdown/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -911,17 +904,17 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://ezioy.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://ezioy.cn/tags/Markdown/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
+
+  
   <url>
-    <loc>https://ezioy.cn/categories/Docker/</loc>
+    <loc>https://ezioy.cn/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -935,7 +928,21 @@
   </url>
   
   <url>
+    <loc>https://ezioy.cn/categories/Docker/</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://ezioy.cn/categories/Spring-Cloud/</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ezioy.cn/categories/Git/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -963,7 +970,7 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/categories/Git/</loc>
+    <loc>https://ezioy.cn/categories/Linux/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -977,21 +984,7 @@
   </url>
   
   <url>
-    <loc>https://ezioy.cn/categories/Linux/</loc>
-    <lastmod>2024-05-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ezioy.cn/categories/Mac/</loc>
-    <lastmod>2024-05-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ezioy.cn/categories/Markdown/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1069,6 +1062,13 @@
   
   <url>
     <loc>https://ezioy.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ezioy.cn/categories/Markdown/</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
