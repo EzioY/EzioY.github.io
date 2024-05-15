@@ -30,6 +30,34 @@
       </tags>
   </entry>
   <entry>
+    <title>AJAX异步请求</title>
+    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getXhr</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.<span class="property">responseText</span>;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">status</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.<span class="title function_">getJSON</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
+<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>AJAX</category>
+      </categories>
+      <tags>
+        <tag>AJAX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker</title>
     <url>/2022/07/20/Docker/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows操作系统的机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
@@ -115,79 +143,6 @@
       </categories>
       <tags>
         <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AJAX异步请求</title>
-    <url>/2020/07/18/AJAX%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h3 id="前端用js写原生AJAX"><a href="#前端用js写原生AJAX" class="headerlink" title="前端用js写原生AJAX"></a>前端用js写原生AJAX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getXhr</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//获取AJAX核心对象XMLHttpRequest</span></span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span></span><br><span class="line">    <span class="comment">//建立连接（指定一个发生请求的地址和方式），第三个参数默认true，表示异步，false同步。</span></span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;/AjaxTest&quot;</span>);</span><br><span class="line">    <span class="comment">//绑定事件（onreadystatechange）</span></span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> text = xhr.<span class="property">responseText</span>;</span><br><span class="line">            <span class="comment">//在这处理后端成功响应返回的数据</span></span><br><span class="line">            <span class="comment">//JSON.parse() 把json字符串转为json对象</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="后端处理AJAX请求："><a href="#后端处理AJAX请求：" class="headerlink" title="后端处理AJAX请求："></a>后端处理AJAX请求：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置响应数据类型和字符集编码</span></span><br><span class="line">resp.setContentType(<span class="string">&quot;appclication/json&quot;</span>)</span><br><span class="line"><span class="comment">//利用什么对象的输出流来输出json数据</span></span><br><span class="line">resp.getWriter().write(<span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;张三丰\&quot;,\&quot;age\&quot;:22&#125;&quot;</span>);</span><br><span class="line">resp.getWriter().flush();</span><br><span class="line">resp.getWriter().close();</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="利用jQuery发送AJAX请求："><a href="#利用jQuery发送AJAX请求：" class="headerlink" title="利用jQuery发送AJAX请求："></a>利用jQuery发送AJAX请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="comment">//请求方式，&quot;GET&quot;or&quot;POST&quot;，默认&quot;GET&quot;且忽略大小写</span></span><br><span class="line">    type : <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">//请求发送路径</span></span><br><span class="line">    url : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求内容类型</span></span><br><span class="line">    <span class="comment">//常用的三种content-type：application/x-www-form-urlencoded、application/json、multipart/form-data</span></span><br><span class="line">    <span class="comment">//application/json用来告诉服务端消息主体是序列化后的 JSON 字符串</span></span><br><span class="line">    contentType : <span class="string">&quot;application/json;charset=UTF-8&quot;</span></span><br><span class="line">    <span class="comment">//需要传递给后端的数据</span></span><br><span class="line">    data : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">//请求成功</span></span><br><span class="line">    success : <span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    	<span class="comment">//请求成功后的具体处理</span></span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">//请求失败，包含具体的错误信息</span></span><br><span class="line">    error : <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">status</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">responseText</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="jQuery针对与不同请求也提供了封装好的ajax请求："><a href="#jQuery针对与不同请求也提供了封装好的ajax请求：" class="headerlink" title="jQuery针对与不同请求也提供了封装好的ajax请求："></a>jQuery针对与不同请求也提供了封装好的ajax请求：</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中第一个参数为请求发送路径，第二个为请求携带参数（可省略），第三个为回调函数，第四个为请求内容类型（text，json）</span></span><br><span class="line">$.<span class="title function_">get</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法已指定了请求内容类型为json</span></span><br><span class="line">$.<span class="title function_">getJSON</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">post</span>(<span class="string">&quot;/url&quot;</span>,param,<span class="keyword">function</span>(<span class="params">result</span>)&#123;</span><br><span class="line">    <span class="comment">//处理响应</span></span><br><span class="line">&#125;,<span class="string">&quot;json&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>后端响应异步请求，可以利用springmvc的@ResponseBody注解：</p>
-<p>@ResponseBody是作用在方法上的，作用是将java对象转为json格式的数据，并把返回结果直接写入 HTTP response body 中。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">findAll</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> userService.findAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>AJAX</category>
-      </categories>
-      <tags>
-        <tag>AJAX</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker安装ES</title>
-    <url>/2022/11/07/Docker%E5%AE%89%E8%A3%85ES/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="1、拉取镜像"><a href="#1、拉取镜像" class="headerlink" title="1、拉取镜像"></a>1、拉取镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull elasticsearch:7.17.7</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2、创建挂载目录"><a href="#2、创建挂载目录" class="headerlink" title="2、创建挂载目录"></a>2、创建挂载目录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/config</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/data</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/plugins</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3、配置文件"><a href="#3、配置文件" class="headerlink" title="3、配置文件"></a>3、配置文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;http.host: 0.0.0.0&quot;</span> &gt;&gt; /opt/elasticsearch/config/elasticsearch.yml</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4、创建容器"><a href="#4、创建容器" class="headerlink" title="4、创建容器"></a>4、创建容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker run --name myes -p 9200:9200  -p 9300:9300 \ <span class="comment"># 端口号映射</span></span><br><span class="line"> -e <span class="string">&quot;discovery.type=single-node&quot;</span> \     <span class="comment"># 单点模式启动</span></span><br><span class="line"> -e ES_JAVA_OPTS=<span class="string">&quot;-Xms84m -Xmx512m&quot;</span> \  <span class="comment"># 设置启动占用的内存范围</span></span><br><span class="line"> -v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \ <span class="comment">#目录挂载</span></span><br><span class="line"> -v /opt/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line"> -v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line"> -d elasticsearch:7.17.7 <span class="comment"># 后台启动</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5、查看启动详情"><a href="#5、查看启动详情" class="headerlink" title="5、查看启动详情"></a>5、查看启动详情</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps  查看是否启动</span><br><span class="line">docker logs elasticsearch  启动日志查询</span><br><span class="line">docker restart elasticsearch   重启</span><br><span class="line">docker <span class="built_in">exec</span> -it elasticsearch bash 进入</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="6、安装-es-head-插件"><a href="#6、安装-es-head-插件" class="headerlink" title="6、安装 es-head 插件"></a>6、安装 es-head 插件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull mobz/elasticsearch-head:5-alpine</span><br><span class="line"></span><br><span class="line">docker run --name es-head -p 9100:9100 \</span><br><span class="line"> -d mobz/elasticsearch-head:5-alpine</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="7、可能出现问题"><a href="#7、可能出现问题" class="headerlink" title="7、可能出现问题"></a>7、可能出现问题</h3><p><code>文件夹无权限，启动失败</code>，可用如下命令解决：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> -R 777 /opt/elasticsearch</span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-        <tag>Linux</tag>
-        <tag>ElasticSearch</tag>
       </tags>
   </entry>
   <entry>
@@ -316,6 +271,51 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker安装ES</title>
+    <url>/2022/11/07/Docker%E5%AE%89%E8%A3%85ES/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="1、拉取镜像"><a href="#1、拉取镜像" class="headerlink" title="1、拉取镜像"></a>1、拉取镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull elasticsearch:7.17.7</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、创建挂载目录"><a href="#2、创建挂载目录" class="headerlink" title="2、创建挂载目录"></a>2、创建挂载目录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/config</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/data</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/plugins</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、配置文件"><a href="#3、配置文件" class="headerlink" title="3、配置文件"></a>3、配置文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;http.host: 0.0.0.0&quot;</span> &gt;&gt; /opt/elasticsearch/config/elasticsearch.yml</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、创建容器"><a href="#4、创建容器" class="headerlink" title="4、创建容器"></a>4、创建容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo docker run --name myes -p 9200:9200  -p 9300:9300 \ <span class="comment"># 端口号映射</span></span><br><span class="line"> -e <span class="string">&quot;discovery.type=single-node&quot;</span> \     <span class="comment"># 单点模式启动</span></span><br><span class="line"> -e ES_JAVA_OPTS=<span class="string">&quot;-Xms84m -Xmx512m&quot;</span> \  <span class="comment"># 设置启动占用的内存范围</span></span><br><span class="line"> -v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \ <span class="comment">#目录挂载</span></span><br><span class="line"> -v /opt/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line"> -v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line"> -d elasticsearch:7.17.7 <span class="comment"># 后台启动</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、查看启动详情"><a href="#5、查看启动详情" class="headerlink" title="5、查看启动详情"></a>5、查看启动详情</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps  查看是否启动</span><br><span class="line">docker logs elasticsearch  启动日志查询</span><br><span class="line">docker restart elasticsearch   重启</span><br><span class="line">docker <span class="built_in">exec</span> -it elasticsearch bash 进入</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6、安装-es-head-插件"><a href="#6、安装-es-head-插件" class="headerlink" title="6、安装 es-head 插件"></a>6、安装 es-head 插件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull mobz/elasticsearch-head:5-alpine</span><br><span class="line"></span><br><span class="line">docker run --name es-head -p 9100:9100 \</span><br><span class="line"> -d mobz/elasticsearch-head:5-alpine</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7、可能出现问题"><a href="#7、可能出现问题" class="headerlink" title="7、可能出现问题"></a>7、可能出现问题</h3><p><code>文件夹无权限，启动失败</code>，可用如下命令解决：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> -R 777 /opt/elasticsearch</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Linux</tag>
+        <tag>ElasticSearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring Gateway</title>
     <url>/2022/08/23/Gateway/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="搭建网关服务"><a href="#搭建网关服务" class="headerlink" title="搭建网关服务"></a>搭建网关服务</h3><p>1.新建一个module，引入依赖</p>
@@ -375,131 +375,6 @@
       <tags>
         <tag>Spring Cloud</tag>
         <tag>Spring Gateway</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Go程序结构</title>
-    <url>/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<blockquote>
-<ul>
-<li>GO语言学习资料推荐：Go语言圣经 <a href="http://gopl.io/">《The Go Programming Language》</a>中文翻译版 ：<a href="http://books.studygolang.com/gopl-zh/">http://books.studygolang.com/gopl-zh/</a></li>
-</ul>
-</blockquote>
-<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>名字必须以一个字母或下划线开头，后面可跟数字、字母、下划线。区分大小写</p>
-<p><strong>关键字：</strong></p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">break</span>      <span class="keyword">default</span>       <span class="function"><span class="keyword">func</span>     <span class="title">interface</span>   <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>       <span class="keyword">defer</span>         <span class="keyword">go</span>       <span class="keyword">map</span>         <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>       <span class="keyword">else</span>          <span class="keyword">goto</span>     <span class="keyword">package</span>     <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>      <span class="keyword">fallthrough</span>   <span class="keyword">if</span>       <span class="keyword">range</span>       <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>   <span class="keyword">for</span>           <span class="keyword">import</span>   <span class="keyword">return</span>      <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>预定义名字：</strong>主要对应内建常量、类型和函数</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">内建常量: <span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">内建类型: <span class="type">int</span> <span class="type">int8</span> <span class="type">int16</span> <span class="type">int32</span> <span class="type">int64</span></span><br><span class="line">         <span class="type">uint</span> <span class="type">uint8</span> <span class="type">uint16</span> <span class="type">uint32</span> <span class="type">uint64</span> <span class="type">uintptr</span></span><br><span class="line">         <span class="type">float32</span> <span class="type">float64</span> <span class="type">complex128</span> <span class="type">complex64</span></span><br><span class="line">         <span class="type">bool</span> <span class="type">byte</span> <span class="type">rune</span> <span class="type">string</span> <span class="type">error</span></span><br><span class="line"></span><br><span class="line">内建函数: <span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line">         <span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line">         <span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>Go语言主要有四种类型的声明语句：<strong>var、const、type</strong> 和 <strong>func</strong>，分别对应<strong>变量、常量、类型和函数实体对象</strong>的声明。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明包</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">//导入依赖</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明常量</span></span><br><span class="line"><span class="keyword">const</span> boilingF = <span class="number">212.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//声明变量</span></span><br><span class="line">    <span class="keyword">var</span> f = boilingF</span><br><span class="line">    <span class="keyword">var</span> c = (f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span></span><br><span class="line">    <span class="comment">//按格式打印输出</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;boiling point = %g°F or %g°C\n&quot;</span>, f, c)</span><br><span class="line">    <span class="comment">// Output:</span></span><br><span class="line">    <span class="comment">// boiling point = 212°F or 100°C</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>var声明语句可以创建一个特定类型的变量，然后给变量附加一个名字，并且设置变量的初始值。变量声明的一般语法如下：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名字 类型 = 表达式</span><br></pre></td></tr></table></figure>
-
-<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“*&#x3D; 表达式*”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
-<p><strong>零值初始化机制：</strong>可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。</p>
-<ul>
-<li><p>数值类型变量对应的零值：0</p>
-</li>
-<li><p>布尔类型变量对应的零值：false</p>
-</li>
-<li><p>字符串类型对应的零值：”“</p>
-</li>
-<li><p>接口或引用类型（包括slice、指针、map、chan和函数）变量对应的零值：nil</p>
-</li>
-<li><p>数组或结构体等聚合类型对应的零值：每个元素或字段都是对应该类型的零值。</p>
-</li>
-</ul>
-<h4 id="多变量声明"><a href="#多变量声明" class="headerlink" title="多变量声明"></a>多变量声明</h4><p>可同时声明多个变量，如果省略每个变量的类型，将可以声明多个类型不同的变量（类型由初始化表达式推导）：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i, j, k <span class="type">int</span>                 <span class="comment">// int, int, int</span></span><br><span class="line"><span class="keyword">var</span> b, f, s = <span class="literal">true</span>, <span class="number">2.3</span>, <span class="string">&quot;four&quot;</span> <span class="comment">// bool, float64, string</span></span><br></pre></td></tr></table></figure>
-
-<p>一组变量也可以通过调用一个函数，由函数返回的多个返回值初始化：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f, err = os.Open(name) <span class="comment">// os.Open returns a file and an error</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="简短变量声明"><a href="#简短变量声明" class="headerlink" title="简短变量声明"></a>简短变量声明</h4><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">变量名 := 表达式</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">anim := gif.GIF&#123;LoopCount: nframes&#125;</span><br><span class="line">freq := rand.Float64() * <span class="number">3.0</span></span><br><span class="line">t := <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
-
-<p>和var形式声明语句一样，简短变量声明语句也可以用来声明和初始化一组变量：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j := <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意区分：</strong> <strong>” :&#x3D; “</strong>是变量声明语句， <strong>”&#x3D;“</strong>是变量赋值操作</p>
-<p>将右边各个表达式的值赋值给左边对应位置的各个变量：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j = j, i <span class="comment">// 交换 i 和 j 的值</span></span><br></pre></td></tr></table></figure>
-
-<p>但如果变量之前声明过，则再次使用:&#x3D;声明则是赋值行为，其中err变量之前已经声明，则后面是对其进行赋值。<strong>且简短变量声明必须有一个新的变量被声明，否则编译不通过</strong>。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">in, err := os.Open(infile)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">out, err := os.Create(outfile)</span><br></pre></td></tr></table></figure>
-
-<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><ul>
-<li><p>一个变量对应一个保存了变量对应类型值的内存空间。</p>
-</li>
-<li><p>一个指针的值是另一个变量的地址。</p>
-</li>
-<li><p>一个指针对应变量在内存中的存储位置。</p>
-</li>
-<li><p>并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。</p>
-</li>
-<li><p>通过指针，我们可以直接读或更新对应变量的值，而不需要知道该变量的名字（如果变量有名字的话）。</p>
-</li>
-</ul>
-<p>如果用“var x int”声明语句声明一个x变量，那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针，指针对应的数据类型是<code>*int</code>，指针被称之为“指向int类型的指针”。如果指针名字为p，那么可以说“p指针指向变量x”，或者说“p指针保存了x变量的内存地址”。同时<code>*p</code>表达式对应p指针指向的变量的值。一般<code>*p</code>表达式读取指针指向的变量的值，这里为int类型的值，同时因为<code>*p</code>对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明变量</span></span><br><span class="line">x := <span class="number">1</span></span><br><span class="line"><span class="comment">//声明指向x变量的指针 p</span></span><br><span class="line">p := &amp;x         <span class="comment">// p, of type *int, points to x</span></span><br><span class="line"><span class="comment">//*p p指针指向的变量的值</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;1&quot;</span></span><br><span class="line"><span class="comment">//更新指针所指向变量的值</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// equivalent to x = 2</span></span><br><span class="line">fmt.Println(x)  <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>任何类型的指针的零值都是nil</strong>。如果p指向某个有效变量，那么<code>p != nil</code>测试为真。指针之间也是可以进行相等测试的，只有当它们指向同一个变量或全部是nil时才相等。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x, y <span class="type">int</span></span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="literal">nil</span>) <span class="comment">// &quot;true false false&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="new函数"><a href="#new函数" class="headerlink" title="new函数"></a>new函数</h4><p>创建变量还可以通过调用内建的new函数。表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code>。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="type">int</span>)   <span class="comment">// p, *int 类型, 指向匿名的 int 变量</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;0&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 设置 int 匿名变量的值为 2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>由于new只是一个预定义的函数，它并不是一个关键字，因此我们可以将new名字重新定义为别的类型。例如下面的例子：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delta</span><span class="params">(old, <span class="built_in">new</span> <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="keyword">return</span> <span class="built_in">new</span> - old &#125;</span><br></pre></td></tr></table></figure>
-
-<p>由于new被定义为int类型的变量名，因此在delta函数内部是无法使用内置的new函数的。</p>
-<h4 id="变量的声明周期"><a href="#变量的声明周期" class="headerlink" title="变量的声明周期"></a>变量的声明周期</h4><p>变量的生命周期指的是在程序运行期间变量有效存在的时间段。对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。而相比之下，局部变量的生命周期则是动态的：每次从创建一个新变量的声明语句开始，直到该变量不再被引用为止，然后变量的存储空间可能被回收。函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
-<hr>
-<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x = <span class="number">1</span>                       <span class="comment">// 命名变量的赋值</span></span><br><span class="line">*p = <span class="literal">true</span>                   <span class="comment">// 通过指针间接赋值</span></span><br><span class="line">person.name = <span class="string">&quot;bob&quot;</span>         <span class="comment">// 结构体字段赋值</span></span><br><span class="line">count[x] = count[x] * scale <span class="comment">// 数组、slice或map的元素赋值</span></span><br></pre></td></tr></table></figure>
-
-<p>特定的二元算术运算符和赋值语句的复合操作有一个简洁形式，例如上面最后的语句可以重写为：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">count[x] *= scale</span><br></pre></td></tr></table></figure>
-
-<p>数值变量也可以支持<code>++</code>递增和<code>--</code>递减语句（译注：自增和自减是语句，而不是表达式，因此<code>x = i++</code>之类的表达式是错误的）：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">v := <span class="number">1</span></span><br><span class="line">v++    <span class="comment">// 等价方式 v = v + 1；v 变成 2</span></span><br><span class="line">v--    <span class="comment">// 等价方式 v = v - 1；v 变成 1</span></span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Go</category>
-      </categories>
-      <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git上传远程仓库命令组</title>
-    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -667,6 +542,131 @@
       </categories>
       <tags>
         <tag>HarmonyOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git上传远程仓库命令组</title>
+    <url>/2019/09/02/Git%E4%B8%8A%E4%BC%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%91%BD%E4%BB%A4%E7%BB%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="本地代码上传到github的远程仓库常用命令"><a href="#本地代码上传到github的远程仓库常用命令" class="headerlink" title="本地代码上传到github的远程仓库常用命令"></a>本地代码上传到github的远程仓库常用命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init //本地仓库初始化，创建一个仓库</span><br><span class="line">git add file //将文件添加到仓库中,实际上就是把文件修改添加到暂存区</span><br><span class="line">git <span class="built_in">rm</span> file //从仓库中删除文件，删除后需要提交</span><br><span class="line">git commit -m <span class="string">&quot;description&quot;</span> //将文件提交更改,实际上就是把暂存区的所有内容提交到当前分支</span><br><span class="line">(<span class="string">&quot;-m&quot;</span>:输入本次提交的说面，最好是有意义的)</span><br><span class="line"></span><br><span class="line">git status //查看仓库当前状态</span><br><span class="line">git diff file //查看文件具体修改内容</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> //查看提交日志，可加上--pretty=oneline参数使看起来更清晰</span><br><span class="line">git reset -hard HEAD^ //版本回退，HEAD表示当前版本，HEAD^回退到上一个版本，上上个版本即HEAD^^,</span><br><span class="line">如果回退的版本很远，例如上100个版本就用HEAD~100，也可以通过版本号来回退版本。</span><br><span class="line">git reflog //记录你的每一命令</span><br><span class="line"></span><br><span class="line">git checkout -- file //撤销工作区文件的修改</span><br><span class="line">git push -u origin master //把本地的内容推送到远程，实际上是把当前分支master推送到远程；</span><br><span class="line">如果是第一次推送可以加上-u参数让仓库关联起来</span><br><span class="line">git <span class="built_in">clone</span> git@github.com:xxx/xxx.git //从远程仓库克隆一个本地仓库</span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go程序结构</title>
+    <url>/2021/02/24/Go%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<blockquote>
+<ul>
+<li>GO语言学习资料推荐：Go语言圣经 <a href="http://gopl.io/">《The Go Programming Language》</a>中文翻译版 ：<a href="http://books.studygolang.com/gopl-zh/">http://books.studygolang.com/gopl-zh/</a></li>
+</ul>
+</blockquote>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>名字必须以一个字母或下划线开头，后面可跟数字、字母、下划线。区分大小写</p>
+<p><strong>关键字：</strong></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">break</span>      <span class="keyword">default</span>       <span class="function"><span class="keyword">func</span>     <span class="title">interface</span>   <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>       <span class="keyword">defer</span>         <span class="keyword">go</span>       <span class="keyword">map</span>         <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>       <span class="keyword">else</span>          <span class="keyword">goto</span>     <span class="keyword">package</span>     <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>      <span class="keyword">fallthrough</span>   <span class="keyword">if</span>       <span class="keyword">range</span>       <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>   <span class="keyword">for</span>           <span class="keyword">import</span>   <span class="keyword">return</span>      <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>预定义名字：</strong>主要对应内建常量、类型和函数</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">内建常量: <span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">内建类型: <span class="type">int</span> <span class="type">int8</span> <span class="type">int16</span> <span class="type">int32</span> <span class="type">int64</span></span><br><span class="line">         <span class="type">uint</span> <span class="type">uint8</span> <span class="type">uint16</span> <span class="type">uint32</span> <span class="type">uint64</span> <span class="type">uintptr</span></span><br><span class="line">         <span class="type">float32</span> <span class="type">float64</span> <span class="type">complex128</span> <span class="type">complex64</span></span><br><span class="line">         <span class="type">bool</span> <span class="type">byte</span> <span class="type">rune</span> <span class="type">string</span> <span class="type">error</span></span><br><span class="line"></span><br><span class="line">内建函数: <span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line">         <span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line">         <span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>Go语言主要有四种类型的声明语句：<strong>var、const、type</strong> 和 <strong>func</strong>，分别对应<strong>变量、常量、类型和函数实体对象</strong>的声明。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明包</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">//导入依赖</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明常量</span></span><br><span class="line"><span class="keyword">const</span> boilingF = <span class="number">212.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//声明变量</span></span><br><span class="line">    <span class="keyword">var</span> f = boilingF</span><br><span class="line">    <span class="keyword">var</span> c = (f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span></span><br><span class="line">    <span class="comment">//按格式打印输出</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;boiling point = %g°F or %g°C\n&quot;</span>, f, c)</span><br><span class="line">    <span class="comment">// Output:</span></span><br><span class="line">    <span class="comment">// boiling point = 212°F or 100°C</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>var声明语句可以创建一个特定类型的变量，然后给变量附加一个名字，并且设置变量的初始值。变量声明的一般语法如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名字 类型 = 表达式</span><br></pre></td></tr></table></figure>
+
+<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“*&#x3D; 表达式*”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
+<p><strong>零值初始化机制：</strong>可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。</p>
+<ul>
+<li><p>数值类型变量对应的零值：0</p>
+</li>
+<li><p>布尔类型变量对应的零值：false</p>
+</li>
+<li><p>字符串类型对应的零值：”“</p>
+</li>
+<li><p>接口或引用类型（包括slice、指针、map、chan和函数）变量对应的零值：nil</p>
+</li>
+<li><p>数组或结构体等聚合类型对应的零值：每个元素或字段都是对应该类型的零值。</p>
+</li>
+</ul>
+<h4 id="多变量声明"><a href="#多变量声明" class="headerlink" title="多变量声明"></a>多变量声明</h4><p>可同时声明多个变量，如果省略每个变量的类型，将可以声明多个类型不同的变量（类型由初始化表达式推导）：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i, j, k <span class="type">int</span>                 <span class="comment">// int, int, int</span></span><br><span class="line"><span class="keyword">var</span> b, f, s = <span class="literal">true</span>, <span class="number">2.3</span>, <span class="string">&quot;four&quot;</span> <span class="comment">// bool, float64, string</span></span><br></pre></td></tr></table></figure>
+
+<p>一组变量也可以通过调用一个函数，由函数返回的多个返回值初始化：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f, err = os.Open(name) <span class="comment">// os.Open returns a file and an error</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="简短变量声明"><a href="#简短变量声明" class="headerlink" title="简短变量声明"></a>简短变量声明</h4><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">变量名 := 表达式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">anim := gif.GIF&#123;LoopCount: nframes&#125;</span><br><span class="line">freq := rand.Float64() * <span class="number">3.0</span></span><br><span class="line">t := <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+
+<p>和var形式声明语句一样，简短变量声明语句也可以用来声明和初始化一组变量：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j := <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意区分：</strong> <strong>” :&#x3D; “</strong>是变量声明语句， <strong>”&#x3D;“</strong>是变量赋值操作</p>
+<p>将右边各个表达式的值赋值给左边对应位置的各个变量：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i, j = j, i <span class="comment">// 交换 i 和 j 的值</span></span><br></pre></td></tr></table></figure>
+
+<p>但如果变量之前声明过，则再次使用:&#x3D;声明则是赋值行为，其中err变量之前已经声明，则后面是对其进行赋值。<strong>且简短变量声明必须有一个新的变量被声明，否则编译不通过</strong>。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">in, err := os.Open(infile)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">out, err := os.Create(outfile)</span><br></pre></td></tr></table></figure>
+
+<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><ul>
+<li><p>一个变量对应一个保存了变量对应类型值的内存空间。</p>
+</li>
+<li><p>一个指针的值是另一个变量的地址。</p>
+</li>
+<li><p>一个指针对应变量在内存中的存储位置。</p>
+</li>
+<li><p>并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。</p>
+</li>
+<li><p>通过指针，我们可以直接读或更新对应变量的值，而不需要知道该变量的名字（如果变量有名字的话）。</p>
+</li>
+</ul>
+<p>如果用“var x int”声明语句声明一个x变量，那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针，指针对应的数据类型是<code>*int</code>，指针被称之为“指向int类型的指针”。如果指针名字为p，那么可以说“p指针指向变量x”，或者说“p指针保存了x变量的内存地址”。同时<code>*p</code>表达式对应p指针指向的变量的值。一般<code>*p</code>表达式读取指针指向的变量的值，这里为int类型的值，同时因为<code>*p</code>对应一个变量，所以该表达式也可以出现在赋值语句的左边，表示更新指针所指向的变量的值。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明变量</span></span><br><span class="line">x := <span class="number">1</span></span><br><span class="line"><span class="comment">//声明指向x变量的指针 p</span></span><br><span class="line">p := &amp;x         <span class="comment">// p, of type *int, points to x</span></span><br><span class="line"><span class="comment">//*p p指针指向的变量的值</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;1&quot;</span></span><br><span class="line"><span class="comment">//更新指针所指向变量的值</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// equivalent to x = 2</span></span><br><span class="line">fmt.Println(x)  <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>任何类型的指针的零值都是nil</strong>。如果p指向某个有效变量，那么<code>p != nil</code>测试为真。指针之间也是可以进行相等测试的，只有当它们指向同一个变量或全部是nil时才相等。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x, y <span class="type">int</span></span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == <span class="literal">nil</span>) <span class="comment">// &quot;true false false&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="new函数"><a href="#new函数" class="headerlink" title="new函数"></a>new函数</h4><p>创建变量还可以通过调用内建的new函数。表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后返回变量地址，返回的指针类型为<code>*T</code>。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="type">int</span>)   <span class="comment">// p, *int 类型, 指向匿名的 int 变量</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;0&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 设置 int 匿名变量的值为 2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>由于new只是一个预定义的函数，它并不是一个关键字，因此我们可以将new名字重新定义为别的类型。例如下面的例子：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delta</span><span class="params">(old, <span class="built_in">new</span> <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="keyword">return</span> <span class="built_in">new</span> - old &#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于new被定义为int类型的变量名，因此在delta函数内部是无法使用内置的new函数的。</p>
+<h4 id="变量的声明周期"><a href="#变量的声明周期" class="headerlink" title="变量的声明周期"></a>变量的声明周期</h4><p>变量的生命周期指的是在程序运行期间变量有效存在的时间段。对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。而相比之下，局部变量的生命周期则是动态的：每次从创建一个新变量的声明语句开始，直到该变量不再被引用为止，然后变量的存储空间可能被回收。函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
+<hr>
+<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x = <span class="number">1</span>                       <span class="comment">// 命名变量的赋值</span></span><br><span class="line">*p = <span class="literal">true</span>                   <span class="comment">// 通过指针间接赋值</span></span><br><span class="line">person.name = <span class="string">&quot;bob&quot;</span>         <span class="comment">// 结构体字段赋值</span></span><br><span class="line">count[x] = count[x] * scale <span class="comment">// 数组、slice或map的元素赋值</span></span><br></pre></td></tr></table></figure>
+
+<p>特定的二元算术运算符和赋值语句的复合操作有一个简洁形式，例如上面最后的语句可以重写为：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">count[x] *= scale</span><br></pre></td></tr></table></figure>
+
+<p>数值变量也可以支持<code>++</code>递增和<code>--</code>递减语句（译注：自增和自减是语句，而不是表达式，因此<code>x = i++</code>之类的表达式是错误的）：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">v := <span class="number">1</span></span><br><span class="line">v++    <span class="comment">// 等价方式 v = v + 1；v 变成 2</span></span><br><span class="line">v--    <span class="comment">// 等价方式 v = v - 1；v 变成 1</span></span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
       </tags>
   </entry>
   <entry>
@@ -922,41 +922,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java8-Optional</title>
-    <url>/2022/10/12/Java8-Optional/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>Optional</strong> 类是一个可以为 null 的容器对象。如果值存在则 <code>isPresent()</code> 方法会返回 true，调用 <code>get()</code> 方法会返回该对象。Optional提供很多有用的方法，这样我们就不用显式进行空值检测，它旨在减少代码中的 <em>NullPointerExceptions</em>，虽然还不能完全消除这些异常。</p>
-<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Optional.empty();          <span class="comment">//创建一个空的 Optional 实例</span></span><br><span class="line">Optional.of(T t);          <span class="comment">//创建一个 Optional 实例，当 t 为 null 时抛出异常</span></span><br><span class="line">Optional.ofNullable(T t);  <span class="comment">//创建一个 Optional 实例，但当 t 为 null 时不会抛出异常，而是返回一个空的实例</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">get();  <span class="comment">//获取optional实例中的对象，当 optional 容器为空时报错</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断 optional 是否为空，如果空则返回 false，否则返回 true</span></span><br><span class="line">isPresent();</span><br><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象传给 Comsumer 函数</span></span><br><span class="line">ifPresent(Consumer c);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则返回 other 这个默认值</span></span><br><span class="line">orElse(T other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则使用 Supplier 函数生成默认值 other</span></span><br><span class="line">orElseGet(Supplier&lt;T&gt; other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则抛出 Supplier 函数生成的异常</span></span><br><span class="line">orElseThrow(Supplier&lt;X&gt; exception);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">filter(Predicate&lt;T&gt; p);  </span><br><span class="line"><span class="comment">//如果 optional 不为空，则执行断言函数 p，如果 p 的结果为 true，则返回原本的 optional，否则返回空的 optional</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象 t 映射成另外一个对象 u，并将 u 存放到一个新的 optional 容器中。</span></span><br><span class="line">map(Function&lt;T, U&gt; mapper);</span><br><span class="line"><span class="comment">//跟上面一样，在 optional 不为空的情况下，将对象 t 映射成另外一个 optional</span></span><br><span class="line">flatMap(Function&lt; T,Optional&lt;U&gt;&gt; mapper);</span><br><span class="line"></span><br><span class="line"><span class="comment">//区别：map会自动将u放到optional中，而flatMap则需要手动给u创建一个optional</span></span><br></pre></td></tr></table></figure>
-
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java8-LocalDateTime</title>
     <url>/2021/04/13/Java8-LocalDateTime/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>在 <em>Java8</em> 中引入了新的日期类 <strong>LocalDateTime</strong> ，其主要原因是 <code>Java.util.Date</code> 和 <code>SimpleDateFormatter</code> 都不是线程安全的，而<code>LocalDate</code>和<code>LocalTime</code>和最基本的<code>String</code>一样，是 final 类型，不但线程安全，且不能修改。日期和时间被明确划分为 <code>LocalDate</code> 和 <code>LocalTime</code> ，<code>LocalDate</code> 无法包含时间，<code>LocalTime</code> 无法包含日期，<code>LocalDateTime</code> 才能同时包含日期和时间。</p>
@@ -1013,6 +978,58 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">LocalDateTime</span> <span class="variable">localDateTime</span> <span class="operator">=</span> instant.atZone(zoneId).toLocalDateTime();</span><br></pre></td></tr></table></figure>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8-Optional</title>
+    <url>/2022/10/12/Java8-Optional/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>Optional</strong> 类是一个可以为 null 的容器对象。如果值存在则 <code>isPresent()</code> 方法会返回 true，调用 <code>get()</code> 方法会返回该对象。Optional提供很多有用的方法，这样我们就不用显式进行空值检测，它旨在减少代码中的 <em>NullPointerExceptions</em>，虽然还不能完全消除这些异常。</p>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Optional.empty();          <span class="comment">//创建一个空的 Optional 实例</span></span><br><span class="line">Optional.of(T t);          <span class="comment">//创建一个 Optional 实例，当 t 为 null 时抛出异常</span></span><br><span class="line">Optional.ofNullable(T t);  <span class="comment">//创建一个 Optional 实例，但当 t 为 null 时不会抛出异常，而是返回一个空的实例</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">get();  <span class="comment">//获取optional实例中的对象，当 optional 容器为空时报错</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断 optional 是否为空，如果空则返回 false，否则返回 true</span></span><br><span class="line">isPresent();</span><br><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象传给 Comsumer 函数</span></span><br><span class="line">ifPresent(Consumer c);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则返回 other 这个默认值</span></span><br><span class="line">orElse(T other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则使用 Supplier 函数生成默认值 other</span></span><br><span class="line">orElseGet(Supplier&lt;T&gt; other);</span><br><span class="line"><span class="comment">//如果 optional 不为空，则返回 optional 中的对象；如果为 null，则抛出 Supplier 函数生成的异常</span></span><br><span class="line">orElseThrow(Supplier&lt;X&gt; exception);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">filter(Predicate&lt;T&gt; p);  </span><br><span class="line"><span class="comment">//如果 optional 不为空，则执行断言函数 p，如果 p 的结果为 true，则返回原本的 optional，否则返回空的 optional</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//如果 optional 不为空，则将 optional 中的对象 t 映射成另外一个对象 u，并将 u 存放到一个新的 optional 容器中。</span></span><br><span class="line">map(Function&lt;T, U&gt; mapper);</span><br><span class="line"><span class="comment">//跟上面一样，在 optional 不为空的情况下，将对象 t 映射成另外一个 optional</span></span><br><span class="line">flatMap(Function&lt; T,Optional&lt;U&gt;&gt; mapper);</span><br><span class="line"></span><br><span class="line"><span class="comment">//区别：map会自动将u放到optional中，而flatMap则需要手动给u创建一个optional</span></span><br></pre></td></tr></table></figure>
+
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8-Predicate函数</title>
+    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -1138,23 +1155,6 @@
 <p>\2.    控制并发数量：（核心线程和最大线程数控制）</p>
 <p>\3.    管理线程（设置线程的状态）</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java8-Predicate函数</title>
-    <url>/2021/04/15/Java8-Predicate%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Java8-Predicate函数"><a href="#Java8-Predicate函数" class="headerlink" title="Java8-Predicate函数"></a>Java8-Predicate函数</h1></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -1433,70 +1433,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux文件权限</title>
-    <url>/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>记录 linux 系统下文件权限相关的内容，Mac OS 下类似。</p>
-<h2 id="查看文件权限"><a href="#查看文件权限" class="headerlink" title="查看文件权限"></a>查看文件权限</h2><p>查看 linux 系统下的文件权限，可以使用 <code>ll</code> 命令或者 <code>ls</code> 命令 带 <code>-l</code>（长列表选项）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ ll</span><br><span class="line">total 160</span><br><span class="line">drwx------@  8 ezio  staff   256B Jul  5 14:47 Applications</span><br><span class="line">drwx------@ 10 ezio  staff   320B Jul 27 11:31 Desktop</span><br><span class="line">drwx------+  7 ezio  staff   224B Jun 17 15:01 Documents</span><br><span class="line">drwx------@ 22 ezio  staff   704B Jul 29 16:35 Downloads</span><br><span class="line">drwx------@ 94 ezio  staff   2.9K Jul 23 19:02 Library</span><br><span class="line">drwx------   4 ezio  staff   128B Nov 13  2021 Movies</span><br><span class="line">drwx------+  6 ezio  staff   192B Nov 18  2021 Music</span><br><span class="line">drwx------+  9 ezio  staff   288B Apr 26 10:25 Pictures</span><br><span class="line">drwxr-xr-x+  5 ezio  staff   160B Nov 14  2021 Public</span><br><span class="line">drwxr-xr-x   5 ezio  staff   160B Jul 29 17:48 file-share</span><br><span class="line">drwxr-xr-x   3 ezio  staff    96B Jul 26 17:17 node_modules</span><br><span class="line">-rw-r--r--   1 ezio  staff    27B Jun 24 13:47 package-lock.json</span><br><span class="line">drwxr-xr-x  20 ezio  staff   640B Jul 29 22:20 workspace</span><br><span class="line">-rw-r--r--   1 ezio  staff    86B Jul 26 17:17 yarn.lock</span><br></pre></td></tr></table></figure>
-
-<p>文件列表信息分为：文件类型、权限、链接数、所属用户、所属用户组、文件大小、最后修改时间、文件名。</p>
-<h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><p>linux 一共有 7 种文件类型，分别如下：</p>
-<ul>
-<li><code>-</code>: 普通文件</li>
-<li><code>d</code>: 目录文件</li>
-<li><code>l</code>: 链接文件</li>
-<li><code>b</code>: 块设备文件</li>
-<li><code>p</code>: 管道文件</li>
-<li><code>c</code>: 字符设备文件</li>
-<li><code>s</code>: 套接口文件 &#x2F; 数据接口文件</li>
-</ul>
-<p><em>后四种是特殊文件</em></p>
-<h2 id="文件权限对应关系"><a href="#文件权限对应关系" class="headerlink" title="文件权限对应关系"></a>文件权限对应关系</h2><table>
-<thead>
-<tr>
-<th>权限</th>
-<th>含义</th>
-<th>对应数字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>r</td>
-<td>读权限</td>
-<td>4</td>
-</tr>
-<tr>
-<td>w</td>
-<td>写权限</td>
-<td>2</td>
-</tr>
-<tr>
-<td>x</td>
-<td>执行权限</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<p>读、写、运行三项权限用数字表示就是 <strong>r&#x3D;4,w&#x3D;2,x&#x3D;1</strong>。所以，<code>-rw-r--r--</code> 用数字表示成 644。</p>
-<p>权限字段 <code>-rwxrwxrwx</code> 的内容总共会有 10 个 <code>-</code>，第一个表示文件类型，如该文件是<strong>文件 (- 表示）</strong>，<strong>文件夹 (d 表示）</strong>, <strong>连接文件 (l 表示）</strong>，后面 9 个按照每三位为一组分。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">drwxr-xr-x  5  ezio  staff  160B Jul 29 17:48 file-share</span><br></pre></td></tr></table></figure>
-
-<p><strong>d</strong>: 代表文件夹</p>
-<p><strong>rwx</strong>: 代表文件所有者 (u 表示）权限，这里是 ezio，ezio 对该文件拥有读写执行权限。</p>
-<p><strong>r-x</strong>: 代表所属（g 表示）的权限，这里同组用户拥有对该文件读和执行的权限。</p>
-<p><strong>r-x</strong>: 代表其他用户（o 表示）的权限，这里和上面权限一样。</p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux环境下安装JDK</title>
     <url>/2019/12/04/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85JDK/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
@@ -1572,14 +1508,56 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 错误：$r: command not found</title>
-    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Linux-错误：-‘-r‘-command-not-found"><a href="#Linux-错误：-‘-r‘-command-not-found" class="headerlink" title="Linux 错误：$‘\r‘:command not found"></a>Linux 错误：$‘\r‘:command not found</h1><p>在linux系统上执行shell脚本时，如果出现’$‘\r‘:command not found’报错，其原因是：shell脚本在windows系统下进行编辑后上传到linux系统上执行所报的错，因为在windows下换行时回车符+换行符（\r\n），而unix下是换行符（\n），linux下不识别 <strong>\r</strong> 为回车符，所以导致脚本执行报错，其本质是不同系统的编码问题。</p>
-<p><strong>解决方案：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install dos2unix</span><br><span class="line">dos2unix <span class="string">&#x27;脚本名.sh&#x27;</span> </span><br></pre></td></tr></table></figure>
+    <title>Linux文件权限</title>
+    <url>/2022/10/28/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>记录 linux 系统下文件权限相关的内容，Mac OS 下类似。</p>
+<h2 id="查看文件权限"><a href="#查看文件权限" class="headerlink" title="查看文件权限"></a>查看文件权限</h2><p>查看 linux 系统下的文件权限，可以使用 <code>ll</code> 命令或者 <code>ls</code> 命令 带 <code>-l</code>（长列表选项）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ ll</span><br><span class="line">total 160</span><br><span class="line">drwx------@  8 ezio  staff   256B Jul  5 14:47 Applications</span><br><span class="line">drwx------@ 10 ezio  staff   320B Jul 27 11:31 Desktop</span><br><span class="line">drwx------+  7 ezio  staff   224B Jun 17 15:01 Documents</span><br><span class="line">drwx------@ 22 ezio  staff   704B Jul 29 16:35 Downloads</span><br><span class="line">drwx------@ 94 ezio  staff   2.9K Jul 23 19:02 Library</span><br><span class="line">drwx------   4 ezio  staff   128B Nov 13  2021 Movies</span><br><span class="line">drwx------+  6 ezio  staff   192B Nov 18  2021 Music</span><br><span class="line">drwx------+  9 ezio  staff   288B Apr 26 10:25 Pictures</span><br><span class="line">drwxr-xr-x+  5 ezio  staff   160B Nov 14  2021 Public</span><br><span class="line">drwxr-xr-x   5 ezio  staff   160B Jul 29 17:48 file-share</span><br><span class="line">drwxr-xr-x   3 ezio  staff    96B Jul 26 17:17 node_modules</span><br><span class="line">-rw-r--r--   1 ezio  staff    27B Jun 24 13:47 package-lock.json</span><br><span class="line">drwxr-xr-x  20 ezio  staff   640B Jul 29 22:20 workspace</span><br><span class="line">-rw-r--r--   1 ezio  staff    86B Jul 26 17:17 yarn.lock</span><br></pre></td></tr></table></figure>
 
-<p>执行后该命令后再执行原脚本，报错消失。</p>
+<p>文件列表信息分为：文件类型、权限、链接数、所属用户、所属用户组、文件大小、最后修改时间、文件名。</p>
+<h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><p>linux 一共有 7 种文件类型，分别如下：</p>
+<ul>
+<li><code>-</code>: 普通文件</li>
+<li><code>d</code>: 目录文件</li>
+<li><code>l</code>: 链接文件</li>
+<li><code>b</code>: 块设备文件</li>
+<li><code>p</code>: 管道文件</li>
+<li><code>c</code>: 字符设备文件</li>
+<li><code>s</code>: 套接口文件 &#x2F; 数据接口文件</li>
+</ul>
+<p><em>后四种是特殊文件</em></p>
+<h2 id="文件权限对应关系"><a href="#文件权限对应关系" class="headerlink" title="文件权限对应关系"></a>文件权限对应关系</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>含义</th>
+<th>对应数字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>读权限</td>
+<td>4</td>
+</tr>
+<tr>
+<td>w</td>
+<td>写权限</td>
+<td>2</td>
+</tr>
+<tr>
+<td>x</td>
+<td>执行权限</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>读、写、运行三项权限用数字表示就是 <strong>r&#x3D;4,w&#x3D;2,x&#x3D;1</strong>。所以，<code>-rw-r--r--</code> 用数字表示成 644。</p>
+<p>权限字段 <code>-rwxrwxrwx</code> 的内容总共会有 10 个 <code>-</code>，第一个表示文件类型，如该文件是<strong>文件 (- 表示）</strong>，<strong>文件夹 (d 表示）</strong>, <strong>连接文件 (l 表示）</strong>，后面 9 个按照每三位为一组分。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">drwxr-xr-x  5  ezio  staff  160B Jul 29 17:48 file-share</span><br></pre></td></tr></table></figure>
+
+<p><strong>d</strong>: 代表文件夹</p>
+<p><strong>rwx</strong>: 代表文件所有者 (u 表示）权限，这里是 ezio，ezio 对该文件拥有读写执行权限。</p>
+<p><strong>r-x</strong>: 代表所属（g 表示）的权限，这里同组用户拥有对该文件读和执行的权限。</p>
+<p><strong>r-x</strong>: 代表其他用户（o 表示）的权限，这里和上面权限一样。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -1634,6 +1612,28 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux 错误：$r: command not found</title>
+    <url>/2021/05/31/Linux%E9%94%99%E8%AF%AF%EF%BC%9A%20$&#39;r&#39;%20command%20not%20found/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Linux-错误：-‘-r‘-command-not-found"><a href="#Linux-错误：-‘-r‘-command-not-found" class="headerlink" title="Linux 错误：$‘\r‘:command not found"></a>Linux 错误：$‘\r‘:command not found</h1><p>在linux系统上执行shell脚本时，如果出现’$‘\r‘:command not found’报错，其原因是：shell脚本在windows系统下进行编辑后上传到linux系统上执行所报的错，因为在windows下换行时回车符+换行符（\r\n），而unix下是换行符（\n），linux下不识别 <strong>\r</strong> 为回车符，所以导致脚本执行报错，其本质是不同系统的编码问题。</p>
+<p><strong>解决方案：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install dos2unix</span><br><span class="line">dos2unix <span class="string">&#x27;脚本名.sh&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<p>执行后该命令后再执行原脚本，报错消失。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mac安装Jenkins</title>
     <url>/2023/09/26/Mac%E5%AE%89%E8%A3%85Jenkins/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h4 id="使用-Homebrew-安装-Jenkins"><a href="#使用-Homebrew-安装-Jenkins" class="headerlink" title="使用 Homebrew 安装 Jenkins"></a>使用 Homebrew 安装 Jenkins</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install jenkins-lts</span><br></pre></td></tr></table></figure>
@@ -1683,6 +1683,57 @@
       </categories>
       <tags>
         <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyIsam和InnoDB的区别</title>
+    <url>/2021/04/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
+<li><strong>事务</strong></li>
+</ol>
+<p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="2">
+<li><strong>外键</strong></li>
+</ol>
+<p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
+<ol start="3">
+<li><p><strong>索引</strong></p>
+<p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
+</li>
+<li><p><strong>锁粒度方面</strong></p>
+</li>
+</ol>
+<p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
+<p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
+<p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
+<ol start="5">
+<li><strong>硬盘存储结构</strong></li>
+</ol>
+<p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
+<pre><code>    * Frm文件：表的定义文件
+    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
+    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
+    * .frm文件存储 表的定义。
+    * .MYD 数据文件（MYData）
+    * .MYI 索引文件 （MYIndex）
+</code></pre>
+<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
+<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
+<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
+<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
+<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
+<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1754,57 +1805,6 @@
 <p>该场景下得到的是A，B中不满足某一条件的记录之和。</p>
 <hr>
 <p>该文章借鉴参考于<a href="https://www.cnblogs.com/yuzhanhong/p/9286910.html">https://www.cnblogs.com/yuzhanhong/p/9286910.html</a></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MyIsam和InnoDB的区别</title>
-    <url>/2021/04/17/MyIsam%E5%92%8CInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="MyIsam-和-InnoDB-的常见区别："><a href="#MyIsam-和-InnoDB-的常见区别：" class="headerlink" title="MyIsam 和 InnoDB 的常见区别："></a>MyIsam 和 InnoDB 的常见区别：</h3><ol>
-<li><strong>事务</strong></li>
-</ol>
-<p>​		InnoDB 支持事务，MyISAM 不支持事务。这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
-<ol start="2">
-<li><strong>外键</strong></li>
-</ol>
-<p>​		InnoDB 支持外键，而 MyISAM 不支持。对一个包含外键的 InnoDB 表转为 MYISAM 会失败。</p>
-<ol start="3">
-<li><p><strong>索引</strong></p>
-<p>InnoDB 是聚集（聚簇）索引，MyISAM 是非聚集（非聚簇）索引。</p>
-</li>
-<li><p><strong>锁粒度方面</strong></p>
-</li>
-</ol>
-<p>​		InnoDB最小的锁粒度是行锁，MyISAM最小的锁粒度是表锁</p>
-<p>​		一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限。</p>
-<p>​		这也是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一。</p>
-<ol start="5">
-<li><strong>硬盘存储结构</strong></li>
-</ol>
-<p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
-<pre><code>    * Frm文件：表的定义文件
-    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
-    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
-    * .frm文件存储 表的定义。
-    * .MYD 数据文件（MYData）
-    * .MYI 索引文件 （MYIndex）
-</code></pre>
-<h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
-<p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
-<p>InnoDB中，在聚簇索引之上创建的索引称之为辅助索引，像复合索引、前缀索引、唯一索引等等。</p>
-<p>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替。<br>如果没有这样的索引，InnoDB 会在内部生成一个名为 GEN_CLUST_INDEX 的隐式的聚簇索引。</p>
-<p>2.<strong>非聚簇索引（MyISAM）</strong></p>
-<p>将数据与索引分开存储，表数据存储顺序与索引顺序无关。</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -2037,99 +2037,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis基本操作</title>
-    <url>/2020/07/10/Redis%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<h1 id="Redis-keys-命令"><a href="#Redis-keys-命令" class="headerlink" title="Redis keys 命令"></a>Redis keys 命令</h1><table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><strong>DEL key</strong></td>
-<td align="left">key存在时删除该key</td>
-</tr>
-<tr>
-<td align="center"><strong>DUMP Key</strong></td>
-<td align="left">序列化该key，并返回被序列化的值</td>
-</tr>
-<tr>
-<td align="center"><strong>EXISTS key</strong></td>
-<td align="left">检查给定的key是否存在</td>
-</tr>
-<tr>
-<td align="center"><strong>EXPIRE key seconds</strong></td>
-<td align="left">给该key设置过期时间，单位秒</td>
-</tr>
-<tr>
-<td align="center"><strong>EXPIREAT key timestamp</strong></td>
-<td align="left">EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)</td>
-</tr>
-<tr>
-<td align="center"><strong>PEXPIRE key milliseconds</strong></td>
-<td align="left">设置 key 的过期时间以毫秒计</td>
-</tr>
-<tr>
-<td align="center"><strong>PEXPIREAT key milliseconds-timestamp</strong></td>
-<td align="left">设置 key 过期时间的时间戳(unix timestamp) 以毫秒计</td>
-</tr>
-<tr>
-<td align="center"><strong>KEYS pattern</strong></td>
-<td align="left">查找所有符合给定模式( pattern)的 key</td>
-</tr>
-<tr>
-<td align="center"><strong>MOVE key db</strong></td>
-<td align="left">将当前数据库的 key 移动到给定的数据库 db 当中</td>
-</tr>
-<tr>
-<td align="center"><strong>PERSIST key</strong></td>
-<td align="left">移除 key 的过期时间，key 将持久保持</td>
-</tr>
-<tr>
-<td align="center"><strong>PTTL key</strong></td>
-<td align="left">以毫秒为单位返回 key 的剩余的过期时间</td>
-</tr>
-<tr>
-<td align="center"><strong>TTL key</strong></td>
-<td align="left">以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)</td>
-</tr>
-<tr>
-<td align="center"><strong>RANDOMKEY</strong></td>
-<td align="left">从当前数据库中随机返回一个 key</td>
-</tr>
-<tr>
-<td align="center"><strong>RENAME key newkey</strong></td>
-<td align="left">修改 key 的名称</td>
-</tr>
-<tr>
-<td align="center"><strong>RENAMENX key newkey</strong></td>
-<td align="left">仅当 newkey 不存在时，将 key 改名为 newkey</td>
-</tr>
-<tr>
-<td align="center"><strong>SCAN cursor [MATCH pattern] [COUNT count]</strong></td>
-<td align="left">迭代数据库中的数据库键</td>
-</tr>
-<tr>
-<td align="center"><strong>TYPE key</strong></td>
-<td align="left">返回 key 所储存的值的类型</td>
-</tr>
-</tbody></table>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RabbitMQ</title>
     <url>/2021/04/12/RabbitMQ/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>RabbitMQ是基于Erlang语言开发的开源消息通信中间件，<a href="https://www.rabbitmq.com/">官网地址</a></p>
@@ -2350,6 +2257,28 @@
       </tags>
   </entry>
   <entry>
+    <title>Spring-BeanFactoryAware接口</title>
+    <url>/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="1、用处"><a href="#1、用处" class="headerlink" title="1、用处"></a>1、用处</h3><p>获取bean</p>
+<h3 id="2、使用方法"><a href="#2、使用方法" class="headerlink" title="2、使用方法"></a>2、使用方法</h3><p>实现BeanFactoryAware接口的setBeanFactory方法。BeanFactoryAware也只有这个方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> BeanFactory beanFactory;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setBeanFactory</span><span class="params">(BeanFactory beanFactory)</span> <span class="keyword">throws</span> BeansException &#123;  </span><br><span class="line">    <span class="built_in">this</span>.beanFactory = beanFactory;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="type">Object</span> <span class="variable">object</span> <span class="operator">=</span> beanFactory.getBean(beanName); </span><br><span class="line"></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="built_in">this</span>.getBean(beanName); </span><br></pre></td></tr></table></figure>
+
+<h3 id="3、注意"><a href="#3、注意" class="headerlink" title="3、注意"></a>3、注意</h3><p>spring的IoC容器核心为BeanFactory接口，该接口的最常用实现是XmlBeanFactory类，该类使用xml配置文件来初始化一个BeanFactory实例。</p>
+<p>ApplicationContext是对BeanFactory接口的扩展，在大多数的应用中，使用ApplicationContext的优先级要高于BeanFactory</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring AMQP</title>
     <url>/2022/08/07/Spring-AMQP/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>AMQP：</strong>Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同的开发语言等条件的限制。Erlang 中的实现有 RabbitMQ 等。</p>
@@ -2390,14 +2319,85 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring-BeanFactoryAware接口</title>
-    <url>/2022/11/01/Spring-BeanFactoryAware%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="1、用处"><a href="#1、用处" class="headerlink" title="1、用处"></a>1、用处</h3><p>获取bean</p>
-<h3 id="2、使用方法"><a href="#2、使用方法" class="headerlink" title="2、使用方法"></a>2、使用方法</h3><p>实现BeanFactoryAware接口的setBeanFactory方法。BeanFactoryAware也只有这个方法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> BeanFactory beanFactory;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setBeanFactory</span><span class="params">(BeanFactory beanFactory)</span> <span class="keyword">throws</span> BeansException &#123;  </span><br><span class="line">    <span class="built_in">this</span>.beanFactory = beanFactory;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="type">Object</span> <span class="variable">object</span> <span class="operator">=</span> beanFactory.getBean(beanName); </span><br><span class="line"></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="built_in">this</span>.getBean(beanName); </span><br></pre></td></tr></table></figure>
-
-<h3 id="3、注意"><a href="#3、注意" class="headerlink" title="3、注意"></a>3、注意</h3><p>spring的IoC容器核心为BeanFactory接口，该接口的最常用实现是XmlBeanFactory类，该类使用xml配置文件来初始化一个BeanFactory实例。</p>
-<p>ApplicationContext是对BeanFactory接口的扩展，在大多数的应用中，使用ApplicationContext的优先级要高于BeanFactory</p>
+    <title>Redis基本操作</title>
+    <url>/2020/07/10/Redis%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<h1 id="Redis-keys-命令"><a href="#Redis-keys-命令" class="headerlink" title="Redis keys 命令"></a>Redis keys 命令</h1><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>DEL key</strong></td>
+<td align="left">key存在时删除该key</td>
+</tr>
+<tr>
+<td align="center"><strong>DUMP Key</strong></td>
+<td align="left">序列化该key，并返回被序列化的值</td>
+</tr>
+<tr>
+<td align="center"><strong>EXISTS key</strong></td>
+<td align="left">检查给定的key是否存在</td>
+</tr>
+<tr>
+<td align="center"><strong>EXPIRE key seconds</strong></td>
+<td align="left">给该key设置过期时间，单位秒</td>
+</tr>
+<tr>
+<td align="center"><strong>EXPIREAT key timestamp</strong></td>
+<td align="left">EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)</td>
+</tr>
+<tr>
+<td align="center"><strong>PEXPIRE key milliseconds</strong></td>
+<td align="left">设置 key 的过期时间以毫秒计</td>
+</tr>
+<tr>
+<td align="center"><strong>PEXPIREAT key milliseconds-timestamp</strong></td>
+<td align="left">设置 key 过期时间的时间戳(unix timestamp) 以毫秒计</td>
+</tr>
+<tr>
+<td align="center"><strong>KEYS pattern</strong></td>
+<td align="left">查找所有符合给定模式( pattern)的 key</td>
+</tr>
+<tr>
+<td align="center"><strong>MOVE key db</strong></td>
+<td align="left">将当前数据库的 key 移动到给定的数据库 db 当中</td>
+</tr>
+<tr>
+<td align="center"><strong>PERSIST key</strong></td>
+<td align="left">移除 key 的过期时间，key 将持久保持</td>
+</tr>
+<tr>
+<td align="center"><strong>PTTL key</strong></td>
+<td align="left">以毫秒为单位返回 key 的剩余的过期时间</td>
+</tr>
+<tr>
+<td align="center"><strong>TTL key</strong></td>
+<td align="left">以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)</td>
+</tr>
+<tr>
+<td align="center"><strong>RANDOMKEY</strong></td>
+<td align="left">从当前数据库中随机返回一个 key</td>
+</tr>
+<tr>
+<td align="center"><strong>RENAME key newkey</strong></td>
+<td align="left">修改 key 的名称</td>
+</tr>
+<tr>
+<td align="center"><strong>RENAMENX key newkey</strong></td>
+<td align="left">仅当 newkey 不存在时，将 key 改名为 newkey</td>
+</tr>
+<tr>
+<td align="center"><strong>SCAN cursor [MATCH pattern] [COUNT count]</strong></td>
+<td align="left">迭代数据库中的数据库键</td>
+</tr>
+<tr>
+<td align="center"><strong>TYPE key</strong></td>
+<td align="left">返回 key 所储存的值的类型</td>
+</tr>
+</tbody></table>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -2405,10 +2405,10 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>Spring</category>
+        <category>Redis</category>
       </categories>
       <tags>
-        <tag>Spring</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -2792,16 +2792,6 @@
       </tags>
   </entry>
   <entry>
-    <title>This is my first blog here</title>
-    <url>/2019/08/20/This-is-my-first-blog-here/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-  </entry>
-  <entry>
     <title>Vue入门</title>
     <url>/2023/06/19/Vue%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h3 id="创建VUE项目"><a href="#创建VUE项目" class="headerlink" title="创建VUE项目"></a>创建VUE项目</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init vue@latest</span><br></pre></td></tr></table></figure>
@@ -2848,6 +2838,16 @@
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+  </entry>
+  <entry>
+    <title>This is my first blog here</title>
+    <url>/2019/08/20/This-is-my-first-blog-here/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"></div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -3048,6 +3048,24 @@
       </tags>
   </entry>
   <entry>
+    <title>工厂方法模式</title>
+    <url>/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>亦称：</strong> 虚拟构造函数、Virtual Constructor、Factory Method</p>
+<p>**工厂方法模式 **是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>合成复用原则</title>
     <url>/2024/04/01/%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>合成复用原则是指：<strong>尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。</strong></p>
@@ -3165,10 +3183,9 @@
       </tags>
   </entry>
   <entry>
-    <title>工厂方法模式</title>
-    <url>/2022/11/01/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>亦称：</strong> 虚拟构造函数、Virtual Constructor、Factory Method</p>
-<p>**工厂方法模式 **是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+    <title>接口隔离原则</title>
+    <url>/2024/04/01/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>客户端不应该被迫依赖于它不使用的方法；一个类对另一个类的依赖应该建立在最小的接口上。</strong></p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -3176,10 +3193,10 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>]]></content>
       <categories>
-        <category>设计模式</category>
+        <category>软件设计原则</category>
       </categories>
       <tags>
-        <tag>设计模式</tag>
+        <tag>软件设计原则</tag>
       </tags>
   </entry>
   <entry>
@@ -3220,116 +3237,6 @@
       </categories>
       <tags>
         <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>消息堆积</title>
-    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
-<p>解决消息堆积三种思路：</p>
-<ul>
-<li>增加更多消费者，加快消费速度</li>
-<li>在消费者内开启线程池加快消息处理速度</li>
-<li>扩大队列容积，提高堆积上限</li>
-</ul>
-<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
-<p>惰性队列特征如下：</p>
-<ul>
-<li>接收到消息后直接存入磁盘而非内存</li>
-<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
-<li>支持数百万条的消息存储</li>
-</ul>
-<p>用SpringAMQP声明惰性队列的方式：</p>
-<ul>
-<li>@Bean的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>基于注解的方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>惰性队列的优点：</p>
-<ul>
-<li>基于磁盘存储，消息上限更高</li>
-<li>没有间歇性的page-out，性能比较稳定</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>基于磁盘存储，消息时效性会降低</li>
-<li>性能受限于磁盘的IO</li>
-</ul>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>RabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>RabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>理解计算机系统中的局部性原理</title>
-    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
-<blockquote>
-<ul>
-<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
-</ul>
-</blockquote>
-<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
-<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
-<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
-<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
-<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
-<ul>
-<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
-</li>
-<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
-</li>
-<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
-</li>
-<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
-</li>
-<li><p>访问主存，cpu大约需要200个时钟周期</p>
-</li>
-<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
-</li>
-</ul>
-<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>计算机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>接口隔离原则</title>
-    <url>/2024/04/01/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>客户端不应该被迫依赖于它不使用的方法；一个类对另一个类的依赖应该建立在最小的接口上。</strong></p>
-</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>]]></content>
-      <categories>
-        <category>软件设计原则</category>
-      </categories>
-      <tags>
-        <tag>软件设计原则</tag>
       </tags>
   </entry>
   <entry>
@@ -3436,6 +3343,99 @@
       </categories>
       <tags>
         <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>消息堆积</title>
+    <url>/2022/08/07/%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。最早接收到的消息，可能会成为死信，会被丢弃。</p>
+<p>解决消息堆积三种思路：</p>
+<ul>
+<li>增加更多消费者，加快消费速度</li>
+<li>在消费者内开启线程池加快消息处理速度</li>
+<li>扩大队列容积，提高堆积上限</li>
+</ul>
+<h3 id="惰性队列"><a href="#惰性队列" class="headerlink" title="惰性队列"></a>惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，增加了Lazy Queues的概念，也就是惰性队列。</p>
+<p>惰性队列特征如下：</p>
+<ul>
+<li>接收到消息后直接存入磁盘而非内存</li>
+<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
+<li>支持数百万条的消息存储</li>
+</ul>
+<p>用SpringAMQP声明惰性队列的方式：</p>
+<ul>
+<li>@Bean的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Queue <span class="title function_">lazyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> QueueBuilder.durable(<span class="string">&quot;lazy.queue&quot;</span>)</span><br><span class="line">        .lazy()</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基于注解的方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">    value = @Queue(name = &quot;lazy.queue&quot;, durable = &quot;true&quot;,</span></span><br><span class="line"><span class="meta">                   arguments = @Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)),</span></span><br><span class="line"><span class="meta">    exchange = @Exchange(name = &quot;lazy.direct&quot;),</span></span><br><span class="line"><span class="meta">    key = &quot;dl&quot;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenLazyQueue</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;消费者接收到lazy.queue的消息：【&quot;</span> + msg + <span class="string">&quot;】&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>惰性队列的优点：</p>
+<ul>
+<li>基于磁盘存储，消息上限更高</li>
+<li>没有间歇性的page-out，性能比较稳定</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>基于磁盘存储，消息时效性会降低</li>
+<li>性能受限于磁盘的IO</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>RabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>RabbitMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理解计算机系统中的局部性原理</title>
+    <url>/2021/06/08/%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
+<blockquote>
+<ul>
+<li>局部性原理百度定义：CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
+</ul>
+</blockquote>
+<p><strong>时间局部性（Temporal Locality）：</strong>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。（程序循环、堆栈等是产生时间局部性的原因。）</p>
+<p><strong>空间局部性（Spatial Locality）：</strong>在最近的将来将用到的信息很可能与正在使用的信息在空间地址上是临近的。</p>
+<p><strong>顺序局部性（Order Locality）：</strong>在典型程序中，除转移类指令外，大部分指令是顺序进行的。顺序执行和非顺序执行的比例大致是5:1。此外，对大型数组访问也是顺序的。（指令的顺序执行、数组的连续存放等是产生顺序局部性的原因。）</p>
+<p><a href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" title="计算机存储结构图" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210614200032.png?x-oss-process=style/ezio" alt="计算机存储结构图"></a></p>
+<p><strong>越接近cup的存储器速度越快容量越小，越远离cup的存储器速度越慢容量越大。</strong></p>
+<ul>
+<li><p>最高层的L0寄存器，cpu可以在1个时钟周期内访问它们</p>
+</li>
+<li><p>访问L1高速缓存，cpu大约需需要4个时钟周期</p>
+</li>
+<li><p>访问L2高速缓存，cpu大约需需要10个时钟周期</p>
+</li>
+<li><p>访问L3高速缓存，cpu大约需需要50个时钟周期 </p>
+</li>
+<li><p>访问主存，cpu大约需要200个时钟周期</p>
+</li>
+<li><p>访问硬盘，cpu大约需要1千万个时钟周期</p>
+</li>
+</ul>
+<p><em><strong>存储器层次结构的思想是上一层次的存储器是低一层次的高速缓存。</strong></em></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>计算机</tag>
       </tags>
   </entry>
   <entry>
