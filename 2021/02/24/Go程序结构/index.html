@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -221,7 +221,7 @@
 <p><strong>关键字：</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">break</span>      <span class="keyword">default</span>       <span class="function"><span class="keyword">func</span>     <span class="title">interface</span>   <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>       <span class="keyword">defer</span>         <span class="keyword">go</span>       <span class="keyword">map</span>         <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>       <span class="keyword">else</span>          <span class="keyword">goto</span>     <span class="keyword">package</span>     <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>      <span class="keyword">fallthrough</span>   <span class="keyword">if</span>       <span class="keyword">range</span>       <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>   <span class="keyword">for</span>           <span class="keyword">import</span>   <span class="keyword">return</span>      <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>预定义名字：</strong>主要对应内建常量、类型和函数</p>
+<p>**预定义名字：**主要对应内建常量、类型和函数</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">内建常量: <span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">内建类型: <span class="type">int</span> <span class="type">int8</span> <span class="type">int16</span> <span class="type">int32</span> <span class="type">int64</span></span><br><span class="line">         <span class="type">uint</span> <span class="type">uint8</span> <span class="type">uint16</span> <span class="type">uint32</span> <span class="type">uint64</span> <span class="type">uintptr</span></span><br><span class="line">         <span class="type">float32</span> <span class="type">float64</span> <span class="type">complex128</span> <span class="type">complex64</span></span><br><span class="line">         <span class="type">bool</span> <span class="type">byte</span> <span class="type">rune</span> <span class="type">string</span> <span class="type">error</span></span><br><span class="line"></span><br><span class="line">内建函数: <span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line">         <span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line">         <span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -232,8 +232,8 @@
 <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>var声明语句可以创建一个特定类型的变量，然后给变量附加一个名字，并且设置变量的初始值。变量声明的一般语法如下：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名字 类型 = 表达式</span><br></pre></td></tr></table></figure>
 
-<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“*&#x3D; 表达式*”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
-<p><strong>零值初始化机制：</strong>可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。</p>
+<p>其中 <strong>“<em>类型</em> “</strong> 或 <strong>“<em>&#x3D; 表达式</em>”</strong> 两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 </p>
+<p>**零值初始化机制：**可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。</p>
 <ul>
 <li><p>数值类型变量对应的零值：0</p>
 </li>
@@ -259,7 +259,7 @@
 <p>和var形式声明语句一样，简短变量声明语句也可以用来声明和初始化一组变量：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i, j := <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>注意区分：</strong> <strong>” :&#x3D; “</strong>是变量声明语句， <strong>”&#x3D;“</strong>是变量赋值操作</p>
+<p><strong>注意区分：</strong> **” :&#x3D; “**是变量声明语句， **”&#x3D;“**是变量赋值操作</p>
 <p>将右边各个表达式的值赋值给左边对应位置的各个变量：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i, j = j, i <span class="comment">// 交换 i 和 j 的值</span></span><br></pre></td></tr></table></figure>
 
@@ -394,7 +394,7 @@
     <div class="copyright">
         <span>
         Ezio
-        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
         
   			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 

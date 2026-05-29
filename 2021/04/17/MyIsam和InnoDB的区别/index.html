@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -233,12 +233,12 @@
 <li><strong>硬盘存储结构</strong></li>
 </ol>
 <p>​		InnoDB存储引擎存储数据库数据，一共有两个文件（没有专门保存数据的文件）：</p>
-<pre><code>    * Frm文件：表的定义文件
-    * Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
-    * MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
-    * .frm文件存储 表的定义。
-    * .MYD 数据文件（MYData）
-    * .MYI 索引文件 （MYIndex）
+<pre><code>	* Frm文件：表的定义文件
+	* Ibd：数据和索引存储文件。数据以主键进行聚集存储，把真正的数据保存在叶子节点中。
+	* MyISAM的话，在磁盘上存储成三个文件。（不同的扩展名）
+	* .frm文件存储 表的定义。
+	* .MYD 数据文件（MYData）
+	* .MYI 索引文件 （MYIndex）
 </code></pre>
 <h3 id="聚簇索引-和-非聚簇索引"><a href="#聚簇索引-和-非聚簇索引" class="headerlink" title="聚簇索引 和 非聚簇索引"></a>聚簇索引 和 非聚簇索引</h3><p>1.<strong>聚簇索引（InnoDB）</strong><br>将数据存储与索引放到了一块，索引结构的叶子节点保存了行数据。</p>
 <p>表数据按照索引的顺序来存储的，也就是说索引项的顺序与表中记录的物理顺序一致。</p>
@@ -339,7 +339,7 @@
     <div class="copyright">
         <span>
         Ezio
-        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
         
   			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 

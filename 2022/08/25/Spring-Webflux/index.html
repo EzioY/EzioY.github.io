@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -238,7 +238,7 @@
 </ul>
 <h3 id="Webflux-应用场景"><a href="#Webflux-应用场景" class="headerlink" title="Webflux 应用场景"></a>Webflux 应用场景</h3><ol>
 <li>特别适合在IO密集型的服务中，比如微服务网关。IO 密集型包括：磁盘IO密集型, 网络IO密集型，<strong>微服务网关就属于网络 IO 密集型，使用异步非阻塞式编程模型，能够显著地提升网关对下游服务转发的吞吐量，在微服务架构中，SpringMVC 和 SpringWebflux可以混合使用。</strong></li>
-<li><strong>WebFlux 不是 Spring MVC 的替代方案。</strong>虽然 WebFlux 也可以被运行在 Servlet 容器上（需是 Servlet 3.1+ 以上的容器），但是 WebFlux 主要还是应用在异步非阻塞编程模型，而 Spring MVC 是同步阻塞的，如果你目前在 Spring MVC 框架中大量使用非同步方案，那么，WebFlux 更适合的，否则，还是使用 Spring MVC 更合适。</li>
+<li>**WebFlux 不是 Spring MVC 的替代方案。**虽然 WebFlux 也可以被运行在 Servlet 容器上（需是 Servlet 3.1+ 以上的容器），但是 WebFlux 主要还是应用在异步非阻塞编程模型，而 Spring MVC 是同步阻塞的，如果你目前在 Spring MVC 框架中大量使用非同步方案，那么，WebFlux 更适合的，否则，还是使用 Spring MVC 更合适。</li>
 </ol>
 <h3 id="什么是响应式编程"><a href="#什么是响应式编程" class="headerlink" title="什么是响应式编程"></a>什么是响应式编程</h3><p><strong>响应式编程是一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。本质上是对数据流或某种变化所作出的反应，但是这个变化什么时候发生是未知的，所以他是一种基于异步、回调的方式在处理问题。</strong></p>
 <p>响应式编程基于Reactor（Reactor 是一个运行在 Java8 之上的响应式框架）的思想，当你做一个带有一定延迟的才能够返回的io操作时，不会阻塞，而是立刻返回一个流，并且订阅这个流，当这个流上产生了返回数据，可以立刻得到通知并调用回调函数处理数据。</p>
@@ -519,7 +519,7 @@
     <div class="copyright">
         <span>
         Ezio
-        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
         
   			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 

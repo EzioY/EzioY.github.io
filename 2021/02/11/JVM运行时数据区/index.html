@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -219,7 +219,7 @@
 <p>虚拟机会为每个线程分配一个虚拟机栈，每个虚拟机栈中都有若干个栈帧，每个栈帧中存储了局部变量表、操作数栈、动态链接、返回地址等。一个栈帧就对应Java代码中的一个方法，当线程执行到一个方法时，就代表这个方法对应的栈帧已经进入虚拟机栈并且处于栈顶的位置，每一个Java方法从被调用到执行结束，就对应了一个栈帧从入栈到出栈的过程。</p>
 <h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>本地方法栈与虚拟机栈的区别是，虚拟机栈执行的是Java方法，本地方法栈执行的是本地方法（Native Method）,其他基本上一致，在HotSpot中直接把本地方法栈和虚拟机栈合二为一。</p>
 <h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>和永久代类似，都是JVM规范对方法区的实现，但是元空间并不在虚拟机中，而是使用本地内存，元空间的大小仅受本地内存限制，但可以通过-XX:MetaspaceSize和-XX:MaxMetaspaceSize来指定元空间的大小</p>
-<p>jdk1.8中，存储的类信息、编译后的代码数据等已经移动到了<strong>元空间（MetaSpace）</strong>中，元空间并没有处于堆内存上，而是直接占用的本地内存（NativeMemory）。</p>
+<p>jdk1.8中，存储的类信息、编译后的代码数据等已经移动到了**元空间（MetaSpace）**中，元空间并没有处于堆内存上，而是直接占用的本地内存（NativeMemory）。</p>
 <p><a target="_blank" rel="noopener" href="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio" class="gallery-item"><img src="https://ezio-blogimages.oss-cn-beijing.aliyuncs.com/blog/oss_images/20210211172803.png?x-oss-process=style/ezio"></a></p>
 <p><strong>去永久代的原因有：</strong></p>
 <p>（1）字符串存在永久代中，容易出现性能问题和内存溢出。 </p>
@@ -324,7 +324,7 @@
     <div class="copyright">
         <span>
         Ezio
-        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
         
   			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 

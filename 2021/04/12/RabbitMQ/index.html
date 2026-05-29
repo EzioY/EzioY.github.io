@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -248,9 +248,9 @@
 <h5 id="2-运行容器"><a href="#2-运行容器" class="headerlink" title="2.运行容器"></a>2.运行容器</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -e RABBITMQ_DEFAULT_USER=ezio \  # 用户名</span><br><span class="line"> -e RABBITMQ_DEFAULT_PASS=123456 \  # 密码</span><br><span class="line"> --name mq \</span><br><span class="line"> --hostname mq1 \  # 主机名，集群部署会用到</span><br><span class="line"> -p 15672:15672 \  # rabbitmq管理平台端口</span><br><span class="line"> -p 5672:5672 \  # rabbitmq消息通信端口</span><br><span class="line"> -d \</span><br><span class="line"> rabbitmq:3-management</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="常见消息模型"><a href="#常见消息模型" class="headerlink" title="常见消息模型"></a>常见消息模型</h4><p><strong>publisher：</strong>消息发布者，将消息发送到交换机或队列</p>
-<p><strong>queue：</strong>消息队列，负责接收和缓存消息</p>
-<p><strong>consumer：</strong>消息消费者，订阅队列，处理队列中的消息</p>
+<h4 id="常见消息模型"><a href="#常见消息模型" class="headerlink" title="常见消息模型"></a>常见消息模型</h4><p>**publisher：**消息发布者，将消息发送到交换机或队列</p>
+<p>**queue：**消息队列，负责接收和缓存消息</p>
+<p>**consumer：**消息消费者，订阅队列，处理队列中的消息</p>
 <ul>
 <li>基本模式：一对一</li>
 </ul>
@@ -365,7 +365,7 @@
     <div class="copyright">
         <span>
         Ezio
-        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
         
   			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 

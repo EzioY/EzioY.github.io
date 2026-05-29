@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -215,7 +215,7 @@
 
 
 
-<h3 id="2、创建挂载目录"><a href="#2、创建挂载目录" class="headerlink" title="2、创建挂载目录"></a>2、创建挂载目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/config</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/data</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/elasticsearch/plugins</span><br></pre></td></tr></table></figure>
+<h3 id="2、创建挂载目录"><a href="#2、创建挂载目录" class="headerlink" title="2、创建挂载目录"></a>2、创建挂载目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /opt/elasticsearch/config</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /opt/elasticsearch/data</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /opt/elasticsearch/plugins</span><br></pre></td></tr></table></figure>
 
 
 
@@ -223,7 +223,7 @@
 
 
 
-<h3 id="4、创建容器"><a href="#4、创建容器" class="headerlink" title="4、创建容器"></a>4、创建容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --name myes -p 9200:9200  -p 9300:9300 \ <span class="comment"># 端口号映射</span></span><br><span class="line"> -e <span class="string">&quot;discovery.type=single-node&quot;</span> \     <span class="comment"># 单点模式启动</span></span><br><span class="line"> -e ES_JAVA_OPTS=<span class="string">&quot;-Xms84m -Xmx512m&quot;</span> \  <span class="comment"># 设置启动占用的内存范围</span></span><br><span class="line"> -v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \ <span class="comment">#目录挂载</span></span><br><span class="line"> -v /opt/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line"> -v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line"> -d elasticsearch:7.17.7 <span class="comment"># 后台启动</span></span><br></pre></td></tr></table></figure>
+<h3 id="4、创建容器"><a href="#4、创建容器" class="headerlink" title="4、创建容器"></a>4、创建容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker run --name myes -p 9200:9200  -p 9300:9300 \ <span class="comment"># 端口号映射</span></span><br><span class="line"> -e <span class="string">&quot;discovery.type=single-node&quot;</span> \     <span class="comment"># 单点模式启动</span></span><br><span class="line"> -e ES_JAVA_OPTS=<span class="string">&quot;-Xms84m -Xmx512m&quot;</span> \  <span class="comment"># 设置启动占用的内存范围</span></span><br><span class="line"> -v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \ <span class="comment">#目录挂载</span></span><br><span class="line"> -v /opt/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line"> -v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line"> -d elasticsearch:7.17.7 <span class="comment"># 后台启动</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -236,7 +236,7 @@
 
 
 <h3 id="7、可能出现问题"><a href="#7、可能出现问题" class="headerlink" title="7、可能出现问题"></a>7、可能出现问题</h3><p><code>文件夹无权限，启动失败</code>，可用如下命令解决：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> -R 777 /opt/elasticsearch</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> -R 777 /opt/elasticsearch</span><br></pre></td></tr></table></figure>
 
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
@@ -335,7 +335,7 @@
     <div class="copyright">
         <span>
         Ezio
-        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
         
   			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 

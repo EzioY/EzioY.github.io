@@ -47,7 +47,7 @@
     
 
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -219,11 +219,18 @@
 
 <h3 id="4-创建一个自己的redis配置文件准备挂载redis"><a href="#4-创建一个自己的redis配置文件准备挂载redis" class="headerlink" title="4.创建一个自己的redis配置文件准备挂载redis"></a>4.创建一个自己的redis配置文件准备挂载redis</h3><p>你自己创建一个目录用来存放redis的配置文件或者数据，配置文件可以重复使用，也不会随着容器删除而被删除</p>
 <ul>
-<li>创建文件夹<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> -p /Users/ezio/redis/myredis/conf</span><br><span class="line">$ <span class="built_in">mkdir</span> -p /Users/ezio/redis/myredis/data</span><br></pre></td></tr></table></figure></li>
-<li>进入刚创建的文件夹<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Users/ezio/redis/myredis/conf</span><br></pre></td></tr></table></figure></li>
-<li>创建配置文件redis.conf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
-按i进入编辑模式，然后将redis配置copy到文件中，然后保存退出；由于redis配置文件内容很长，就不放在这展示了，网上有很多，很容易找到</li>
+<li>创建文件夹</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> -p /Users/ezio/redis/myredis/conf</span><br><span class="line">$ <span class="built_in">mkdir</span> -p /Users/ezio/redis/myredis/data</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入刚创建的文件夹</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Users/ezio/redis/myredis/conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建配置文件redis.conf</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim redis.conf</span><br></pre></td></tr></table></figure>
+<p>按i进入编辑模式，然后将redis配置copy到文件中，然后保存退出；由于redis配置文件内容很长，就不放在这展示了，网上有很多，很容易找到</p>
 <h3 id="5-创建并运行容器"><a href="#5-创建并运行容器" class="headerlink" title="5.创建并运行容器"></a>5.创建并运行容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d --name myredis -p 6379:6379 --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /Users/ezio/redis/myredis/conf/myredis.conf:/etc/redis/redis.conf \</span><br><span class="line">-v /Users/ezio/redis/myredis/data:/data \</span><br><span class="line">redis:latest \</span><br><span class="line">redis-server /etc/redis/redis.conf \</span><br><span class="line">--appendonly <span class="built_in">yes</span> \</span><br><span class="line">--requirepass <span class="string">&quot;你的密码&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>简单解释：</p>
@@ -333,7 +340,7 @@
     <div class="copyright">
         <span>
         Ezio
-        © 2019 - 2024 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
         
   			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
