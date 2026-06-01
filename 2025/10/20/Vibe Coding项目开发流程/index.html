@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>Vibe Coding项目开发流程 | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Vibe Coding项目开发流程</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 20, 2025&nbsp;&nbsp;18:52:53</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AI/">AI</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Vibe-Coding-项目开发流程"><a href="#Vibe-Coding-项目开发流程" class="headerlink" title="Vibe Coding 项目开发流程"></a>Vibe Coding 项目开发流程</h1><p>简单分为5个步骤：</p>
+<ol>
+<li>需求研究（Research）</li>
+<li>产品需求文档（PRD）</li>
+<li>技术设计文档（Tech Design）</li>
+<li>AI代理指令（AGENTS.md）</li>
+<li>实现和迭代（Build）</li>
+</ol>
+<h3 id="步骤1：需求研究（Research）"><a href="#步骤1：需求研究（Research）" class="headerlink" title="步骤1：需求研究（Research）"></a>步骤1：需求研究（Research）</h3><p>在动手让AI实现前，需要先想明白，弄清楚：我们要做什么？为什么要做？</p>
+<ol>
+<li>明确目标</li>
+</ol>
+<p>先问自己，我想解决什么问题？这个问题值得解决吗？我希望做出来是什么样的？做出来的东西用户群体是怎样的？自己用还是给别人用？核心功能有哪些？</p>
+<ol start="2">
+<li>调研类似产品</li>
+</ol>
+<p>去看看市面上类似的产品，进行对比，看看别人是怎样做的，有哪些优缺点，这个也可以交给AI分析总结。</p>
+<ol start="3">
+<li>记录</li>
+</ol>
+<p>把想法和调研的结果以文档的形式记录下来，比如  <code>Research.md</code> </p>
+<h3 id="步骤2：产品需求文档（PRD）"><a href="#步骤2：产品需求文档（PRD）" class="headerlink" title="步骤2：产品需求文档（PRD）"></a>步骤2：产品需求文档（PRD）</h3><p>昨晚需求研究后，需要把想法整理成一份正式的文档，明确要做哪些内容，哪些是不需要实现的，哪些是核心功能要优先保证和实现。</p>
+<p>这是流程中最重要的一步，准确详细的PRD可以让AI清晰地理解你的意图，生成更准确和高质量的代码。</p>
+<h4 id="如何产出一份高质量的PRD？"><a href="#如何产出一份高质量的PRD？" class="headerlink" title="如何产出一份高质量的PRD？"></a>如何产出一份高质量的PRD？</h4><p>可以先将简单的需求或者需求研究和想法告诉AI，然后让AI来帮你扩展成为更详细完整的PRD。</p>
+<p>比如你将想法问AI：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我想要做一个个人博客网站，能发布文章，游客可以在文章下发布留言。</span><br></pre></td></tr></table></figure>
+
+<p>再加上：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">请帮我把这个需求扩展成为一份完整的产品需求文档（PRD），</span><br><span class="line">要包含以下内容：</span><br><span class="line"><span class="bullet">1.</span> 产品概述和目标用户</span><br><span class="line"><span class="bullet">2.</span> 详细的功能列表</span><br><span class="line"><span class="bullet">3.</span> 功能的优先级</span><br><span class="line"><span class="bullet">4.</span> 界面的设计要求</span><br><span class="line"><span class="bullet">5.</span> 技术栈建议</span><br><span class="line"><span class="bullet">6.</span> 非功能性需求（性能、安全等）</span><br></pre></td></tr></table></figure>
+
+<p>AI会帮你生成一份结构化的产品需求文档，然后你在根据你自己具体的需求更改和完善。</p>
+<h4 id="PRD应该包含哪些内容？"><a href="#PRD应该包含哪些内容？" class="headerlink" title="PRD应该包含哪些内容？"></a>PRD应该包含哪些内容？</h4><p>一份完整的PRD通常包含：</p>
+<ul>
+<li>产品概述（简单介绍这个产品是什么）</li>
+<li>目标用户（谁用这个产品）</li>
+<li>核心功能（列出要做的功能清单）</li>
+<li>功能优先级（哪些是必须的，哪些是可以后续迭代添加的）</li>
+<li>界面设计（简单描述界面的样子）</li>
+<li>技术栈建议</li>
+<li>代码风格和架构模式</li>
+<li>限制条件和边界场景</li>
+</ul>
+<p>举个例子，以下内容由AI生成:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 个人博客网站产品需求文档 (PRD)</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 产品概述与目标用户</span></span><br><span class="line">产品背景与愿景</span><br><span class="line">本产品旨在打造一个轻量级、极简且高度可定制的个人博客平台。核心愿景是为内容创作者提供一个纯粹的写作空间，通过高质量的文章沉淀个人知识体系，并通过留言互动功能建立与读者之间的深度连接。平台将摒弃复杂的社交网络属性，专注于“阅读”与“交流”的本质体验。</span><br><span class="line"></span><br><span class="line"><span class="section">## 目标用户画像</span></span><br><span class="line">核心用户（博主）：具备一定技术基础或热爱写作的个人创作者、行业专家、学生及自由职业者。他们需要一个无广告干扰、排版美观、支持Markdown编辑的发布环境，并希望对自己的数据拥有绝对控制权。</span><br><span class="line">次要用户（访客/读者）：对特定领域（如技术教程、生活感悟、行业分析）感兴趣的人群。他们追求流畅的阅读体验，并期望能够便捷地留下评论或与博主进行互动。</span><br><span class="line"></span><br><span class="line"><span class="section">## 详细功能列表</span></span><br><span class="line"><span class="section">### 前台展示端（面向游客与博主）</span></span><br><span class="line">首页/文章列表：支持按发布时间倒序排列，提供分页加载；支持按标签（Tags）和分类（Categories）筛选文章。</span><br><span class="line">文章详情页：完整渲染文章内容，支持代码高亮、图片懒加载；侧边栏显示目录导航（TOC）、相关文章推荐及博主简介。</span><br><span class="line">留言互动系统：</span><br><span class="line">游客可在文章底部发表评论。</span><br><span class="line">支持多级回复（盖楼模式），形成对话流。</span><br><span class="line">支持输入昵称、邮箱（用于接收回复通知）及评论内容。</span><br><span class="line">全局搜索：支持根据标题、正文关键词模糊搜索文章。</span><br><span class="line">响应式布局：完美适配桌面端、平板及移动端设备。</span><br><span class="line"></span><br><span class="line"><span class="section">### 后台管理端（仅面向博主）</span></span><br><span class="line">仪表盘：展示关键数据概览（如文章总数、今日访问量、待审核留言数）。</span><br><span class="line">文章管理：</span><br><span class="line">集成富文本编辑器或Markdown编辑器，支持实时预览。</span><br><span class="line">支持文章的创建、编辑、删除、置顶及草稿箱保存。</span><br><span class="line">支持设置封面图、SEO标题、描述及关键词。</span><br><span class="line">留言管理：</span><br><span class="line">查看所有留言列表，支持按文章、时间筛选。</span><br><span class="line">具备垃圾评论过滤机制，支持手动审核、通过、隐藏或删除留言。</span><br><span class="line">系统设置：</span><br><span class="line">站点基础信息配置（站点名称、Logo、Favicon）。</span><br><span class="line">个人信息及社交链接配置。</span><br><span class="line">安全设置（修改管理员密码、绑定两步验证）。</span><br><span class="line"></span><br><span class="line"><span class="section">## 功能优先级划分</span></span><br><span class="line">为了确保项目快速落地并持续迭代，采用MoSCoW法则进行优先级排序：</span><br><span class="line">P0 - 必须有 (Must have)：</span><br><span class="line">前台文章列表与详情页展示。</span><br><span class="line">后台Markdown编辑器及文章增删改查。</span><br><span class="line">前台基础留言提交与后台留言查看/删除。</span><br><span class="line">基础的响应式页面布局。</span><br><span class="line">P1 - 应该有 (Should have)：</span><br><span class="line">留言的多级回复功能。</span><br><span class="line">文章分类与标签筛选系统。</span><br><span class="line">全文检索功能。</span><br><span class="line">留言的防垃圾过滤机制（如接入Akismet或简单的敏感词屏蔽）。</span><br><span class="line">P2 - 可以有 (Could have)：</span><br><span class="line">文章阅读次数统计与热度排行。</span><br><span class="line">回复留言时的邮件通知功能。</span><br><span class="line">自定义主题配色与夜间模式切换。</span><br><span class="line">P3 - 以后再做 (Won&#x27;t have for now)：</span><br><span class="line">第三方账号登录（GitHub/微信等）。</span><br><span class="line">文章打赏/赞助功能。</span><br><span class="line">RSS订阅源输出。</span><br><span class="line"></span><br><span class="line"><span class="section">## 界面设计要求 (UI/UX)</span></span><br><span class="line">设计风格：遵循“内容为王”的极简主义设计原则。大量留白，降低视觉噪音，确保文字的可读性是第一要务。</span><br><span class="line">色彩规范：主色调建议使用低饱和度的深灰或黑色搭配一种强调色（如静谧蓝或活力橙），避免使用高对比度的刺眼颜色。背景色推荐使用米白或纯白，减少长时间阅读的视觉疲劳。</span><br><span class="line">排版规范：正文字号建议不小于16px，行间距控制在1.6至1.8倍之间。代码块需配备清晰的语法高亮配色方案，并带有“一键复制”按钮。</span><br><span class="line">交互体验：所有点击操作需提供明确的反馈状态（如Hover效果、Loading动画）。留言提交成功后应给予即时Toast提示，并在页面无刷新状态下动态追加新评论。</span><br><span class="line"></span><br><span class="line"><span class="section">## 技术栈建议</span></span><br><span class="line"><span class="bullet">-</span> 前端：React + TypeScript + Vite</span><br><span class="line"><span class="bullet">-</span> 样式：Tailwind CSS</span><br><span class="line"><span class="bullet">-</span> 数据存储：LocalStorage</span><br><span class="line"><span class="bullet">-</span> 部署：Vercel</span><br><span class="line"></span><br><span class="line"><span class="section">## 非功能性需求</span></span><br><span class="line">性能要求：</span><br><span class="line">首屏加载时间（FCP）在标准4G网络下应控制在1.5秒以内。</span><br><span class="line">文章详情页的核心网页指标（LCP）需达到绿色优良标准。</span><br><span class="line">静态资源（图片、CSS、JS）必须启用CDN加速及浏览器长期缓存策略。</span><br><span class="line">安全性要求：</span><br><span class="line">防XSS攻击：前端渲染留言内容时，必须对HTML标签进行严格的转义或使用DOMPurify等库进行清洗，防止恶意脚本注入。</span><br><span class="line">防SQL注入：后端所有数据库查询必须使用参数化查询或ORM框架，严禁拼接字符串。</span><br><span class="line">身份认证：后台管理接口必须实施JWT Token鉴权，密码存储需加盐并使用bcrypt等强哈希算法加密。</span><br><span class="line">频率限制：对留言提交接口和登录接口实施IP限流（Rate Limiting），防止暴力破解和恶意刷屏。</span><br><span class="line">可扩展性与维护性：</span><br><span class="line">代码结构需遵循模块化设计，前后端接口定义清晰（如遵循RESTful规范或GraphQL）。</span><br><span class="line">预留Webhook接口，方便未来扩展自动化工作流（如发布文章后自动推送到社交媒体）。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="步骤3：技术设计文档（Tech-Design）"><a href="#步骤3：技术设计文档（Tech-Design）" class="headerlink" title="步骤3：技术设计文档（Tech Design）"></a>步骤3：技术设计文档（Tech Design）</h3><p>有了清晰的PRD后，知道要做些什么了，接下来就是设计如何做，确定用什么技术来实现这些功能以及架构。</p>
+<p>创建一个 <code>TECH_DESIGN.md</code> 文件，包含：</p>
+<ul>
+<li>技术栈选择（前端用什么，后端用什么，数据库用什么）</li>
+<li>项目结构（代码如何组织）</li>
+<li>数据模型（需要存储哪些数据）</li>
+<li>关键技术点（有哪些技术难度需要注意）</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 技术设计</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 技术栈</span></span><br><span class="line"><span class="bullet">-</span> React + TypeScript + Vite</span><br><span class="line"><span class="bullet">-</span> Tailwind CSS</span><br><span class="line"><span class="bullet">-</span> React Router（如果需要多页面）</span><br><span class="line"><span class="bullet">-</span> Framer Motion（动画效果）</span><br><span class="line"></span><br><span class="line"><span class="section">## 项目结构</span></span><br><span class="line">src/</span><br><span class="line">  components/</span><br><span class="line"><span class="code">    Header.tsx</span></span><br><span class="line"><span class="code">    Hero.tsx</span></span><br><span class="line"><span class="code">    About.tsx</span></span><br><span class="line"><span class="code">    Projects.tsx</span></span><br><span class="line"><span class="code">    Contact.tsx</span></span><br><span class="line"><span class="code">    Footer.tsx</span></span><br><span class="line"><span class="code">  data/</span></span><br><span class="line"><span class="code">    projects.ts</span></span><br><span class="line"><span class="code">    skills.ts</span></span><br><span class="line"><span class="code">  App.tsx</span></span><br><span class="line"><span class="code">  main.tsx</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="section">## 数据管理</span></span><br><span class="line"><span class="bullet">-</span> 项目数据和技能数据存储在 TypeScript 文件中</span><br><span class="line"><span class="bullet">-</span> 使用数组存储，方便后续添加和修改</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="步骤4：AI代理指令（AGENTS-md）"><a href="#步骤4：AI代理指令（AGENTS-md）" class="headerlink" title="步骤4：AI代理指令（AGENTS.md）"></a>步骤4：AI代理指令（AGENTS.md）</h3><p>PRD和技术设计文档都准备好了，接下来该准备创建一个专门给 AI 看的指令文件，告诉 AI 在这个项目中应该遵循什么规则。</p>
+<p><code>AGENTS.md</code>  是一个标准化的文件格式，用来指导 AI 编程工具如何工作。就像是给 AI 的一个”工作手册“。这个标准是由 OpenAI、Anthropic、Google 等公司共同推动，目前已经有上万个开源项目在使用。主流的 AI 编程工具，比如 Cursor、Windsurf、Claude Code、Gemini CLI、GitHub Copilot 等都支持自动读取 <code>AGENTS.md</code>  文件。</p>
+<p><code>AGENTS.md</code>  如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 个人作品集网站开发指令</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 项目概述</span></span><br><span class="line">使用 React + TypeScript + Tailwind CSS 开发的个人作品集网站。</span><br><span class="line"></span><br><span class="line"><span class="section">## 开发规范</span></span><br><span class="line"><span class="bullet">-</span> 使用函数式组件 + Hooks</span><br><span class="line"><span class="bullet">-</span> 使用 Tailwind CSS 编写样式</span><br><span class="line"><span class="bullet">-</span> 组件要可复用</span><br><span class="line"><span class="bullet">-</span> 代码要有注释</span><br><span class="line"></span><br><span class="line"><span class="section">## 设计要求</span></span><br><span class="line"><span class="bullet">-</span> 深色主题（背景 #0a0a0a，文字 #ffffff）</span><br><span class="line"><span class="bullet">-</span> 使用渐变色作为强调色</span><br><span class="line"><span class="bullet">-</span> 添加平滑的滚动动画</span><br><span class="line"><span class="bullet">-</span> 确保移动端适配</span><br><span class="line"></span><br><span class="line"><span class="section">## 注意事项</span></span><br><span class="line"><span class="bullet">-</span> 保持设计简洁，不要过度设计</span><br><span class="line"><span class="bullet">-</span> 性能优化：图片使用懒加载</span><br><span class="line"><span class="bullet">-</span> 确保所有链接可点击</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="步骤5：实现和迭代（build）"><a href="#步骤5：实现和迭代（build）" class="headerlink" title="步骤5：实现和迭代（build）"></a>步骤5：实现和迭代（build）</h3><p>前4步都是准备工作，现在正式开始写代码。但不是一口写完，而是分步迭代。</p>
+<h4 id="分步迭代"><a href="#分步迭代" class="headerlink" title="分步迭代"></a>分步迭代</h4><p>对于复杂的项目，想一步到位是不现实的，得有策略的慢慢迭代。</p>
+<h5 id="1-先搭好基础的框架"><a href="#1-先搭好基础的框架" class="headerlink" title="1.先搭好基础的框架"></a>1.先搭好基础的框架</h5><p>先让 AI 生成基础项目框架，功能和外观先放一边，确保项目能够运行启动。</p>
+<h5 id="2-逐步实现核心功能"><a href="#2-逐步实现核心功能" class="headerlink" title="2.逐步实现核心功能"></a>2.逐步实现核心功能</h5><p>架子搭好后，开始实现具体功能。优先跑通核心业务流程、实现核心功能。而不是一开始就追求完美。建议把项目拆分成多个小功能来一一实现。</p>
+<h5 id="3-优化实现细节"><a href="#3-优化实现细节" class="headerlink" title="3.优化实现细节"></a>3.优化实现细节</h5><p>核心功能都实现了，就可以慢慢打磨细节。在<strong>保证不影响功能的前提下</strong>，优化性能，改善用户体验、美化界面等。后续还可更加想法扩展更难多功能。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://ezioy.cn/2025/10/20/Vibe%20Coding%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">https://ezioy.cn/2025/10/20/Vibe%20Coding%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/AI/"># AI</a>
+                    
+                        <a href="/tags/Vibe-Coding/"># Vibe Coding</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/10/28/Elasticsearch-%E5%85%A5%E9%97%A8/">Elasticsearch 入门</a>
+            
+        </section>
+
+        
+        <section id="comments" style="margin:20px;padding:10px;background:#fff;">
+          <div id="vcomment" class="comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '#vcomment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+        </section>
+        
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        | <img src=/image/beian.png width="15"> <a href=\"https://beian.mps.gov.cn/#/query/webSearch?code=50011302222043\" rel=\"noreferrer\" target=\"_blank\">渝公网安备50011302222043</a> | <a href="https://beian.miit.gov.cn/" target="_blank">渝ICP备2023013933号-1</a>
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
