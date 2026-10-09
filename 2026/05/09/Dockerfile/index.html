@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ezio">
+
+
+
+    <meta name="description" content="this site is Ezio's blog.">
+
+
+    <meta name="keywords" content="YangLinWei, Blog, EzioY, Ezio">
+
+
+<title>Dockerfile | Ezio&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ezio&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ezio&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/music">Music</a>
+                
+                    <a class="menu-item" href="/mood">Mood</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Dockerfile</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ezio</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 9, 2026&nbsp;&nbsp;15:22:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Docker/">Docker</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><h2 id="Dockerfile-是什么"><a href="#Dockerfile-是什么" class="headerlink" title="Dockerfile 是什么"></a>Dockerfile 是什么</h2><p><strong>定义：<strong>Dockerfile 是一个</strong>纯文本文件</strong>，名字就叫 <code>Dockerfile</code>，没有扩展名。里面一行行写指令，Docker 按顺序执行，最后产出一个<strong>镜像</strong>。</p>
+<p>类比：它就像一份「组装说明书」，从「拿一个空盒子」开始，一步步「装 Java、拷代码、编译、设置启动命令」。</p>
+<p>举例：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> eclipse-temurin:<span class="number">17</span>-jre</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> app.jar /app/app.jar</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;/app/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>FROM</code>：从哪个基础镜像开始（相当于「先拿一个装好 Java 17 的空盒子」）</li>
+<li><code>COPY</code>：把本地的 <code>app.jar</code> 拷进镜像的 <code>/app/app.jar</code></li>
+<li><code>CMD</code>：容器启动时默认跑什么命令</li>
+</ul>
+<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="FROM-——-起点，必须第一行（除注释外）"><a href="#FROM-——-起点，必须第一行（除注释外）" class="headerlink" title="FROM —— 起点，必须第一行（除注释外）"></a>FROM —— 起点，必须第一行（除注释外）</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> eclipse-temurin:<span class="number">17</span>-jre</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有镜像都基于某个基础镜像。</li>
+<li>常用基础镜像：<ul>
+<li><code>eclipse-temurin:17-jre</code>：Java 运行环境</li>
+<li><code>maven:3.9-eclipse-temurin-17</code>：Java + Maven 构建环境</li>
+<li><code>node:20-alpine</code>：Node 环境</li>
+<li><code>nginx:1.27-alpine</code>：Nginx</li>
+<li><code>python:3.11-slim</code>：Python</li>
+</ul>
+</li>
+<li><code>alpine</code> &#x2F; <code>slim</code> 是精简版，体积小，推荐。</li>
+</ul>
+<h3 id="WORKDIR-——-设置工作目录"><a href="#WORKDIR-——-设置工作目录" class="headerlink" title="WORKDIR —— 设置工作目录"></a>WORKDIR —— 设置工作目录</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>相当于 <code>cd /app</code>，后续命令都在这个目录下执行。</li>
+<li>目录不存在会自动创建。</li>
+<li>建议一开始就设，避免到处写绝对路径。</li>
+</ul>
+<h3 id="COPY-——-把本地文件拷进镜像"><a href="#COPY-——-把本地文件拷进镜像" class="headerlink" title="COPY —— 把本地文件拷进镜像"></a>COPY —— 把本地文件拷进镜像</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="language-bash"> app.jar /app/app.jar</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . /app</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>格式：<code>COPY 源路径 目标路径</code></li>
+<li><code>COPY . /app</code> 表示把当前目录所有文件拷进 <code>/app</code>。</li>
+<li>配合 <code>.dockerignore</code> 排除不需要的文件。</li>
+</ul>
+<h3 id="ADD-——-和-COPY-类似，但不推荐"><a href="#ADD-——-和-COPY-类似，但不推荐" class="headerlink" title="ADD —— 和 COPY 类似，但不推荐"></a>ADD —— 和 COPY 类似，但不推荐</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="language-bash"> app.tar.gz /app/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>会自动解压 tar 包、支持 URL。</li>
+<li>ADD 行为不直观，容易踩坑。</li>
+</ul>
+<h3 id="RUN-——-构建时执行命令"><a href="#RUN-——-构建时执行命令" class="headerlink" title="RUN —— 构建时执行命令"></a>RUN —— 构建时执行命令</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; apt-get install -y curl</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> mvn clean package -DskipTests</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在<strong>构建镜像时</strong>执行，结果会打进镜像。</li>
+<li>多条命令用 <code>&amp;&amp;</code> 连起来写一行，减少镜像层数。</li>
+<li>每多一个 <code>RUN</code>，镜像就多一层，层数越多镜像越大。</li>
+</ul>
+<h3 id="ENV-——-设置环境变量"><a href="#ENV-——-设置环境变量" class="headerlink" title="ENV —— 设置环境变量"></a>ENV —— 设置环境变量</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ENV</span> TZ=Asia/Shanghai</span><br><span class="line"><span class="keyword">ENV</span> JAVA_OPTS=<span class="string">&quot;-Xms256m -Xmx512m&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>容器运行时能读到这些变量。</li>
+<li>Java 里 <code>System.getenv(&quot;TZ&quot;)</code> 能拿到。</li>
+</ul>
+<h3 id="EXPOSE-——-声明端口（只是声明）"><a href="#EXPOSE-——-声明端口（只是声明）" class="headerlink" title="EXPOSE —— 声明端口（只是声明）"></a>EXPOSE —— 声明端口（只是声明）</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>只是告诉别人「这个容器想用 8080」</strong>，不会真的开放端口。</li>
+<li>真正开放端口要在 <code>docker run -p</code> 或 compose 的 <code>ports</code> 里写。</li>
+<li>新手常误会：写了 EXPOSE 不等于能访问。</li>
+</ul>
+<h3 id="CMD-——-容器启动时的默认命令"><a href="#CMD-——-容器启动时的默认命令" class="headerlink" title="CMD —— 容器启动时的默认命令"></a>CMD —— 容器启动时的默认命令</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;/app/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一个 Dockerfile 只能有一个 CMD，写多个只有最后一个生效。</li>
+<li>用<strong>数组格式</strong>（方括号），不要用 shell 字符串格式。</li>
+<li>可以被 <code>docker run</code> 后面跟的命令覆盖。</li>
+</ul>
+<h3 id="ENTRYPOINT-——-容器启动的固定命令"><a href="#ENTRYPOINT-——-容器启动的固定命令" class="headerlink" title="ENTRYPOINT —— 容器启动的固定命令"></a>ENTRYPOINT —— 容器启动的固定命令</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;/app/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>和 CMD 类似，但<strong>不容易被覆盖</strong>。</li>
+<li>常见组合：ENTRYPOINT 写固定命令，CMD 写默认参数。</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;/app/app.jar&quot;</span>]</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;--spring.profiles.active=prod&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="多阶段构建"><a href="#多阶段构建" class="headerlink" title="多阶段构建"></a>多阶段构建</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 阶段一：构建（大，带 Maven）</span></span><br><span class="line"><span class="keyword">FROM</span> maven:<span class="number">3.9</span>-eclipse-temurin-<span class="number">17</span> AS builder</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /build</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> pom.xml .</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> mvn dependency:go-offline -B</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> src ./src</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> mvn clean package -DskipTests -B</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 阶段二：运行（小，只有 JRE）</span></span><br><span class="line"><span class="keyword">FROM</span> eclipse-temurin:<span class="number">17</span>-jre-alpine</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> --from=builder /build/target/*.jar app.jar</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最终镜像只包含第二个阶段，Maven、源码都不会进去。</li>
+<li>体积从 800MB 降到 200MB。</li>
+<li><code>COPY --from=builder</code> 表示从上一个阶段拷文件。</li>
+</ul>
+<h3 id="dockerignore"><a href="#dockerignore" class="headerlink" title=".dockerignore"></a>.dockerignore</h3><p>和 Dockerfile 同目录，写着不需要打进镜像的文件：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">target/</span><br><span class="line">node<span class="built_in">_</span>modules/</span><br><span class="line">.git/</span><br><span class="line">.env</span><br><span class="line">*.log</span><br><span class="line">.idea/</span><br></pre></td></tr></table></figure>
+
+<p>作用：构建时忽略这些文件，加快速度、防止密钥泄露。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ezio</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://ezioy.cn/2026/05/09/Dockerfile/">https://ezioy.cn/2026/05/09/Dockerfile/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Nothing is true,Everything is permitted</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Docker/"># Docker</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/10/20/Vibe%20Coding%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">Vibe Coding项目开发流程</a>
+            
+        </section>
+
+        
+        <section id="comments" style="margin:20px;padding:10px;background:#fff;">
+          <div id="vcomment" class="comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '#vcomment',
+      app_id: 'sN7HKDXPyx91fQTlKKU42Eu2-gzGzoHsz',
+      app_key: 'x29HfQ4TKUTG1MTwPvhBJX3H',
+      placeholder: '这里留言。。',
+      notify: 'true',
+      verify: 'true',
+      avatar: 'monsterid',
+    });
+</script>
+        </section>
+        
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <div class="copyright">
+        <span>
+        Ezio
+        © 2019 - 2026 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a> | 
+        
+  			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span class="site-uv">
+    访客数量:
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>&nbsp;
+
+
+<span class="site-pv">
+    浏览次数:
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+		
+        | <img src=/image/beian.png width="15"> <a href=\"https://beian.mps.gov.cn/#/query/webSearch?code=50011302222043\" rel=\"noreferrer\" target=\"_blank\">渝公网安备50011302222043</a> | <a href="https://beian.miit.gov.cn/" target="_blank">渝ICP备2023013933号-1</a>
+        </span>
+    </div>
+    <script type="text/javascript" color="0,0,0" opacity="0.3" zindex="-2" count="99" src="/js/canvas-nest.js"></script>
+
+    <div id="totop" style="position:fixed;bottom:35px;right:35px;cursor: pointer;display: none;">
+<a title="返回顶部"><img src="/image/scrollup.png" height="50" width="50" /></a>
+</div>
+	<script src="/js/totop.js"></script>
+</footer>
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":320},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
